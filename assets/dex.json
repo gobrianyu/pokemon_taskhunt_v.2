@@ -131,10 +131,10 @@
                 "height": 200,
                 "weight": 100,
                 "entry": "The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/venusaur_m.png",
+                "image asset f": "assets/venusaur_f.png",
+                "image asset m shiny": "assets/venusaur_m.png",
+                "image asset f shiny": "assets/venusaur_f.png"
             }
         ],
         "gimmick forms": [],
@@ -476,10 +476,10 @@
                 "height": 30,
                 "weight": 2.9,
                 "entry": "If you touch the feeler on top of its head, it will release a horrible stink to protect itself.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/caterpie.png",
+                "image asset f": "assets/caterpie.png",
+                "image asset m shiny": "assets/caterpie_shiny.png",
+                "image asset f shiny": "assets/caterpie_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -1373,10 +1373,10 @@
         "flee rate": 6
     },
     {
-        "dex number": 28,
+        "dex number": 27,
         "forms": [
             {
-                "key": 28.0,
+                "key": 27.0,
                 "name": "Sandshrew",
                 "type": ["Ground"],
                 "category": "Mouse",
@@ -1387,7 +1387,7 @@
                     {
                         "next": [
                             {
-                                "key": 29.0,
+                                "key": 28.0,
                                 "level": 22,
                                 "item": []
                             }
@@ -1414,7 +1414,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 28.1,
+                "key": 27.1,
                 "name": "Sandshrew",
                 "type": ["Ice", "Steel"],
                 "category": "Mouse",
@@ -1425,7 +1425,7 @@
                     {
                         "next": [
                             {
-                                "key": 29.1,
+                                "key": 28.1,
                                 "level": null,
                                 "item": ["Ice Stone"]
                             }
@@ -8613,5 +8613,1059 @@
         "male:female ratio": null,
         "catch rate": 45,
         "flee rate": 0
+    },
+    {
+        "dex number": 152,
+        "forms": [
+            {
+                "key": 152.0,
+                "name": "Chikorita",
+                "type": ["Grass"],
+                "category": "Leaf",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 153.0,
+                                "level": 16,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 49,
+                        "def": 65,
+                        "sp.atk": 49,
+                        "sp.def": 65,
+                        "speed": 45
+                    }
+                ],
+                "height": 90,
+                "weight": 6.4,
+                "entry": "A sweet aroma gently wafts from the leaf on its head. It is docile and loves to soak up the sun's rays.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 64,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 10
+    },
+    {
+        "dex number": 153,
+        "forms": [
+            {
+                "key": 153.0,
+                "name": "Bayleef",
+                "type": ["Grass"],
+                "category": "Leaf",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 154.0,
+                                "level": 32,
+                                "item": []
+                            }
+                        ],
+                        "prev": 152.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 62,
+                        "def": 80,
+                        "sp.atk": 63,
+                        "sp.def": 80,
+                        "speed": 60
+                    }
+                ],
+                "height": 120,
+                "weight": 15.8,
+                "entry": "The scent of spices comes from around its neck. Somehow, sniffing it makes you want to fight.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 142,
+        "minimum spawn level": 16,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 154,
+        "forms": [
+            {
+                "key": 154.0,
+                "name": "Meganium",
+                "type": ["Grass"],
+                "category": "Herb",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 153.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 80,
+                        "atk": 82,
+                        "def": 100,
+                        "sp.atk": 83,
+                        "sp.def": 100,
+                        "speed": 80
+                    }
+                ],
+                "height": 180,
+                "weight": 100.5,
+                "entry": "Anyone who stands beside it becomes refreshed, just as if they were relaxing in a sunny forest.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 236,
+        "minimum spawn level": 32,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 155,
+        "forms": [
+            {
+                "key": 155.0,
+                "name": "Cyndaquil",
+                "type": ["Fire"],
+                "category": "Fire Mouse",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 156.0,
+                                "level": 14,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 39,
+                        "atk": 52,
+                        "def": 43,
+                        "sp.atk": 60,
+                        "sp.def": 50,
+                        "speed": 65
+                    }
+                ],
+                "height": 50,
+                "weight": 7.9,
+                "entry": "It is timid, and always curls itself up in a ball. If attacked, it flares up its back for protection.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 62,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 10
+    },
+    {
+        "dex number": 156,
+        "forms": [
+            {
+                "key": 156.0,
+                "name": "Quilava",
+                "type": ["Fire"],
+                "category": "Volcano",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 157.0,
+                                "level": 36,
+                                "item": []
+                            },
+                            {
+                                "key": 157.1,
+                                "level": 36,
+                                "item": []
+                            }
+                        ],
+                        "prev": 156.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 58,
+                        "atk": 64,
+                        "def": 58,
+                        "sp.atk": 80,
+                        "sp.def": 65,
+                        "speed": 80
+                    }
+                ],
+                "height": 90,
+                "weight": 19.0,
+                "entry": "This Pokémon is fully covered by nonflammable fur. It can withstand any kind of fire attack.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 142,
+        "minimum spawn level": 14,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 157,
+        "forms": [
+            {
+                "key": 157.0,
+                "name": "Typhlosion",
+                "type": ["Fire"],
+                "category": "Volcano",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 156.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 78,
+                        "atk": 84,
+                        "def": 78,
+                        "sp.atk": 109,
+                        "sp.def": 85,
+                        "speed": 100
+                    }
+                ],
+                "height": 170,
+                "weight": 79.5,
+                "entry": "If its rage peaks, it becomes so hot that anything that touches it will instantly go up in flames.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 157.1,
+                "name": "Typhlosion",
+                "type": ["Fire", "Ghost"],
+                "category": "Ghost Flame",
+                "region": "Hisui",
+                "special form": "Hisuian Typhlosion",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 156.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 73,
+                        "atk": 84,
+                        "def": 78,
+                        "sp.atk": 119,
+                        "sp.def": 85,
+                        "speed": 95
+                    }
+                ],
+                "height": 160,
+                "weight": 69.8,
+                "entry": "Said to purify lost, forsaken souls with its flames and guide them to the afterlife. It is believed that its form was influenced by the energy of the sacred mountain towering at Hisui's center.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 240,
+        "minimum spawn level": 36,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 158,
+        "forms": [
+            {
+                "key": 158.0,
+                "name": "Totodile",
+                "type": ["Water"],
+                "category": "Big Jaw",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 159.0,
+                                "level": 18,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 65,
+                        "def": 64,
+                        "sp.atk": 44,
+                        "sp.def": 48,
+                        "speed": 43
+                    }
+                ],
+                "height": 60,
+                "weight": 9.5,
+                "entry": "It is small but rough and tough. It won't hesitate to take a bite out of anything that moves.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 63,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 10
+    },
+    {
+        "dex number": 159,
+        "forms": [
+            {
+                "key": 159.0,
+                "name": "Croconaw",
+                "type": ["Water"],
+                "category": "Big Jaw",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 160.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": 158.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 80,
+                        "def": 80,
+                        "sp.atk": 59,
+                        "sp.def": 63,
+                        "speed": 58
+                    }
+                ],
+                "height": 110,
+                "weight": 25.0,
+                "entry": "If it loses a fang, a new one grows back in its place. There are always 48 fangs lining its mouth.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 142,
+        "minimum spawn level": 18,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 160,
+        "forms": [
+            {
+                "key": 160.0,
+                "name": "Feraligatr",
+                "type": ["Water"],
+                "category": "Big Jaw",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 159.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 85,
+                        "atk": 105,
+                        "def": 100,
+                        "sp.atk": 79,
+                        "sp.def": 83,
+                        "speed": 78
+                    }
+                ],
+                "height": 230,
+                "weight": 88.8,
+                "entry": "It is hard for it to support its own weight out of water, so it gets down on all fours. But it moves fast.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 239,
+        "minimum spawn level": 30,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 161,
+        "forms": [
+            {
+                "key": 161.0,
+                "name": "Sentret",
+                "type": ["Normal"],
+                "category": "Scout",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 162.0,
+                                "level": 15,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 35,
+                        "atk": 46,
+                        "def": 34,
+                        "sp.atk": 35,
+                        "sp.def": 45,
+                        "speed": 20
+                    }
+                ],
+                "height": 80,
+                "weight": 6,
+                "entry": "A very cautious Pokémon, it raises itself up using its tail to get a better view of its surroundings.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 43,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 20
+    },
+    {
+        "dex number": 162,
+        "forms": [
+            {
+                "key": 162.0,
+                "name": "Furret",
+                "type": ["Normal"],
+                "category": "Long Body",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 161.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 85,
+                        "atk": 76,
+                        "def": 64,
+                        "sp.atk": 45,
+                        "sp.def": 55,
+                        "speed": 90
+                    }
+                ],
+                "height": 180,
+                "weight": 32.5,
+                "entry": "There is no telling where the tail begins. Despite its short legs, it is quick at hunting Rattata.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 145,
+        "minimum spawn level": 15,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 7
+    },
+    {
+        "dex number": 163,
+        "forms": [
+            {
+                "key": 163.0,
+                "name": "Hoothoot",
+                "type": ["Normal", "Flying"],
+                "category": "Owl",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 164.0,
+                                "level": 20,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 30,
+                        "def": 30,
+                        "sp.atk": 36,
+                        "sp.def": 56,
+                        "speed": 50
+                    }
+                ],
+                "height": 70,
+                "weight": 21.2,
+                "entry": "It always stands on one foot. It changes feet so fast, the movement can rarely be seen.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 52,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 15
+    },
+    {
+        "dex number": 164,
+        "forms": [
+            {
+                "key": 164.0,
+                "name": "Noctowl",
+                "type": ["Normal", "Flying"],
+                "category": "Owl",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 163.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 50,
+                        "def": 50,
+                        "sp.atk": 86,
+                        "sp.def": 96,
+                        "speed": 70
+                    }
+                ],
+                "height": 160,
+                "weight": 40.8,
+                "entry": "When it needs to think, it rotates its head 180 degrees to sharpen its intellectual power.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 158,
+        "minimum spawn level": 20,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 7
+    },
+    {
+        "dex number": 165,
+        "forms": [
+            {
+                "key": 165.0,
+                "name": "Ledyba",
+                "type": ["Bug", "Flying"],
+                "category": "Five Star",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 166.0,
+                                "level": 18,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 40,
+                        "atk": 20,
+                        "def": 30,
+                        "sp.atk": 40,
+                        "sp.def": 80,
+                        "speed": 55
+                    }
+                ],
+                "height": 100,
+                "weight": 10.8,
+                "entry": "It is timid and clusters together with others. The fluid secreted by its feet indicates its location.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 53,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 20
+    },
+    {
+        "dex number": 166,
+        "forms": [
+            {
+                "key": 166.0,
+                "name": "Ledian",
+                "type": ["Bug", "Flying"],
+                "category": "Five Star",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 165.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 35,
+                        "def": 50,
+                        "sp.atk": 55,
+                        "sp.def": 110,
+                        "speed": 85
+                    }
+                ],
+                "height": 140,
+                "weight": 35.6,
+                "entry": "The star patterns on its back grow larger or smaller depending on the number of stars in the night sky.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 137,
+        "minimum spawn level": 18,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 7
+    },
+    {
+        "dex number": 167,
+        "forms": [
+            {
+                "key": 167.0,
+                "name": "Spinarak",
+                "type": ["Bug", "Poison"],
+                "category": "String Spit",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 168.0,
+                                "level": 22,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 40,
+                        "atk": 60,
+                        "def": 40,
+                        "sp.atk": 40,
+                        "sp.def": 40,
+                        "speed": 30
+                    }
+                ],
+                "height": 50,
+                "weight": 8.5,
+                "entry": "The web spun by Spinarak can be considered its second nervous system. It is said that this Pokémon can determine what kind of prey is touching its web just by the tiny vibrations it feels through the web's strands.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 50,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 20
+    },
+    {
+        "dex number": 166,
+        "forms": [
+            {
+                "key": 166.0,
+                "name": "Ariados",
+                "type": ["Bug", "Poison"],
+                "category": "Long Leg",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 167.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 90,
+                        "def": 70,
+                        "sp.atk": 60,
+                        "sp.def": 70,
+                        "speed": 40
+                    }
+                ],
+                "height": 110,
+                "weight": 33.5,
+                "entry": "It spins string not only from its rear but also from its mouth. It is hard to tell which end is which.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 140,
+        "minimum spawn level": 22,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 7
+    },
+    {
+        "dex number": 169,
+        "forms": [
+            {
+                "key": 169.0,
+                "name": "Crobat",
+                "type": ["Poison", "Flying"],
+                "category": "Bat",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 42.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 85,
+                        "atk": 90,
+                        "def": 80,
+                        "sp.atk": 70,
+                        "sp.def": 80,
+                        "speed": 130
+                    }
+                ],
+                "height": 180,
+                "weight": 75,
+                "entry": "The transformation of its legs into wings made it better at flying, but more clumsy at walking.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 241,
+        "minimum spawn level": 32,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 5
+    },
+    {
+        "dex number": 170,
+        "forms": [
+            {
+                "key": 170.0,
+                "name": "Chinchou",
+                "type": ["Water", "Electric"],
+                "category": "Angler",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 171.0,
+                                "level": 27,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 38,
+                        "def": 38,
+                        "sp.atk": 56,
+                        "sp.def": 56,
+                        "speed": 67
+                    }
+                ],
+                "height": 50,
+                "weight": 12,
+                "entry": "On the dark ocean floor, its only means of communication is its constantly flashing lights.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 66,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 10
+    },
+    {
+        "dex number": 171,
+        "forms": [
+            {
+                "key": 171.0,
+                "name": "Lanturn",
+                "type": ["Water", "Electric"],
+                "category": "Light",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 170.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 125,
+                        "atk": 58,
+                        "def": 58,
+                        "sp.atk": 76,
+                        "sp.def": 76,
+                        "speed": 67
+                    }
+                ],
+                "height": 120,
+                "weight": 22.5,
+                "entry": "This Pokémon uses the bright part of its body, which changed from a dorsal fin, to lure prey.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 161,
+        "minimum spawn level": 27,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 7
+    },
+    {
+        "dex number": 172,
+        "forms": [
+            {
+                "key": 172.0,
+                "name": "Pichu",
+                "type": ["Electric"],
+                "category": "Tiny Mouse",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 25.0,
+                                "level": null,
+                                "item": ["Friendship"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 20,
+                        "atk": 40,
+                        "def": 15,
+                        "sp.atk": 35,
+                        "sp.def": 35,
+                        "speed": 60
+                    }
+                ],
+                "height": 30,
+                "weight": 2,
+                "entry": "It is not yet skilled at storing electricity. It may send out a jolt if amused or startled.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 41,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 5
     }
 ]

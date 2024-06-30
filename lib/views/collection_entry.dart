@@ -64,7 +64,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
             _measurements(currForm.height, currForm.weight),
             _stats(currForm.stats[0]),
             _evoChart(currForm),
-            SizedBox(height: 100)
+            const SizedBox(height: 100)
           ]
         )
       ),
