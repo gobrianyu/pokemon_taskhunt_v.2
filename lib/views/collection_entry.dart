@@ -3,9 +3,10 @@ import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
 import 'package:pokemon_taskhunt_2/models/types.dart';
 
 class CollectionEntry extends StatefulWidget {
+  final List<dex.DexEntry> entries;
   final dex.DexEntry entry;
   
-  const CollectionEntry(this.entry, {super.key});
+  const CollectionEntry(this.entries, this.entry, {super.key});
 
   @override
   State<CollectionEntry> createState() => _CollectionEntryState();
@@ -14,7 +15,6 @@ class CollectionEntry extends StatefulWidget {
 class _CollectionEntryState extends State<CollectionEntry> {
   bool _displayShiny = false;
   bool _displayMale = true;
-  int _formKey = 0;
   int _currPageIndex = 0;
 
   late PageController _pageController;
@@ -23,6 +23,12 @@ class _CollectionEntryState extends State<CollectionEntry> {
   void initState() {
     super.initState();
     _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,11 +62,43 @@ class _CollectionEntryState extends State<CollectionEntry> {
             _buildTypes(currForm.type),
             _flavourText(currForm.category, currForm.entry),
             _measurements(currForm.height, currForm.weight),
-            _stats(currForm.stats[0])
+            _stats(currForm.stats[0]),
+            _evoChart(currForm),
+            SizedBox(height: 100)
           ]
         )
       ),
     );
+  }
+
+  Widget _evoChart(dex.Form form) {
+    dex.Form basic = form;
+    double? prevKey = basic.evolutions[0].prevKey;
+    while (prevKey != null) {
+      List<dex.Form> forms = widget.entries[prevKey.toInt() - 1].forms;
+      basic = forms[forms.indexWhere((form) => form.key == prevKey)];
+      prevKey = basic.evolutions[0].prevKey;
+    }
+    EvoAsset head = EvoAsset.fromForm(form: basic, entries: widget.entries, evoStage: 1);
+    print(head.next);
+    return Row(
+      children: _fillAssetColumns(head, [])
+    );
+  }
+
+  List<Widget> _fillAssetColumns(EvoAsset head, List<Column> columns) {
+    if (columns.length < head.evoStage) {
+      columns.add(Column(children: [Image(image: AssetImage(head.image), width: 50)]));
+    } else {
+      columns[head.evoStage - 1].children.add(Image(image: AssetImage(head.image), width: 50));
+    }
+    
+    if (head.next.isNotEmpty) {
+      for (EvoAsset next in head.next) {
+        _fillAssetColumns(next, columns);
+      }
+    }
+    return columns;
   }
 
   Widget _buildTypes(List<Types> types) {
@@ -74,9 +112,10 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _stats(dex.Stats stats) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Base Stats', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           SizedBox(height: 8),
@@ -428,5 +467,30 @@ class _CollectionEntryState extends State<CollectionEntry> {
         ],
       )
     );
+  }
+}
+
+class EvoAsset {
+  final List<dex.DexEntry> entries;
+  final String image;
+  final List<EvoAsset> next;
+  final int evoStage;
+
+  EvoAsset({required this.entries, required this.image, required this.next, required this.evoStage});
+  
+  factory EvoAsset.fromForm({required dex.Form form, required List<dex.DexEntry> entries, required int evoStage}) {
+    List<dex.NextEvo> nextEvos = form.evolutions[0].next;
+    if (nextEvos == []) {
+      return EvoAsset(entries: entries, image: form.imageAssetM, next: [], evoStage: evoStage);
+    }
+    List<dex.Form> evoForms = nextEvos.map((nextEvo) {
+        double key = nextEvo.key;
+        List<dex.Form> forms = entries[key.toInt() - 1].forms;
+        print(key.toInt());
+        print('key: $key, form.key: ${form.key}, index: ${forms.indexWhere((form) => form.key == key)}');
+        return forms[forms.indexWhere((form) => form.key == key)];
+    }).toList();
+    List<EvoAsset> evoAssets = evoForms.map((evoForm) => EvoAsset.fromForm(form: evoForm, entries: entries, evoStage: evoStage + 1)).toList();
+    return EvoAsset(entries: entries, image: form.imageAssetM, next: evoAssets, evoStage: evoStage);
   }
 }

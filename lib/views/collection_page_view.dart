@@ -29,7 +29,7 @@ class CollectionPageViewState extends State<CollectionPageView> {
         controller: _pageController,
         itemCount: widget.entries.length,
         itemBuilder: (context, index) {
-          return CollectionEntry(widget.entries[index]);
+          return CollectionEntry(widget.entries, widget.entries[index]);
         },
       ),
       bottomNavigationBar: _backButton(context),

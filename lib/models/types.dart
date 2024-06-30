@@ -90,8 +90,8 @@ enum Types {
       case 'grass': return const Color.fromARGB(255, 127, 205, 103);
       case 'fire': return const Color.fromARGB(255, 243, 89, 62);
       case 'normal': return const Color.fromARGB(255, 168, 168, 168);
-      case 'ground': return const Color.fromARGB(255, 180, 147, 76);
-      case 'rock': return const Color.fromARGB(255, 212, 191, 70);
+      case 'ground': return const Color.fromARGB(255, 148, 120, 59);
+      case 'rock': return const Color.fromARGB(255, 193, 169, 97);
       case 'flying': return const Color.fromARGB(255, 193, 205, 210);
       case 'psychic': return const Color.fromARGB(255, 231, 101, 161);
       case 'poison': return const Color.fromARGB(255, 157, 115, 223);
