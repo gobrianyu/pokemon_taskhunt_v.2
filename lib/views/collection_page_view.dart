@@ -5,8 +5,9 @@ import 'collection_entry.dart'; // Ensure this path is correct based on your pro
 class CollectionPageView extends StatefulWidget {
   final List<dex.DexEntry> entries;
   final int initialPageIndex;
+  final int initialFormIndex;
 
-  const CollectionPageView(this.entries, this.initialPageIndex, {super.key});
+  const CollectionPageView({required this.entries, required this.initialPageIndex, this.initialFormIndex = 0, super.key});
 
   @override
   CollectionPageViewState createState() => CollectionPageViewState();
@@ -29,7 +30,7 @@ class CollectionPageViewState extends State<CollectionPageView> {
         controller: _pageController,
         itemCount: widget.entries.length,
         itemBuilder: (context, index) {
-          return CollectionEntry(widget.entries, widget.entries[index]);
+          return CollectionEntry(entries: widget.entries, entry: widget.entries[index], currPageIndex: widget.initialFormIndex);
         },
       ),
       bottomNavigationBar: _backButton(context),

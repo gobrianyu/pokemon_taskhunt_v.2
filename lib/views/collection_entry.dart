@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
 import 'package:pokemon_taskhunt_2/models/types.dart';
 
+import 'collection_page_view.dart';
+
 class CollectionEntry extends StatefulWidget {
   final List<dex.DexEntry> entries;
   final dex.DexEntry entry;
+  int currPageIndex;
   
-  const CollectionEntry(this.entries, this.entry, {super.key});
+  CollectionEntry({required this.entries, required this.entry, this.currPageIndex = 0, super.key});
 
   @override
   State<CollectionEntry> createState() => _CollectionEntryState();
@@ -15,7 +18,6 @@ class CollectionEntry extends StatefulWidget {
 class _CollectionEntryState extends State<CollectionEntry> {
   bool _displayShiny = false;
   bool _displayMale = true;
-  int _currPageIndex = 0;
 
   late PageController _pageController;
 
@@ -34,7 +36,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
   @override
   Widget build(BuildContext context) {
     dex.DexEntry entry = widget.entry;
-    dex.Form currForm = entry.forms[_currPageIndex];
+    dex.Form currForm = entry.forms[widget.currPageIndex];
 
     return Scaffold(
       extendBody: true,
@@ -81,16 +83,57 @@ class _CollectionEntryState extends State<CollectionEntry> {
     }
     EvoAsset head = EvoAsset.fromForm(form: basic, entries: widget.entries, evoStage: 1);
     print(head.next);
-    return Row(
-      children: _fillAssetColumns(head, [])
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Evolution', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: _fillAssetColumns(head, [])
+          ),
+        ],
+      ),
     );
   }
 
   List<Widget> _fillAssetColumns(EvoAsset head, List<Column> columns) {
+    final initialPageIndex = head.key.toInt() - 1;
+    final initialFormIndex = (head.key * 10).toInt() % 10;
+
     if (columns.length < head.evoStage) {
-      columns.add(Column(children: [Image(image: AssetImage(head.image), width: 50)]));
+      columns.add(Column(children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.pushReplacement(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => CollectionPageView(entries: widget.entries, initialPageIndex: initialPageIndex, initialFormIndex: initialFormIndex),
+              ),
+              // (route) => route.settings.name == 'collection',
+            );
+          },
+          child: Image(image: AssetImage(head.image), width: 100)
+        )
+      ]));
     } else {
-      columns[head.evoStage - 1].children.add(Image(image: AssetImage(head.image), width: 50));
+      columns[head.evoStage - 1].children.add(
+        GestureDetector(
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => CollectionPageView(entries: widget.entries, initialPageIndex: initialPageIndex, initialFormIndex: initialFormIndex),
+              ),
+              (route) => route.settings.name == 'collection',
+            );
+          },
+          child: Image(image: AssetImage(head.image), width: 100)
+        )
+      );
     }
     
     if (head.next.isNotEmpty) {
@@ -272,7 +315,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
           return _getImage(forms[index]);
         },
         onPageChanged: (index) => { setState(() {
-          _currPageIndex = index;
+          widget.currPageIndex = index;
         })},
       ),
     );
@@ -436,7 +479,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _backButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => {Navigator.pop(context)},
+      onTap: () => Navigator.popUntil(context, ModalRoute.withName('/collection')),
       child: Row(
         children: [
           const Spacer(),
@@ -475,13 +518,14 @@ class EvoAsset {
   final String image;
   final List<EvoAsset> next;
   final int evoStage;
+  final double key;
 
-  EvoAsset({required this.entries, required this.image, required this.next, required this.evoStage});
+  EvoAsset({required this.entries, required this.image, required this.next, required this.evoStage, required this.key});
   
   factory EvoAsset.fromForm({required dex.Form form, required List<dex.DexEntry> entries, required int evoStage}) {
     List<dex.NextEvo> nextEvos = form.evolutions[0].next;
     if (nextEvos == []) {
-      return EvoAsset(entries: entries, image: form.imageAssetM, next: [], evoStage: evoStage);
+      return EvoAsset(entries: entries, image: form.imageAssetM, next: [], evoStage: evoStage, key: form.key);
     }
     List<dex.Form> evoForms = nextEvos.map((nextEvo) {
         double key = nextEvo.key;
@@ -491,6 +535,6 @@ class EvoAsset {
         return forms[forms.indexWhere((form) => form.key == key)];
     }).toList();
     List<EvoAsset> evoAssets = evoForms.map((evoForm) => EvoAsset.fromForm(form: evoForm, entries: entries, evoStage: evoStage + 1)).toList();
-    return EvoAsset(entries: entries, image: form.imageAssetM, next: evoAssets, evoStage: evoStage);
+    return EvoAsset(entries: entries, image: form.imageAssetM, next: evoAssets, evoStage: evoStage, key: form.key);
   }
 }

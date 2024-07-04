@@ -57,7 +57,7 @@ class _CollectionState extends State<Collection> {
           onTap: () => {
             Navigator.push(
               context, 
-              MaterialPageRoute(builder: (context) => CollectionPageView(widget.dex, entry.dexNum - 1))
+              MaterialPageRoute(builder: (context) => CollectionPageView(entries: widget.dex, initialPageIndex: entry.dexNum - 1))
             )
           },
           child: Image(image: AssetImage(entry.forms[0].imageAssetM))
@@ -69,7 +69,7 @@ class _CollectionState extends State<Collection> {
 
   Widget _backButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => {Navigator.pop(context)},
+      onTap: () => Navigator.pop(context),
       child: Row(
         children: [
           const Spacer(),

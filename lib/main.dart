@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_db.dart';
+import 'package:pokemon_taskhunt_2/views/collection.dart';
 import 'package:pokemon_taskhunt_2/views/landing.dart';
 
 void main() {
@@ -49,9 +50,7 @@ class MainAppState extends State<MainApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Landing(_dexDB),
-        ),
+        body: Landing(_dexDB),
       ),
     );
   }

@@ -10,29 +10,28 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        GestureDetector(
-          child: _formatButton('New Game')
-        ),
-        GestureDetector(
-          child: _formatButton('Load Game')
-        ),
-        GestureDetector(
-          onTap: () => {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(builder: (context) => Collection(dex.all))
-            )
-          },
-          child: _formatButton('Collection')
-        ),
-        GestureDetector(
-          child: _formatButton('Settings')
-        ),
-      ]
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(
+            child: _formatButton('New Game')
+          ),
+          GestureDetector(
+            child: _formatButton('Load Game')
+          ),
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Collection(dex.all)))
+            },
+            child: _formatButton('Collection')
+          ),
+          GestureDetector(
+            child: _formatButton('Settings')
+          ),
+        ]
+      ),
     );
   }
 

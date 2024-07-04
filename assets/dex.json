@@ -233,10 +233,10 @@
                 "height": 110,
                 "weight": 19,
                 "entry": "Tough fights could excite this Pokémon. When excited, it may blow out bluish-white flames.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/charmeleon.png",
+                "image asset f": "assets/charmeleon.png",
+                "image asset m shiny": "assets/charmeleon.png",
+                "image asset f shiny": "assets/charmeleon.png"
             }
         ],
         "gimmick forms": [],
@@ -278,10 +278,10 @@
                 "height": 170,
                 "weight": 90.5,
                 "entry": "When this Pokémon expels a blast of superhot fire, the red flame at the tip of its tails burns more intensely.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/charizard.png",
+                "image asset f": "assets/charizard.png",
+                "image asset m shiny": "assets/charizard.png",
+                "image asset f shiny": "assets/charizard.png"
             }
         ],
         "gimmick forms": [],
@@ -329,10 +329,10 @@
                 "height": 50,
                 "weight": 9.0,
                 "entry": "Shoots water at prey while in the water. Withdraws into its shell when in danger.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/squirtle.png",
+                "image asset f": "assets/squirtle.png",
+                "image asset m shiny": "assets/squirtle.png",
+                "image asset f shiny": "assets/squirtle.png"
             }
         ],
         "gimmick forms": [],
@@ -380,10 +380,10 @@
                 "height": 100,
                 "weight": 22.5,
                 "entry": "When tapped on its head, this Pokémon will pull it in, but its tail will stick out a little bit.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/wartortle.png",
+                "image asset f": "assets/wartortle.png",
+                "image asset m shiny": "assets/wartortle.png",
+                "image asset f shiny": "assets/wartortle.png"
             }
         ],
         "gimmick forms": [],
@@ -527,10 +527,10 @@
                 "height": 70,
                 "weight": 9.9,
                 "entry": "Hardens its shell to protect itself. However, a large impact may cause it to pop out of its shell.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/metapod.png",
+                "image asset f": "assets/metapod.png",
+                "image asset m shiny": "assets/metapod_shiny.png",
+                "image asset f shiny": "assets/metapod_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -623,10 +623,10 @@
                 "height": 30,
                 "weight": 3.2,
                 "entry": "Beware of the sharp stinger on its head. It hides in grass and bushes where it eats leaves.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/weedle.png",
+                "image asset f": "assets/weedle.png",
+                "image asset m shiny": "assets/weedle_shiny.png",
+                "image asset f shiny": "assets/weedle_shiny.png"
             }
         ],
         "gimmick forms": [],
