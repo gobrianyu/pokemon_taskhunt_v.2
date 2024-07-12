@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'types.dart';
+import 'regions.dart';
 
 part 'dex_entry.g.dart';
 
@@ -49,7 +50,7 @@ class Form {
   final String name;
   final List<Types> type;
   final String category;
-  final String region;
+  final Regions region;
   @JsonKey(name: 'special form')
   final String? specialForm; // can be null
   @JsonKey(name: 'valid')

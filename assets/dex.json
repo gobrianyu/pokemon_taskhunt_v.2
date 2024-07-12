@@ -425,10 +425,10 @@
                 "height": 160,
                 "weight": 85.5,
                 "entry": "Once it takes aim at its enemy, it blasts out water with even more force than a fire hose.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/blastoise.png",
+                "image asset f": "assets/blastoise.png",
+                "image asset m shiny": "assets/blastoise.png",
+                "image asset f shiny": "assets/blastoise.png"
             }
         ],
         "gimmick forms": [],
@@ -572,10 +572,10 @@
                 "height": 110,
                 "weight": 32,
                 "entry": "Its wings, covered with poisonous powder, repel water. This allows it to fly in the rain.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/butterfree_m.png",
+                "image asset f": "assets/butterfree_f.png",
+                "image asset m shiny": "assets/butterfree_m.png",
+                "image asset f shiny": "assets/butterfree_f.png"
             }
         ],
         "gimmick forms": [],
@@ -674,10 +674,10 @@
                 "height": 60,
                 "weight": 10,
                 "entry": "Able to move only slightly. When endangered, it may stick out its stinger and poison its enemy.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/kakuna.png",
+                "image asset f": "assets/kakuna.png",
+                "image asset m shiny": "assets/kakuna_shiny.png",
+                "image asset f shiny": "assets/kakuna_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -719,10 +719,10 @@
                 "height": 100,
                 "weight": 29.5,
                 "entry": "It has three poisonous stingers on its forelegs and its tail. They are used to jab its enemy repeatedly.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/beedrill.png",
+                "image asset f": "assets/beedrill.png",
+                "image asset m shiny": "assets/beedrill.png",
+                "image asset f shiny": "assets/beedrill.png"
             }
         ],
         "gimmick forms": [],
@@ -770,10 +770,10 @@
                 "height": 30,
                 "weight": 1.8,
                 "entry": "Very docile. If attacked, it will often kick up sand to protect itself rather than fight back.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/pidgey.png",
+                "image asset f": "assets/pidgey.png",
+                "image asset m shiny": "assets/pidgey_shiny.png",
+                "image asset f shiny": "assets/pidgey_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -821,10 +821,10 @@
                 "height": 110,
                 "weight": 30,
                 "entry": "This Pokémon is full of vitality. It constantly flies around its large territory in search of prey.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/pidgeotto.png",
+                "image asset f": "assets/pidgeotto.png",
+                "image asset m shiny": "assets/pidgeotto.png",
+                "image asset f shiny": "assets/pidgeotto.png"
             }
         ],
         "gimmick forms": [],
@@ -923,7 +923,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 19.1,
+                "key": 19.01,
                 "name": "Rattata",
                 "type": ["Dark", "Normal"],
                 "category": "Mouse",
@@ -934,7 +934,7 @@
                     {
                         "next": [
                             {
-                                "key": 20.1,
+                                "key": 20.01,
                                 "level": 20,
                                 "item": ["Dark Mode"]
                             }
@@ -1006,7 +1006,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 20.1,
+                "key": 20.01,
                 "name": "Raticate",
                 "type": ["Dark", "Normal"],
                 "category": "Mouse",
@@ -1016,7 +1016,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 19.1
+                        "prev": 19.01
                     }
                 ],
                 "base stats": [
@@ -1259,7 +1259,7 @@
                                 "item": ["Thunder Stone"]
                             },
                             {
-                                "key": 26.1,
+                                "key": 26.01,
                                 "level": null,
                                 "item": ["Thunder Stone", "Alola"]
                             }
@@ -1331,7 +1331,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 26.1,
+                "key": 26.01,
                 "name": "Raichu",
                 "type": ["Electric", "Psychic"],
                 "category": "Mouse",
@@ -1414,7 +1414,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 27.1,
+                "key": 27.01,
                 "name": "Sandshrew",
                 "type": ["Ice", "Steel"],
                 "category": "Mouse",
@@ -1425,7 +1425,7 @@
                     {
                         "next": [
                             {
-                                "key": 28.1,
+                                "key": 28.01,
                                 "level": null,
                                 "item": ["Ice Stone"]
                             }
@@ -1497,7 +1497,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 28.1,
+                "key": 28.01,
                 "name": "Sandslash",
                 "type": ["Ice", "Steel"],
                 "category": "Mouse",
@@ -1507,7 +1507,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 27.1
+                        "prev": 27.01
                     }
                 ],
                 "base stats": [
@@ -1970,7 +1970,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 37.1,
+                "key": 37.01,
                 "name": "Vulpix",
                 "type": ["Ice"],
                 "category": "Fox",
@@ -1981,7 +1981,7 @@
                     {
                         "next": [
                             {
-                                "key": 38.1,
+                                "key": 38.01,
                                 "level": null,
                                 "item": ["Ice Stone"]
                             }
@@ -2053,7 +2053,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 38.1,
+                "key": 38.01,
                 "name": "Ninetales",
                 "type": ["Ice", "Fairy"],
                 "category": "Fox",
@@ -2063,7 +2063,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 37.1
+                        "prev": 37.01
                     }
                 ],
                 "base stats": [
@@ -2678,7 +2678,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 50.1,
+                "key": 50.01,
                 "name": "Diglett",
                 "type": ["Ground", "Steel"],
                 "category": "Mole",
@@ -2689,7 +2689,7 @@
                     {
                         "next": [
                             {
-                                "key": 51.1,
+                                "key": 51.01,
                                 "level": 26,
                                 "item": []
                             }
@@ -2761,7 +2761,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 51.1,
+                "key": 51.01,
                 "name": "Dugtrio",
                 "type": ["Ground", "Steel"],
                 "category": "Mole",
@@ -2771,7 +2771,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 50.1
+                        "prev": 50.01
                     }
                 ],
                 "base stats": [
@@ -2844,7 +2844,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 52.1,
+                "key": 52.01,
                 "name": "Meowth",
                 "type": ["Dark"],
                 "category": "Scratch Cat",
@@ -2855,7 +2855,7 @@
                     {
                         "next": [
                             {
-                                "key": 53.1,
+                                "key": 53.01,
                                 "level": null,
                                 "item": ["Friendship"]
                             }
@@ -2882,7 +2882,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 52.2,
+                "key": 52.02,
                 "name": "Meowth",
                 "type": ["Steel"],
                 "category": "Scratch Cat",
@@ -2965,7 +2965,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 53.1,
+                "key": 53.01,
                 "name": "Persian",
                 "type": ["Dark"],
                 "category": "Classy Cat",
@@ -2975,7 +2975,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 52.1
+                        "prev": 52.01
                     }
                 ],
                 "base stats": [
@@ -3246,7 +3246,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 58.1,
+                "key": 58.01,
                 "name": "Growlithe",
                 "type": ["Fire", "Rock"],
                 "category": "Scout",
@@ -3257,7 +3257,7 @@
                     {
                         "next": [
                             {
-                                "key": 59.1,
+                                "key": 59.01,
                                 "level": null,
                                 "item": ["Fire Stone"]
                             }
@@ -3329,7 +3329,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 59.1,
+                "key": 59.01,
                 "name": "Arcanine",
                 "type": ["Fire", "Rock"],
                 "category": "Legendary",
@@ -3339,7 +3339,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 58.1
+                        "prev": 58.01
                     }
                 ],
                 "base stats": [
@@ -4101,7 +4101,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 74.1,
+                "key": 74.01,
                 "name": "Geodude",
                 "type": ["Rock", "Electric"],
                 "category": "Rock",
@@ -4112,7 +4112,7 @@
                     {
                         "next": [
                             {
-                                "key": 75.1,
+                                "key": 75.01,
                                 "level": 25,
                                 "item": []
                             }
@@ -4190,7 +4190,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 75.1,
+                "key": 75.01,
                 "name": "Graveler",
                 "type": ["Rock", "Electric"],
                 "category": "Rock",
@@ -4201,12 +4201,12 @@
                     {
                         "next": [
                             {
-                                "key": 76.1,
+                                "key": 76.01,
                                 "level": null,
                                 "item": ["Linking Cord"]
                             }
                         ],
-                        "prev": 74.1
+                        "prev": 74.01
                     }
                 ],
                 "base stats": [
@@ -4273,7 +4273,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 76.1,
+                "key": 76.01,
                 "name": "Golem",
                 "type": ["Rock", "Electric"],
                 "category": "Megaton",
@@ -4283,7 +4283,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 75.1
+                        "prev": 75.01
                     }
                 ],
                 "base stats": [
@@ -4356,7 +4356,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 77.1,
+                "key": 77.01,
                 "name": "Ponyta",
                 "type": ["Psychic"],
                 "category": "Unique Horn",
@@ -4367,7 +4367,7 @@
                     {
                         "next": [
                             {
-                                "key": 78.1,
+                                "key": 78.01,
                                 "level": 40,
                                 "item": []
                             }
@@ -4439,7 +4439,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 78.1,
+                "key": 78.01,
                 "name": "Rapidash",
                 "type": ["Psychic", "Fairy"],
                 "category": "Unique Horn",
@@ -4449,7 +4449,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 77.1
+                        "prev": 77.01
                     }
                 ],
                 "base stats": [
@@ -4527,7 +4527,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 79.1,
+                "key": 79.01,
                 "name": "Slowpoke",
                 "type": ["Psychic"],
                 "category": "Dopey",
@@ -4538,12 +4538,12 @@
                     {
                         "next": [
                             {
-                                "key": 80.1,
+                                "key": 80.01,
                                 "level": null,
                                 "item": ["Galarica Cuff"]
                             },
                             {
-                                "key": 199.1,
+                                "key": 199.01,
                                 "level": null,
                                 "item": ["Galarica Wreath"]
                             }
@@ -4615,7 +4615,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 80.1,
+                "key": 80.01,
                 "name": "Slowbro",
                 "type": ["Poison", "Psychic"],
                 "category": "Hermite Crab",
@@ -4625,7 +4625,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 79.1
+                        "prev": 79.01
                     }
                 ],
                 "base stats": [
@@ -4794,7 +4794,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 83.1,
+                "key": 83.01,
                 "name": "Farfetch'd",
                 "type": ["Fighting"],
                 "category": "Wild Duck",
@@ -5075,7 +5075,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 88.1,
+                "key": 88.01,
                 "name": "Grimer",
                 "type": ["Poison", "Dark"],
                 "category": "Sludge",
@@ -5086,7 +5086,7 @@
                     {
                         "next": [
                             {
-                                "key": 89.1,
+                                "key": 89.01,
                                 "level": 38,
                                 "item": []
                             }
@@ -5158,7 +5158,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 89.1,
+                "key": 89.01,
                 "name": "Muk",
                 "type": ["Poison", "Dark"],
                 "category": "Sludge",
@@ -5168,7 +5168,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 88.1
+                        "prev": 88.01
                     }
                 ],
                 "base stats": [
@@ -5727,7 +5727,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 100.1,
+                "key": 100.01,
                 "name": "Voltorb",
                 "type": ["Electric", "Grass"],
                 "category": "Sphere",
@@ -5738,7 +5738,7 @@
                     {
                         "next": [
                             {
-                                "key": 101.1,
+                                "key": 101.01,
                                 "level": null,
                                 "item": ["Leaf Stone"]
                             }
@@ -5810,7 +5810,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 101.1,
+                "key": 101.01,
                 "name": "Electrode",
                 "type": ["Electric", "Grass"],
                 "category": "Sphere",
@@ -5820,7 +5820,7 @@
                 "evolution": [
                     {
                         "next": [],
-                        "prev": 100.1
+                        "prev": 100.01
                     }
                 ],
                 "base stats": [
@@ -5871,7 +5871,7 @@
                                 "item": ["Leaf Stone"]
                             },
                             {
-                                "key": 103.1,
+                                "key": 103.01,
                                 "level": null,
                                 "item": ["Leaf Stone", "Alola"]
                             }
@@ -5943,7 +5943,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 103.1,
+                "key": 103.01,
                 "name": "Exeggutor",
                 "type": ["Grass", "Dragon"],
                 "category": "Coconut",
@@ -6004,7 +6004,7 @@
                                 "item": []
                             },
                             {
-                                "key": 105.1,
+                                "key": 105.01,
                                 "level": 28,
                                 "item": ["Dark Mode", "Alola"]
                             }
@@ -6076,7 +6076,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 105.1,
+                "key": 105.01,
                 "name": "Marowak",
                 "type": ["Fire", "Ghost"],
                 "category": "Bone Keeper",
@@ -6278,7 +6278,7 @@
                                 "item": []
                             },
                             {
-                                "key": 110.1,
+                                "key": 110.01,
                                 "level": 35,
                                 "item": ["Galar"]
                             }
@@ -6350,7 +6350,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 110.1,
+                "key": 110.01,
                 "name": "Weezing",
                 "type": ["Poison", "Fairy"],
                 "category": "Poison Gas",
@@ -6970,7 +6970,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 122.1,
+                "key": 122.01,
                 "name": "Mr. Mime",
                 "type": ["Ice", "Psychic"],
                 "category": "Dancing",
@@ -7301,7 +7301,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 128.1,
+                "key": 128.01,
                 "name": "Tauros",
                 "type": ["Fighting"],
                 "category": "Wild Bull",
@@ -7333,7 +7333,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 128.2,
+                "key": 128.02,
                 "name": "Tauros",
                 "type": ["Fighting", "Fire"],
                 "category": "Wild Bull",
@@ -7365,7 +7365,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 128.3,
+                "key": 128.03,
                 "name": "Tauros",
                 "type": ["Fighting", "Water"],
                 "category": "Wild Bull",
@@ -8182,7 +8182,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 144.1,
+                "key": 144.01,
                 "name": "Articuno",
                 "type": ["Psychic", "Flying"],
                 "category": "Cruel",
@@ -8259,7 +8259,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 145.1,
+                "key": 145.01,
                 "name": "Zapdos",
                 "type": ["Fighting", "Flying"],
                 "category": "Strong Legs",
@@ -8336,7 +8336,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 146.1,
+                "key": 146.01,
                 "name": "Moltres",
                 "type": ["Dark", "Flying"],
                 "category": "Malevolent",
@@ -8832,12 +8832,12 @@
                                 "item": []
                             },
                             {
-                                "key": 157.1,
+                                "key": 157.01,
                                 "level": 36,
                                 "item": []
                             }
                         ],
-                        "prev": 156.0
+                        "prev": 155.0
                     }
                 ],
                 "base stats": [
@@ -8904,7 +8904,7 @@
                 "image asset f shiny": "assets/ivysaur.png"
             },
             {
-                "key": 157.1,
+                "key": 157.01,
                 "name": "Typhlosion",
                 "type": ["Fire", "Ghost"],
                 "category": "Ghost Flame",

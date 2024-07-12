@@ -4,10 +4,26 @@ import 'collection_entry.dart'; // Ensure this path is correct based on your pro
 
 class CollectionPageView extends StatefulWidget {
   final List<dex.DexEntry> entries;
+  final Map<dex.DexEntry, int> filteredDex;
   final int initialPageIndex;
-  final int initialFormIndex;
 
-  const CollectionPageView({required this.entries, required this.initialPageIndex, this.initialFormIndex = 0, super.key});
+  const CollectionPageView({required this.entries, required this.filteredDex, required this.initialPageIndex, super.key});
+
+  List<dex.DexEntry> get filteredEntries {
+    List<dex.DexEntry> newList = [];
+    for (dex.DexEntry dexEntry in filteredDex.keys.map((e) => e).toList()) {
+      newList.add(dexEntry);
+    }
+    return newList;
+  }
+
+  List<int> get filteredIndexes {
+    List<int> newList = [];
+    for (int index in filteredDex.values.map((e) => e).toList()) {
+      newList.add(index);
+    }
+    return newList;
+  }
 
   @override
   CollectionPageViewState createState() => CollectionPageViewState();
@@ -28,9 +44,9 @@ class CollectionPageViewState extends State<CollectionPageView> {
       extendBody: true,
       body: PageView.builder(
         controller: _pageController,
-        itemCount: widget.entries.length,
+        itemCount: widget.filteredDex.length,
         itemBuilder: (context, index) {
-          return CollectionEntry(entries: widget.entries, entry: widget.entries[index], currPageIndex: widget.initialFormIndex);
+          return CollectionEntry(entries: widget.entries, filteredDex: widget.filteredDex, entry: widget.filteredEntries[index], currPageIndex: widget.filteredIndexes[index]);
         },
       ),
       bottomNavigationBar: _backButton(context),

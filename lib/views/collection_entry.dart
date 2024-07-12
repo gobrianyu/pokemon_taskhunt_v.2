@@ -7,9 +7,32 @@ import 'collection_page_view.dart';
 class CollectionEntry extends StatefulWidget {
   final List<dex.DexEntry> entries;
   final dex.DexEntry entry;
-  int currPageIndex;
+  final Map<dex.DexEntry, int> filteredDex;
+  final int currPageIndex;
   
-  CollectionEntry({required this.entries, required this.entry, this.currPageIndex = 0, super.key});
+  const CollectionEntry({required this.entries, required this.entry, required this.filteredDex, this.currPageIndex = 0, super.key});
+
+  List<dex.DexEntry> get filteredEntries {
+    List<dex.DexEntry> newList = [];
+    for (dex.DexEntry dexEntry in filteredDex.keys.map((e) => e).toList()) {
+      newList.add(dexEntry);
+    }
+    return newList;
+  }
+
+  List<int> get filteredIndexes {
+    List<int> newList = [];
+    for (int index in filteredDex.values.map((e) => e).toList()) {
+      newList.add(index);
+    }
+    return newList;
+  }
+
+  Map<dex.DexEntry, int> get newFilteredDex {
+    Map<dex.DexEntry, int> newDex = {};
+    newDex.addAll(filteredDex);
+    return newDex;
+  }
 
   @override
   State<CollectionEntry> createState() => _CollectionEntryState();
@@ -18,13 +41,19 @@ class CollectionEntry extends StatefulWidget {
 class _CollectionEntryState extends State<CollectionEntry> {
   bool _displayShiny = false;
   bool _displayMale = true;
+  int currPageIndex = 0;
+  List<dex.DexEntry> filteredEntries = [];
+  List<int> filteredIndexes = [];
 
   late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    _pageController = PageController(initialPage: widget.currPageIndex);
+    currPageIndex = widget.currPageIndex;
+    filteredEntries = widget.filteredEntries;
+    filteredIndexes = widget.filteredIndexes;
   }
 
   @override
@@ -35,8 +64,9 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   @override
   Widget build(BuildContext context) {
+    
     dex.DexEntry entry = widget.entry;
-    dex.Form currForm = entry.forms[widget.currPageIndex];
+    dex.Form currForm = entry.forms[currPageIndex];
 
     return Scaffold(
       extendBody: true,
@@ -82,14 +112,13 @@ class _CollectionEntryState extends State<CollectionEntry> {
       prevKey = basic.evolutions[0].prevKey;
     }
     EvoAsset head = EvoAsset.fromForm(form: basic, entries: widget.entries, evoStage: 1);
-    print(head.next);
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Evolution', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          SizedBox(height: 20),
+          const Text('Evolution', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,19 +130,25 @@ class _CollectionEntryState extends State<CollectionEntry> {
   }
 
   List<Widget> _fillAssetColumns(EvoAsset head, List<Column> columns) {
-    final initialPageIndex = head.key.toInt() - 1;
-    final initialFormIndex = (head.key * 10).toInt() % 10;
+    int initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
+    Map<dex.DexEntry, int> filteredDex = widget.newFilteredDex;
 
     if (columns.length < head.evoStage) {
       columns.add(Column(children: [
         GestureDetector(
           onTap: () {
+            if (initialPageIndex == -1) {
+              int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
+              filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+              filteredIndexes.insert(newIndex, 0);
+              initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
+              filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+            }
             Navigator.pushReplacement(
               context, 
               MaterialPageRoute(
-                builder: (context) => CollectionPageView(entries: widget.entries, initialPageIndex: initialPageIndex, initialFormIndex: initialFormIndex),
+                builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
               ),
-              // (route) => route.settings.name == 'collection',
             );
           },
           child: Image(image: AssetImage(head.image), width: 100)
@@ -123,10 +158,17 @@ class _CollectionEntryState extends State<CollectionEntry> {
       columns[head.evoStage - 1].children.add(
         GestureDetector(
           onTap: () {
+            if (initialPageIndex == -1) {
+              int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
+              filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+              filteredIndexes.insert(newIndex, 0);
+              initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
+              filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+            }
             Navigator.pushAndRemoveUntil(
               context, 
               MaterialPageRoute(
-                builder: (context) => CollectionPageView(entries: widget.entries, initialPageIndex: initialPageIndex, initialFormIndex: initialFormIndex),
+                builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
               ),
               (route) => route.settings.name == 'collection',
             );
@@ -315,7 +357,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
           return _getImage(forms[index]);
         },
         onPageChanged: (index) => { setState(() {
-          widget.currPageIndex = index;
+          currPageIndex = index;
         })},
       ),
     );
@@ -476,41 +518,6 @@ class _CollectionEntryState extends State<CollectionEntry> {
       ),
     );
   }
-
-  Widget _backButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.popUntil(context, ModalRoute.withName('/collection')),
-      child: Row(
-        children: [
-          const Spacer(),
-          Container(
-            width: 40,
-            height: 40,
-            margin: const EdgeInsets.only(bottom: 40),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(20)
-            ),
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                const Icon(Icons.clear_rounded, color: Colors.white),
-                Container(
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 1.3), 
-                    borderRadius: BorderRadius.circular(20)
-                  )
-                )
-              ]
-            )
-          ),
-          const Spacer()
-        ],
-      )
-    );
-  }
 }
 
 class EvoAsset {
@@ -530,11 +537,15 @@ class EvoAsset {
     List<dex.Form> evoForms = nextEvos.map((nextEvo) {
         double key = nextEvo.key;
         List<dex.Form> forms = entries[key.toInt() - 1].forms;
-        print(key.toInt());
-        print('key: $key, form.key: ${form.key}, index: ${forms.indexWhere((form) => form.key == key)}');
         return forms[forms.indexWhere((form) => form.key == key)];
     }).toList();
     List<EvoAsset> evoAssets = evoForms.map((evoForm) => EvoAsset.fromForm(form: evoForm, entries: entries, evoStage: evoStage + 1)).toList();
     return EvoAsset(entries: entries, image: form.imageAssetM, next: evoAssets, evoStage: evoStage, key: form.key);
+  }
+}
+
+extension DoubleExtensions on double {
+  int getDecimals() {
+    return ((this * 100 - toInt() * 100).abs()).toInt();
   }
 }

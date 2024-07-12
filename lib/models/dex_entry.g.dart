@@ -40,7 +40,7 @@ Form _$FormFromJson(Map<String, dynamic> json) => Form(
           .map((e) => $enumDecode(_$TypesEnumMap, e))
           .toList(),
       category: json['category'] as String,
-      region: json['region'] as String,
+      region: $enumDecode(_$RegionsEnumMap, json['region']),
       specialForm: json['special form'] as String?,
       validSpawn: json['valid'] as bool,
       evolutions: (json['evolution'] as List<dynamic>)
@@ -64,7 +64,7 @@ Map<String, dynamic> _$FormToJson(Form instance) => <String, dynamic>{
       'name': instance.name,
       'type': instance.type.map((e) => _$TypesEnumMap[e]!).toList(),
       'category': instance.category,
-      'region': instance.region,
+      'region': _$RegionsEnumMap[instance.region]!,
       'special form': instance.specialForm,
       'valid': instance.validSpawn,
       'evolution': instance.evolutions,
@@ -97,6 +97,20 @@ const _$TypesEnumMap = {
   Types.electric: 'Electric',
   Types.ice: 'Ice',
   Types.ghost: 'Ghost',
+};
+
+const _$RegionsEnumMap = {
+  Regions.kanto: 'Kanto',
+  Regions.johto: 'Johto',
+  Regions.hoenn: 'Hoenn',
+  Regions.sinnoh: 'Sinnoh',
+  Regions.unova: 'Unova',
+  Regions.kalos: 'Kalos',
+  Regions.alola: 'Alola',
+  Regions.galar: 'Galar',
+  Regions.hisui: 'Hisui',
+  Regions.paldea: 'Paldea',
+  Regions.unknown: 'Unknown',
 };
 
 Evolutions _$EvolutionsFromJson(Map<String, dynamic> json) => Evolutions(
