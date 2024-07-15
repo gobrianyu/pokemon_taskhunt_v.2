@@ -917,10 +917,10 @@
                 "height": 30,
                 "weight": 3.5,
                 "entry": "Will chew on anything with its fangs. If you see one, you can be certain that 40 more live in the area.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/rattata.png",
+                "image asset f": "assets/rattata.png",
+                "image asset m shiny": "assets/rattata.png",
+                "image asset f shiny": "assets/rattata.png"
             },
             {
                 "key": 19.01,
@@ -955,10 +955,10 @@
                 "height": 30,
                 "weight": 3.8,
                 "entry": "It shows no interest in anything that isn't fresh. If you take it shopping with you, it will help you pick out ingredients.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/rattata_a.png",
+                "image asset f": "assets/rattata_a.png",
+                "image asset m shiny": "assets/rattata_a.png",
+                "image asset f shiny": "assets/rattata_a.png"
             }
         ],
         "gimmick forms": [],

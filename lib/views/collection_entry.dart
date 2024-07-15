@@ -143,15 +143,21 @@ class _CollectionEntryState extends State<CollectionEntry> {
               filteredIndexes.insert(newIndex, 0);
               initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
               filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+            } else {
+              filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
             }
             Navigator.pushReplacement(
               context, 
               MaterialPageRoute(
-                builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
+                builder: (context) => CollectionPageView(
+                  entries: widget.entries,
+                  filteredDex: filteredDex,
+                  initialPageIndex: initialPageIndex,
+                ),
               ),
             );
           },
-          child: Image(image: AssetImage(head.image), width: 100)
+          child: Image(image: AssetImage(head.image), width: 100),
         )
       ]));
     } else {
@@ -165,12 +171,11 @@ class _CollectionEntryState extends State<CollectionEntry> {
               initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
               filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
             }
-            Navigator.pushAndRemoveUntil(
+            Navigator.pushReplacement(
               context, 
               MaterialPageRoute(
                 builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
               ),
-              (route) => route.settings.name == 'collection',
             );
           },
           child: Image(image: AssetImage(head.image), width: 100)

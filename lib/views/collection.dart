@@ -4,6 +4,8 @@ import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 import 'package:pokemon_taskhunt_2/views/collection_page_view.dart';
 
+// TODO: unlock count
+
 class Collection extends StatefulWidget{
   final List<dex.DexEntry> fullDex;
 
@@ -26,41 +28,109 @@ class _CollectionState extends State<Collection> {
     return Scaffold(
       key: _scaffoldKey,
       extendBody: true,
-      drawer: _filterDrawer(), // TODO: replace with filter drawer
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        leading: GestureDetector(
-          child: const Icon(Icons.filter_alt),
-          onTap: () => _scaffoldKey.currentState?.openDrawer(),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            const Expanded(
+              flex: 3,
+              child: Text(
+                'Collection',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500
+                )
+              ),
+            ),
+            const SizedBox(height: 5),
+            Expanded(
+              flex: 3,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  boxShadow: [BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0,
+                    blurRadius: 2,
+                    offset: const Offset(0, 2),
+                  )]),
+                width: MediaQuery.of(context).size.width - 22,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 12,
+                      child: GestureDetector(
+                        onTap: () {setState(() {});},
+                        child: Container(
+                          margin: const EdgeInsets.all(3),
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: const BorderRadius.all(Radius.circular(20))
+                          ),
+                          child: const Row(
+                            children: [
+                              Icon(Icons.search, color: Colors.white, size: 16),
+                              SizedBox(width: 7),
+                              Text(
+                                'Search...',
+                                style: TextStyle(color: Colors.white)
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        child: const Icon(Icons.filter_alt, color: Colors.white, size: 20),
+                        onTap: () {
+                          showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return _filterDrawer();
+                            },
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ),
+          ],
         ),
-        title: const Text('Collection'),
-        centerTitle: true
       ),
-      body: GridView.count(
-        primary: true,
-        padding: const EdgeInsets.all(20),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        crossAxisCount: 6,
-        children: _navigateToEntry()
-      ),
+      body: filteredDex.isEmpty 
+        ? const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Nothing to show'),
+                SizedBox(height: 200)
+              ]
+            ),
+          ) 
+        : GridView.count(
+            primary: true,
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 6,
+            children: _navigateToEntry()
+          ),
       bottomNavigationBar: _backButton(context)
     );
-  }
-
-  List<Widget> _cleffaTest() {
-    List<Image> list = [];
-    for (int i = 0; i < 1000; i++) {
-      list.add(const Image(image: AssetImage('assets/cleffa.png')));
-    }
-    return list;
   }
 
   List<Widget> _navigateToEntry() {
     List<Widget> list = [];
     List<dex.DexEntry> filteredList = filteredDex.keys.map((e) => e).toList();
-
-
     for (dex.DexEntry entry in filteredDex.keys) {
       list.add(    
         GestureDetector(
@@ -76,7 +146,7 @@ class _CollectionState extends State<Collection> {
               )
             )
           },
-          child: Image(image: AssetImage(entry.forms[0].imageAssetM))
+          child: Image(image: AssetImage(entry.forms[filteredDex[entry] ?? 0].imageAssetM))
         )
       );
     }
@@ -118,26 +188,26 @@ class _CollectionState extends State<Collection> {
     );
   }
 
-  Widget _filterType() {
+  Widget _filterType(StateSetter setter) {
     List<Widget> types = [];
-    types.add(_filterTypeButton(Types.normal));
-    types.add(_filterTypeButton(Types.fire));
-    types.add(_filterTypeButton(Types.water));
-    types.add(_filterTypeButton(Types.electric));
-    types.add(_filterTypeButton(Types.grass));
-    types.add(_filterTypeButton(Types.ice));
-    types.add(_filterTypeButton(Types.fighting));
-    types.add(_filterTypeButton(Types.poison));
-    types.add(_filterTypeButton(Types.ground));
-    types.add(_filterTypeButton(Types.flying));
-    types.add(_filterTypeButton(Types.psychic));
-    types.add(_filterTypeButton(Types.bug));
-    types.add(_filterTypeButton(Types.rock));
-    types.add(_filterTypeButton(Types.ghost));
-    types.add(_filterTypeButton(Types.dragon));
-    types.add(_filterTypeButton(Types.dark));
-    types.add(_filterTypeButton(Types.steel));
-    types.add(_filterTypeButton(Types.fairy));
+    types.add(_filterTypeButton(Types.normal, setter));
+    types.add(_filterTypeButton(Types.fire, setter));
+    types.add(_filterTypeButton(Types.water, setter));
+    types.add(_filterTypeButton(Types.electric, setter));
+    types.add(_filterTypeButton(Types.grass, setter));
+    types.add(_filterTypeButton(Types.ice, setter));
+    types.add(_filterTypeButton(Types.fighting, setter));
+    types.add(_filterTypeButton(Types.poison, setter));
+    types.add(_filterTypeButton(Types.ground, setter));
+    types.add(_filterTypeButton(Types.flying, setter));
+    types.add(_filterTypeButton(Types.psychic, setter));
+    types.add(_filterTypeButton(Types.bug, setter));
+    types.add(_filterTypeButton(Types.rock, setter));
+    types.add(_filterTypeButton(Types.ghost, setter));
+    types.add(_filterTypeButton(Types.dragon, setter));
+    types.add(_filterTypeButton(Types.dark, setter));
+    types.add(_filterTypeButton(Types.steel, setter));
+    types.add(_filterTypeButton(Types.fairy, setter));
     return Column(
       children: [
         Container(
@@ -159,12 +229,16 @@ class _CollectionState extends State<Collection> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
+                  color: Color.fromARGB(200, 255, 255, 255),
                 )
               ),
               const Spacer(),
               GestureDetector(
-                child: const Icon(Icons.clear),
-                onTap: () => setState(() => typeFilters.clear()),
+                child: const Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255)),
+                onTap: () {
+                  setState(() => typeFilters.clear());
+                  setter(() {});
+                },
               )
             ],
           )
@@ -172,29 +246,29 @@ class _CollectionState extends State<Collection> {
         GridView.count(
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(20),
-          childAspectRatio: 2.5,
+          childAspectRatio: 2.3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           shrinkWrap: true,
-          crossAxisCount: 3,
+          crossAxisCount: 5,
           children: types
         ),
       ]
     );
   }
 
-  Widget _filterRegion() {
+  Widget _filterRegion(StateSetter setter) {
     List<Widget> regions = [];
-    regions.add(_filterRegionButton(Regions.kanto));
-    regions.add(_filterRegionButton(Regions.johto));
-    regions.add(_filterRegionButton(Regions.hoenn));
-    regions.add(_filterRegionButton(Regions.sinnoh));
-    regions.add(_filterRegionButton(Regions.unova));
-    regions.add(_filterRegionButton(Regions.kalos));
-    regions.add(_filterRegionButton(Regions.alola));
-    regions.add(_filterRegionButton(Regions.galar));
-    regions.add(_filterRegionButton(Regions.hisui));
-    regions.add(_filterRegionButton(Regions.paldea));
+    regions.add(_filterRegionButton(Regions.kanto, setter));
+    regions.add(_filterRegionButton(Regions.johto, setter));
+    regions.add(_filterRegionButton(Regions.hoenn, setter));
+    regions.add(_filterRegionButton(Regions.sinnoh, setter));
+    regions.add(_filterRegionButton(Regions.unova, setter));
+    regions.add(_filterRegionButton(Regions.kalos, setter));
+    regions.add(_filterRegionButton(Regions.alola, setter));
+    regions.add(_filterRegionButton(Regions.galar, setter));
+    regions.add(_filterRegionButton(Regions.hisui, setter));
+    regions.add(_filterRegionButton(Regions.paldea, setter));
     return Column(
       children: [
         Container(
@@ -214,12 +288,16 @@ class _CollectionState extends State<Collection> {
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
+                  color: Color.fromARGB(200, 255, 255, 255),
                 )
               ),
               const Spacer(),
               GestureDetector(
-                child: const Icon(Icons.clear),
-                onTap: () => setState(() => regionFilters.clear()),
+                child: const Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255)),
+                onTap: () {
+                  setState(() => regionFilters.clear());
+                  setter(() {});
+                },
               )
             ],
           )
@@ -227,39 +305,42 @@ class _CollectionState extends State<Collection> {
         GridView.count(
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(20),
-          childAspectRatio: 2.5,
+          childAspectRatio: 2.3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           shrinkWrap: true,
-          crossAxisCount: 3,
+          crossAxisCount: 5,
           children: regions
         ),
       ]
     );
   }
 
-  Widget _filterRegionButton(Regions region) {
+  Widget _filterRegionButton(Regions region, StateSetter setter) {
     final has = regionFilters.contains(region);
     return GestureDetector(
-      onTap:() => setState(() {
-        if (has) {
-          regionFilters.remove(region);
-        } else {
-          regionFilters.add(region);
-        }
-      }),
+      onTap:() {
+        setState(() {
+          if (has) {
+            regionFilters.remove(region);
+          } else {
+            regionFilters.add(region);
+          }
+        });
+        setter(() {});
+      },
       child: Container(
         height: 30,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: Border.all(color: has ? Colors.transparent : Color.fromARGB(200, 255, 255, 255)),
           borderRadius: const BorderRadius.all(Radius.circular(6)),
-          color: has ? Colors.black : null,
+          color: has ? Color.fromARGB(255, 186, 186, 186) : null,
         ),
         child: Text(
           region.name.capitalize(),
           style: TextStyle(
-            color: has ? Colors.white : Colors.black, 
+            color: has ? Colors.black : Color.fromARGB(200, 255, 255, 255), 
             fontWeight: FontWeight.w500
           )
         )
@@ -267,28 +348,31 @@ class _CollectionState extends State<Collection> {
     );
   }
 
-  Widget _filterTypeButton(Types type) {
+  Widget _filterTypeButton(Types type, StateSetter setter) {
     final has = typeFilters.contains(type);
     return GestureDetector(
-      onTap:() => setState(() {
-        if (has) {
-          typeFilters.remove(type);
-        } else {
-          typeFilters.add(type);
-        }
-      }),
+      onTap:() {
+        setState(() {
+          if (has) {
+            typeFilters.remove(type);
+          } else {
+            typeFilters.add(type);
+          }
+        });
+        setter(() {});
+      },
       child: Container(
         height: 30,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: has ? null : Border.all(),
+          border: has ? null : Border.all(color: Color.fromARGB(200, 255, 255, 255)),
           borderRadius: BorderRadius.all(Radius.circular(6)),
           color: has ? type.colour : null,
         ),
         child: Text(
           type.name.capitalize(), 
           style: TextStyle(
-            color: has ? Colors.white : Colors.black, 
+            color: has ? Colors.white : Color.fromARGB(200, 255, 255, 255), 
             fontWeight: FontWeight.w500
           )
         )
@@ -297,20 +381,63 @@ class _CollectionState extends State<Collection> {
   }
 
   Widget _filterDrawer() {
-    return Drawer(
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          const SizedBox(height: 40),
-          _filterType(),
-          const SizedBox(height: 25),
-          _filterRegion()
-        ]
-      )
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return SizedBox(
+          height: 477,
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Container(
+                  height: 450,
+                  width: MediaQuery.of(context).size.width - 22,
+                  color: Colors.black,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 50),
+                      _filterType(setState),
+                      const SizedBox(height: 25),
+                      _filterRegion(setState)
+                    ]
+                  ),
+                ),
+              ),
+              GestureDetector( // close drawer button
+                onTap: (() {Navigator.pop(context);}),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      const Icon(Icons.expand_more, size: 25, color: Color.fromARGB(200, 255, 255, 255)),
+                      Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: const Color.fromARGB(200, 255, 255, 255), width: 1.3), 
+                          borderRadius: BorderRadius.circular(20)
+                        )
+                      )
+                    ]
+                  )
+                ),
+              ),
+            ],
+          ),
+        );
+      }
     );
   }
 
   Map<dex.DexEntry, int> _filter() {
+    bool entryFilled = false;
     Map<dex.DexEntry, int> filteredDex = {};
     if (typeFilters.isEmpty && regionFilters.isEmpty) {
       for (dex.DexEntry entry in widget.fullDex) {
@@ -330,8 +457,13 @@ class _CollectionState extends State<Collection> {
           for (Types type in form.type) {
             if (typeFilters.contains(type)) {
               filteredDex[entry] = form.key.getDecimals();
+              entryFilled = true;
               break;
             }
+          }
+          if (entryFilled) {
+            entryFilled = false;
+            break;
           }
         }
       }
