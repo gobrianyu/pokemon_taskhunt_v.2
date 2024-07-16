@@ -111,8 +111,14 @@ class _CollectionState extends State<Collection> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Nothing to show'),
-                SizedBox(height: 200)
+                Text(
+                  'Nothing to show',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300
+                  )
+                ),
+                SizedBox(height: 450)
               ]
             ),
           ) 
@@ -208,12 +214,13 @@ class _CollectionState extends State<Collection> {
     types.add(_filterTypeButton(Types.dark, setter));
     types.add(_filterTypeButton(Types.steel, setter));
     types.add(_filterTypeButton(Types.fairy, setter));
+    types.add(_placeholderButton());
+    types.add(_placeholderButton());
     return Column(
       children: [
         Container(
           height: 40,
           margin: const EdgeInsets.only(left: 20, right: 20),
-          padding: const EdgeInsets.only(bottom: 10),
           alignment: Alignment.centerLeft,
           decoration: const BoxDecoration(
             border: BorderDirectional(
@@ -234,7 +241,7 @@ class _CollectionState extends State<Collection> {
               ),
               const Spacer(),
               GestureDetector(
-                child: const Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255)),
+                child: const Icon(Icons.do_disturb_on_outlined, color: Color.fromARGB(200, 255, 255, 255)),
                 onTap: () {
                   setState(() => typeFilters.clear());
                   setter(() {});
@@ -245,7 +252,7 @@ class _CollectionState extends State<Collection> {
         ),
         GridView.count(
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 15),
           childAspectRatio: 2.3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -274,7 +281,6 @@ class _CollectionState extends State<Collection> {
         Container(
           height: 40,
           margin: const EdgeInsets.only(left: 20, right: 20),
-          padding: const EdgeInsets.only(bottom: 10),
           alignment: Alignment.centerLeft,
           decoration: const BoxDecoration(
             border: BorderDirectional(
@@ -293,7 +299,7 @@ class _CollectionState extends State<Collection> {
               ),
               const Spacer(),
               GestureDetector(
-                child: const Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255)),
+                child: const Icon(Icons.do_disturb_on_outlined, color: Color.fromARGB(200, 255, 255, 255)),
                 onTap: () {
                   setState(() => regionFilters.clear());
                   setter(() {});
@@ -304,7 +310,7 @@ class _CollectionState extends State<Collection> {
         ),
         GridView.count(
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
           childAspectRatio: 2.3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -313,6 +319,19 @@ class _CollectionState extends State<Collection> {
           children: regions
         ),
       ]
+    );
+  }
+
+  Widget _placeholderButton() {
+    return Container(
+      height: 30,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color.fromARGB(200, 255, 255, 255)),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
+      ),
+      child: Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255), weight: 0.5, size: 18)
+      // Placeholder(color: const Color.fromARGB(200, 255, 255, 255), strokeWidth: 0.9,)
     );
   }
 
@@ -398,7 +417,7 @@ class _CollectionState extends State<Collection> {
                     children: [
                       const SizedBox(height: 50),
                       _filterType(setState),
-                      const SizedBox(height: 25),
+                      const SizedBox(height: 20),
                       _filterRegion(setState)
                     ]
                   ),
