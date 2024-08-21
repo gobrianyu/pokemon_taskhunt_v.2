@@ -69,6 +69,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
     dex.Form currForm = entry.forms[currPageIndex];
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
@@ -132,15 +133,21 @@ class _CollectionEntryState extends State<CollectionEntry> {
   List<Widget> _fillAssetColumns(EvoAsset head, List<Column> columns) {
     int initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
     Map<dex.DexEntry, int> filteredDex = widget.newFilteredDex;
-
+    print(head.key);
+    print(initialPageIndex);
     if (columns.length < head.evoStage) {
       columns.add(Column(children: [
         GestureDetector(
           onTap: () {
             if (initialPageIndex == -1) {
               int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
-              filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
-              filteredIndexes.insert(newIndex, 0);
+              if (newIndex == -1) {
+                filteredEntries.add(widget.entries[head.key.toInt() - 1]);
+                filteredIndexes.add(head.key.getDecimals());
+              } else {
+                filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+                filteredIndexes.insert(newIndex, head.key.getDecimals());
+              }
               initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
               filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
             } else {
@@ -166,10 +173,17 @@ class _CollectionEntryState extends State<CollectionEntry> {
           onTap: () {
             if (initialPageIndex == -1) {
               int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
-              filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
-              filteredIndexes.insert(newIndex, 0);
+              if (newIndex == -1) {
+                filteredEntries.add(widget.entries[head.key.toInt() - 1]);
+                filteredIndexes.add(head.key.getDecimals());
+              } else {
+                filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+                filteredIndexes.insert(newIndex, head.key.getDecimals());
+              }
               initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
               filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+            } else {
+              filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
             }
             Navigator.pushReplacement(
               context, 
@@ -207,8 +221,8 @@ class _CollectionEntryState extends State<CollectionEntry> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Base Stats', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          SizedBox(height: 8),
+          const Text('Base Stats', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          const SizedBox(height: 8),
           _statLine('HP', stats.hp),
           _statLine('Attack', stats.atk),
           _statLine('Defense', stats.def),
@@ -279,9 +293,9 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _measurements(double height, double weight) {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 15),
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 15),
+      padding: const EdgeInsets.all(15),
+      decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(),
           bottom: BorderSide()
@@ -289,24 +303,20 @@ class _CollectionEntryState extends State<CollectionEntry> {
       ),
       child: Row(
         children: [
-          Spacer(),
-          Icon(Icons.scale),
-          SizedBox(width: 7),
-          Container(
-            child: Text(
-              '$weight kg'
-            )
+          const Spacer(),
+          const Icon(Icons.scale),
+          const SizedBox(width: 7),
+          Text(
+            '$weight kg'
           ),
-          Spacer(),
-          Spacer(),
-          Icon(Icons.straighten),
-          SizedBox(width: 7),
-          Container(
-            child: Text(
-              '${height/100} m'
-            )
+          const Spacer(),
+          const Spacer(),
+          const Icon(Icons.straighten),
+          const SizedBox(width: 7),
+          Text(
+            '${height/100} m'
           ),
-          Spacer()
+          const Spacer()
         ]
       ),
     );

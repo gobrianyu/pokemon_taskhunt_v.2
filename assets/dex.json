@@ -1357,7 +1357,7 @@
                 "height": 70,
                 "weight": 21,
                 "entry": "It loves pancakes prepared with a secret Alolan recipe. Some wonder whether that recipe holds the key to this Pokémon's evolution.",
-                "image asset m": "assets/ivysaur.png",
+                "image asset m": "assets/charizard.png",
                 "image asset f": "assets/ivysaur.png",
                 "image asset m shiny": "assets/ivysaur.png",
                 "image asset f shiny": "assets/ivysaur.png"
@@ -1879,7 +1879,7 @@
         "base experience yield": 113,
         "minimum spawn level": 1,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 150,
         "flee rate": 10
     },
@@ -1924,7 +1924,7 @@
         "base experience yield": 217,
         "minimum spawn level": 27,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 25,
         "flee rate": 6
     },
@@ -2013,7 +2013,7 @@
         "base experience yield": 60,
         "minimum spawn level": 1,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 190,
         "flee rate": 10
     },
@@ -2090,7 +2090,7 @@
         "base experience yield": 177,
         "minimum spawn level": 33,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 75,
         "flee rate": 6
     },
@@ -2141,7 +2141,7 @@
         "base experience yield": 95,
         "minimum spawn level": 1,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 170,
         "flee rate": 10
     },
@@ -2186,7 +2186,7 @@
         "base experience yield": 196,
         "minimum spawn level": 30,
         "gendered": true,
-        "male:female ratio": 0.67,
+        "male:female ratio": 0.33,
         "catch rate": 50,
         "flee rate": 6
     },
@@ -6538,7 +6538,7 @@
         "gimmick forms": [],
         "experience group": "Fast",
         "base experience yield": 395,
-        "minimum spawn level": 1,
+        "minimum spawn level": 18,
         "gendered": true,
         "male:female ratio": 0,
         "catch rate": 30,
@@ -7112,7 +7112,7 @@
         "gimmick forms": [],
         "experience group": "Medium Fast",
         "base experience yield": 159,
-        "minimum spawn level": 1,
+        "minimum spawn level": 30,
         "gendered": true,
         "male:female ratio": 0,
         "catch rate": 45,
@@ -7163,7 +7163,7 @@
         "gimmick forms": [],
         "experience group": "Medium Fast",
         "base experience yield": 172,
-        "minimum spawn level": 5,
+        "minimum spawn level": 30,
         "gendered": true,
         "male:female ratio": 3,
         "catch rate": 45,
@@ -7214,7 +7214,7 @@
         "gimmick forms": [],
         "experience group": "Medium Fast",
         "base experience yield": 173,
-        "minimum spawn level": 5,
+        "minimum spawn level": 30,
         "gendered": true,
         "male:female ratio": 3,
         "catch rate": 45,
@@ -7259,7 +7259,7 @@
         "gimmick forms": [],
         "experience group": "Slow",
         "base experience yield": 175,
-        "minimum spawn level": 1,
+        "minimum spawn level": 28,
         "gendered": true,
         "male:female ratio": 1,
         "catch rate": 45,
@@ -7400,7 +7400,7 @@
         "gimmick forms": [],
         "experience group": "Slow",
         "base experience yield": 172,
-        "minimum spawn level": 1,
+        "minimum spawn level": 21,
         "gendered": true,
         "male:female ratio": 100,
         "catch rate": 45,
@@ -7830,7 +7830,7 @@
                             {
                                 "key": 233.0,
                                 "level": null,
-                                "item": ["Upgrade"]
+                                "item": ["Upgrade", "Linking Cord"]
                             }
                         ],
                         "prev": null
@@ -9667,5 +9667,4856 @@
         "male:female ratio": 1,
         "catch rate": 190,
         "flee rate": 5
+    },
+    {
+        "dex number": 173,
+        "forms": [
+            {
+                "key": 173.0,
+                "name": "Cleffa",
+                "type": ["Fairy"],
+                "category": "Star Shape",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 35.0,
+                                "level": null,
+                                "item": ["Friendship"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 25,
+                        "def": 28,
+                        "sp.atk": 45,
+                        "sp.def": 55,
+                        "speed": 15
+                    }
+                ],
+                "height": 30,
+                "weight": 3,
+                "entry": "Because of its unusual, star-like silhouette, people believe that it came here on a meteor.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 44,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 0.33,
+        "catch rate": 150,
+        "flee rate": 5
+    },
+    {
+        "dex number": 174,
+        "forms": [
+            {
+                "key": 174.0,
+                "name": "Igglybuff",
+                "type": ["Normal", "Fairy"],
+                "category": "Balloon",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 39.0,
+                                "level": null,
+                                "item": ["Friendship"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 30,
+                        "def": 15,
+                        "sp.atk": 40,
+                        "sp.def": 20,
+                        "speed": 15
+                    }
+                ],
+                "height": 30,
+                "weight": 1,
+                "entry": "Its extremely flexible and elastic body makes it bounce continuously--anytime, anywhere.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 42,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 0.33,
+        "catch rate": 170,
+        "flee rate": 5
+    },
+    {
+        "dex number": 175,
+        "forms": [
+            {
+                "key": 175.0,
+                "name": "Togepi",
+                "type": ["Fairy"],
+                "category": "Spike Ball",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 176.0,
+                                "level": null,
+                                "item": ["Friendship"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 35,
+                        "atk": 20,
+                        "def": 65,
+                        "sp.atk": 40,
+                        "sp.def": 65,
+                        "speed": 20
+                    }
+                ],
+                "height": 30,
+                "weight": 1.5,
+                "entry": "A proverb claims that happiness will come to anyone who can make a sleeping Togepi stand up.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 49,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 190,
+        "flee rate": 5
+    },
+    {
+        "dex number": 176,
+        "forms": [
+            {
+                "key": 176.0,
+                "name": "Togetic",
+                "type": ["Fairy", "Flying"],
+                "category": "Happiness",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 468.0,
+                                "level": null,
+                                "item": ["Shiny Stone"]
+                            }
+                        ],
+                        "prev": 175.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 40,
+                        "def": 85,
+                        "sp.atk": 80,
+                        "sp.def": 105,
+                        "speed": 40
+                    }
+                ],
+                "height": 60,
+                "weight": 3.2,
+                "entry": "",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 142,
+        "minimum spawn level": 23,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 75,
+        "flee rate": 5
+    },
+    {
+        "dex number": 177,
+        "forms": [
+            {
+                "key": 177.0,
+                "name": "Natu",
+                "type": ["Psychic", "Flying"],
+                "category": "Tiny Bird",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 178.0,
+                                "level": 25,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 40,
+                        "atk": 50,
+                        "def": 45,
+                        "sp.atk": 70,
+                        "sp.def": 45,
+                        "speed": 70
+                    }
+                ],
+                "height": 20,
+                "weight": 2,
+                "entry": "Because its wings aren't yet fully grown, it has to hop to get around. It is always staring at something.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 64,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 15
+    },
+    {
+        "dex number": 178,
+        "forms": [
+            {
+                "key": 178.0,
+                "name": "Xatu",
+                "type": ["Psychic", "Flying"],
+                "category": "Mystic",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 177.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 70,
+                        "def": 70,
+                        "sp.atk": 95,
+                        "sp.def": 70,
+                        "speed": 95
+                    }
+                ],
+                "height": 150,
+                "weight": 15,
+                "entry": "They say that it stays still and quiet because it is seeing both the past and future at the same time.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 165,
+        "minimum spawn level": 25,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 7
+    },
+    {
+        "dex number": 179,
+        "forms": [
+            {
+                "key": 179.0,
+                "name": "Mareep",
+                "type": ["Electric"],
+                "category": "Wool",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 180.0,
+                                "level": 15,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 40,
+                        "def": 40,
+                        "sp.atk": 65,
+                        "sp.def": 45,
+                        "speed": 35
+                    }
+                ],
+                "height": 60,
+                "weight": 7.8,
+                "entry": "If static electricity builds in its body, its fleece doubles in volume. Touching it will shock you.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 56,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 235,
+        "flee rate": 10
+    },
+    {
+        "dex number": 180,
+        "forms": [
+            {
+                "key": 180.0,
+                "name": "Flaaffy",
+                "type": ["Electric"],
+                "category": "Wool",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 181.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": 179.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 75,
+                        "def": 85,
+                        "sp.atk": 115,
+                        "sp.def": 90,
+                        "speed": 55
+                    }
+                ],
+                "height": 80,
+                "weight": 13.3,
+                "entry": "As a result of storing too much electricity, it developed patches where even downy wool won't grow.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 128,
+        "minimum spawn level": 15,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 7
+    },
+    {
+        "dex number": 181,
+        "forms": [
+            {
+                "key": 181.0,
+                "name": "Ampharos",
+                "type": ["Electric"],
+                "category": "Light",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 180.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 75,
+                        "def": 85,
+                        "sp.atk": 115,
+                        "sp.def": 90,
+                        "speed": 55
+                    }
+                ],
+                "height": 140,
+                "weight": 61.5,
+                "entry": "The tail's tip shines brightly and can be seen from far away. It acts as a beacon for lost people.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 230,
+        "minimum spawn level": 30,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 182,
+        "forms": [
+            {
+                "key": 182.0,
+                "name": "Bellossom",
+                "type": ["Grass"],
+                "category": "Flower",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 44.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 80,
+                        "def": 95,
+                        "sp.atk": 90,
+                        "sp.def": 100,
+                        "speed": 50
+                    }
+                ],
+                "height": 40,
+                "weight": 5.8,
+                "entry": "Plentiful in the tropics. When it dances, its petals rub together and make a pleasant ringing sound.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 221,
+        "minimum spawn level": 32,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 183,
+        "forms": [
+            {
+                "key": 183.0,
+                "name": "Marill",
+                "type": ["Water", "Fairy"],
+                "category": "Aqua Mouse",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 184.0,
+                                "level": 18,
+                                "item": []
+                            }
+                        ],
+                        "prev": 298.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 20,
+                        "def": 50,
+                        "sp.atk": 20,
+                        "sp.def": 50,
+                        "speed": 40
+                    }
+                ],
+                "height": 40,
+                "weight": 8.5,
+                "entry": "The tip of its tail, which contains oil that is lighter than water, lets it swim without drowning.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 88,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 10
+    },
+    {
+        "dex number": 184,
+        "forms": [
+            {
+                "key": 184.0,
+                "name": "Azumarill",
+                "type": ["Water", "Fairy"],
+                "category": "Aqua Rabbit",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 183.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 50,
+                        "def": 80,
+                        "sp.atk": 60,
+                        "sp.def": 80,
+                        "speed": 50
+                    }
+                ],
+                "height": 80,
+                "weight": 28.5,
+                "entry": "When it plays in water, it rolls up its elongated ears to prevent their insides from getting wet.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 189,
+        "minimum spawn level": 18,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 7
+    },
+    {
+        "dex number": 185,
+        "forms": [
+            {
+                "key": 185.0,
+                "name": "Sudowoodo",
+                "type": ["Rock"],
+                "category": "Imitation",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 438
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 100,
+                        "def": 115,
+                        "sp.atk": 30,
+                        "sp.def": 65,
+                        "speed": 30
+                    }
+                ],
+                "height": 120,
+                "weight": 38,
+                "entry": "Although it always pretends to be a tree, its composition appears to be closer to a rock than a plant.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 144,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 65,
+        "flee rate": 5
+    },
+    {
+        "dex number": 186,
+        "forms": [
+            {
+                "key": 186.0,
+                "name": "Politoed",
+                "type": ["Water"],
+                "category": "Frog",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 61.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 75,
+                        "def": 75,
+                        "sp.atk": 90,
+                        "sp.def": 100,
+                        "speed": 70
+                    }
+                ],
+                "height": 110,
+                "weight": 33.9,
+                "entry": "When it expands its throat to croak out a tune, nearby Poliwag and Poliwhirl gather immediately.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 225,
+        "minimum spawn level": 30,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 187,
+        "forms": [
+            {
+                "key": 187.0,
+                "name": "Hoppip",
+                "type": ["Grass", "Flying"],
+                "category": "Cottonweed",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 188.0,
+                                "level": 18,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 35,
+                        "atk": 35,
+                        "def": 40,
+                        "sp.atk": 35,
+                        "sp.def": 55,
+                        "speed": 50
+                    }
+                ],
+                "height": 40,
+                "weight": 0.5,
+                "entry": "To keep from being blown away by the wind, they gather in clusters. They do enjoy gentle breezes, though.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 50,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 12
+    },
+    {
+        "dex number": 188,
+        "forms": [
+            {
+                "key": 188.0,
+                "name": "Skiploom",
+                "type": ["Grass", "Flying"],
+                "category": "Cottonweed",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 189.0,
+                                "level": 27,
+                                "item": []
+                            }
+                        ],
+                        "prev": 187.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 45,
+                        "def": 50,
+                        "sp.atk": 45,
+                        "sp.def": 65,
+                        "speed": 80
+                    }
+                ],
+                "height": 60,
+                "weight": 1,
+                "entry": "It spreads its petals to absorb sunlight. It also floats in the air to get closer to the sun.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 119,
+        "minimum spawn level": 18,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 7
+    },
+    {
+        "dex number": 189,
+        "forms": [
+            {
+                "key": 189.0,
+                "name": "Jumpluff",
+                "type": ["Grass", "Flying"],
+                "category": "Cottonweed",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 188.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 55,
+                        "def": 70,
+                        "sp.atk": 55,
+                        "sp.def": 95,
+                        "speed": 110
+                    }
+                ],
+                "height": 80,
+                "weight": 3,
+                "entry": "Even in the fiercest wind, it can control its fluff to make its way to any place in the world it wants.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 207,
+        "minimum spawn level": 27,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 190,
+        "forms": [
+            {
+                "key": 190.0,
+                "name": "Aipom",
+                "type": ["Normal"],
+                "category": "Long Tail",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 424.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 70,
+                        "def": 55,
+                        "sp.atk": 40,
+                        "sp.def": 55,
+                        "speed": 85
+                    }
+                ],
+                "height": 80,
+                "weight": 11.5,
+                "entry": "It lives atop tall trees. When leaping from branch to branch, it deftly uses its tail for balance.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 72,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 9
+    },
+    {
+        "dex number": 191,
+        "forms": [
+            {
+                "key": 191.0,
+                "name": "Sunkern",
+                "type": ["Grass"],
+                "category": "Seed",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 192.0,
+                                "level": null,
+                                "item": ["Sun Stone"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 30,
+                        "atk": 30,
+                        "def": 30,
+                        "sp.atk": 30,
+                        "sp.def": 30,
+                        "speed": 30
+                    }
+                ],
+                "height": 30,
+                "weight": 1.8,
+                "entry": "It may drop out of the sky suddenly. If attacked by a Spearow, it will violently shake its leaves.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 36,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 235,
+        "flee rate": 9
+    },
+    {
+        "dex number": 192,
+        "forms": [
+            {
+                "key": 192.0,
+                "name": "Sunflora",
+                "type": ["Grass"],
+                "category": "Sun",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 191.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 75,
+                        "def": 55,
+                        "sp.atk": 105,
+                        "sp.def": 85,
+                        "speed": 30
+                    }
+                ],
+                "height": 80,
+                "weight": 8.5,
+                "entry": "In the daytime, it rushes about in a hectic manner, but it comes to a complete stop when the sun sets.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 149,
+        "minimum spawn level": 15,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 7
+    },
+    {
+        "dex number": 193,
+        "forms": [
+            {
+                "key": 193.0,
+                "name": "Yanma",
+                "type": ["Bug", "Flying"],
+                "category": "Clear Wing",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 469.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 65,
+                        "def": 45,
+                        "sp.atk": 75,
+                        "sp.def": 45,
+                        "speed": 95
+                    }
+                ],
+                "height": 120,
+                "weight": 38,
+                "entry": "It can see in all directions without moving its big eyes, helping it spot attackers and food right away.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 78,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 10
+    },
+    {
+        "dex number": 194,
+        "forms": [
+            {
+                "key": 194.0,
+                "name": "Wooper",
+                "type": ["Water", "Ground"],
+                "category": "Water Fish",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 195.0,
+                                "level": 20,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 45,
+                        "def": 45,
+                        "sp.atk": 25,
+                        "sp.def": 25,
+                        "speed": 15
+                    }
+                ],
+                "height": 40,
+                "weight": 8.5,
+                "entry": "This Pokémon lives in cold water. It will leave the water to search for food when it gets cold outside.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 194.01,
+                "name": "Wooper",
+                "type": ["Poison", "Ground"],
+                "category": "Poison Fish",
+                "region": "Paldea",
+                "special form": "Paldean Wooper",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 980.0,
+                                "level": 20,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 45,
+                        "def": 45,
+                        "sp.atk": 25,
+                        "sp.def": 25,
+                        "speed": 15
+                    }
+                ],
+                "height": 40,
+                "weight": 11,
+                "entry": "After losing a territorial struggle, Wooper began living on land. The Pokémon changed over time, developing a poisonous film to protect its body.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 42,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 255,
+        "flee rate": 10
+    },
+    {
+        "dex number": 195,
+        "forms": [
+            {
+                "key": 195.0,
+                "name": "Quagsire",
+                "type": ["Water", "Ground"],
+                "category": "Water Fish",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 194.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 95,
+                        "atk": 85,
+                        "def": 85,
+                        "sp.atk": 65,
+                        "sp.def": 65,
+                        "speed": 35
+                    }
+                ],
+                "height": 140,
+                "weight": 75,
+                "entry": "This carefree Pokémon has an easy-going nature. While swimming, it always bumps into boat hulls.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 151,
+        "minimum spawn level": 20,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 90,
+        "flee rate": 7
+    },
+    {
+        "dex number": 196,
+        "forms": [
+            {
+                "key": 196.0,
+                "name": "Espeon",
+                "type": ["Psychic"],
+                "category": "Sun",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 133.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 65,
+                        "def": 60,
+                        "sp.atk": 130,
+                        "sp.def": 95,
+                        "speed": 110
+                    }
+                ],
+                "height": 90,
+                "weight": 26.5,
+                "entry": "The tip of its forked tail quivers when it is predicting its opponent's next move.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 184,
+        "minimum spawn level": 20,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 197,
+        "forms": [
+            {
+                "key": 197.0,
+                "name": "Umbreon",
+                "type": ["Dark"],
+                "category": "Moonlight",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 133.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 95,
+                        "atk": 65,
+                        "def": 110,
+                        "sp.atk": 60,
+                        "sp.def": 130,
+                        "speed": 65
+                    }
+                ],
+                "height": 100,
+                "weight": 27,
+                "entry": "On the night of a full moon, or when it gets excited, the ring patterns on its body glow yellow.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 184,
+        "minimum spawn level": 20,
+        "gendered": true,
+        "male:female ratio": 7,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 198,
+        "forms": [
+            {
+                "key": 198.0,
+                "name": "Murkrow",
+                "type": ["Dark", "Flying"],
+                "category": "Darkness",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 430.0,
+                                "level": null,
+                                "item": ["Dusk Stone"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 85,
+                        "def": 42,
+                        "sp.atk": 85,
+                        "sp.def": 42,
+                        "speed": 91
+                    }
+                ],
+                "height": 50,
+                "weight": 2.1,
+                "entry": "It hides any shiny object it finds in a secret location. Murkrow and Meowth loot one another's stashes.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 81,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 30,
+        "flee rate": 10
+    },
+    {
+        "dex number": 199,
+        "forms": [
+            {
+                "key": 199.0,
+                "name": "Slowking",
+                "type": ["Water", "Psychic"],
+                "category": "Royal",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 79.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 95,
+                        "atk": 75,
+                        "def": 80,
+                        "sp.atk": 100,
+                        "sp.def": 110,
+                        "speed": 30
+                    }
+                ],
+                "height": 200,
+                "weight": 79.5,
+                "entry": "Every time it yawns, Shellder injects more poison into it. The poison makes it more intelligent.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 199.01,
+                "name": "Slowking",
+                "type": ["Poison", "Psychic"],
+                "category": "Hexpert",
+                "region": "Galar",
+                "special form": "Galarian Slowking",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 79.01
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 95,
+                        "atk": 65,
+                        "def": 80,
+                        "sp.atk": 110,
+                        "sp.def": 110,
+                        "speed": 30
+                    }
+                ],
+                "height": 180,
+                "weight": 79.5,
+                "entry": "It creates potions by mixing toxins with the food it’s eaten. Not even Slowking itself knows what effects the potions will have.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 172,
+        "minimum spawn level": 37,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 70,
+        "flee rate": 5
+    },
+    {
+        "dex number": 200,
+        "forms": [
+            {
+                "key": 200.0,
+                "name": "Misdreavus",
+                "type": ["Ghost"],
+                "category": "Screech",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 429.0,
+                                "level": null,
+                                "item": ["Dusk Stone"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 60,
+                        "def": 60,
+                        "sp.atk": 85,
+                        "sp.def": 85,
+                        "speed": 85
+                    }
+                ],
+                "height": 70,
+                "weight": 1,
+                "entry": "It loves to bite and yank people's hair from behind without warning, just to see their shocked reactions.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 87,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 201,
+        "forms": [
+            {
+                "key": 201.0,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (A)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.01,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (B)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.02,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (C)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.03,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (D)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.04,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (E)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.05,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (F)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.06,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (G)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.07,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (H)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.08,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (I)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.09,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (J)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.10,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (K)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.11,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (L)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.12,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (M)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.13,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (N)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.14,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (O)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.15,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (P)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.16,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (Q)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.17,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (R)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.18,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (S)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.19,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (T)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.2,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (U)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.21,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (V)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.22,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (W)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.23,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (X)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.24,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (Y)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.25,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (Z)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.26,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (!)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 201.27,
+                "name": "Unown",
+                "type": ["Psychic"],
+                "category": "Symbol",
+                "region": "Johto",
+                "special form": "Unown (?)",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 48,
+                        "atk": 72,
+                        "def": 48,
+                        "sp.atk": 72,
+                        "sp.def": 48,
+                        "speed": 48
+                    }
+                ],
+                "height": 50,
+                "weight": 5,
+                "entry": "Their shapes look like hieroglyphs on ancient tablets. It is said that the two are somehow related.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 118,
+        "minimum spawn level": 1,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 225,
+        "flee rate": 10
+    },
+    {
+        "dex number": 202,
+        "forms": [
+            {
+                "key": 202.0,
+                "name": "Wobbuffet",
+                "type": ["Psychic"],
+                "category": "Patient",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 360.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 190,
+                        "atk": 33,
+                        "def": 58,
+                        "sp.atk": 33,
+                        "sp.def": 58,
+                        "speed": 33
+                    }
+                ],
+                "height": 130,
+                "weight": 28.5,
+                "entry": "It hates light and shock. If attacked, it inflates its body to pump up its counterstrike.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 142,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 203,
+        "forms": [
+            {
+                "key": 203.0,
+                "name": "Girafarig",
+                "type": ["Normal", "Psychic"],
+                "category": "Long Neck",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 981.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 80,
+                        "def": 65,
+                        "sp.atk": 90,
+                        "sp.def": 65,
+                        "speed": 85
+                    }
+                ],
+                "height": 150,
+                "weight": 41.5,
+                "entry": "Its tail, which also contains a small brain, may bite on its own if it notices an alluring smell.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 159,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 60,
+        "flee rate": 7
+    },
+    {
+        "dex number": 204,
+        "forms": [
+            {
+                "key": 204.0,
+                "name": "Pineco",
+                "type": ["Bug"],
+                "category": "Bagworm",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 205.0,
+                                "level": 31,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 65,
+                        "def": 90,
+                        "sp.atk": 35,
+                        "sp.def": 35,
+                        "speed": 15
+                    }
+                ],
+                "height": 60,
+                "weight": 7.2,
+                "entry": "It hangs and waits for flying insect prey to come near. It does not move about much on its own.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 58,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 12
+    },
+    {
+        "dex number": 205,
+        "forms": [
+            {
+                "key": 205.0,
+                "name": "Forretress",
+                "type": ["Bug", "Steel"],
+                "category": "Bagworm",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 204.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 90,
+                        "def": 140,
+                        "sp.atk": 60,
+                        "sp.def": 60,
+                        "speed": 40
+                    }
+                ],
+                "height": 120,
+                "weight": 125.8,
+                "entry": "Its entire body is shielded by a steel-hard shell. What lurks inside the armor is a total mystery.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 163,
+        "minimum spawn level": 31,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 7
+    },
+    {
+        "dex number": 206,
+        "forms": [
+            {
+                "key": 206.0,
+                "name": "Dunsparce",
+                "type": ["Normal"],
+                "category": "Land Snake",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 982.0,
+                                "level": null,
+                                "item": ["Move Tutor", "Random"]
+                            }
+                        ],
+                        "prev": null
+                    },
+                    {
+                        "next": [
+                            {
+                                "key": 982.01,
+                                "level": null,
+                                "item": ["Move Tutor", "Random"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 70,
+                        "def": 70,
+                        "sp.atk": 65,
+                        "sp.def": 65,
+                        "speed": 45
+                    }
+                ],
+                "height": 150,
+                "weight": 14,
+                "entry": "When spotted, this Pokémon escapes backward by furiously boring into the ground with its tail.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 145,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 20
+    },
+    {
+        "dex number": 207,
+        "forms": [
+            {
+                "key": 207.0,
+                "name": "Gligar",
+                "type": ["Ground", "Flying"],
+                "category": "Fly Scorpion",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 472.0,
+                                "level": null,
+                                "item": ["Razor Fang", "Dark Mode"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 75,
+                        "def": 105,
+                        "sp.atk": 35,
+                        "sp.def": 65,
+                        "speed": 85
+                    }
+                ],
+                "height": 110,
+                "weight": 64.8,
+                "entry": "It builds its nest on a steep cliff. When it is done gliding, it hops along the ground back to its nest.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 86,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 60,
+        "flee rate": 7
+    },
+    {
+        "dex number": 208,
+        "forms": [
+            {
+                "key": 208.0,
+                "name": "Steelix",
+                "type": ["Steel", "Ground"],
+                "category": "Iron Snake",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 95.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 85,
+                        "def": 200,
+                        "sp.atk": 55,
+                        "sp.def": 65,
+                        "speed": 30
+                    }
+                ],
+                "height": 920,
+                "weight": 400,
+                "entry": "Its body has been compressed deep under the ground. As a result, it is even harder than a diamond.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 179,
+        "minimum spawn level": 34,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 25,
+        "flee rate": 5
+    },
+    {
+        "dex number": 209,
+        "forms": [
+            {
+                "key": 209.0,
+                "name": "Snubbull",
+                "type": ["Fairy"],
+                "category": "Fairy",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 210.0,
+                                "level": 23,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 80,
+                        "def": 50,
+                        "sp.atk": 40,
+                        "sp.def": 40,
+                        "speed": 30
+                    }
+                ],
+                "height": 60,
+                "weight": 7.8,
+                "entry": "Although it looks frightening, it is actually kind and affectionate. It is very popular among women.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 60,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 0.33,
+        "catch rate": 190,
+        "flee rate": 10
+    },
+    {
+        "dex number": 210,
+        "forms": [
+            {
+                "key": 210.0,
+                "name": "Granbull",
+                "type": ["Fairy"],
+                "category": "Fairy",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 209.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 120,
+                        "def": 75,
+                        "sp.atk": 60,
+                        "sp.def": 60,
+                        "speed": 45
+                    }
+                ],
+                "height": 140,
+                "weight": 48.7,
+                "entry": "It is actually timid and easily spooked. If attacked, it flails about to fend off its attacker.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 158,
+        "minimum spawn level": 23,
+        "gendered": true,
+        "male:female ratio": 0.33,
+        "catch rate": 75,
+        "flee rate": 8
+    },
+    {
+        "dex number": 211,
+        "forms": [
+            {
+                "key": 211.0,
+                "name": "Qwilfish",
+                "type": ["Water", "Poison"],
+                "category": "Balloon",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 95,
+                        "def": 85,
+                        "sp.atk": 55,
+                        "sp.def": 55,
+                        "speed": 85
+                    }
+                ],
+                "height": 50,
+                "weight": 3.9,
+                "entry": "It shoots the poison spines on its body in all directions. Its round form makes it a poor swimmer.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 211.01,
+                "name": "Qwilfish",
+                "type": ["Dark", "Poison"],
+                "category": "Balloon",
+                "region": "Hisui",
+                "special form": "Hisuian Qwilfish",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 904.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 95,
+                        "def": 85,
+                        "sp.atk": 55,
+                        "sp.def": 55,
+                        "speed": 85
+                    }
+                ],
+                "height": 50,
+                "weight": 3.9,
+                "entry": "Fishers detest this troublesome Pokémon because it sprays poison from its spines, getting it everywhere. A different form of Qwilfish lives in other regions.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 88,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 8
+    },
+    {
+        "dex number": 212,
+        "forms": [
+            {
+                "key": 212.0,
+                "name": "Scizor",
+                "type": ["Bug", "Steel"],
+                "category": "Pincer",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 123.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 130,
+                        "def": 100,
+                        "sp.atk": 55,
+                        "sp.def": 80,
+                        "speed": 65
+                    }
+                ],
+                "height": 180,
+                "weight": 118,
+                "entry": "Its wings are not used for flying. They are flapped at high speed to adjust its body temperature.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 175,
+        "minimum spawn level": 29,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 25,
+        "flee rate": 5
+    },
+    {
+        "dex number": 213,
+        "forms": [
+            {
+                "key": 213.0,
+                "name": "Shuckle",
+                "type": ["Bug", "Rock"],
+                "category": "Mold",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 20,
+                        "atk": 10,
+                        "def": 230,
+                        "sp.atk": 10,
+                        "sp.def": 230,
+                        "speed": 5
+                    }
+                ],
+                "height": 60,
+                "weight": 20.5,
+                "entry": "The fluid secreted by its toes carves holes in rocks for nesting and can be mixed with Berries to make a drink.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 177,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 7
+    },
+    {
+        "dex number": 214,
+        "forms": [
+            {
+                "key": 214.0,
+                "name": "Heracross",
+                "type": ["Bug", "Fighting"],
+                "category": "Single Horn",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 80,
+                        "atk": 125,
+                        "def": 75,
+                        "sp.atk": 40,
+                        "sp.def": 95,
+                        "speed": 85
+                    }
+                ],
+                "height": 150,
+                "weight": 54,
+                "entry": "This powerful Pokémon thrusts its prized horn under its enemies' bellies then lifts and throws them.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 175,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 9 
+    },
+    {
+        "dex number": 215,
+        "forms": [
+            {
+                "key": 215.0,
+                "name": "Sneasel",
+                "type": ["Dark", "Ice"],
+                "category": "Sharp Claw",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 461.0,
+                                "level": null,
+                                "item": ["Razor Claw"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 95,
+                        "def": 55,
+                        "sp.atk": 35,
+                        "sp.def": 75,
+                        "speed": 115
+                    }
+                ],
+                "height": 90,
+                "weight": 28,
+                "entry": "Vicious in nature, it drives Pidgey from their nests and feasts on the eggs that are left behind.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 215.01,
+                "name": "Sneasel",
+                "type": ["Fighting", "Poison"],
+                "category": "Sharp Claw",
+                "region": "Hisui",
+                "special form": "Hisuian Sneasel",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 903.0,
+                                "level": null,
+                                "item": ["Razor Claw"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 95,
+                        "def": 55,
+                        "sp.atk": 35,
+                        "sp.def": 75,
+                        "speed": 115
+                    }
+                ],
+                "height": 90,
+                "weight": 27,
+                "entry": "Its sturdy, curved claws are ideal for traversing precipitous cliffs. From the tips of these claws drips a venom that infiltrates the nerves of any prey caught in Sneasel's grasp.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 86,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 60,
+        "flee rate": 7
+    },
+    {
+        "dex number": 216,
+        "forms": [
+            {
+                "key": 216.0,
+                "name": "Teddiursa",
+                "type": ["Normal"],
+                "category": "Little Bear",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 217.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 80,
+                        "def": 50,
+                        "sp.atk": 50,
+                        "sp.def": 50,
+                        "speed": 40
+                    }
+                ],
+                "height": 60,
+                "weight": 8.8,
+                "entry": "If it finds honey, its crescent mark glows. It always licks its paws because they are soaked with honey.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 66,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 20
+    },
+    {
+        "dex number": 217,
+        "forms": [
+            {
+                "key": 217.0,
+                "name": "Ursaring",
+                "type": ["Normal"],
+                "category": "Hibernator",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 901.0,
+                                "level": null,
+                                "item": ["Peat Block", "Dark Mode"]
+                            }
+                        ],
+                        "prev": 216.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 130,
+                        "def": 75,
+                        "sp.atk": 75,
+                        "sp.def": 75,
+                        "speed": 55
+                    }
+                ],
+                "height": 180,
+                "weight": 125.8,
+                "entry": "Although it is a good climber, it prefers to snap trees with its forelegs and eat fallen Berries.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 175,
+        "minimum spawn level": 30,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 60,
+        "flee rate": 7
+    },
+    {
+        "dex number": 218,
+        "forms": [
+            {
+                "key": 218.0,
+                "name": "Slugma",
+                "type": ["Fire"],
+                "category": "Lava",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 219.0,
+                                "level": 38,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 40,
+                        "atk": 40,
+                        "def": 40,
+                        "sp.atk": 70,
+                        "sp.def": 40,
+                        "speed": 20
+                    }
+                ],
+                "height": 70,
+                "weight": 35,
+                "entry": "It never sleeps. It has to keep moving because if it stopped, its magma body would cool and harden.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 50,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 10
+    },
+    {
+        "dex number": 219,
+        "forms": [
+            {
+                "key": 219.0,
+                "name": "Magcargo",
+                "type": ["Fire", "Rock"],
+                "category": "Lava",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 218.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 50,
+                        "def": 120,
+                        "sp.atk": 90,
+                        "sp.def": 80,
+                        "speed": 30
+                    }
+                ],
+                "height": 80,
+                "weight": 55,
+                "entry": "The shell on its back is just skin that has cooled and hardened. It breaks easily with a slight touch.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 151,
+        "minimum spawn level": 38,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 6
+    },
+    {
+        "dex number": 220,
+        "forms": [
+            {
+                "key": 220.0,
+                "name": "Swinub",
+                "type": ["Ice", "Ground"],
+                "category": "Pig",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 221.0,
+                                "level": 33,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 50,
+                        "def": 40,
+                        "sp.atk": 30,
+                        "sp.def": 30,
+                        "speed": 50
+                    }
+                ],
+                "height": 40,
+                "weight": 6.5,
+                "entry": "It rubs its snout on the ground to find and dig up food. It sometimes discovers hot springs.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 50,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 225,
+        "flee rate": 10
+    },
+    {
+        "dex number": 221,
+        "forms": [
+            {
+                "key": 221.0,
+                "name": "Piloswine",
+                "type": ["Ice", "Ground"],
+                "category": "Swine",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 473.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": 220.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 100,
+                        "def": 80,
+                        "sp.atk": 60,
+                        "sp.def": 60,
+                        "speed": 50
+                    }
+                ],
+                "height": 110,
+                "weight": 55.8,
+                "entry": "Because the long hair all over its body obscures its sight, it just keeps charging repeatedly.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 158,
+        "minimum spawn level": 33,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 75,
+        "flee rate": 6
+    },
+    {
+        "dex number": 222,
+        "forms": [
+            {
+                "key": 222.0,
+                "name": "Corsola",
+                "type": ["Water", "Rock"],
+                "category": "Coral",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 55,
+                        "def": 95,
+                        "sp.atk": 65,
+                        "sp.def": 95,
+                        "speed": 35
+                    }
+                ],
+                "height": 60,
+                "weight": 5,
+                "entry": "The points on its head absorb nutrients from clean water. They cannot survive in polluted water.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            },
+            {
+                "key": 222.01,
+                "name": "Corsola",
+                "type": ["Ghost"],
+                "category": "Coral",
+                "region": "Galar",
+                "special form": "Galarian Corsola",
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 864.0,
+                                "level": 38,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 60,
+                        "atk": 55,
+                        "def": 100,
+                        "sp.atk": 65,
+                        "sp.def": 100,
+                        "speed": 30
+                    }
+                ],
+                "height": 60,
+                "weight": 0.5,
+                "entry": "Watch your step when wandering areas oceans once covered. What looks like a stone could be this Pokémon, and it will curse you if you kick it.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 144,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 0.33,
+        "catch rate": 60,
+        "flee rate": 12
+    },
+    {
+        "dex number": 223,
+        "forms": [
+            {
+                "key": 223.0,
+                "name": "Remoraid",
+                "type": ["Water"],
+                "category": "Jet",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 224.0,
+                                "level": 25,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 35,
+                        "atk": 65,
+                        "def": 35,
+                        "sp.atk": 65,
+                        "sp.def": 35,
+                        "speed": 65
+                    }
+                ],
+                "height": 60,
+                "weight": 12,
+                "entry": "Using its dorsal fin as a suction pad, it clings to a Mantine's underside to scavenge for leftovers.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 60,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 190,
+        "flee rate": 10
+    },
+    {
+        "dex number": 224,
+        "forms": [
+            {
+                "key": 224.0,
+                "name": "Octillery",
+                "type": ["Water"],
+                "category": "Jet",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 223.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 105,
+                        "def": 75,
+                        "sp.atk": 105,
+                        "sp.def": 75,
+                        "speed": 45
+                    }
+                ],
+                "height": 90,
+                "weight": 28.5,
+                "entry": "It instinctively sneaks into rocky holes. If it gets sleepy, it steals the nest of a fellow Octillery.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 168,
+        "minimum spawn level": 25,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 168,
+        "flee rate": 7
+    },
+    {
+        "dex number": 225,
+        "forms": [
+            {
+                "key": 225.0,
+                "name": "Delibird",
+                "type": ["Ice", "Flying"],
+                "category": "Delivery",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 55,
+                        "def": 45,
+                        "sp.atk": 65,
+                        "sp.def": 45,
+                        "speed": 75
+                    }
+                ],
+                "height": 90,
+                "weight": 16,
+                "entry": "It always carries its food with it, wherever it goes. If attacked, it throws its food at the opponent.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 116,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 20
+    },
+    {
+        "dex number": 226,
+        "forms": [
+            {
+                "key": 226.0,
+                "name": "Mantine",
+                "type": ["Water", "Flying"],
+                "category": "Kite",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 458.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 85,
+                        "atk": 40,
+                        "def": 70,
+                        "sp.atk": 80,
+                        "sp.def": 140,
+                        "speed": 70
+                    }
+                ],
+                "height": 210,
+                "weight": 220,
+                "entry": "As it majestically swims, it doesn't care if Remoraid attach to it for scavenging its leftovers.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 170,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 25,
+        "flee rate": 7
+    },
+    {
+        "dex number": 227,
+        "forms": [
+            {
+                "key": 227.0,
+                "name": "Skarmory",
+                "type": ["Steel", "Flying"],
+                "category": "Armor Bird",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 65,
+                        "atk": 80,
+                        "def": 140,
+                        "sp.atk": 40,
+                        "sp.def": 70,
+                        "speed": 70
+                    }
+                ],
+                "height": 170,
+                "weight": 50.5,
+                "entry": "Its sturdy wings look heavy, but they are actually hollow and light, allowing it to fly freely in the sky.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 163,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 25,
+        "flee rate": 9
+    },
+    {
+        "dex number": 228,
+        "forms": [
+            {
+                "key": 228.0,
+                "name": "Houndour",
+                "type": ["Dark", "Fire"],
+                "category": "Dark",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 229.0,
+                                "level": 24,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 60,
+                        "def": 30,
+                        "sp.atk": 80,
+                        "sp.def": 50,
+                        "speed": 65
+                    }
+                ],
+                "height": 60,
+                "weight": 10.8,
+                "entry": "It uses different kinds of cries for communicating with others of its kind and for pursuing its prey.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 66,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 10
+    },
+    {
+        "dex number": 229,
+        "forms": [
+            {
+                "key": 229.0,
+                "name": "Houndoom",
+                "type": ["Dark", "Fire"],
+                "category": "Dark",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 228.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 90,
+                        "def": 50,
+                        "sp.atk": 110,
+                        "sp.def": 80,
+                        "speed": 95
+                    }
+                ],
+                "height": 140,
+                "weight": 35,
+                "entry": "If you are burned by the flames it shoots from its mouth, the pain will never go away.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 175,
+        "minimum spawn level": 24,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 6
+    },
+    {
+        "dex number": 230,
+        "forms": [
+            {
+                "key": 230.0,
+                "name": "Kingdra",
+                "type": ["Water", "Dragon"],
+                "category": "Dragon",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 117.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 75,
+                        "atk": 95,
+                        "def": 95,
+                        "sp.atk": 95,
+                        "sp.def": 95,
+                        "speed": 85
+                    }
+                ],
+                "height": 180,
+                "weight": 152,
+                "entry": "It is said that it usually hides in underwater caves. It can create whirlpools by yawning.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 243,
+        "minimum spawn level": 55,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 231,
+        "forms": [
+            {
+                "key": 231.0,
+                "name": "Phanpy",
+                "type": ["Ground"],
+                "category": "Long Nose",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 232,
+                                "level": 25,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 60,
+                        "def": 60,
+                        "sp.atk": 40,
+                        "sp.def": 40,
+                        "speed": 40
+                    }
+                ],
+                "height": 50,
+                "weight": 33.5,
+                "entry": "As a sign of affection, it bumps with its snout. However, it is so strong, it may send you flying.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 66,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 120,
+        "flee rate": 20
+    },
+    {
+        "dex number": 232,
+        "forms": [
+            {
+                "key": 232.0,
+                "name": "Donphan",
+                "type": ["Ground"],
+                "category": "Armor",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 231.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 120,
+                        "def": 120,
+                        "sp.atk": 60,
+                        "sp.def": 60,
+                        "speed": 50
+                    }
+                ],
+                "height": 110,
+                "weight": 120,
+                "entry": "",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 175,
+        "minimum spawn level": 25,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 60,
+        "flee rate": 7
+    },
+    {
+        "dex number": 233,
+        "forms": [
+            {
+                "key": 233.0,
+                "name": "Porygon2",
+                "type": ["Normal"],
+                "category": "Virtual",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 474.0,
+                                "level": null,
+                                "item": ["Dubious Disc", "Linking Cord"]
+                            }
+                        ],
+                        "prev": 137.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 85,
+                        "atk": 80,
+                        "def": 90,
+                        "sp.atk": 105,
+                        "sp.def": 95,
+                        "speed": 60
+                    }
+                ],
+                "height": 60,
+                "weight": 32.5,
+                "entry": "This upgraded version of Porygon is designed for space exploration. It can't fly, though.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 180,
+        "minimum spawn level": 26,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 45,
+        "flee rate": 5
+    },
+    {
+        "dex number": 234,
+        "forms": [
+            {
+                "key": 234,
+                "name": "Stantler",
+                "type": ["Normal"],
+                "category": "Big Horn",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 899.0,
+                                "level": null,
+                                "item": ["Move Tutor"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 73,
+                        "atk": 95,
+                        "def": 62,
+                        "sp.atk": 85,
+                        "sp.def": 65,
+                        "speed": 85
+                    }
+                ],
+                "height": 140,
+                "weight": 71.2,
+                "entry": "Those who stare at its antlers will gradually lose control of their senses and be unable to stand.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 163,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 8
+    },
+    {
+        "dex number": 235,
+        "forms": [
+            {
+                "key": 235.0,
+                "name": "Smeargle",
+                "type": ["Normal"],
+                "category": "Painter",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 55,
+                        "atk": 20,
+                        "def": 35,
+                        "sp.atk": 20,
+                        "sp.def": 45,
+                        "speed": 75
+                    }
+                ],
+                "height": 120,
+                "weight": 58,
+                "entry": "A special fluid oozes from the tip of its tail. It paints the fluid everywhere to mark its territory.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 88,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 236,
+        "forms": [
+            {
+                "key": 236.0,
+                "name": "Tyrogue",
+                "type": ["Fighting"],
+                "category": "Scuffle",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 106.0,
+                                "level": 20,
+                                "item": ["Random"]
+                            },
+                            {
+                                "key": 107.0,
+                                "level": 20,
+                                "item": ["Random"]
+                            },
+                            {
+                                "key": 237.0,
+                                "level": 20,
+                                "item": ["Random"]
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 35,
+                        "atk": 35,
+                        "def": 35,
+                        "sp.atk": 35,
+                        "sp.def": 35,
+                        "speed": 35
+                    }
+                ],
+                "height": 70,
+                "weight": 21,
+                "entry": "It is always bursting with energy. To make itself stronger, it keeps on fighting even if it loses.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 42,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 100,
+        "catch rate": 75,
+        "flee rate": 20
+    },
+    {
+        "dex number": 237,
+        "forms": [
+            {
+                "key": 237.0,
+                "name": "Hitmontop",
+                "type": ["Fighting"],
+                "category": "Handstand",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 236.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 95,
+                        "def": 95,
+                        "sp.atk": 35,
+                        "sp.def": 110,
+                        "speed": 70
+                    }
+                ],
+                "height": 140,
+                "weight": 48,
+                "entry": "If you become enchanted by its smooth, elegant, dance-like kicks, you may get drilled hard.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 159,
+        "minimum spawn level": 20,
+        "gendered": true,
+        "male:female ratio": 100,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 238,
+        "forms": [
+            {
+                "key": 238.0,
+                "name": "Smoochum",
+                "type": ["Ice", "Psychic"],
+                "category": "Kiss",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 124.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 30,
+                        "def": 15,
+                        "sp.atk": 85,
+                        "sp.def": 65,
+                        "speed": 65
+                    }
+                ],
+                "height": 40,
+                "weight": 6,
+                "entry": "Its lips are the most sensitive parts on its body. It always uses its lips first to examine things.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 61,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 0,
+        "catch rate": 45,
+        "flee rate": 20
+    },
+    {
+        "dex number": 239,
+        "forms": [
+            {
+                "key": 239.0,
+                "name": "Elekid",
+                "type": ["Electric"],
+                "category": "Electric",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 125.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 63,
+                        "def": 37,
+                        "sp.atk": 65,
+                        "sp.def": 55,
+                        "speed": 95
+                    }
+                ],
+                "height": 60,
+                "weight": 23.5,
+                "entry": "It rotates its arms to generate electricity, but it tires easily, so it charges up only a little bit.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 72,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 3,
+        "catch rate": 45,
+        "flee rate": 20
+    },
+    {
+        "dex number": 240,
+        "forms": [
+            {
+                "key": 240.0,
+                "name": "Magby",
+                "type": ["Fire"],
+                "category": "Live Coal",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 126.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 45,
+                        "atk": 75,
+                        "def": 37,
+                        "sp.atk": 70,
+                        "sp.def": 55,
+                        "speed": 83
+                    }
+                ],
+                "height": 70,
+                "weight": 21.4,
+                "entry": "Each and every time it inhales and exhales, hot embers dribble out of its mouth and nostrils.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Fast",
+        "base experience yield": 73,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 3,
+        "catch rate": 45,
+        "flee rate": 20
+    },
+    {
+        "dex number": 241,
+        "forms": [
+            {
+                "key": 241.0,
+                "name": "Miltank",
+                "type": ["Normal"],
+                "category": "Milk Cow",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 95,
+                        "atk": 80,
+                        "def": 105,
+                        "sp.atk": 40,
+                        "sp.def": 70,
+                        "speed": 100
+                    }
+                ],
+                "height": 1.2,
+                "weight": 75.5,
+                "entry": "Its milk is packed with nutrition, making it the ultimate beverage for the sick or weary.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 172,
+        "minimum spawn level": 15,
+        "gendered": true,
+        "male:female ratio": 0,
+        "catch rate": 45,
+        "flee rate": 8
+    },
+    {
+        "dex number": 242,
+        "forms": [
+            {
+                "key": 242.0,
+                "name": "Blissey",
+                "type": ["Normal"],
+                "category": "Happiness",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 113.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 255,
+                        "atk": 10,
+                        "def": 10,
+                        "sp.atk": 75,
+                        "sp.def": 135,
+                        "speed": 55
+                    }
+                ],
+                "height": 150,
+                "weight": 46.8,
+                "entry": "Anyone who takes even one bite of Blissey's egg becomes unfailingly caring and pleasant to everyone.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Fast",
+        "base experience yield": 608,
+        "minimum spawn level": 31,
+        "gendered": true,
+        "male:female ratio": 0,
+        "catch rate": 30,
+        "flee rate": 5
+    },
+    {
+        "dex number": 243,
+        "forms": [
+            {
+                "key": 243.0,
+                "name": "Raikou",
+                "type": ["Electric"],
+                "category": "Thunder",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 90,
+                        "atk": 85,
+                        "def": 75,
+                        "sp.atk": 115,
+                        "sp.def": 100,
+                        "speed": 115
+                    }
+                ],
+                "height": 190,
+                "weight": 178,
+                "entry": "The rain clouds it carries let it fire thunderbolts at will. They say that it descended with lightning.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 261,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 3,
+        "flee rate": 0
+    },
+    {
+        "dex number": 244,
+        "forms": [
+            {
+                "key": 244.0,
+                "name": "Entei",
+                "type": ["Fire"],
+                "category": "Volcano",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 115,
+                        "atk": 115,
+                        "def": 85,
+                        "sp.atk": 90,
+                        "sp.def": 75,
+                        "speed": 100
+                    }
+                ],
+                "height": 210,
+                "weight": 198,
+                "entry": "Volcanoes erupt when it barks. Unable to restrain its extreme power, it races headlong around the land.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 261,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 3,
+        "flee rate": 0
+    },
+    {
+        "dex number": 245,
+        "forms": [
+            {
+                "key": 245.0,
+                "name": "Suicune",
+                "type": ["Water"],
+                "category": "Aurora",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 75,
+                        "def": 115,
+                        "sp.atk": 90,
+                        "sp.def": 115,
+                        "speed": 85
+                    }
+                ],
+                "height": 200,
+                "weight": 187,
+                "entry": "Said to be the reincarnation of north winds, it can instantly purify filthy, murky water.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 261,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 3,
+        "flee rate": 0
+    },
+    {
+        "dex number": 246,
+        "forms": [
+            {
+                "key": 246.0,
+                "name": "Larvitar",
+                "type": ["Rock", "Ground"],
+                "category": "Rock Skin",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 247.0,
+                                "level": 30,
+                                "item": []
+                            }
+                        ],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 50,
+                        "atk": 64,
+                        "def": 50,
+                        "sp.atk": 45,
+                        "sp.def": 50,
+                        "speed": 41
+                    }
+                ],
+                "height": 60,
+                "weight": 72,
+                "entry": "It feeds on soil. After it has eaten a large mountain, it will fall asleep so it can grow.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 60,
+        "minimum spawn level": 1,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 10 
+    },
+    {
+        "dex number": 247,
+        "forms": [
+            {
+                "key": 247.0,
+                "name": "Pupitar",
+                "type": ["Rock", "Ground"],
+                "category": "Hard Shell",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [
+                            {
+                                "key": 248.0,
+                                "level": 55,
+                                "item": []
+                            }
+                        ],
+                        "prev": 246.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 70,
+                        "atk": 84,
+                        "def": 70,
+                        "sp.atk": 65,
+                        "sp.def": 70,
+                        "speed": 51
+                    }
+                ],
+                "height": 120,
+                "weight": 152,
+                "entry": "Its shell is as hard as sheet rock, and it is also very strong. Its Thrashing can topple a mountain.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 144,
+        "minimum spawn level": 30,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 7
+    },
+    {
+        "dex number": 248,
+        "forms": [
+            {
+                "key": 248.0,
+                "name": "Tyranitar",
+                "type": ["Rock", "Dark"],
+                "category": "Armor",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": 247.0
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 134,
+                        "def": 110,
+                        "sp.atk": 95,
+                        "sp.def": 100,
+                        "speed": 61
+                    }
+                ],
+                "height": 200,
+                "weight": 202,
+                "entry": "Extremely strong, it can change the landscape. It has an insolent nature that makes it not care about others.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 270,
+        "minimum spawn level": 55,
+        "gendered": true,
+        "male:female ratio": 1,
+        "catch rate": 45,
+        "flee rate": 4
+    },
+    {
+        "dex number": 249,
+        "forms": [
+            {
+                "key": 249.0,
+                "name": "Lugia",
+                "type": ["Psychic", "Flying"],
+                "category": "Diving",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 106,
+                        "atk": 90,
+                        "def": 130,
+                        "sp.atk": 90,
+                        "sp.def": 154,
+                        "speed": 110
+                    }
+                ],
+                "height": 520,
+                "weight": 216,
+                "entry": "It is said to be the guardian of the seas. It is rumored to have been seen on the night of a storm.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 306,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 3,
+        "flee rate": 0
+    },
+    {
+        "dex number": 250,
+        "forms": [
+            {
+                "key": 250.0,
+                "name": "Ho-Oh",
+                "type": ["Fire", "Flying"],
+                "category": "Rainbow",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 106,
+                        "atk": 130,
+                        "def": 90,
+                        "sp.atk": 110,
+                        "sp.def": 154,
+                        "speed": 90
+                    }
+                ],
+                "height": 380,
+                "weight": 199,
+                "entry": "Legends claim this Pokémon flies the world's skies continuously on its magnificent seven-colored wings.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Slow",
+        "base experience yield": 306,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 3,
+        "flee rate": 0
+    },
+    {
+        "dex number": 251,
+        "forms": [
+            {
+                "key": 251.0,
+                "name": "Celebi",
+                "type": ["Psychic", "Grass"],
+                "category": "Time Travel",
+                "region": "Johto",
+                "special form": null,
+                "valid": true,
+                "evolution": [
+                    {
+                        "next": [],
+                        "prev": null
+                    }
+                ],
+                "base stats": [
+                    {
+                        "hp": 100,
+                        "atk": 100,
+                        "def": 100,
+                        "sp.atk": 100,
+                        "sp.def": 100,
+                        "speed": 100
+                    }
+                ],
+                "height": 60,
+                "weight": 5,
+                "entry": "This Pokémon wanders across time. Grass and trees flourish in the forests in which it has appeared.",
+                "image asset m": "assets/ivysaur.png",
+                "image asset f": "assets/ivysaur.png",
+                "image asset m shiny": "assets/ivysaur.png",
+                "image asset f shiny": "assets/ivysaur.png"
+            }
+        ],
+        "gimmick forms": [],
+        "experience group": "Medium Slow",
+        "base experience yield": 270,
+        "minimum spawn level": 101,
+        "gendered": false,
+        "male:female ratio": null,
+        "catch rate": 45,
+        "flee rate": 0
     }
 ]

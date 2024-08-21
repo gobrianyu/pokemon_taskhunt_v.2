@@ -30,4 +30,21 @@ enum Regions {
     }
     throw Exception('Invalid region');
   }
+
+  int get dexFirst {
+    switch (region.toLowerCase()) {
+      case 'kanto': return 1;
+      case 'johto': return 152;
+      case 'hoenn': return 252;
+      case 'sinnoh': return 387;
+      case 'unova': return 494;
+      case 'kalos': return 650;
+      case 'alola': return 722;
+      case 'galar': return 810;
+      case 'hisui': return 899;
+      case 'paldea': return 906;
+      case 'unknown': return 808;
+    }
+    throw Exception('Invalid region');
+  }
 }

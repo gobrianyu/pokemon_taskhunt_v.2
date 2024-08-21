@@ -20,141 +20,274 @@ class _CollectionState extends State<Collection> {
   List<Types> typeFilters = [];
   List<Regions> regionFilters = [];
   late Map<dex.DexEntry, int> filteredDex;
+  final TextEditingController searchController = TextEditingController();
+  String searchText = '';
+  bool inSearch = false;
   
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(_onSearchUpdate);
+  }
+
+  void _onSearchUpdate() {
+    setState(() => searchText = searchController.text);
+  }
   
   @override
   Widget build(BuildContext context) {
     filteredDex = _filter();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       extendBody: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
-        child: Column(
+      appBar: _header(context),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+          setState(() => inSearch = false);
+        },
+        child: Stack(
           children: [
-            const SizedBox(height: 40),
-            const Expanded(
-              flex: 3,
-              child: Text(
-                'Collection',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500
-                )
+            filteredDex.isEmpty 
+              ? const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Nothing to show',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w300
+                        )
+                      ),
+                      SizedBox(height: 450)
+                    ]
+                  ),
+                ) 
+              : ListView(
+                primary: true,
+                children: <Widget>[
+                  SizedBox(height: 5),
+                  _regionGrid(Regions.kanto), // TODO: fill out dex
+                  _regionGrid(Regions.johto),
+                ]
               ),
-            ),
-            const SizedBox(height: 5),
-            Expanded(
-              flex: 3,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  boxShadow: [BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 0,
-                    blurRadius: 2,
-                    offset: const Offset(0, 2),
-                  )]),
-                width: MediaQuery.of(context).size.width - 22,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 12,
-                      child: GestureDetector(
-                        onTap: () {setState(() {});},
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          padding: const EdgeInsets.only(left: 5, right: 5),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: const BorderRadius.all(Radius.circular(20))
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(Icons.search, color: Colors.white, size: 16),
-                              SizedBox(width: 7),
-                              Text(
-                                'Search...',
-                                style: TextStyle(color: Colors.white)
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: GestureDetector(
-                        child: const Icon(Icons.filter_alt, color: Colors.white, size: 20),
-                        onTap: () {
-                          showModalBottomSheet(
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) {
-                              return _filterDrawer();
-                            },
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ),
+            inSearch 
+                ? Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    color: Color.fromARGB(100, 0, 0, 0)
+                  )
+                : const SizedBox(),
           ],
         ),
       ),
-      body: filteredDex.isEmpty 
-        ? const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Nothing to show',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300
-                  )
-                ),
-                SizedBox(height: 450)
-              ]
-            ),
-          ) 
-        : GridView.count(
-            primary: true,
-            padding: const EdgeInsets.all(20),
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            crossAxisCount: 6,
-            children: _navigateToEntry()
-          ),
       bottomNavigationBar: _backButton(context)
     );
   }
 
-  List<Widget> _navigateToEntry() {
+  Widget _regionDivider(Regions region) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 11, right: 11),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Divider(
+            color: Colors.black,
+            thickness: 2,
+            height: 0,
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 5, right: 5, bottom: 2),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              boxShadow: [BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 0,
+                        blurRadius: 2,
+                        offset: const Offset(0, 2),
+                      )]
+            ),
+            child: Text(
+              '${region.name.substring(0, 1).toUpperCase()}${region.name.substring(1)}  |  0/${region.dexSize}',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 12
+              ),
+            )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _regionGrid(Regions region) {
+    final tiles = _navigateToEntry(region.dexFirst, region.dexFirst + region.dexSize - 1);
+    if (tiles.isEmpty) {
+      return Container();
+    }
+    return Column(
+      children: [
+        _regionDivider(region),
+        GridView.count(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          primary: false,
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 6,
+          children: _navigateToEntry(region.dexFirst, region.dexFirst + region.dexSize - 1)
+        ),
+      ],
+    );
+  }
+
+  PreferredSize _header(BuildContext context) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(80),
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+          setState(() => inSearch = false);
+        },
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            inSearch 
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Color.fromARGB(100, 0, 0, 0)
+                )
+              : SizedBox(),
+            Column(
+              children: [
+                const SizedBox(height: 40),
+                const Expanded(
+                  flex: 3,
+                  child: SizedBox(
+                    child: Text(
+                      'Collection',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500
+                      )
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      boxShadow: [BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 0,
+                        blurRadius: 2,
+                        offset: const Offset(0, 2),
+                      )]),
+                    width: MediaQuery.of(context).size.width - 22,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 12,
+                          child: GestureDetector(
+                            onTap: () => setState(() {}),
+                            child: Container(
+                              margin: const EdgeInsets.all(3),
+                              padding: const EdgeInsets.only(right: 5),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: const BorderRadius.all(Radius.circular(20))
+                              ),
+                              child: TextField(
+                                onTap: () => setState(() => inSearch = true),
+                                controller: searchController,
+                                cursorColor: Colors.white,
+                                showCursor: false,
+                                cursorWidth: 1.3,
+                                decoration: InputDecoration(
+                                  hintText: 'Search...',
+                                  hintStyle: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.white,
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                                  prefixIcon: const Icon(Icons.search, size: 20, color: Colors.white,),
+                                  suffixIcon: InkWell(
+                                    onTap: () {
+                                      setState(() => searchController.clear());
+                                    },
+                                    child: const Icon(Icons.clear, size: 18, color: Colors.white)
+                                  )
+                                ),
+                                style: const TextStyle(color: Colors.white)
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: GestureDetector(
+                            child: const Icon(Icons.filter_alt, color: Colors.white, size: 20), // TODO: Dynamnic icon?
+                            onTap: () {
+                              showModalBottomSheet(
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) {
+                                  return _filterDrawer();
+                                },
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _navigateToEntry(int min, int max) {
     List<Widget> list = [];
     List<dex.DexEntry> filteredList = filteredDex.keys.map((e) => e).toList();
-    for (dex.DexEntry entry in filteredDex.keys) {
-      list.add(    
-        GestureDetector(
-          onTap: () => {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => CollectionPageView(
-                  entries: widget.fullDex, 
-                  filteredDex: filteredDex,
-                  initialPageIndex: filteredList.indexOf(entry), 
+
+    for (dex.DexEntry entry in filteredList) {
+      if (entry.dexNum >= min && entry.dexNum <= max) {
+        list.add(
+          GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CollectionPageView(
+                    entries: widget.fullDex, 
+                    filteredDex: filteredDex,
+                    initialPageIndex: filteredList.indexOf(entry), 
+                  )
                 )
               )
-            )
-          },
-          child: Image(image: AssetImage(entry.forms[filteredDex[entry] ?? 0].imageAssetM))
-        )
-      );
+            },
+            child: Image(image: AssetImage(entry.forms[filteredDex[entry] ?? 0].imageAssetM))
+          )
+        );
+      } else if (entry.dexNum > max) {
+        break;
+      }
     }
     return list;
   }
@@ -456,6 +589,20 @@ class _CollectionState extends State<Collection> {
   }
 
   Map<dex.DexEntry, int> _filter() {
+    final rtFilteredDex = _filterRT();
+    if (searchText != '') {
+      Map<dex.DexEntry, int> filteredDex = {};
+      for (dex.DexEntry entry in rtFilteredDex.keys) {
+        if (searchText == entry.dexNum.toString() || entry.forms[0].name.toLowerCase().contains(searchText.toLowerCase())) {
+          filteredDex[entry] = rtFilteredDex[entry] as int;
+        }
+      }
+      return filteredDex;
+    }
+    return rtFilteredDex;
+  }
+
+  Map<dex.DexEntry, int> _filterRT() {
     bool entryFilled = false;
     Map<dex.DexEntry, int> filteredDex = {};
     if (typeFilters.isEmpty && regionFilters.isEmpty) {
