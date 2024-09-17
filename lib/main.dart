@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_db.dart';
+import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/views/landing.dart';
+import 'package:provider/provider.dart';
 
 //喻晟
 
@@ -51,11 +53,18 @@ class MainAppState extends State<MainApp> {
       );
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Landing(_dexDB),
-      ),
+    return ChangeNotifierProvider(
+      create: (_) => AccountProvider(),
+      child: Consumer<AccountProvider>(
+        builder: (context, accountProvider, _) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              body: Landing(_dexDB),
+            ),
+          );
+        },
+      )
     );
   }
 }

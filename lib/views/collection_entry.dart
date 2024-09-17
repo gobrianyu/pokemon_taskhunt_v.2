@@ -9,8 +9,10 @@ class CollectionEntry extends StatefulWidget {
   final dex.DexEntry entry;
   final Map<dex.DexEntry, int> filteredDex;
   final int currPageIndex;
+  final bool displayShiny;
+  final bool displayMale;
   
-  const CollectionEntry({required this.entries, required this.entry, required this.filteredDex, this.currPageIndex = 0, super.key});
+  const CollectionEntry({required this.entries, required this.entry, required this.filteredDex, this.currPageIndex = 0, required this.displayShiny, required this.displayMale, super.key});
 
   List<dex.DexEntry> get filteredEntries {
     List<dex.DexEntry> newList = [];
@@ -39,8 +41,6 @@ class CollectionEntry extends StatefulWidget {
 }
 
 class _CollectionEntryState extends State<CollectionEntry> {
-  bool _displayShiny = false;
-  bool _displayMale = true;
   int currPageIndex = 0;
   List<dex.DexEntry> filteredEntries = [];
   List<int> filteredIndexes = [];
@@ -69,23 +69,9 @@ class _CollectionEntryState extends State<CollectionEntry> {
     dex.Form currForm = entry.forms[currPageIndex];
 
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       extendBody: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(55),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 9,
-              child: Container()
-            ),
-            Expanded(
-              flex: 10,
-              child: _nameHeader(entry, entry.genderKnown)
-            )
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +81,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
             _buildTypes(currForm.type),
             _flavourText(currForm.category, currForm.entry),
             _measurements(currForm.height, currForm.weight),
-            _stats(currForm.stats[0]),
+            _stats(currForm.stats),
             _evoChart(currForm),
             const SizedBox(height: 100)
           ]
@@ -106,11 +92,11 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _evoChart(dex.Form form) {
     dex.Form basic = form;
-    double? prevKey = basic.evolutions[0].prevKey;
+    double? prevKey = basic.evolutions.prevKey;
     while (prevKey != null) {
       List<dex.Form> forms = widget.entries[prevKey.toInt() - 1].forms;
       basic = forms[forms.indexWhere((form) => form.key == prevKey)];
-      prevKey = basic.evolutions[0].prevKey;
+      prevKey = basic.evolutions.prevKey;
     }
     EvoAsset head = EvoAsset.fromForm(form: basic, entries: widget.entries, evoStage: 1);
     return Padding(
@@ -133,8 +119,6 @@ class _CollectionEntryState extends State<CollectionEntry> {
   List<Widget> _fillAssetColumns(EvoAsset head, List<Column> columns) {
     int initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
     Map<dex.DexEntry, int> filteredDex = widget.newFilteredDex;
-    print(head.key);
-    print(initialPageIndex);
     if (columns.length < head.evoStage) {
       columns.add(Column(children: [
         GestureDetector(
@@ -358,12 +342,12 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _assetWindow(List<dex.Form> forms) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+      margin: const EdgeInsets.all(10),
       alignment: Alignment.center,
       height: 300,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: 2),
-        borderRadius: BorderRadius.all(Radius.circular(15))
+        borderRadius: const BorderRadius.all(Radius.circular(15))
       ),
       child: PageView.builder( // TODO: ensure only unlocked forms show
         controller: _pageController,
@@ -379,160 +363,163 @@ class _CollectionEntryState extends State<CollectionEntry> {
   }
 
   Widget _getImage(dex.Form form) {
-    if (_displayShiny) {
-      return _displayMale 
+    if (widget.displayShiny) {
+      return widget.displayMale
           ? Image(image: AssetImage(form.imageAssetMShiny)) 
           : Image(image: AssetImage(form.imageAssetFShiny));
     }
-    return _displayMale
+    return widget.displayMale
         ? Image(image: AssetImage(form.imageAssetM))
         : Image(image: AssetImage(form.imageAssetF));
   }
 
-  Widget _nameHeader(dex.DexEntry entry, bool genderKnown) {
-    int dexNum = entry.dexNum;
-    String dexNumAsString = dexNum.toString().padLeft(4, '0');
-    int unlockStatus = 0;
+//   Widget _nameHeader(dex.DexEntry entry, bool genderKnown) {
+//     int dexNum = entry.dexNum;
+//     String dexNumAsString = dexNum.toString().padLeft(4, '0');
+//     int unlockStatus = 0;
     
-    for (dex.Form form in entry.forms) {
-      if (form.unlockStatus > unlockStatus) {
-        unlockStatus = form.unlockStatus;
-      }
-    }
+//     for (dex.Form form in entry.forms) {
+//       if (form.unlockStatus > unlockStatus) {
+//         unlockStatus = form.unlockStatus;
+//       }
+//     }
 
-    return Container(
-      margin: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      color: Colors.black,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: 5),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(Icons.circle, color: Colors.white, size: 30),
-                Icon(Icons.catching_pokemon, color: unlockStatus <= 1 ? Colors.red : Colors.red, size: 30),
-                Icon(Icons.circle_outlined, color: Colors.black, size: 30),
-                Icon(Icons.circle_outlined, color: Colors.black, size: 32)
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: Text(
-              '#$dexNumAsString', 
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white
-              )
-            ),
-          ),
-          Text(
-            entry.forms[0].name,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white
-            )
-          ),
-          const Spacer(),
-          _nameHeaderButtons(genderKnown, entry.genderRatio)
-        ]
-      ),
-    );
-  }
+//     return Container(
+//       margin: const EdgeInsets.only(left: 0, right: 10, bottom: 5),
+//       padding: const EdgeInsets.only(left: 10, right: 3),
+//       decoration: BoxDecoration(
+//         color: Colors.black,
+//         borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))
+//       ),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.start,
+//         children: [
+//           Padding(
+//             padding: EdgeInsets.only(right: 5),
+//             child: Stack(
+//               alignment: Alignment.center,
+//               children: [
+//                 Icon(Icons.circle, color: Colors.white, size: 30),
+//                 Icon(Icons.catching_pokemon, color: unlockStatus <= 1 ? Colors.red : Colors.red, size: 30),
+//                 Icon(Icons.circle_outlined, color: Colors.black, size: 30),
+//                 Icon(Icons.circle_outlined, color: Colors.black, size: 32)
+//               ],
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.only(right: 10.0),
+//             child: Text(
+//               '#$dexNumAsString', 
+//               style: const TextStyle(
+//                 fontSize: 16,
+//                 color: Colors.white
+//               )
+//             ),
+//           ),
+//           Text(
+//             entry.forms[0].name,
+//             style: const TextStyle(
+//               fontSize: 16,
+//               fontWeight: FontWeight.bold,
+//               color: Colors.white
+//             )
+//           ),
+//           const Spacer(),
+//           _nameHeaderButtons(genderKnown, entry.genderRatio)
+//         ]
+//       ),
+//     );
+//   }
 
-  Widget _nameHeaderButtons(bool genderKnown, double? ratio) { // TODO: hide buttons if entry still locked
-    if (ratio != null && ratio == 0) {
-      setState(() {
-        _displayMale = false;
-      });
-    }
-    return Row(
-      children: [
-        (genderKnown && ratio != null && ratio != 0)
-              ? _maleButton()
-              : Container(),
-        (genderKnown && ratio != null && ratio != 100)
-              ? _femaleButton()
-              : Container(),
-        // (_displayShiny) 
-        //       ? _shinyButton()
-        //       : Container()
-        _shinyButton() //TODO: remove and uncomment above
-      ],
-    );
-  }
+//   Widget _nameHeaderButtons(bool genderKnown, double? ratio) { // TODO: hide buttons if entry still locked
+//     if (ratio != null && ratio == 0) {
+//       setState(() {
+//         _displayMale = false;
+//       });
+//     }
+//     return Row(
+//       children: [
+//         (genderKnown && ratio != null && ratio != 0)
+//               ? _maleButton()
+//               : Container(),
+//         (genderKnown && ratio != null && ratio != 100)
+//               ? _femaleButton()
+//               : Container(),
+//         // (_displayShiny) 
+//         //       ? _shinyButton()
+//         //       : Container()
+//         _shinyButton() //TODO: remove and uncomment above
+//       ],
+//     );
+//   }
 
-  Widget _shinyButton() {
-    return SizedBox(
-      width: 38,
-      child: Row(
-        children: [
-          const Spacer(),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                _displayShiny = !_displayShiny;
-              });
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              backgroundColor: _displayShiny ? const Color.fromARGB(255, 122, 218, 175) : Colors.white,
-              minimumSize: const Size(0, 0),
-              padding: const EdgeInsets.all(6),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap
-            ),
-            child: Icon(Icons.auto_awesome_rounded, color: _displayShiny ? Colors.white : Colors.grey, size: 20)
-          ),
-        ],
-      ),
-    );
-  }
+//   Widget _shinyButton() {
+//     return SizedBox(
+//       width: 38,
+//       child: Row(
+//         children: [
+//           const Spacer(),
+//           ElevatedButton(
+//             onPressed: () {
+//               setState(() {
+//                 _displayShiny = !_displayShiny;
+//               });
+//             },
+//             style: ElevatedButton.styleFrom(
+//               shape: const CircleBorder(),
+//               backgroundColor: _displayShiny ? const Color.fromARGB(255, 122, 218, 175) : Colors.white,
+//               minimumSize: const Size(0, 0),
+//               padding: const EdgeInsets.all(6),
+//               tapTargetSize: MaterialTapTargetSize.shrinkWrap
+//             ),
+//             child: Icon(Icons.auto_awesome_rounded, color: _displayShiny ? Colors.white : Colors.grey, size: 20)
+//           ),
+//         ],
+//       ),
+//     );
+//   }
 
-  Widget _femaleButton() {
-    return SizedBox(
-      width: 35,
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            _displayMale = false;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-          backgroundColor: Colors.pink,
-          minimumSize: const Size(0, 0),
-          padding: EdgeInsets.all(_displayMale? 3 : 6),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap
-        ),
-        child: Icon(Icons.female, color: Colors.white, size: _displayMale ? 15 : 20)
-      ),
-    );
-  }
+//   Widget _femaleButton() {
+//     return SizedBox(
+//       width: 35,
+//       child: ElevatedButton(
+//         onPressed: () {
+//           setState(() {
+//             _displayMale = false;
+//           });
+//         },
+//         style: ElevatedButton.styleFrom(
+//           shape: const CircleBorder(),
+//           backgroundColor: Colors.pink,
+//           minimumSize: const Size(0, 0),
+//           padding: EdgeInsets.all(_displayMale? 3 : 6),
+//           tapTargetSize: MaterialTapTargetSize.shrinkWrap
+//         ),
+//         child: Icon(Icons.female, color: Colors.white, size: _displayMale ? 15 : 20)
+//       ),
+//     );
+//   }
 
-  Widget _maleButton() {
-    return SizedBox(
-      width: 35,
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            _displayMale = true;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-          shape: const CircleBorder(),
-          backgroundColor: Colors.blue,
-          minimumSize: const Size(0, 0),
-          padding: EdgeInsets.all(_displayMale? 6 : 3),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap
-        ),
-        child: Icon(Icons.male, color: Colors.white, size: _displayMale ? 20 : 15)
-      ),
-    );
-  }
+//   Widget _maleButton() {
+//     return SizedBox(
+//       width: 35,
+//       child: ElevatedButton(
+//         onPressed: () {
+//           setState(() {
+//             _displayMale = true;
+//           });
+//         },
+//         style: ElevatedButton.styleFrom(
+//           shape: const CircleBorder(),
+//           backgroundColor: Colors.blue,
+//           minimumSize: const Size(0, 0),
+//           padding: EdgeInsets.all(_displayMale? 6 : 3),
+//           tapTargetSize: MaterialTapTargetSize.shrinkWrap
+//         ),
+//         child: Icon(Icons.male, color: Colors.white, size: _displayMale ? 20 : 15)
+//       ),
+//     );
+//   }
 }
 
 class EvoAsset {
@@ -545,7 +532,7 @@ class EvoAsset {
   EvoAsset({required this.entries, required this.image, required this.next, required this.evoStage, required this.key});
   
   factory EvoAsset.fromForm({required dex.Form form, required List<dex.DexEntry> entries, required int evoStage}) {
-    List<dex.NextEvo> nextEvos = form.evolutions[0].next;
+    List<dex.NextEvo> nextEvos = form.evolutions.next;
     if (nextEvos == []) {
       return EvoAsset(entries: entries, image: form.imageAssetM, next: [], evoStage: evoStage, key: form.key);
     }

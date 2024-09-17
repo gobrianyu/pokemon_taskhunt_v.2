@@ -1261,7 +1261,7 @@
                             {
                                 "key": 26.01,
                                 "level": null,
-                                "item": ["Thunder Stone", "Alola"]
+                                "item": ["Thunder Stone", "Alola Slate"]
                             }
                         ],
                         "prev": 172
@@ -3170,7 +3170,7 @@
                             {
                                 "key": 979.0,
                                 "level": null,
-                                "item": ["Friendship"]
+                                "item": ["Battle"]
                             }
                         ],
                         "prev": 56.0
@@ -4807,7 +4807,7 @@
                             {
                                 "key": 865.0,
                                 "level": null,
-                                "item": ["Friendship"]
+                                "item": ["Battle"]
                             }
                         ],
                         "prev": null
@@ -5873,7 +5873,7 @@
                             {
                                 "key": 103.01,
                                 "level": null,
-                                "item": ["Leaf Stone", "Alola"]
+                                "item": ["Leaf Stone", "Alola Slate"]
                             }
                         ],
                         "prev": null
@@ -6006,7 +6006,7 @@
                             {
                                 "key": 105.01,
                                 "level": 28,
-                                "item": ["Dark Mode", "Alola"]
+                                "item": ["Dark Mode", "Alola Slate"]
                             }
                         ],
                         "prev": null
@@ -6280,7 +6280,7 @@
                             {
                                 "key": 110.01,
                                 "level": 35,
-                                "item": ["Galar"]
+                                "item": ["Galar Slate"]
                             }
                         ],
                         "prev": null
@@ -12497,7 +12497,7 @@
                             {
                                 "key": 904.0,
                                 "level": null,
-                                "item": ["Move Tutor"]
+                                "item": ["Battle"]
                             }
                         ],
                         "prev": null
@@ -12683,7 +12683,7 @@
                             {
                                 "key": 461.0,
                                 "level": null,
-                                "item": ["Razor Claw"]
+                                "item": ["Razor Claw", "Dark Mode"]
                             }
                         ],
                         "prev": null
@@ -12721,7 +12721,7 @@
                             {
                                 "key": 903.0,
                                 "level": null,
-                                "item": ["Razor Claw"]
+                                "item": ["Razor Claw", "Light Mode"]
                             }
                         ],
                         "prev": null
@@ -13674,7 +13674,7 @@
                             {
                                 "key": 899.0,
                                 "level": null,
-                                "item": ["Move Tutor"]
+                                "item": ["Battle"]
                             }
                         ],
                         "prev": null

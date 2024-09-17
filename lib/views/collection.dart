@@ -38,6 +38,7 @@ class _CollectionState extends State<Collection> {
   Widget build(BuildContext context) {
     filteredDex = _filter();
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       extendBody: true,
@@ -89,7 +90,7 @@ class _CollectionState extends State<Collection> {
 
   Widget _regionDivider(Regions region) {
     return Padding(
-      padding: const EdgeInsets.only(left: 11, right: 11),
+      padding: const EdgeInsets.only(left: 11, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -182,13 +183,15 @@ class _CollectionState extends State<Collection> {
                   flex: 3,
                   child: Container(
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
                       color: Colors.black,
-                      boxShadow: [BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        spreadRadius: 0,
-                        blurRadius: 2,
-                        offset: const Offset(0, 2),
-                      )]),
+                      // boxShadow: [BoxShadow(
+                      //   color: Colors.black.withOpacity(0.5),
+                      //   spreadRadius: 0,
+                      //   blurRadius: 2,
+                      //   offset: const Offset(0, 2),
+                      // )]),
+                    ),
                     width: MediaQuery.of(context).size.width - 22,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.only(left: 10, right: 10),

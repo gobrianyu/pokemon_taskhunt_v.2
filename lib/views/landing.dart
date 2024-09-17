@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_db.dart';
+import 'package:pokemon_taskhunt_2/views/board.dart';
 import 'package:pokemon_taskhunt_2/views/collection.dart';
 
 class Landing extends StatelessWidget {
@@ -10,27 +11,33 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          GestureDetector(
-            child: _formatButton('New Game')
-          ),
-          GestureDetector(
-            child: _formatButton('Load Game')
-          ),
-          GestureDetector(
-            onTap: () => {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Collection(dex.all)))
-            },
-            child: _formatButton('Collection')
-          ),
-          GestureDetector(
-            child: _formatButton('Settings')
-          ),
-        ]
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Board(fullDex: dex.all)));
+              },
+              child: _formatButton('New Game')
+            ),
+            GestureDetector(
+              child: _formatButton('Load Game')
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Collection(dex.all)));
+              },
+              child: _formatButton('Collection')
+            ),
+            GestureDetector(
+              child: _formatButton('Settings')
+            ),
+          ]
+        ),
       ),
     );
   }
