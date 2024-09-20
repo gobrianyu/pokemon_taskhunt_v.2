@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]) // locks screen in portrait orientation
-    .then((value) => runApp(const MainApp())
+    .then((_) => runApp(const MainApp())
   );
 }
 
@@ -27,7 +27,7 @@ class MainAppState extends State<MainApp> {
 
   @override
   void initState() {
-    super.initState();
+    super.initState(); 
     _loadDexDB();
   }
 
@@ -42,12 +42,25 @@ class MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark
+      )
+    );
     if (isLoading) {
       return const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
+          resizeToAvoidBottomInset: false,
+          body: SafeArea(
+            top: false,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         ),
       );
@@ -60,7 +73,7 @@ class MainAppState extends State<MainApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             home: Scaffold(
-              body: Landing(_dexDB),
+              body: SafeArea(top: false, child: Landing(_dexDB)),
             ),
           );
         },

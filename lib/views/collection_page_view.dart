@@ -136,6 +136,8 @@ class CollectionPageViewState extends State<CollectionPageView> {
               color: Colors.white
             )
           ),
+          entry.dexNum == 29 ? Icon(Icons.female, color: Colors.white, size: 18) : SizedBox(),
+          entry.dexNum == 32 ? Icon(Icons.male, color: Colors.white, size: 18) : SizedBox(),
           const Spacer(),
           _nameHeaderButtons(genderKnown, entry.genderRatio)
         ]

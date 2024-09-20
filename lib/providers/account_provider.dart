@@ -1,43 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/blitz_game.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 
 class AccountProvider extends ChangeNotifier {
   final Map<double, int> _collection;
   bool _darkMode = false;
-  final BlitzGame _game;
+  final BlitzGame _blitzGame;
 
-  BlitzGame get game => _game.clone();
+  BlitzGame get blitzGame => _blitzGame.clone();
 
   void incrementBalance(int amount) {
-    _game.incrementBalance(amount);
+    _blitzGame.incrementBalance(amount);
     notifyListeners();
   }
 
   void decrementBalance(int amount) {
-    _game.decrementBalance(amount);
+    _blitzGame.decrementBalance(amount);
     notifyListeners();
   }
 
   void addItem(Items item, int amount) {
-    _game.addItem(item, amount);
-    _game.sortItems();
+    _blitzGame.addItem(item, amount);
+    _blitzGame.sortItems();
     notifyListeners();
   }
 
   void useItem(Items item) {
-    _game.useItem(item);
-    //_game.sortItems();
+    _blitzGame.useItem(item);
     notifyListeners();
   }
 
   void claimTask(Task task) {
-    _game.claimTask(task);
+    _blitzGame.claimTask(task);
     notifyListeners();
   }
 
-  AccountProvider(): _collection = {}, _game = BlitzGame();
+  void partyAdd(Pokemon mon, Pokemon? toReplace) {
+    _blitzGame.partyAdd(mon, toReplace);
+    notifyListeners();
+  }
+
+  AccountProvider(): _collection = {}, _blitzGame = BlitzGame();
   
   // Map<double, int> _initCollection() {
   //   Map<double, int> coll = {};

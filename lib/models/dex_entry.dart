@@ -56,9 +56,9 @@ class Form {
   @JsonKey(name: 'valid')
   final bool validSpawn;
   @JsonKey(name: 'evolution')
-  final Evolutions evolutions;
+  final List<Evolutions> evolutions;
   @JsonKey(name: 'base stats')
-  final Stats stats;
+  final List<Stats> stats;
   final double height;
   final double weight;
   final String entry;

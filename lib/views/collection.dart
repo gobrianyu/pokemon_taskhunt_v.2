@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
 import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
@@ -36,6 +37,14 @@ class _CollectionState extends State<Collection> {
   
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light
+      )
+    );
     filteredDex = _filter();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -66,19 +75,25 @@ class _CollectionState extends State<Collection> {
                     ]
                   ),
                 ) 
-              : ListView(
-                primary: true,
-                children: <Widget>[
-                  SizedBox(height: 5),
-                  _regionGrid(Regions.kanto), // TODO: fill out dex
-                  _regionGrid(Regions.johto),
-                ]
+              : NotificationListener<OverscrollIndicatorNotification>(
+                onNotification: (overscroll) {
+                  overscroll.disallowIndicator();
+                  return true;
+                },
+                child: ListView(
+                  primary: true,
+                  children: <Widget>[
+                    const SizedBox(height: 5),
+                    _regionGrid(Regions.kanto), // TODO: fill out dex
+                    _regionGrid(Regions.johto),
+                  ]
+                ),
               ),
             inSearch 
                 ? Container(
                     width: double.infinity,
                     height: double.infinity,
-                    color: Color.fromARGB(100, 0, 0, 0)
+                    color: const Color.fromARGB(100, 0, 0, 0)
                   )
                 : const SizedBox(),
           ],
@@ -100,7 +115,7 @@ class _CollectionState extends State<Collection> {
             height: 0,
           ),
           Container(
-            padding: EdgeInsets.only(left: 5, right: 5, bottom: 2),
+            padding: const EdgeInsets.only(left: 5, right: 5, bottom: 2),
             decoration: BoxDecoration(
               color: Colors.black,
               boxShadow: [BoxShadow(
@@ -112,7 +127,7 @@ class _CollectionState extends State<Collection> {
             ),
             child: Text(
               '${region.name.substring(0, 1).toUpperCase()}${region.name.substring(1)}  |  0/${region.dexSize}',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12
               ),
@@ -160,9 +175,9 @@ class _CollectionState extends State<Collection> {
               ? Container(
                   width: double.infinity,
                   height: double.infinity,
-                  color: Color.fromARGB(100, 0, 0, 0)
+                  color: const Color.fromARGB(100, 0, 0, 0)
                 )
-              : SizedBox(),
+              : const SizedBox(),
             Column(
               children: [
                 const SizedBox(height: 40),
@@ -182,7 +197,7 @@ class _CollectionState extends State<Collection> {
                 Expanded(
                   flex: 3,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
                       color: Colors.black,
                       // boxShadow: [BoxShadow(
@@ -297,7 +312,17 @@ class _CollectionState extends State<Collection> {
 
   Widget _backButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () {
+        SystemChrome.setSystemUIOverlayStyle(
+          SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: Colors.white,
+            systemNavigationBarIconBrightness: Brightness.dark
+          )
+        );
+        Navigator.pop(context);
+      },
       child: Row(
         children: [
           const Spacer(),
@@ -466,7 +491,7 @@ class _CollectionState extends State<Collection> {
         border: Border.all(color: const Color.fromARGB(200, 255, 255, 255)),
         borderRadius: const BorderRadius.all(Radius.circular(6)),
       ),
-      child: Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255), weight: 0.5, size: 18)
+      child: const Icon(Icons.clear, color: Color.fromARGB(200, 255, 255, 255), weight: 0.5, size: 18)
       // Placeholder(color: const Color.fromARGB(200, 255, 255, 255), strokeWidth: 0.9,)
     );
   }
@@ -488,14 +513,14 @@ class _CollectionState extends State<Collection> {
         height: 30,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: Border.all(color: has ? Colors.transparent : Color.fromARGB(200, 255, 255, 255)),
+          border: Border.all(color: has ? Colors.transparent : const Color.fromARGB(200, 255, 255, 255)),
           borderRadius: const BorderRadius.all(Radius.circular(6)),
-          color: has ? Color.fromARGB(255, 186, 186, 186) : null,
+          color: has ? const Color.fromARGB(255, 186, 186, 186) : null,
         ),
         child: Text(
           region.name.capitalize(),
           style: TextStyle(
-            color: has ? Colors.black : Color.fromARGB(200, 255, 255, 255), 
+            color: has ? Colors.black : const Color.fromARGB(200, 255, 255, 255), 
             fontWeight: FontWeight.w500
           )
         )
@@ -520,14 +545,14 @@ class _CollectionState extends State<Collection> {
         height: 30,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          border: has ? null : Border.all(color: Color.fromARGB(200, 255, 255, 255)),
-          borderRadius: BorderRadius.all(Radius.circular(6)),
+          border: has ? null : Border.all(color: const Color.fromARGB(200, 255, 255, 255)),
+          borderRadius: const BorderRadius.all(Radius.circular(6)),
           color: has ? type.colour : null,
         ),
         child: Text(
           type.name.capitalize(), 
           style: TextStyle(
-            color: has ? Colors.white : Color.fromARGB(200, 255, 255, 255), 
+            color: has ? Colors.white : const Color.fromARGB(200, 255, 255, 255), 
             fontWeight: FontWeight.w500
           )
         )

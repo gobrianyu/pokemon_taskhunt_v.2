@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/encounter.dart';
+import 'package:pokemon_taskhunt_2/views/party.dart';
 import 'package:provider/provider.dart';
 
 class Board extends StatefulWidget {
-  const Board({super.key});
+  final List<DexEntry> fullDex;
+  
+  const Board({required this.fullDex, super.key});
 
   @override
   State<Board> createState() => _BoardState();
@@ -28,6 +35,7 @@ class _BoardState extends State<Board> {
   bool _isLongPressing = false;
   Items? _shopSelectedItem;
   Items? _bagSelectedItem;
+  late AccountProvider accProvider;
 
   ScrollController scrollController = ScrollController(
     initialScrollOffset: 0, // or whatever offset you wish
@@ -37,9 +45,9 @@ class _BoardState extends State<Board> {
   @override
   void initState() {
     super.initState();
-    AccountProvider accProvider = context.read<AccountProvider>();
-    items = accProvider.game.items;
-    balance = accProvider.game.balance;
+    accProvider = context.read<AccountProvider>();
+    items = accProvider.blitzGame.items;
+    balance = accProvider.blitzGame.balance;
   }
 
   void _incrementCounter() {
@@ -114,6 +122,15 @@ class _BoardState extends State<Board> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: showBag || showShop ? const Color.fromARGB(255, 158, 158, 158) : Colors.white,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark
+      )
+    );
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
         return Stack(
@@ -171,10 +188,16 @@ class _BoardState extends State<Board> {
                         constraints: BoxConstraints(
                           maxHeight: maxHeight,
                         ),
-                        child: ListView(
-                          primary: false,
-                          shrinkWrap: true,
-                          children: _taskTiles(),
+                        child: NotificationListener<OverscrollIndicatorNotification>(
+                          onNotification: (overscroll) {
+                            overscroll.disallowIndicator();
+                            return true;
+                          },
+                          child: ListView(
+                            primary: false,
+                            shrinkWrap: true,
+                            children: _taskTiles(),
+                          ),
                         ),
                       ),
                     ),
@@ -190,7 +213,7 @@ class _BoardState extends State<Board> {
 
   List<Widget> _taskTiles() {
     List<Widget> tiles = [];
-    final List tasks = context.read<AccountProvider>().game.taskList.tasks;
+    final List tasks = accProvider.blitzGame.taskList.tasks;
     if (tasks.isEmpty) {
       tiles.add(_emptyTaskTile());
     } else {
@@ -206,7 +229,7 @@ class _BoardState extends State<Board> {
   }
 
   Widget _emptyTaskTile() {
-    return SizedBox(
+    return const SizedBox(
       height: 50,
       child: Center(
         child: Text(
@@ -224,7 +247,19 @@ class _BoardState extends State<Board> {
   Widget _claimTaskTile(Task task) {
     return GestureDetector(
       onTap: () {
-        context.read<AccountProvider>().claimTask(task);
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => Encounter(
+              mon: accProvider.blitzGame.generateEncounter(widget.fullDex),
+              onReturn: (bool claimed) {
+                accProvider.claimTask(task);
+              }
+            ),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 5),
@@ -249,13 +284,13 @@ class _BoardState extends State<Board> {
                     task.difficulty,
                     (index) => Icon(
                       Icons.stars,
-                      color: task.difficulty == 6 ? Color.fromARGB(255, 237, 235, 222) : Color.fromARGB(255, 237, 237, 237),
+                      color: task.difficulty == 6 ? const Color.fromARGB(255, 237, 235, 222) : const Color.fromARGB(255, 237, 237, 237),
                       size: 50
                     ),
                   ),
                 ],
               ),
-              Text(
+              const Text(
                 'CLAIM REWARD!',
                 style: TextStyle(
                   fontSize: 18,
@@ -307,7 +342,7 @@ class _BoardState extends State<Board> {
                   const Spacer(),
                   Container(
                     width: 70,
-                    padding: EdgeInsets.only(left: 5, right: 5),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(30)
@@ -369,14 +404,14 @@ class _BoardState extends State<Board> {
         }
       }),
       onLongPressStart: (details) {
-        if (_bagSelectedItem == item) {
+        if (_bagSelectedItem == item && showShopSell) {
           if (!_bagCapReached()) {
             _startRapidIncrement();
           }
         }
       },
       onLongPressEnd: (details) {
-        if (_bagSelectedItem == item) {
+        if (_bagSelectedItem == item && showShopSell) {
           _stopRapidIncrement();
         }
       },
@@ -495,7 +530,6 @@ class _BoardState extends State<Board> {
   }
 
   Widget _shopSell() {
-    final accProvider = context.read<AccountProvider>();
     return Column(
       children: [
         const Spacer(),
@@ -556,9 +590,15 @@ class _BoardState extends State<Board> {
                 padding: const EdgeInsets.all(20),
                 height: 360,
                 child: items.isNotEmpty 
-                    ? ListView(
-                      controller: scrollController,
-                      children: _bagTiles()
+                    ? NotificationListener<OverscrollIndicatorNotification>(
+                      onNotification: (overscroll) {
+                        overscroll.disallowIndicator();
+                        return true;
+                      },
+                      child: ListView(
+                        controller: scrollController,
+                        children: _bagTiles()
+                      ),
                     )
                     : const Center(
                         child: Column(
@@ -697,8 +737,8 @@ class _BoardState extends State<Board> {
                         for (int i = 0; i < sellAmount; i++) {
                           accProvider.useItem(_bagSelectedItem!);
                         }
-                        items = accProvider.game.items;
-                        balance = accProvider.game.balance;
+                        items = accProvider.blitzGame.items;
+                        balance = accProvider.blitzGame.balance;
                         sellAmount = 0;
                         _bagSelectedItem = null;
                       }
@@ -768,7 +808,6 @@ class _BoardState extends State<Board> {
   }
 
   Widget _shopBuy() {
-    final accProvider = context.read<AccountProvider>();
     return Column(
       children: [
         const Spacer(),
@@ -828,9 +867,15 @@ class _BoardState extends State<Board> {
               Container(
                 padding: const EdgeInsets.all(20),
                 height: 360,
-                child: ListView(
-                  primary: true,
-                  children: _shopTiles()
+                child: NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (overscroll) {
+                    overscroll.disallowIndicator();
+                    return true;
+                  },
+                  child: ListView(
+                    primary: true,
+                    children: _shopTiles()
+                  ),
                 ),
               )
             ],
@@ -948,7 +993,7 @@ class _BoardState extends State<Board> {
                         final totalCost = buyAmount * _shopSelectedItem!.cost;                            
                         accProvider.decrementBalance(totalCost);
                         accProvider.addItem(_shopSelectedItem!, buyAmount);
-                        items = accProvider.game.items;
+                        items = accProvider.blitzGame.items;
                         balance -= totalCost;
                         buyAmount = 0;
                         _shopSelectedItem = null;
@@ -1039,10 +1084,16 @@ class _BoardState extends State<Board> {
                   child: Text('Bag')
                 ),
                 SizedBox(
-                  height: 395,
-                  child: items.keys.isNotEmpty ? ListView(
-                    primary: true,
-                    children: _bagTiles()
+                  height: 305,
+                  child: items.keys.isNotEmpty ? NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (overscroll) {
+                      overscroll.disallowIndicator();
+                      return true;
+                    },
+                    child: ListView(
+                      primary: true,
+                      children: _bagTiles()
+                    ),
                   )
                   : const Center(
                     child: Column(
@@ -1066,6 +1117,28 @@ class _BoardState extends State<Board> {
                       ],
                     )
                   ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.all(5),
+                        height: 85,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                        child: Text(
+                          _bagSelectedItem == null ? 'Select an item to view more information.' : _bagSelectedItem!.description, 
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w300
+                          )
+                        )
+                      ),
+                    ),
+                  ],
                 )
               ],
             )
@@ -1199,16 +1272,26 @@ class _BoardState extends State<Board> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10, top: 3),
-                      child: Container(
-                        padding: const EdgeInsets.all(6),
-                        child: GridView.count(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          primary: false,
-                          mainAxisSpacing: 5,
-                          crossAxisSpacing: 5,
-                          crossAxisCount: 3,
-                          children: _partyIcons()
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) => Party(party: accProvider.blitzGame.party, isBlitz: true),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          child: GridView.count(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            primary: false,
+                            mainAxisSpacing: 5,
+                            crossAxisSpacing: 5,
+                            crossAxisCount: 3,
+                            children: _partyIcons()
+                          ),
                         ),
                       ),
                     ),
@@ -1225,7 +1308,9 @@ class _BoardState extends State<Board> {
                       Expanded(
                         flex: 1,
                         child: GestureDetector(
-                          onTap: () => setState(() => showShop = true),
+                          onTap: () => setState(() {
+                            showShop = true;
+                          }),
                           child: _blockButtonFormat('Shop', Icons.shopping_basket)
                         ),
                       ),
@@ -1258,8 +1343,9 @@ class _BoardState extends State<Board> {
   }
 
   List<Widget> _partyIcons() {
+    int partySize = accProvider.blitzGame.party.length;
     List<Widget> tiles = [];
-    for (int i = 0; i < 6; i++) {
+    for (Pokemon mon in accProvider.blitzGame.party) {
       tiles.add(
         GestureDetector(
           child: Container(
@@ -1269,7 +1355,22 @@ class _BoardState extends State<Board> {
               shape: BoxShape.circle,
               color: Colors.white
             ),
-            child: const Image(image: AssetImage('assets/charizard.png'))
+            child: Image(image: AssetImage(mon.imageAsset))
+          ),
+        )
+      );
+    }
+    for (int i = 0; i < 6 - partySize; i++) {
+      tiles.add(
+        GestureDetector(
+          child: Container(
+            padding: const EdgeInsets.all(7.2),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              shape: BoxShape.circle,
+              color: Colors.white
+            ),
+            //child: const Icon(Icons.clear, size: 40)
           ),
         )
       );
@@ -1278,7 +1379,6 @@ class _BoardState extends State<Board> {
   }
 
   PreferredSize _header() {
-    final accProvider = context.read<AccountProvider>();
     return PreferredSize(
       preferredSize: const Size.fromHeight(80),
       child: Stack(
@@ -1327,7 +1427,7 @@ class _BoardState extends State<Board> {
                       Expanded(
                         flex: 3,
                         child: Text(
-                          'Round ${context.read<AccountProvider>().game.round}',
+                          'Round ${accProvider.blitzGame.round}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 13
@@ -1351,9 +1451,9 @@ class _BoardState extends State<Board> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text('   Tasks   |   ${accProvider.game.starsCompleted}/${accProvider.game.taskList.totalStars}', style: const TextStyle(color: Colors.white, fontSize: 12)),
-                                SizedBox(width: 2),
-                                Icon(Icons.stars, color: Colors.white, size: 11.3)
+                                Text('   Tasks   |   ${accProvider.blitzGame.starsCompleted}/${accProvider.blitzGame.taskList.totalStars}', style: const TextStyle(color: Colors.white, fontSize: 12)),
+                                const SizedBox(width: 2),
+                                const Icon(Icons.stars, color: Colors.white, size: 11.3)
                               ],
                             )
                           ),
@@ -1413,15 +1513,26 @@ class _BoardState extends State<Board> {
       tiles.add(
         GestureDetector(
           onTap: () {
-            //Navigator.pop(context);
             setState(() {balance += 100;});
-            context.read<AccountProvider>().incrementBalance(100);
+            accProvider.incrementBalance(100);
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) => Encounter(
+                  mon: accProvider.blitzGame.generateEncounter(widget.fullDex),
+                  onReturn: (bool claimed) {}
+                ),
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+              ),
+            );
           },
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(),
               borderRadius: BorderRadius.circular(7)
             ),
+            child: const Icon(Icons.grass_rounded, size: 30)
           ),
         )
       );

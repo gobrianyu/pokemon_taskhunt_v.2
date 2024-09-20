@@ -1543,7 +1543,7 @@
         "forms": [
             {
                 "key": 29.0,
-                "name": "Nidoran♀",
+                "name": "Nidoran",
                 "type": ["Poison"],
                 "category": "Poison Pin",
                 "region": "Kanto",
@@ -1690,7 +1690,7 @@
         "forms": [
             {
                 "key": 32.0,
-                "name": "Nidoran♂",
+                "name": "Nidoran",
                 "type": ["Poison"],
                 "category": "Poison Pin",
                 "region": "Kanto",

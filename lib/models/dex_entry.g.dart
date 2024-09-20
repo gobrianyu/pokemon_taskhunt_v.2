@@ -43,9 +43,12 @@ Form _$FormFromJson(Map<String, dynamic> json) => Form(
       region: $enumDecode(_$RegionsEnumMap, json['region']),
       specialForm: json['special form'] as String?,
       validSpawn: json['valid'] as bool,
-      evolutions:
-          Evolutions.fromJson(json['evolution'] as Map<String, dynamic>),
-      stats: Stats.fromJson(json['base stats'] as Map<String, dynamic>),
+      evolutions: (json['evolution'] as List<dynamic>)
+          .map((e) => Evolutions.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stats: (json['base stats'] as List<dynamic>)
+          .map((e) => Stats.fromJson(e as Map<String, dynamic>))
+          .toList(),
       height: (json['height'] as num).toDouble(),
       weight: (json['weight'] as num).toDouble(),
       entry: json['entry'] as String,
@@ -76,38 +79,38 @@ Map<String, dynamic> _$FormToJson(Form instance) => <String, dynamic>{
     };
 
 const _$TypesEnumMap = {
-  Types.water: 'water',
-  Types.grass: 'grass',
-  Types.fire: 'fire',
-  Types.normal: 'normal',
-  Types.ground: 'ground',
-  Types.rock: 'rock',
-  Types.flying: 'flying',
-  Types.psychic: 'psychic',
-  Types.poison: 'poison',
-  Types.fairy: 'fairy',
-  Types.steel: 'steel',
-  Types.bug: 'bug',
-  Types.dragon: 'dragon',
-  Types.dark: 'dark',
-  Types.fighting: 'fighting',
-  Types.electric: 'electric',
-  Types.ice: 'ice',
-  Types.ghost: 'ghost',
+  Types.water: 'Water',
+  Types.grass: 'Grass',
+  Types.fire: 'Fire',
+  Types.normal: 'Normal',
+  Types.ground: 'Ground',
+  Types.rock: 'Rock',
+  Types.flying: 'Flying',
+  Types.psychic: 'Psychic',
+  Types.poison: 'Poison',
+  Types.fairy: 'Fairy',
+  Types.steel: 'Steel',
+  Types.bug: 'Bug',
+  Types.dragon: 'Dragon',
+  Types.dark: 'Dark',
+  Types.fighting: 'Fighting',
+  Types.electric: 'Electric',
+  Types.ice: 'Ice',
+  Types.ghost: 'Ghost',
 };
 
 const _$RegionsEnumMap = {
-  Regions.kanto: 'kanto',
-  Regions.johto: 'johto',
-  Regions.hoenn: 'hoenn',
-  Regions.sinnoh: 'sinnoh',
-  Regions.unova: 'unova',
-  Regions.kalos: 'kalos',
-  Regions.alola: 'alola',
-  Regions.galar: 'galar',
-  Regions.hisui: 'hisui',
-  Regions.paldea: 'paldea',
-  Regions.unknown: 'unknown',
+  Regions.kanto: 'Kanto',
+  Regions.johto: 'Johto',
+  Regions.hoenn: 'Hoenn',
+  Regions.sinnoh: 'Sinnoh',
+  Regions.unova: 'Unova',
+  Regions.kalos: 'Kalos',
+  Regions.alola: 'Alola',
+  Regions.galar: 'Galar',
+  Regions.hisui: 'Hisui',
+  Regions.paldea: 'Paldea',
+  Regions.unknown: 'Unknown',
 };
 
 Evolutions _$EvolutionsFromJson(Map<String, dynamic> json) => Evolutions(
