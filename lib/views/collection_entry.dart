@@ -349,7 +349,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
   Widget _assetWindow(List<dex.Form> forms) {
     return Container(
       margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(bottom: 20, top: 20),
       alignment: Alignment.center,
       height: 300,
       decoration: BoxDecoration(
@@ -362,7 +362,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
         itemBuilder: (context, index) {
           return _getImage(forms[index]);
         },
-        onPageChanged: (index) => { setState(() {
+        onPageChanged: (index) => {setState(() {
           currPageIndex = index;
         })},
       ),

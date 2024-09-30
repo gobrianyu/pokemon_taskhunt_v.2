@@ -9,6 +9,8 @@ import 'package:pokemon_taskhunt_2/views/encounter.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
 import 'package:provider/provider.dart';
 
+// TODO: add dispose() method to all files
+
 class Board extends StatefulWidget {
   final List<DexEntry> fullDex;
   
@@ -1273,14 +1275,18 @@ class _BoardState extends State<Board> {
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10, top: 3),
                       child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) => Party(party: accProvider.blitzGame.party, isBlitz: true),
-                            transitionDuration: Duration.zero,
-                            reverseTransitionDuration: Duration.zero,
-                          ),
-                        ),
+                        onTap: () {
+                          if (accProvider.blitzGame.party.isNotEmpty) {
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation1, animation2) => Party(party: accProvider.blitzGame.party, isBlitz: true),
+                                transitionDuration: Duration.zero,
+                                reverseTransitionDuration: Duration.zero,
+                              ),
+                            );
+                          }
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(6),
                           child: GridView.count(

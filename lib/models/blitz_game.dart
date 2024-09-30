@@ -60,6 +60,17 @@ class BlitzGame {
     items.update(item, (existing) => existing + amount, ifAbsent: () => amount);
   }
 
+  void addCatchExp(int amount) {
+    data.catchExpEarned += amount;
+    if (party.isNotEmpty) {
+      for (Pokemon mon in party) {
+        double expEarned = amount / party.length * (1 + mon.friendship / 10);
+        if (mon.heldItem == Items.luckyEgg) expEarned *= 2;
+        mon.incrementExp(expEarned.round());
+      }
+    }
+  }
+
   void sortItems() {
     items = Map.fromEntries(
     items.entries.toList()

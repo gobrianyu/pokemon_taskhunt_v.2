@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/party_details.dart';
 import 'package:provider/provider.dart';
 
 class Party extends StatefulWidget {
@@ -22,7 +22,6 @@ class _PartyState extends State<Party> {
   @override
   void initState() {
     super.initState();
-    AccountProvider accProvider = context.read<AccountProvider>();
   }
 
   @override
@@ -39,12 +38,14 @@ class _PartyState extends State<Party> {
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
         return Scaffold(
+          extendBody: true,
           backgroundColor: Colors.white,
           body: Center(
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: GridView.count(
                 physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height - 100) * 3 / 2,
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
                 shrinkWrap: true,
@@ -72,19 +73,146 @@ class _PartyState extends State<Party> {
   }
 
   Widget _partyTile(Pokemon mon) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        border: Border.all()
+    final int lvlProgress = (mon.exp / mon.nextExpCap() * 512).round();
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => PartyDetails(mon: mon),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
+          ),
+        );
+      }, // TODO: open detailed view
+      child: Container(
+        padding: EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
+        ),
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  flex: 15,
+                  child: Image(image: AssetImage(mon.imageAsset))
+                ),
+                SizedBox(height: 5),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(mon.speciesExtended),
+                        mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, size: 15),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: Row(
+                      children: [
+                        Text('Lv.${mon.level}'),
+                        SizedBox(width: 5),
+                        Expanded(
+                          child: Container(
+                            height: 12,
+                            decoration: BoxDecoration(
+                              border: Border.all()
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: mon.level == 100 ? 1 : lvlProgress,
+                                  child: Container(
+                                    height: 12,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: mon.level == 100 ? 0 : 512 - min(lvlProgress, 512),
+                                  child: SizedBox(
+                                    height: 12
+                                  ),
+                                )
+                              ],
+                            )
+                          ),
+                        ),
+                        SizedBox(width: 2.5),
+                        Container(
+                          padding: EdgeInsets.all(1),
+                          height: 12,
+                          alignment: Alignment.center,
+                          color: Colors.black,
+                          child: Text('Exp.', style: TextStyle(fontSize: 8, color: Colors.white),))
+                      ],
+                    )
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.catching_pokemon, size: 30), // TODO: change to poke ball asset image
+                      Spacer(),
+                      mon.isShiny? Icon(Icons.auto_awesome, size: 20) : SizedBox(),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {}, // TODO: open bag
+                        child: Container(
+                          margin: EdgeInsets.only(right: 5),
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            color: Colors.white,
+                            shape: BoxShape.circle
+                          ),
+                          child: mon.heldItem == null ? Icon(Icons.add, color: Colors.black54) : Icon(Icons.question_mark) // TODO: change to item asset
+                        ),
+                      ),
+                    ],
+                  )
+                ),
+                Expanded(
+                  flex: 2,
+                  child: SizedBox()
+                )
+              ],
+            )
+          ],
+        )
       ),
-      child: Text(mon.speciesExtended)
     );
   }
 
   Widget _emptyTile() {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all()
+        border: Border.all(color: Colors.black38),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(20))
       )
     );
   }

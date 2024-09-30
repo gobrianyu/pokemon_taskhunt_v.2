@@ -8,6 +8,8 @@ import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
 import 'package:provider/provider.dart';
 
+
+// TODO: add shiny indicator
 class Encounter extends StatefulWidget {
   final Function(bool) onReturn;
   final Pokemon mon;
@@ -255,7 +257,6 @@ class _EncounterState extends State<Encounter> {
               width: 40,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                //border: Border.all(),
                 color: Colors.white
               ),
               child: Image(image: AssetImage(mon.imageAsset))
@@ -411,6 +412,7 @@ class _EncounterState extends State<Encounter> {
                                 caught = account.blitzGame.shakeCheck(rate);
                                 if (caught) {
                                   if (account.blitzGame.party.length < 6) {
+                                    account.addCatchExp((widget.mon.baseExpYield * widget.mon.level / 7).round());
                                     account.partyAdd(widget.mon, null);
                                     widget.onReturn(true);
                                     Navigator.pop(context);
@@ -421,7 +423,7 @@ class _EncounterState extends State<Encounter> {
                                 counter++;
                               }
                               // flee chance calc
-                              if (random.nextInt(100) <= widget.mon.fleeRate) {
+                              if (!caught && random.nextInt(100) <= widget.mon.fleeRate) {
                                 widget.onReturn(true);
                                 Navigator.pop(context);
                               }
@@ -604,13 +606,21 @@ class _EncounterState extends State<Encounter> {
           ],
         ),
         const Spacer(),
-        SizedBox(width: MediaQuery.of(context).size.width * 3 / 4, child: Image(image: AssetImage(mon.imageAsset))),
+        _assetAnimations(mon),
         const Spacer(),
         _bottomUI(mon, context)
       ],
     );
   }
 
+  Widget _assetAnimations(Pokemon mon) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 3 / 4,
+      height: MediaQuery.of(context).size.width * 3 / 4,
+      child: Image(image: AssetImage(mon.imageAsset))
+    );
+  }
+  
   Container _bottomUI(Pokemon mon, BuildContext context) {
     AccountProvider account = context.read<AccountProvider>();
     return Container(
@@ -664,14 +674,18 @@ class _EncounterState extends State<Encounter> {
                 const SizedBox(height: 10),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) => Party(party: account.blitzGame.party, isBlitz: true),
-                        transitionDuration: Duration.zero,
-                        reverseTransitionDuration: Duration.zero,
-                      ),
-                    ),
+                    onTap: () {
+                      if (account.blitzGame.party.isNotEmpty) {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) => Party(party: account.blitzGame.party, isBlitz: true),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
+                      }
+                    },
                     child: Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.only(left: 10),

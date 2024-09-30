@@ -117,6 +117,18 @@ class Pokemon {
     }
   }
 
+  int nextExpCap() {
+    return _getNextExpCap(level, expGroup);
+  }
+
+  int totalExp() {
+    int totalExp = 0;
+    for (int i = 1; i <= level - 1; i++) {
+      totalExp += _getNextExpCap(i, expGroup);
+    }
+    return totalExp + exp;
+  }
+
   // TODO:
   List<double> checkEvoEligibility(AccountProvider account, Items? item) {
     final List<double> eligibleEvos = [];
@@ -191,7 +203,7 @@ class Pokemon {
   }
 
   Stats getStats() {
-    final num statExp = min(_getNextExpCap(level - 1, expGroup), 65535);
+    final num statExp = min(_getNextExpCap(level - 1, expGroup) + exp, 65535);
     final int baseCalc = (sqrt(statExp).ceil() / 4).floor();
     final int hp = (((baseStats.hp + ivs.hp) * 2 + baseCalc) * level / 100).floor() + level + 10;
     final int atk = (((baseStats.atk + ivs.atk) * 2 + baseCalc) * level / 100).floor() + 5;

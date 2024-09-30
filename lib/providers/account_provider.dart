@@ -42,6 +42,11 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addCatchExp(int amount) {
+    _blitzGame.addCatchExp(amount);
+    notifyListeners();
+  }
+
   AccountProvider(): _collection = {}, _blitzGame = BlitzGame();
   
   // Map<double, int> _initCollection() {
