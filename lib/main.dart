@@ -47,8 +47,8 @@ class MainAppState extends State<MainApp> {
       SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.white,
-        systemNavigationBarIconBrightness: Brightness.dark
+        systemNavigationBarColor: Colors.black,
+        systemNavigationBarIconBrightness: Brightness.light
       )
     );
     if (isLoading) {

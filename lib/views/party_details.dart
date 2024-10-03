@@ -25,15 +25,6 @@ class _PartyDetailsState extends State<PartyDetails> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.white,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.dark
-      )
-    );
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
         return Scaffold(

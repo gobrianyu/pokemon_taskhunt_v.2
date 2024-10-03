@@ -124,15 +124,6 @@ class _BoardState extends State<Board> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: showBag || showShop ? const Color.fromARGB(255, 158, 158, 158) : Colors.white,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.dark
-      )
-    );
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
         return Stack(
@@ -1210,19 +1201,16 @@ class _BoardState extends State<Board> {
     );
   }
 
-  Widget _blockButtonFormat(String text, IconData icon) {
+  Widget _blockButtonFormat(String text) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(),
+        color: Color.fromARGB(255, 25, 25, 25),
+        border: Border.all(color: Colors.white),
         borderRadius: const BorderRadius.all(Radius.circular(5))
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(text),
-          Icon(icon, size: 25),
-        ],
-      )   
+      child: Center(
+        child: Text(text, style: TextStyle(color: Colors.white)),
+      )
     );
   }
 
@@ -1230,14 +1218,12 @@ class _BoardState extends State<Board> {
     return SizedBox(
       height: (MediaQuery.of(context).size.height - 80) / MediaQuery.of(context).size.width * 77,
       child: Stack(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.bottomLeft,
         children: [
           Container(
-            height: 15,
+            height: 108,
             decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide()
-              )
+              color: Colors.black
             ),
           ),
           Row(
@@ -1245,32 +1231,18 @@ class _BoardState extends State<Board> {
               Expanded(
                 flex: 9,
                 child: Stack(
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.topCenter,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 5),
                       child: Container(
                         height: 80,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all()
                         )
                       ),
-                    ),
-                    Column(
-                      children: [
-                        const SizedBox(
-                          height: 15.2
-                        ),
-                        Container(
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.white, width: 3)
-                          )
-                        ),
-                      ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10, top: 3),
@@ -1307,7 +1279,7 @@ class _BoardState extends State<Board> {
               Expanded(
                 flex: 7,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, right: 15, bottom: 15, left: 5),
+                  padding: const EdgeInsets.only(top: 50, right: 15, bottom: 15, left: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -1317,7 +1289,7 @@ class _BoardState extends State<Board> {
                           onTap: () => setState(() {
                             showShop = true;
                           }),
-                          child: _blockButtonFormat('Shop', Icons.shopping_basket)
+                          child: _blockButtonFormat('Shop')
                         ),
                       ),
                       const SizedBox(width: 5),
@@ -1327,14 +1299,14 @@ class _BoardState extends State<Board> {
                           onTap: () => setState(() {
                             showBag = true;
                           }),
-                          child: _blockButtonFormat('Bag', Icons.backpack_rounded)
+                          child: _blockButtonFormat('Bag')
                         ),
                       ),
                       const SizedBox(width: 5),
                       Expanded(
                         flex: 1,
                         child: GestureDetector(
-                          child: _blockButtonFormat('Skip', Icons.exit_to_app)
+                          child: _blockButtonFormat('Skip')
                         ),
                       ),
                     ]
@@ -1355,13 +1327,19 @@ class _BoardState extends State<Board> {
       tiles.add(
         GestureDetector(
           child: Container(
-            padding: const EdgeInsets.all(7.2),
             decoration: BoxDecoration(
-              border: Border.all(),
+              border: Border.all(color: Colors.white),
               shape: BoxShape.circle,
-              color: Colors.white
+              color: const Color.fromARGB(255, 150, 150, 150)
             ),
-            child: Image(image: AssetImage(mon.imageAsset))
+            child: Container(
+              padding: const EdgeInsets.all(4.2),
+              decoration: BoxDecoration(
+                border: Border.all(width: 3, color: Color.fromARGB(255, 25, 25, 25)),
+                shape: BoxShape.circle,
+                color: Colors.white
+              ),
+              child: Image(image: AssetImage(mon.imageAsset)))
           ),
         )
       );
@@ -1370,13 +1348,11 @@ class _BoardState extends State<Board> {
       tiles.add(
         GestureDetector(
           child: Container(
-            padding: const EdgeInsets.all(7.2),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey),
+              border: Border.all(color: Color.fromARGB(255, 50, 50, 50), width: 1),
               shape: BoxShape.circle,
-              color: Colors.white
+              color: Colors.black
             ),
-            //child: const Icon(Icons.clear, size: 40)
           ),
         )
       );

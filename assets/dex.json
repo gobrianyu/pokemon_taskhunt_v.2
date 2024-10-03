@@ -4692,10 +4692,10 @@
                 "height": 30,
                 "weight": 6,
                 "entry": "It is hatched with the ability to defy gravity. It floats while emitting powerful electromagnetic waves.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/magnemite.png",
+                "image asset f": "assets/magnemite.png",
+                "image asset m shiny": "assets/magnemite_shiny.png",
+                "image asset f shiny": "assets/magnemite_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -12791,10 +12791,10 @@
                 "height": 60,
                 "weight": 8.8,
                 "entry": "If it finds honey, its crescent mark glows. It always licks its paws because they are soaked with honey.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/teddiursa.png",
+                "image asset f": "assets/teddiursa.png",
+                "image asset m shiny": "assets/teddiursa_shiny.png",
+                "image asset f shiny": "assets/teddiursa_shiny.png"
             }
         ],
         "gimmick forms": [],

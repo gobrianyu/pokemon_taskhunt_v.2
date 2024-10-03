@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
@@ -28,25 +27,20 @@ class _EncounterState extends State<Encounter> {
   Items? _bagSelectedItem;
   Items? _berryUsed;
   Pokemon? _fightSelectedMon;
+  bool caught = false;
+  bool exit = false;
+  String consoleText = '';
 
   @override
   void initState() {
     super.initState();
     AccountProvider accProvider = context.read<AccountProvider>();
     items = accProvider.blitzGame.items;
+    consoleText = 'A wild ${widget.mon.species.toUpperCase()} appeared! What will you do?';
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: showBag || showFightSelector ? const Color.fromARGB(255, 158, 158, 158) : Colors.white,
-        systemNavigationBarDividerColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.dark
-      )
-    );
     Pokemon mon = widget.mon;
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
@@ -56,11 +50,94 @@ class _EncounterState extends State<Encounter> {
             children: [
               _mainUI(mon),
               showBag ? _bag() : const SizedBox(),
-              showFightSelector ? _fightSelection() : const SizedBox()
+              showFightSelector ? _fightSelection() : const SizedBox(),
+              caught && exit ? _addPartyScreen() : const SizedBox(),
             ],
           )
         );
       }
+    );
+  }
+
+  Widget _addPartyScreen() {
+    final AccountProvider account = context.read<AccountProvider>();
+    final int exp = (widget.mon.baseExpYield * widget.mon.level / 7).round();
+    return Container(
+      padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
+      color: Colors.black38,
+      child: Column(
+        children: [
+          Spacer(),
+          Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white
+            ),
+            child: Column(
+              children: [
+                Text('Add ${widget.mon.species.toUpperCase()} to your party?'),
+                SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        if (account.blitzGame.party.length > 0) {
+                          account.addCatchExp(exp);
+                        }
+                        account.partyAdd(widget.mon, null);
+                        widget.onReturn(true);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1.2),
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            border: Border.all(color: Colors.white, width: 1.3),
+                            borderRadius: BorderRadius.circular(5.5)
+                          ),
+                          child: Text('Yes', style: TextStyle(color: Colors.white))
+                        ),
+                      )
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (account.blitzGame.party.length > 0) {
+                          account.addCatchExp(exp);
+                        }
+                        widget.onReturn(true);
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1.2),
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            border: Border.all(color: Colors.white, width: 1.3),
+                            borderRadius: BorderRadius.circular(5.5)
+                          ),
+                          child: Text('No', style: TextStyle(color: Colors.white))
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ),
+          Spacer()
+        ],
+      )
     );
   }
 
@@ -401,21 +478,25 @@ class _EncounterState extends State<Encounter> {
                             // TODO
                             final AccountProvider account = context.read<AccountProvider>();
                             if (account.blitzGame.party.isEmpty) {
-                              account.partyAdd(widget.mon, null);
-                              widget.onReturn(true);
-                              Navigator.pop(context);
+                              setState(() {
+                                caught = true;
+                                exit = true;
+                              });
                             } else {
                               final int rate = account.blitzGame.shakeRate(widget.mon, _berryUsed, itemUsed);
                               int counter = 0;
-                              bool caught = false;
                               while (counter < 4 && !caught) {
-                                caught = account.blitzGame.shakeCheck(rate);
+                                setState(() => caught = account.blitzGame.shakeCheck(rate));
                                 if (caught) {
+                                  setState(() {
+                                    consoleText = 'Gotcha! ${widget.mon.species.toUpperCase()} was caught!';
+                                    exit = true;
+                                  });
+                                  // await user tap
+                                  // show new widget
+                                  // TODO: current progress
                                   if (account.blitzGame.party.length < 6) {
-                                    account.addCatchExp((widget.mon.baseExpYield * widget.mon.level / 7).round());
-                                    account.partyAdd(widget.mon, null);
-                                    widget.onReturn(true);
-                                    Navigator.pop(context);
+                                    // account.addCatchExp((widget.mon.baseExpYield * widget.mon.level / 7).round());
                                   } else {
                                     // TODO: bring up switch party ui
                                   }
@@ -635,18 +716,7 @@ class _EncounterState extends State<Encounter> {
         children: [
           Expanded(
             flex: 3,
-            child: Container(
-              alignment: Alignment.topLeft,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(10)
-              ),
-              child: Text(
-                'A wild ${mon.species.toUpperCase()} appeared! What will you do?'
-              )
-            ),
+            child: _console(mon),
           ),
           Expanded(
             flex: 1,
@@ -745,6 +815,21 @@ class _EncounterState extends State<Encounter> {
             ),
           )
         ],
+      )
+    );
+  }
+
+  Container _console(Pokemon mon) {
+    return Container(
+      alignment: Alignment.topLeft,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Text(
+        consoleText
       )
     );
   }

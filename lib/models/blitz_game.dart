@@ -227,6 +227,9 @@ class BlitzGame {
       }
     }
 
+    // generating level
+    int genLvl = party.isNotEmpty ? random.nextInt(levelCeiling) + 1 : 1;
+
     final List<Types> lureBuffs = _encounterTypeBuffs(0);
     final List<Types> superBuffs = _encounterTypeBuffs(1);
     final List<Types> maxBuffs = _encounterTypeBuffs(2);
@@ -243,7 +246,7 @@ class BlitzGame {
       }
     }
 
-    while (!dex[key].forms[form].validSpawn || dex[key].minSpawnLvl > levelCeiling || lureBlock) {
+    while (!dex[key].forms[form].validSpawn || dex[key].minSpawnLvl > genLvl || lureBlock) {
       key = random.nextInt(dex.length);
       form = random.nextInt(dex[key].forms.length);
 
@@ -272,10 +275,6 @@ class BlitzGame {
       shinyTarget *= 3;
     }
     bool isShiny = random.nextInt(4096) < shinyTarget;
-
-    // generating level
-    int avgLvl = averageLevel();
-    int genLvl = party.isNotEmpty ? random.nextInt(avgLvl) + 1 : 1;
     
     return Pokemon.fromDexEntry(targetSpawn, form, genLvl, isShiny, 0);
   }

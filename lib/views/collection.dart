@@ -37,14 +37,6 @@ class _CollectionState extends State<Collection> {
   
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.black,
-        systemNavigationBarIconBrightness: Brightness.light
-      )
-    );
     filteredDex = _filter();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -313,14 +305,6 @@ class _CollectionState extends State<Collection> {
   Widget _backButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.dark,
-            statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.white,
-            systemNavigationBarIconBrightness: Brightness.dark
-          )
-        );
         Navigator.pop(context);
       },
       child: Row(
