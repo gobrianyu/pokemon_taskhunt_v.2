@@ -7487,10 +7487,10 @@
                 "height": 650,
                 "weight": 235,
                 "entry": "Brutally vicious and enormously destructive. Known for totally destroying cities in ancient times.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/gyarados.png",
+                "image asset f": "assets/gyarados.png",
+                "image asset m shiny": "assets/gyarados_shiny.png",
+                "image asset f shiny": "assets/gyarados_shiny.png"
             }
         ],
         "gimmick forms": [],
