@@ -12337,10 +12337,10 @@
                 "height": 920,
                 "weight": 400,
                 "entry": "Its body has been compressed deep under the ground. As a result, it is even harder than a diamond.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/steelix.png",
+                "image asset f": "assets/steelix.png",
+                "image asset m shiny": "assets/steelix_shiny.png",
+                "image asset f shiny": "assets/steelix_shiny.png"
             }
         ],
         "gimmick forms": [],
