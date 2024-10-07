@@ -866,10 +866,10 @@
                 "height": 150,
                 "weight": 39.5,
                 "entry": "This Pokémon flies at Mach 2 speed, seeking prey. Its large talons are feared as wicked weapons.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/pidgeot.png",
+                "image asset f": "assets/pidgeot.png",
+                "image asset m shiny": "assets/pidgeot_shiny.png",
+                "image asset f shiny": "assets/pidgeot_shiny.png"
             }
         ],
         "gimmick forms": [],
