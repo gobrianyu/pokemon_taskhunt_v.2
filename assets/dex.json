@@ -1491,10 +1491,10 @@
                 "height": 100,
                 "weight": 29.5,
                 "entry": "Thanks to its thick claws, it's good at climbing trees. There are plenty of Sandslash that park themselves in trees and go right to sleep.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/sandslash.png",
+                "image asset f": "assets/sandslash.png",
+                "image asset m shiny": "assets/sandslash_shiny.png",
+                "image asset f shiny": "assets/sandslash_shiny.png"
             },
             {
                 "key": 28.01,
@@ -8509,10 +8509,10 @@
                 "height": 220,
                 "weight": 210,
                 "entry": "You'll often hear tales of this kindhearted Pokémon rescuing people or Pokémon that are drowning.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/dragonite.png",
+                "image asset f": "assets/dragonite.png",
+                "image asset m shiny": "assets/dragonite_shiny.png",
+                "image asset f shiny": "assets/dragonite_shiny.png"
             }
         ],
         "gimmick forms": [],
