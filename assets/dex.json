@@ -7442,10 +7442,10 @@
                 "height": 90,
                 "weight": 10,
                 "entry": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/magikarp.png",
+                "image asset f": "assets/magikarp.png",
+                "image asset m shiny": "assets/magikarp_shiny.png",
+                "image asset f shiny": "assets/magikarp_shiny.png"
             }
         ],
         "gimmick forms": [],
