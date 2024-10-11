@@ -1408,10 +1408,10 @@
                 "height": 60,
                 "weight": 12,
                 "entry": "When its skin gets wrinkled from moisture, it heads for a volcano. It lies flat on a spot with a lot of geothermal heat and dries itself out.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/sandshrew.png",
+                "image asset f": "assets/sandshrew.png",
+                "image asset m shiny": "assets/sandshrew_shiny.png",
+                "image asset f shiny": "assets/sandshrew_shiny.png"
             },
             {
                 "key": 27.01,
@@ -1964,10 +1964,10 @@
                 "height": 60,
                 "weight": 9.9,
                 "entry": "Both its fur and its tails are beautiful. As it grows, the tails split and form more tails.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/vulpix.png",
+                "image asset f": "assets/vulpix.png",
+                "image asset m shiny": "assets/vulpix_shiny.png",
+                "image asset f shiny": "assets/vulpix_shiny.png"
             },
             {
                 "key": 37.01,
