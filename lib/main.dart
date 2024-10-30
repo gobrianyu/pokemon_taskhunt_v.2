@@ -44,7 +44,7 @@ class MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.black,

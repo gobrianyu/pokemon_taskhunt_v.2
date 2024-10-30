@@ -484,6 +484,7 @@ class _EncounterState extends State<Encounter> {
                               });
                             } else {
                               final int rate = account.blitzGame.shakeRate(widget.mon, _berryUsed, itemUsed);
+                              setState(() => _berryUsed = null);
                               int counter = 0;
                               while (counter < 4 && !caught) {
                                 setState(() => caught = account.blitzGame.shakeCheck(rate));

@@ -7577,10 +7577,10 @@
                 "height": 30,
                 "weight": 4,
                 "entry": "It transforms into whatever it sees. If the thing it's transforming into isn't right in front of it, Ditto relies on its memory—so sometimes it fails.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/ditto.png",
+                "image asset f": "assets/ditto.png",
+                "image asset m shiny": "assets/ditto_shiny.png",
+                "image asset f shiny": "assets/ditto_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -8131,10 +8131,10 @@
                 "height": 210,
                 "weight": 460,
                 "entry": "It has no interest in anything other than eating. Even if you climb up on its stomach while it's napping, it doesn't seem to mind at all!",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/snorlax.png",
+                "image asset f": "assets/snorlax.png",
+                "image asset m shiny": "assets/snorlax_shiny.png",
+                "image asset f shiny": "assets/snorlax_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -14414,10 +14414,10 @@
                 "height": 520,
                 "weight": 216,
                 "entry": "It is said to be the guardian of the seas. It is rumored to have been seen on the night of a storm.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/lugia.png",
+                "image asset f": "assets/lugia.png",
+                "image asset m shiny": "assets/lugia_shiny.png",
+                "image asset f shiny": "assets/lugia_shiny.png"
             }
         ],
         "gimmick forms": [],
