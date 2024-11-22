@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_db.dart';
 import 'package:pokemon_taskhunt_2/views/board.dart';
 import 'package:pokemon_taskhunt_2/views/collection.dart';

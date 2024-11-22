@@ -316,7 +316,7 @@ class _CollectionState extends State<Collection> {
             margin: const EdgeInsets.only(bottom: 40),
             decoration: BoxDecoration(
               color: Colors.black,
-              borderRadius: BorderRadius.circular(20)
+              shape: BoxShape.circle
             ),
             child: Stack(
               alignment: AlignmentDirectional.center,
@@ -327,7 +327,7 @@ class _CollectionState extends State<Collection> {
                   width: 35,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 1.3), 
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   )
                 )
               ]
@@ -575,7 +575,7 @@ class _CollectionState extends State<Collection> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   ),
                   child: Stack(
                     alignment: AlignmentDirectional.center,
@@ -586,7 +586,7 @@ class _CollectionState extends State<Collection> {
                         width: 35,
                         decoration: BoxDecoration(
                           border: Border.all(color: const Color.fromARGB(200, 255, 255, 255), width: 1.3), 
-                          borderRadius: BorderRadius.circular(20)
+                          shape: BoxShape.circle
                         )
                       )
                     ]

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
@@ -48,7 +47,7 @@ class _PartyDetailsState extends State<PartyDetails> {
               children: [
                 Icon(Icons.catching_pokemon, size: 20),
                 SizedBox(width: 5),
-                Text(widget.mon.species, style: TextStyle(fontSize: 16)),
+                Text(widget.mon.nickname, style: TextStyle(fontSize: 16)),
                 widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 17),
                 Spacer(),
                 Text('Lv.${widget.mon.level}', style: TextStyle(fontSize: 16))
@@ -243,7 +242,7 @@ class _PartyDetailsState extends State<PartyDetails> {
             margin: const EdgeInsets.only(bottom: 40),
             decoration: BoxDecoration(
               color: Colors.black,
-              borderRadius: BorderRadius.circular(20)
+              shape: BoxShape.circle
             ),
             child: Stack(
               alignment: AlignmentDirectional.center,
@@ -254,7 +253,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                   width: 35,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 1.3), 
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   )
                 )
               ]

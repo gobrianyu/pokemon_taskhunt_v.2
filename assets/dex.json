@@ -14504,10 +14504,10 @@
                 "height": 60,
                 "weight": 5,
                 "entry": "This Pokémon wanders across time. Grass and trees flourish in the forests in which it has appeared.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/celebi.png",
+                "image asset f": "assets/celebi.png",
+                "image asset m shiny": "assets/celebi_shiny.png",
+                "image asset f shiny": "assets/celebi_shiny.png"
             }
         ],
         "gimmick forms": [],

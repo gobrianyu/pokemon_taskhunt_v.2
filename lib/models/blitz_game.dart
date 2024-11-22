@@ -9,6 +9,7 @@ import 'package:pokemon_taskhunt_2/models/task_list.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 
 class BlitzGame {
+  List<Pokemon?> spawns;
   int balance;
   int round;
   Map<Items, int> items;
@@ -22,15 +23,19 @@ class BlitzGame {
   BlitzGameData data;
 
   factory BlitzGame() {
-    return BlitzGame.withFields(balance: 200, round: 1, items: initItems(), buffs: {}, party: [], taskList: TaskList(16, 50), starsCompleted: 0, tasksCompleted: 0, data: BlitzGameData());
+    return BlitzGame.withFields(spawns: [], balance: 200, round: 1, items: initItems(), buffs: {}, party: [], taskList: TaskList(16, 50), starsCompleted: 0, tasksCompleted: 0, data: BlitzGameData());
   }
 
-  BlitzGame.withFields({required this.balance, required this.round, required this.items, required this.buffs, required this.party, required this.taskList, required this.starsCompleted, required this.tasksCompleted, required this.data, this.slate});
+  BlitzGame.withFields({required this.spawns, required this.balance, required this.round, required this.items, required this.buffs, required this.party, required this.taskList, required this.starsCompleted, required this.tasksCompleted, required this.data, this.slate});
   
   static Map<Items, int> initItems() {
     Map<Items, int> map = {};
-    map[Items.pokeBall] = 5;
+    map[Items.pokeBall] = 6;
     return map;
+  }
+
+  void setSpawns(List<Pokemon?> newSpawns) {
+    spawns = newSpawns;
   }
 
   void incrementRound() {
@@ -62,6 +67,11 @@ class BlitzGame {
 
   void addCatchExp(int amount) {
     data.catchExpEarned += amount;
+    addExp(amount);
+  }
+
+  void addExp(int amount) {
+    data.totalExpEarned += amount;
     if (party.isNotEmpty) {
       for (Pokemon mon in party) {
         double expEarned = amount / party.length * (1 + mon.friendship / 10);
@@ -88,7 +98,7 @@ class BlitzGame {
   }
 
   BlitzGame clone() {
-    return BlitzGame.withFields(balance: balance, round: round, items: items, buffs: buffs, party: party, taskList: taskList, starsCompleted: starsCompleted, tasksCompleted: tasksCompleted, data: data);
+    return BlitzGame.withFields(spawns: spawns, balance: balance, round: round, items: items, buffs: buffs, party: party, taskList: taskList, starsCompleted: starsCompleted, tasksCompleted: tasksCompleted, data: data);
   }
 
   List<Types> _encounterTypeBuffs(int level) {
@@ -169,7 +179,7 @@ class BlitzGame {
     }
     final Stats bStats = mon.baseStats;
     final int bStatTotal = bStats.atk + bStats.hp + bStats.def + bStats.spAtk + bStats.spDef + bStats.speed;
-    num rate = 1.25 * sqrt(mon.catchRate) * pow(10000 / bStatTotal / mon.level, 0.25) + averageLevel() / 2;
+    num rate = 1.25 * sqrt(mon.catchRate) * pow(10000 / bStatTotal / mon.level, 0.5) + averageLevel() / 2;
     if (berry != null) {
       if (berry.key == 5) {
         rate *= 1.5;
@@ -213,7 +223,7 @@ class BlitzGame {
       if (index == -1) {
         throw FormatException('Party member to replace not found: ${toReplace.species}.');
       }
-      party.remove(toReplace);
+      party.removeAt(index);
       party.insert(index, mon);
     }
   }

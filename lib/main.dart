@@ -71,6 +71,13 @@ class MainAppState extends State<MainApp> {
       child: Consumer<AccountProvider>(
         builder: (context, accountProvider, _) {
           return MaterialApp(
+            theme: ThemeData(
+              textSelectionTheme: TextSelectionThemeData(
+                cursorColor: Colors.black, // Customize the cursor color globally
+                selectionColor: const Color.fromARGB(255, 218, 218, 218), // Background color of selected text
+                selectionHandleColor: Colors.transparent, // Color of the selection handles (teardrop)
+              ),
+            ),
             debugShowCheckedModeBanner: false,
             home: Scaffold(
               body: SafeArea(top: false, child: Landing(_dexDB)),

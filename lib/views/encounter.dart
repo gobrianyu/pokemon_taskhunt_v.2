@@ -5,6 +5,7 @@ import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
+import 'package:pokemon_taskhunt_2/views/party_swap.dart';
 import 'package:provider/provider.dart';
 
 
@@ -21,6 +22,7 @@ class Encounter extends StatefulWidget {
 
 class _EncounterState extends State<Encounter> {
   Random random = Random();
+  late AccountProvider accProvider;
   bool showBag = false;
   bool showFightSelector = false;
   late Map<Items, int> items;
@@ -29,12 +31,54 @@ class _EncounterState extends State<Encounter> {
   Pokemon? _fightSelectedMon;
   bool caught = false;
   bool exit = false;
+  bool flee = false;
+  bool uiLock = false;
+  bool editName = false;
+  /* Console State: managed by an int key
+   * - 0: base state 
+   *    - msg: 'A wild <mon> appeared! What will you do?'
+   *    - tap does nothing
+   * - 1: exit state
+   *    - msg: 'Gotcha! You caught <mon>!'
+   *    - tap: exit
+   * - 2: use item (non-ball)
+   *    - msg: 'Used a <item>.'
+   *    - tap does nothing
+   * - 3: use ball
+   *    - msg: 'Used a <ball>.'
+   *    - tap does nothing
+   *    - auto: cycle to state 4 on successful shake check
+   * - 4: shake check (UNUSED)
+   *    - msg: '...'
+   *    - tap does nothing
+   *    - auto: cycle to state 4 for every successful shake check for max 4 times
+   *            cycle to state 5 on failed shake check and non-flee
+   *            cycle to state 6 on failed shake check and flee
+   *            cycle to state 1 on last successful shake check
+   * - 5: fail shake
+   *    - msg: 'Oh no! The <mon> broke free!'
+   *    - tap does nothing
+   * - 6: flee
+   *    - msg: 'Oh no! The <mon> ran away.'
+   *    - tap: exit
+   */
+  int consoleState = 0;
   String consoleText = '';
+
+  late TextEditingController _nameEditController;
+
+  @override
+  void dispose() {
+    _nameEditController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
-    AccountProvider accProvider = context.read<AccountProvider>();
+    _nameEditController = TextEditingController();
+    _nameEditController.text = widget.mon.nickname;
+    accProvider = context.read<AccountProvider>();
     items = accProvider.blitzGame.items;
     consoleText = 'A wild ${widget.mon.species.toUpperCase()} appeared! What will you do?';
   }
@@ -45,13 +89,16 @@ class _EncounterState extends State<Encounter> {
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
           body: Stack(
             children: [
               _mainUI(mon),
-              showBag ? _bag() : const SizedBox(),
-              showFightSelector ? _fightSelection() : const SizedBox(),
-              caught && exit ? _addPartyScreen() : const SizedBox(),
+              if (showBag) _bag(),
+              if (flee) _fleeNotif(),
+              if (showFightSelector) _fightSelection(),
+              if (caught && exit) _caughtNotif(),
+              if (editName) _nameEdit(),
             ],
           )
         );
@@ -59,35 +106,34 @@ class _EncounterState extends State<Encounter> {
     );
   }
 
-  Widget _addPartyScreen() {
-    final AccountProvider account = context.read<AccountProvider>();
-    final int exp = (widget.mon.baseExpYield * widget.mon.level / 7).round();
+  Widget _fleeNotif() {
+    int expGain = accProvider.blitzGame.averageLevel();
     return Container(
       padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
       color: Colors.black38,
       child: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.white
             ),
             child: Column(
               children: [
-                Text('Add ${widget.mon.species.toUpperCase()} to your party?'),
-                SizedBox(height: 15),
+                const Text('Better luck next time!', textAlign: TextAlign.center,),
+                const SizedBox(height: 8),
+                Text('+$expGain Exp.'),
+                const Text('+10 Coins'),
+                const SizedBox(height: 15),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                       onTap: () {
-                        if (account.blitzGame.party.length > 0) {
-                          account.addCatchExp(exp);
-                        }
-                        account.partyAdd(widget.mon, null);
-                        widget.onReturn(true);
+                        accProvider.incrementBalance(10);
+                        accProvider.addExp(expGain);
                         Navigator.pop(context);
                       },
                       child: Container(
@@ -96,48 +142,524 @@ class _EncounterState extends State<Encounter> {
                           borderRadius: BorderRadius.circular(7),
                         ),
                         child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           decoration: BoxDecoration(
                             color: Colors.black,
                             border: Border.all(color: Colors.white, width: 1.3),
                             borderRadius: BorderRadius.circular(5.5)
                           ),
-                          child: Text('Yes', style: TextStyle(color: Colors.white))
+                          child: const Text('OK', style: TextStyle(color: Colors.white))
                         ),
                       )
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (account.blitzGame.party.length > 0) {
-                          account.addCatchExp(exp);
-                        }
-                        widget.onReturn(true);
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1.2),
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            border: Border.all(color: Colors.white, width: 1.3),
-                            borderRadius: BorderRadius.circular(5.5)
-                          ),
-                          child: Text('No', style: TextStyle(color: Colors.white))
-                        ),
-                      ),
-                    ),
                   ],
-                )
+                ),
               ],
             )
           ),
-          Spacer()
+          const Spacer()
         ],
       )
+    );
+  }
+
+  void _handleNameEdit(String name) {
+    if (name.trim() != '') widget.mon.setName(name);
+    setState(() => editName = false);
+  }
+
+  Widget _nameEdit() {
+    _nameEditController.text = widget.mon.nickname;
+    return Container(
+      padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
+      color: Colors.black38,
+      child: Column(
+        children: [
+          const Spacer(),
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white
+            ),
+            child: Column(
+              children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text('What is ${widget.mon.species.toUpperCase()}\'s nickname?'),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Center(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            border: Border.all(),
+                            borderRadius: BorderRadius.circular(7)
+                          ),
+                          height: 35,
+                          clipBehavior: Clip.hardEdge,
+                          child: Center(
+                            child: TextField(
+                              controller: _nameEditController,
+                              autofocus: true,
+                              autocorrect: false,
+                              maxLength: 12,
+                              showCursor: true,
+                              // enableInteractiveSelection: false,
+                              // contextMenuBuilder: null,
+                              cursorColor: Colors.black,
+                              decoration: InputDecoration(
+                                counterText: '',
+                                border: InputBorder.none
+                              ),
+                              style: TextStyle(fontSize: 15)
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 7),
+                    GestureDetector(
+                      onTap: () {
+                        _handleNameEdit(_nameEditController.text);
+                      },
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle
+                        ),
+                        child: Stack(
+                          alignment: AlignmentDirectional.center,
+                          children: [
+                            const Icon(Icons.check, color: Colors.white, size: 20),
+                            Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white, width: 1.3), 
+                                shape: BoxShape.circle
+                              )
+                            )
+                          ]
+                        )
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            )
+          ),
+          const Spacer(),
+          const Spacer(),
+          const Spacer()
+        ],
+      )
+    );
+  }
+
+  // pulls up widget prompting user to add mon to party;
+  // also processes exp gain for user's party 
+  Widget _caughtNotif() {
+    final int exp = (widget.mon.baseExpYield * widget.mon.level / 7).round();
+    int coins = 100;
+    for (Pokemon mon in accProvider.blitzGame.party) {
+      if (mon.heldItem == Items.amuletCoin /* TODO: || mon.heldItem == Items.luckIncense */) {
+        coins *= 2;
+        break;
+      }
+    }
+    return Container(
+      padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
+      color: Colors.black38,
+      child: Column(
+        children: [
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white
+            ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  padding: EdgeInsets.only(left: 12, right: 10, bottom: 5, top: 5),
+                  child: Row(
+                    children: [
+                      // TODO: wrap with gesture detector to bring up name editor
+                      GestureDetector(
+                        onTap: () {
+                          setState(() => editName = true);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                            border: Border(bottom: BorderSide(color: Colors.white))
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                widget.mon.nickname.toUpperCase(),
+                                style: TextStyle(color: Colors.white, fontSize: 12.5, fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(width: 3),
+                              Icon(Icons.edit, size: 11, color: Colors.white)
+                            ]
+                          ),
+                        )
+                      ),
+                      
+                      Spacer(),
+                      Text('Lv.${widget.mon.level}', style: TextStyle(color: Colors.white, fontSize: 12)),
+                      Spacer(),
+                      Spacer(),
+                      widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 13, color: Colors.white),
+                      SizedBox(width: 3),
+                      if (widget.mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 14),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 4.5,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(flex: 3, child: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: _ivStatsColumn(),
+                      )),
+                      Expanded(
+                        flex: 4,
+                        child: Container(
+                          height: double.infinity,
+                          margin: const EdgeInsets.only(left: 5, top: 10, bottom: 15),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all()
+                          ),
+                          child: Image(image: AssetImage(widget.mon.imageAsset))),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  margin: EdgeInsets.only(bottom: 2),
+                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 2, top: 2),
+                  child: Row(
+                    children: [
+                      Text('Exp. Points'),
+                      Spacer(),
+                      Text('+$exp')
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 2, top: 2),
+                  child: Row(
+                    children: [
+                      Text('Coins'),
+                      Spacer(),
+                      Text('+100')
+                    ]
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 7, bottom: 2),
+                  child: Row(
+                    children: [
+                      Text('Bonus', style: TextStyle(fontWeight: FontWeight.w500, fontStyle: FontStyle.italic)),
+                    ],
+                  ),
+                ),
+                // TODO: add bonuses (coins and items)
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 2, top: 2),
+                  child: Row(
+                    children: [
+                      Text('Coins'),
+                      Spacer(),
+                      Text('+${coins - 100}')
+                    ]
+                  ),
+                ),
+                const SizedBox(height: 15),
+                accProvider.blitzGame.party.length < 6
+                  ? _exitButton(exp, coins)
+                  : _addPartyScreen(exp, coins),
+              ],
+            )
+          ),
+          const Spacer()
+        ],
+      )
+    );
+  }
+
+  Widget _exitButton(int exp, int coins) {
+    return GestureDetector(
+      onTap: () {
+        accProvider.addCatchExp(exp);
+        accProvider.incrementBalance(coins);
+        accProvider.partyAdd(widget.mon, null);
+        widget.onReturn(true);
+        Navigator.pop(context);
+      },
+      child: Container(
+        width: 35,
+        height: 35,
+        margin: EdgeInsets.only(top: 10, bottom: 10),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          shape: BoxShape.circle
+        ),
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            const Icon(Icons.check, color: Colors.white, size: 20),
+            Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white, width: 1.3), 
+                shape: BoxShape.circle
+              )
+            )
+          ]
+        )
+      ),
+    );
+  }
+
+  Widget _addPartyScreen(int exp, int coins) {
+    return Container(
+      padding: EdgeInsets.only(bottom: 15, top: 12, left: 15, right: 15),
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Column(
+        children: [
+          Text('Your party is full! Add ${widget.mon.species.toUpperCase()} to your party?', textAlign: TextAlign.center,),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // button: yes
+              GestureDetector(
+                onTap: () {
+                  accProvider.addCatchExp(exp);
+                  accProvider.incrementBalance(coins);
+                  // accProvider.partyAdd(widget.mon, null);
+                  widget.onReturn(true);
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) => PartySwap(swapMon: widget.mon), // Replace with your next screen widget
+                      transitionDuration: Duration.zero,
+                      reverseTransitionDuration: Duration.zero,
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.2),
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      border: Border.all(color: Colors.white, width: 1.3),
+                      borderRadius: BorderRadius.circular(5.5)
+                    ),
+                    child: const Text('Yes', style: TextStyle(color: Colors.white))
+                  ),
+                )
+              ),
+      
+              // button: no
+              GestureDetector(
+                onTap: () {
+                  accProvider.addCatchExp(exp);
+                  accProvider.incrementBalance(coins);
+                  widget.onReturn(true);
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.2),
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      border: Border.all(color: Colors.white, width: 1.3),
+                      borderRadius: BorderRadius.circular(5.5)
+                    ),
+                    child: const Text('No', style: TextStyle(color: Colors.white))
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _ivStatsColumn() {
+    Pokemon mon = widget.mon;
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 2.5,
+                child: Container(
+                  margin: EdgeInsets.only(right: 3),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: mon.types[0].colour,
+                    borderRadius: BorderRadius.circular(5)
+                  ),
+                  child: Text(mon.types[0].type, style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500))
+                ),
+              )
+            ),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 2.5,
+                child: mon.types.length == 1
+                    ? Container(
+                      margin: EdgeInsets.only(right: 3),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      child: Icon(Icons.clear, size: 16, color: Colors.black)
+                    )
+                    : Container(
+                      margin: EdgeInsets.only(right: 3),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: mon.types[1].colour,
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      child: Text(mon.types[1].type, style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500))
+                    ),
+              )
+            )
+          ],
+        ),
+        const SizedBox(height: 8),
+        _ivStat('HP', mon.ivs.hp),
+        _ivStat('Atk', mon.ivs.atk),
+        _ivStat('Def', mon.ivs.def),
+        _ivStat('Sp. Atk', mon.ivs.spAtk),
+        _ivStat('Sp. Def', mon.ivs.spDef),
+        _ivStat('Speed', mon.ivs.speed),
+        _ivRating()
+      ]
+    );
+  }
+
+  Widget _ivRating() {
+    List<Widget> stars = [];
+    int numStars = widget.mon.getNumStars();
+    for (int i = 0; i < min(numStars, 3); i++) {
+      stars.add(
+        Icon(Icons.star_rounded, color: Colors.white)
+      );
+    }
+    for (int i = 0; i < (3 - numStars); i++) {
+      stars.add(Icon(Icons.star_outline_rounded, color: Colors.white));
+    }
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.only(top: 5, bottom: 15),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              numStars == 4 ? Color.fromARGB(255, 241, 207, 35) : Colors.black,
+              numStars == 4 ? Color.fromARGB(255, 233, 234, 166) : Colors.black,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(7)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: stars,
+        )
+      ),
+    );
+  }
+
+  Widget _ivStat(String name, int value) {
+    return Row(
+      children: [
+        Expanded(flex: 2, child: Text(name, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold))),
+        SizedBox(width: 3),
+        Expanded(
+          flex: 3,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Container(
+              height: 8,
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(6)
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: value,
+                    child: Container(
+                      height: 8,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        border: Border(bottom: BorderSide(), top: BorderSide())
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 15 - value,
+                    child: SizedBox()
+                  )
+                ],
+              )
+            ),
+          )
+        ),
+        SizedBox(width: 3)
+      ],
     );
   }
 
@@ -220,7 +742,7 @@ class _EncounterState extends State<Encounter> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   ),
                   child: Stack(
                     alignment: AlignmentDirectional.center,
@@ -231,7 +753,7 @@ class _EncounterState extends State<Encounter> {
                         width: 35,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1.3), 
-                          borderRadius: BorderRadius.circular(20)
+                          shape: BoxShape.circle
                         )
                       )
                     ]
@@ -281,6 +803,8 @@ class _EncounterState extends State<Encounter> {
                   Text(widget.mon.species, style: const TextStyle(color: Colors.white)),
                   const SizedBox(width: 1),
                   widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 14, color: Colors.white),
+                  const SizedBox(width: 1),
+                  if (widget.mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 14),
                 ],
               ),
               Text(
@@ -300,7 +824,7 @@ class _EncounterState extends State<Encounter> {
 
   List<Widget> _fightSelectorTiles() {
     List<Widget> tiles = [];
-    for (Pokemon mon in context.read<AccountProvider>().blitzGame.party) {
+    for (Pokemon mon in accProvider.blitzGame.party) {
       tiles.add(_fightSelectorTile(mon));
     }
     return tiles;
@@ -345,9 +869,11 @@ class _EncounterState extends State<Encounter> {
                 Row(
                   children: [
                     const SizedBox(width: 0),
-                    Text(mon.species, style: TextStyle(color: _fightSelectedMon == mon ? Colors.white : Colors.black)),
+                    Text(mon.nickname, style: TextStyle(color: _fightSelectedMon == mon ? Colors.white : Colors.black)),
                     const SizedBox(width: 1),
                     mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, size: 14, color: _fightSelectedMon == mon ? Colors.white : Colors.black),
+                    const SizedBox(width: 1),
+                    if (widget.mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 14),
                   ],
                 ),
                 Text(
@@ -464,51 +990,68 @@ class _EncounterState extends State<Encounter> {
                     ),
                     _bagSelectedItem != null && (_bagSelectedItem!.key < 5 || _bagSelectedItem!.key <= 10 && _berryUsed == null) 
                       ? GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           Items itemUsed = _bagSelectedItem!;
                           setState(() {
+                            uiLock = true;
                             showBag = false;
                             _bagSelectedItem = null;
+                            consoleText = 'Used a ${itemUsed.name}';
+                            consoleState = 3;
                             if (itemUsed.key >= 5) {
                               _berryUsed = itemUsed;
+                              consoleState = 2;
+                              uiLock = false;
                             }
                           });
-                          context.read<AccountProvider>().blitzGame.useItem(itemUsed);
+                          accProvider.blitzGame.useItem(itemUsed);
                           if (itemUsed.key < 5) {
                             // TODO
-                            final AccountProvider account = context.read<AccountProvider>();
-                            if (account.blitzGame.party.isEmpty) {
+                            if (accProvider.blitzGame.party.isEmpty) {  // Party is empty; first catch guaranteed success
                               setState(() {
                                 caught = true;
-                                exit = true;
                               });
-                            } else {
-                              final int rate = account.blitzGame.shakeRate(widget.mon, _berryUsed, itemUsed);
+                            } else {  // Party not empty
+                              final int rate = accProvider.blitzGame.shakeRate(widget.mon, _berryUsed, itemUsed);
+                              print(rate);
                               setState(() => _berryUsed = null);
                               int counter = 0;
-                              while (counter < 4 && !caught) {
-                                setState(() => caught = account.blitzGame.shakeCheck(rate));
-                                if (caught) {
+                              while (counter < 3 && !caught) {
+                                setState(() {
+                                  caught = accProvider.blitzGame.shakeCheck(rate);
+                                });
+                                if (caught) break;
+                                await Future.delayed(const Duration(seconds: 1), () {
+                                  counter++;
                                   setState(() {
-                                    consoleText = 'Gotcha! ${widget.mon.species.toUpperCase()} was caught!';
-                                    exit = true;
+                                    consoleText += ' .';
                                   });
-                                  // await user tap
-                                  // show new widget
-                                  // TODO: current progress
-                                  if (account.blitzGame.party.length < 6) {
-                                    // account.addCatchExp((widget.mon.baseExpYield * widget.mon.level / 7).round());
-                                  } else {
-                                    // TODO: bring up switch party ui
-                                  }
-                                }
-                                counter++;
+                                });
                               }
+                              await Future.delayed(const Duration(seconds: 1));
                               // flee chance calc
-                              if (!caught && random.nextInt(100) <= widget.mon.fleeRate) {
-                                widget.onReturn(true);
-                                Navigator.pop(context);
+                              if (!caught) {
+                                setState(() => uiLock = false);
+                                print(widget.mon.fleeRate);
+                                if (!caught && random.nextInt(100) < widget.mon.fleeRate) {
+                                  widget.onReturn(false);
+                                  setState(() {
+                                    consoleState = 6;
+                                    consoleText = 'Oh no! The wild ${widget.mon.species.toUpperCase()} ran away.';
+                                  });
+                                } else {
+                                  setState(() {
+                                    consoleText = 'Oh no! The ${widget.mon.species.toUpperCase()} broke free.';
+                                    consoleState = 5;
+                                  });
+                                }
                               }
+                            }
+                            if (caught) {
+                              setState(() {
+                                consoleState = 1;
+                                consoleText = 'Gotcha! You caught ${widget.mon.species.toUpperCase()}!';
+                              });
                             }
                           }
                         },
@@ -564,7 +1107,7 @@ class _EncounterState extends State<Encounter> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   ),
                   child: Stack(
                     alignment: AlignmentDirectional.center,
@@ -575,7 +1118,7 @@ class _EncounterState extends State<Encounter> {
                         width: 35,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1.3), 
-                          borderRadius: BorderRadius.circular(20)
+                          shape: BoxShape.circle
                         )
                       )
                     ]
@@ -674,6 +1217,8 @@ class _EncounterState extends State<Encounter> {
                   ),
                   const SizedBox(width: 3),
                   mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, color: Colors.white, size: 15),
+                  const SizedBox(width: 3),
+                  if (mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 15),
                   const Spacer(),
                   Text(
                     'Lv.${mon.level}',
@@ -704,7 +1249,6 @@ class _EncounterState extends State<Encounter> {
   }
   
   Container _bottomUI(Pokemon mon, BuildContext context) {
-    AccountProvider account = context.read<AccountProvider>();
     return Container(
       height: 150,
       padding: const EdgeInsets.all(7),
@@ -726,7 +1270,7 @@ class _EncounterState extends State<Encounter> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => setState(() {
-                      if (account.blitzGame.party.isNotEmpty) {
+                      if (accProvider.blitzGame.party.isNotEmpty && !uiLock) {
                         showFightSelector = true;
                       }
                     }),
@@ -735,10 +1279,10 @@ class _EncounterState extends State<Encounter> {
                       margin: const EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: account.blitzGame.party.isEmpty ? Colors.grey : Colors.black),
+                        border: Border.all(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Text('FIGHT', style: TextStyle(color: account.blitzGame.party.isEmpty ? Colors.grey : Colors.black))
+                      child: Text('FIGHT', style: TextStyle(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black))
                     ),
                   ),
                 ),
@@ -746,11 +1290,11 @@ class _EncounterState extends State<Encounter> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      if (account.blitzGame.party.isNotEmpty) {
+                      if (accProvider.blitzGame.party.isNotEmpty && !uiLock) {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) => Party(party: account.blitzGame.party, isBlitz: true),
+                            pageBuilder: (context, animation1, animation2) => Party(),
                             transitionDuration: Duration.zero,
                             reverseTransitionDuration: Duration.zero,
                           ),
@@ -762,10 +1306,10 @@ class _EncounterState extends State<Encounter> {
                       margin: const EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(color: account.blitzGame.party.isEmpty ? Colors.grey : Colors.black),
+                        border: Border.all(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Text('PARTY', style: TextStyle(color: account.blitzGame.party.isEmpty ? Colors.grey : Colors.black))
+                      child: Text('PARTY', style: TextStyle(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black))
                     ),
                   ),
                 ),
@@ -779,17 +1323,17 @@ class _EncounterState extends State<Encounter> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () => setState(() {
-                      showBag = true;
+                      if (!uiLock) showBag = true;
                     }),
                     child: Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(),
+                        border: Border.all(color: uiLock ? Colors.grey : Colors.black),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: const Text('BAG')
+                      child: Text('BAG', style: TextStyle(color: uiLock ? Colors.grey : Colors.black))
                     ),
                   ),
                 ),
@@ -797,18 +1341,20 @@ class _EncounterState extends State<Encounter> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      widget.onReturn(false);
-                      Navigator.pop(context);
+                      if (!uiLock) {
+                        widget.onReturn(false);
+                        Navigator.pop(context);
+                      }
                     },
                     child: Container(
                       alignment: Alignment.center,
                       margin: const EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        border: Border.all(),
+                        border: Border.all(color: uiLock ? Colors.grey : Colors.black),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: const Text('RUN')
+                      child: Text('RUN', style: TextStyle(color: uiLock ? Colors.grey : Colors.black))
                     ),
                   ),
                 ),
@@ -820,18 +1366,63 @@ class _EncounterState extends State<Encounter> {
     );
   }
 
-  Container _console(Pokemon mon) {
-    return Container(
-      alignment: Alignment.topLeft,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(10)
+  Widget _console(Pokemon mon) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          if (consoleState == 1) {
+            exit = true;
+          } else if (consoleState == 6) {
+            flee = true;
+            exit = true;
+          }
+        });
+      },
+      child: Container(
+        alignment: Alignment.topLeft,
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(),
+          borderRadius: BorderRadius.circular(10)
+        ),
+        child: Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            Text(
+              consoleText
+            ),
+            if (consoleState == 1 || consoleState == 6) Column(children: [
+              Spacer(),
+              Row(children: [
+                Spacer(),
+                Container(
+                  width: 29,
+                  height: 29,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 20),
+                      Container(
+                        height: 25,
+                        width: 25,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 1.3), 
+                          shape: BoxShape.circle
+                        )
+                      )
+                    ]
+                  )
+                ),
+              ],)
+            ])
+          ],
+        )
       ),
-      child: Text(
-        consoleText
-      )
     );
   }
 }

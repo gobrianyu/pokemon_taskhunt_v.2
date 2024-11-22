@@ -8,6 +8,7 @@ import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 
 class Pokemon {
   final num key;
+  String nickname;
   final String species;
   final String speciesExtended;
   int level;
@@ -27,6 +28,10 @@ class Pokemon {
   int battles;
   int friendship;
   Items? heldItem;
+
+  void setName(String name) {
+    nickname = name;
+  }
 
   factory Pokemon.fromDexEntry(DexEntry entry, int form, int level, bool isShiny, int ivFloor) {
     final String species = entry.forms[form].name;
@@ -59,7 +64,8 @@ class Pokemon {
     return Pokemon.withFields(
       speciesExtended: speciesExtended,
       exp: 0,
-      level: level, 
+      level: level,
+      nickname: species,
       expGroup: entry.expGroup, 
       baseExpYield: entry.expYield, 
       gender: gender,
@@ -81,7 +87,8 @@ class Pokemon {
   }
 
   Pokemon.withFields({
-    required this.speciesExtended, 
+    required this.speciesExtended,
+    required this.nickname,
     required this.exp, 
     required this.level, 
     required this.expGroup, 
@@ -102,6 +109,18 @@ class Pokemon {
     required this.battles,
     this.heldItem
   });
+
+  int getNumStars() {
+    int total = ivs.atk + ivs.def + ivs.hp + ivs.speed + ivs.spAtk + ivs.spDef;
+    switch (total) {
+      case < 23: return 0;
+      case >= 23 && < 45: return 1;
+      case >= 45 && < 68: return 2;
+      case >= 68 && < 90: return 3;
+      case 90: return 4;
+      default: return 0;  // should be impossible
+    }
+  }
 
   void incrementExp(int amount) {
     exp += amount;
@@ -181,6 +200,7 @@ class Pokemon {
     
     return Pokemon.withFields(
       speciesExtended: speciesExtendedEvo,
+      nickname: nickname,
       exp: exp,
       level: level,
       expGroup: entry.expGroup,

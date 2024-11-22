@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
@@ -21,6 +22,8 @@ class Board extends StatefulWidget {
 }
 
 class _BoardState extends State<Board> {
+  Random random = Random();
+
   final List<Items> itemsMasterList = [
     Items.pokeBall, Items.greatBall, Items.ultraBall, Items.masterBall,
     Items.pinapBerry, Items.razzBerry, Items.silverPinapBerry, Items.silverRazzBerry, Items.goldenPinapBerry, Items.goldenRazzBerry,
@@ -32,12 +35,14 @@ class _BoardState extends State<Board> {
   bool showShopSell = false;
   int buyAmount = 0;
   int sellAmount = 0;
-  late int balance;
+  int balance = 0;
   late Map<Items, int> items;
   bool _isLongPressing = false;
   Items? _shopSelectedItem;
   Items? _bagSelectedItem;
   late AccountProvider accProvider;
+  List<Pokemon?> spawns = [];
+  bool isSpawnsInitialized = false;
 
   ScrollController scrollController = ScrollController(
     initialScrollOffset: 0, // or whatever offset you wish
@@ -47,9 +52,17 @@ class _BoardState extends State<Board> {
   @override
   void initState() {
     super.initState();
+
+    // Read the AccountProvider instance from the context
     accProvider = context.read<AccountProvider>();
-    items = accProvider.blitzGame.items;
-    balance = accProvider.blitzGame.balance;
+
+    // Using addPostFrameCallback to avoid triggering state changes during the build phase
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _initializeSpawns();
+      setState(() {
+        isSpawnsInitialized = true;
+      });
+    });
   }
 
   void _incrementCounter() {
@@ -124,26 +137,39 @@ class _BoardState extends State<Board> {
 
   @override
   Widget build(BuildContext context) {
+    if (!isSpawnsInitialized) {
+      return Scaffold(
+        appBar: _header(),
+        body: Center(child: CircularProgressIndicator()),  // Placeholder for loading state
+      );
+    }
     return Consumer<AccountProvider>(
       builder: (context, accountProvider, _) {
-        return Stack(
-          children: [
-            Scaffold(
-              backgroundColor: Colors.white,
-              appBar: _header(),
-              body: Stack(
-                children: [
-                  _spawnBoard(),
-                  showShop ? _shop() : const SizedBox(),
-                  showBag ? _bag() : const SizedBox(),
-                  showTasks ? _tasks() : const SizedBox(),
-                ],
-              )
-            ),
-          ],
+        final blitzGame = accountProvider.blitzGame;
+        balance = blitzGame.balance;
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: _header(),
+          body: Stack(
+            children: [
+              _spawnBoard(),
+              if (showShop) _shop(),
+              if (showBag) _bag(),
+              if (showTasks) _tasks(),
+            ],
+          ),
         );
-      }
+      },
     );
+  }
+
+  Future<void> _initializeSpawns() async {
+    if (accProvider.blitzGame.spawns.isEmpty) {
+      accProvider.setSpawns(generateSpawns());
+    }
+    spawns = accProvider.blitzGame.spawns;
+    items = accProvider.blitzGame.items;
+    balance = accProvider.blitzGame.balance;
   }
 
   Widget _tasks() {
@@ -202,6 +228,25 @@ class _BoardState extends State<Board> {
         ),
       ],
     );
+  }
+
+  List<Pokemon?> generateSpawns() {
+    List<Pokemon?> ret = [];
+    final blitz = accProvider.blitzGame;
+    int key = random.nextInt(49);
+    for (int i = 0; i < 49; i++) {
+      if (i == key) {
+        ret.add(blitz.generateEncounter(widget.fullDex));
+      } else {
+        int n = 5 * blitz.averageLevel() + blitz.round - 2 * blitz.party.length + 12;
+        if (random.nextInt(1000) < n) {
+          ret.add(blitz.generateEncounter(widget.fullDex));
+        } else {
+          ret.add(null);
+        }
+      }
+    }
+    return ret;
   }
 
   List<Widget> _taskTiles() {
@@ -774,7 +819,7 @@ class _BoardState extends State<Board> {
                 height: 40,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(20)
+                  shape: BoxShape.circle
                 ),
                 child: Stack(
                   alignment: AlignmentDirectional.center,
@@ -785,7 +830,7 @@ class _BoardState extends State<Board> {
                       width: 35,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 1.3), 
-                        borderRadius: BorderRadius.circular(20)
+                        shape: BoxShape.circle
                       )
                     )
                   ]
@@ -1029,7 +1074,7 @@ class _BoardState extends State<Board> {
                 height: 40,
                 decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.circular(20)
+                  shape: BoxShape.circle
                 ),
                 child: Stack(
                   alignment: AlignmentDirectional.center,
@@ -1040,7 +1085,7 @@ class _BoardState extends State<Board> {
                       width: 35,
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 1.3), 
-                        borderRadius: BorderRadius.circular(20)
+                        shape: BoxShape.circle
                       )
                     )
                   ]
@@ -1152,7 +1197,7 @@ class _BoardState extends State<Board> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    borderRadius: BorderRadius.circular(20)
+                    shape: BoxShape.circle
                   ),
                   child: Stack(
                     alignment: AlignmentDirectional.center,
@@ -1163,7 +1208,7 @@ class _BoardState extends State<Board> {
                         width: 35,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1.3), 
-                          borderRadius: BorderRadius.circular(20)
+                          shape: BoxShape.circle
                         )
                       )
                     ]
@@ -1246,30 +1291,16 @@ class _BoardState extends State<Board> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10, top: 3),
-                      child: GestureDetector(
-                        onTap: () {
-                          if (accProvider.blitzGame.party.isNotEmpty) {
-                            Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder: (context, animation1, animation2) => Party(party: accProvider.blitzGame.party, isBlitz: true),
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero,
-                              ),
-                            );
-                          }
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          child: GridView.count(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            primary: false,
-                            mainAxisSpacing: 5,
-                            crossAxisSpacing: 5,
-                            crossAxisCount: 3,
-                            children: _partyIcons()
-                          ),
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        child: GridView.count(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          primary: false,
+                          mainAxisSpacing: 5,
+                          crossAxisSpacing: 5,
+                          crossAxisCount: 3,
+                          children: _partyIcons()
                         ),
                       ),
                     ),
@@ -1306,6 +1337,12 @@ class _BoardState extends State<Board> {
                       Expanded(
                         flex: 1,
                         child: GestureDetector(
+                          onTap: () {
+                          setState(() {
+                            accProvider.incrementRound();
+                            accProvider.setSpawns(generateSpawns());
+                            spawns = accProvider.blitzGame.spawns;
+                          });},
                           child: _blockButtonFormat('Skip')
                         ),
                       ),
@@ -1326,6 +1363,16 @@ class _BoardState extends State<Board> {
     for (Pokemon mon in accProvider.blitzGame.party) {
       tiles.add(
         GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) => Party(),
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+              )
+            );
+          },
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white),
@@ -1492,32 +1539,54 @@ class _BoardState extends State<Board> {
   List<Widget> _buildTiles(BuildContext context) {
     List<Widget> tiles = [];
     for (int i = 0; i < 49; i++) {
-      tiles.add(
-        GestureDetector(
-          onTap: () {
-            setState(() {balance += 100;});
-            accProvider.incrementBalance(100);
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) => Encounter(
-                  mon: accProvider.blitzGame.generateEncounter(widget.fullDex),
-                  onReturn: (bool claimed) {}
-                ),
-                transitionDuration: Duration.zero,
-                reverseTransitionDuration: Duration.zero,
-              ),
-            );
-          },
-          child: Container(
+      if (spawns[i] == null) {
+        tiles.add(
+          Container(
             decoration: BoxDecoration(
               border: Border.all(),
               borderRadius: BorderRadius.circular(7)
             ),
-            child: const Icon(Icons.grass_rounded, size: 30)
-          ),
-        )
-      );
+            child: const Icon(Icons.do_not_disturb, size: 30)
+          )
+        );
+      } else {
+        tiles.add(
+          GestureDetector(
+            onTap: () {
+              setState(() {balance += 100;});
+              accProvider.incrementBalance(100);
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => Encounter(
+                    mon: spawns[i]!,
+                    onReturn: (bool claimed) {
+                      if (claimed) {
+                        accProvider.incrementRound();
+                        accProvider.setSpawns(generateSpawns());
+                        spawns = accProvider.blitzGame.spawns;
+                      }
+                    },
+                  ),
+                  transitionDuration: Duration.zero,
+                  reverseTransitionDuration: Duration.zero,
+                ),
+              ).then((claimed) {
+                if (claimed == true) {
+                  accProvider.setSpawns(generateSpawns());
+                }
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(7)
+              ),
+              child: const Icon(Icons.grass_rounded, size: 30)
+            ),
+          )
+        );
+      }
     }
     return tiles;
   }

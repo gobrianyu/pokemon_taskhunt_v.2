@@ -11,6 +11,16 @@ class AccountProvider extends ChangeNotifier {
 
   BlitzGame get blitzGame => _blitzGame.clone();
 
+  void setSpawns(List<Pokemon?> spawns) {
+    _blitzGame.setSpawns(spawns);
+    notifyListeners();
+  }
+
+  void incrementRound() {
+    _blitzGame.incrementRound();
+    notifyListeners();
+  }
+
   void incrementBalance(int amount) {
     _blitzGame.incrementBalance(amount);
     notifyListeners();
@@ -44,6 +54,11 @@ class AccountProvider extends ChangeNotifier {
 
   void addCatchExp(int amount) {
     _blitzGame.addCatchExp(amount);
+    notifyListeners();
+  }
+
+  void addExp(int amount) {
+    _blitzGame.addExp(amount);
     notifyListeners();
   }
 
