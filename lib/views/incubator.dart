@@ -43,7 +43,22 @@ class _IncubatorState extends State<Incubator> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    _balance(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(Icons.egg),
+                        const Text(
+                          'Incubator',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500
+                          )
+                        ),
+                        const Spacer(),
+                        _balance()
+                      ],
+                    ),
+                    // _balance(),
                     Expanded(child: _eggTiles()),
                     SizedBox(height: 25),
                     _backButton(),
