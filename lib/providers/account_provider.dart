@@ -37,6 +37,11 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void unlockEggSlot(int price) {
+    _blitzGame.unlockEggSlot(price);
+    notifyListeners();
+  }
+
   void useItem(Items item) {
     _blitzGame.useItem(item);
     notifyListeners();

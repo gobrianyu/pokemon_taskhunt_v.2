@@ -245,6 +245,23 @@ class Pokemon {
   }
 }
 
+class Egg {
+  final String imageAsset;
+  final String eggType;
+  final int rarity;
+  final int shinyRate;
+  final int hatchCount;
+  int hatchCounter = 0;
+  Pokemon? mon;
+  
+  Egg({required this.imageAsset, required this.eggType, required this.rarity, required this.shinyRate, required this.hatchCount, this.mon});
+
+  bool incrementCounter() {
+    hatchCounter++;
+    return hatchCount <= hatchCounter;
+  }
+}
+
 Stats _generateIVs(int floor, Random random) {
   if (floor > 15) floor = 15;
   if (floor < 0) floor = 0;

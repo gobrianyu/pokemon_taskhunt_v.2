@@ -18,15 +18,17 @@ class BlitzGame {
   int starsCompleted;
   TaskList taskList;
   List<Pokemon> party;
+  List<Egg> eggs;
+  int unlockedEggSlots;
   Regions? slate;
 
   BlitzGameData data;
 
   factory BlitzGame() {
-    return BlitzGame.withFields(spawns: [], balance: 200, round: 1, items: initItems(), buffs: {}, party: [], taskList: TaskList(16, 50), starsCompleted: 0, tasksCompleted: 0, data: BlitzGameData());
+    return BlitzGame.withFields(spawns: [], balance: 200, round: 1, items: initItems(), buffs: {}, party: [], eggs: [Egg(imageAsset: "Mystery Egg", eggType: "", rarity: 4, shinyRate: 0, hatchCount: 10)], taskList: TaskList(16, 50), starsCompleted: 0, tasksCompleted: 0, data: BlitzGameData(), unlockedEggSlots: 2);
   }
 
-  BlitzGame.withFields({required this.spawns, required this.balance, required this.round, required this.items, required this.buffs, required this.party, required this.taskList, required this.starsCompleted, required this.tasksCompleted, required this.data, this.slate});
+  BlitzGame.withFields({required this.spawns, required this.balance, required this.round, required this.items, required this.buffs, required this.party, required this.eggs, required this.taskList, required this.starsCompleted, required this.tasksCompleted, required this.data, this.slate, required this.unlockedEggSlots});
   
   static Map<Items, int> initItems() {
     Map<Items, int> map = {};
@@ -40,6 +42,13 @@ class BlitzGame {
 
   void incrementRound() {
     round++;
+    incrementEggCounter();
+  }
+
+  void incrementEggCounter() {
+    for (Egg egg in eggs) {
+      egg.incrementCounter();
+    }
   }
 
   void claimTask(Task task) {
@@ -70,6 +79,14 @@ class BlitzGame {
     addExp(amount);
   }
 
+  void unlockEggSlot(int price) {
+    if (price <= balance) {
+      unlockedEggSlots++;
+      decrementBalance(price);
+    }
+    // TODO: Implement
+  }
+
   void addExp(int amount) {
     data.totalExpEarned += amount;
     if (party.isNotEmpty) {
@@ -98,7 +115,7 @@ class BlitzGame {
   }
 
   BlitzGame clone() {
-    return BlitzGame.withFields(spawns: spawns, balance: balance, round: round, items: items, buffs: buffs, party: party, taskList: taskList, starsCompleted: starsCompleted, tasksCompleted: tasksCompleted, data: data);
+    return BlitzGame.withFields(spawns: spawns, balance: balance, round: round, items: items, buffs: buffs, party: party, eggs: eggs, taskList: taskList, starsCompleted: starsCompleted, tasksCompleted: tasksCompleted, data: data, unlockedEggSlots: unlockedEggSlots);
   }
 
   List<Types> _encounterTypeBuffs(int level) {

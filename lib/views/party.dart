@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/incubator.dart';
 import 'package:pokemon_taskhunt_2/views/party_details.dart';
 import 'package:provider/provider.dart';
 
@@ -33,18 +34,11 @@ class _PartyState extends State<Party> {
           backgroundColor: Colors.white,
           body: Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, top: 35, bottom: 20),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: _partyTiles(),
-                  ),
-                ],
-              ),
+              padding: const EdgeInsets.only(left: 12, right: 12, top: 35, bottom: 100),
+              child: _partyTiles(),
             ),
           ),
-          bottomNavigationBar: _backButton(),
+          bottomNavigationBar: _bottomButtons(),
         );
       }
     );
@@ -60,8 +54,8 @@ class _PartyState extends State<Party> {
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         border: Border.all(),
-        borderRadius: BorderRadius.circular(10),
-        // color: const Color.fromARGB(20, 0, 0, 0)
+        borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomLeft: Radius.circular(10), topLeft: Radius.circular(24), bottomRight: Radius.circular(24)),
+        color: const Color.fromARGB(15, 0, 0, 0)
       ),
       child: Row(
         children: [
@@ -112,7 +106,7 @@ class _PartyState extends State<Party> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: Border.all(),
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(5), bottomLeft: Radius.circular(5), topRight: Radius.circular(5)),
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(20), bottomLeft: Radius.circular(5), topRight: Radius.circular(5)),
           color: Colors.white
         ),
         child: Stack(
@@ -232,7 +226,7 @@ class _PartyState extends State<Party> {
       margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black38),
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(5), bottomLeft: Radius.circular(5), topRight: Radius.circular(5))
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(20), bottomLeft: Radius.circular(5), topRight: Radius.circular(5))
       )
     );
   }
@@ -446,15 +440,16 @@ class _PartyState extends State<Party> {
 //     );
 //   }
 
-  Widget _backButton() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
-      child: Row(
-        children: [
-          const Spacer(),
-          Container(
+  Widget _bottomButtons() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Expanded(flex: 4, child: SizedBox()),
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
             width: 40,
             height: 40,
             margin: const EdgeInsets.only(bottom: 40),
@@ -477,9 +472,54 @@ class _PartyState extends State<Party> {
               ]
             )
           ),
-          const Spacer()
-        ],
-      )
+        ),
+        Spacer(),
+        // Incubator button
+        Expanded(
+          flex: 3,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => Incubator(),
+                  transitionDuration: Duration.zero,
+                  reverseTransitionDuration: Duration.zero,
+                ),
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.only(left: 2.5, top: 2.5, bottom: 2.5),
+              alignment: Alignment.center,
+              height: 40,
+              decoration: BoxDecoration(
+                // border: Border(left: BorderSide(), top: BorderSide(), bottom: BorderSide()),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
+                color: Colors.black
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(color: Colors.white, width: 1.3),
+                    top: BorderSide(color: Colors.white, width: 1.3),
+                    bottom: BorderSide(color: Colors.white, width: 1.3)
+                  ),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), topLeft: Radius.circular(20)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Incubator", style: TextStyle(color: Colors.white)),
+                    SizedBox(width: 8),
+                    Icon(Icons.keyboard_double_arrow_right_rounded, size: 20, color: Colors.white)
+                  ],
+                ),
+              )
+            ),
+          )
+        )
+      ],
     );
   }
 }
