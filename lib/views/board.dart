@@ -773,7 +773,7 @@ class _BoardState extends State<Board> {
                         int totalCost = (sellAmount / 2 * _bagSelectedItem!.cost).toInt();                            
                         accProvider.incrementBalance(totalCost);
                         for (int i = 0; i < sellAmount; i++) {
-                          accProvider.useItem(_bagSelectedItem!);
+                          accProvider.removeItem(_bagSelectedItem!);
                         }
                         items = accProvider.blitzGame.items;
                         balance = accProvider.blitzGame.balance;
@@ -1340,6 +1340,7 @@ class _BoardState extends State<Board> {
                           onTap: () {
                           setState(() {
                             accProvider.incrementRound();
+                            // accProvider.incrementFriendship(null);
                             accProvider.setSpawns(generateSpawns());
                             spawns = accProvider.blitzGame.spawns;
                           });},
@@ -1372,6 +1373,7 @@ class _BoardState extends State<Board> {
                 reverseTransitionDuration: Duration.zero,
               )
             );
+            setState(() => items = accProvider.blitzGame.items);
           },
           child: Container(
             decoration: BoxDecoration(

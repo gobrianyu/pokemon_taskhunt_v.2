@@ -110,12 +110,14 @@ class _CollectionState extends State<Collection> {
             padding: const EdgeInsets.only(left: 5, right: 5, bottom: 2),
             decoration: BoxDecoration(
               color: Colors.black,
-              boxShadow: [BoxShadow(
-                        color: Colors.black.withOpacity(0.5),
-                        spreadRadius: 0,
-                        blurRadius: 2,
-                        offset: const Offset(0, 2),
-                      )]
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 0,
+                  blurRadius: 2,
+                  offset: const Offset(0, 2),
+                )
+              ]
             ),
             child: Text(
               '${region.name.substring(0, 1).toUpperCase()}${region.name.substring(1)}  |  0/${region.dexSize}',

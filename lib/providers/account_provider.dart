@@ -31,7 +31,20 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addItem(Items item, int amount) {
+  void incrementFriendship(Pokemon? mon) {
+    _blitzGame.incrementFriendship(mon);
+    notifyListeners();
+  }
+
+  void setHeldItem(Pokemon mon, Items? item) {
+    _blitzGame.setHeldItem(mon, item);
+    notifyListeners();
+  }
+
+  void addItem(Items? item, int amount) {
+    if (item == null) {
+      return;
+    }
     _blitzGame.addItem(item, amount);
     _blitzGame.sortItems();
     notifyListeners();
@@ -42,8 +55,8 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void useItem(Items item) {
-    _blitzGame.useItem(item);
+  void removeItem(Items item) {
+    _blitzGame.removeItem(item);
     notifyListeners();
   }
 

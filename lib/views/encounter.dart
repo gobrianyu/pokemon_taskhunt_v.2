@@ -1004,7 +1004,7 @@ class _EncounterState extends State<Encounter> {
                               uiLock = false;
                             }
                           });
-                          accProvider.blitzGame.useItem(itemUsed);
+                          accProvider.blitzGame.removeItem(itemUsed);
                           if (itemUsed.key < 5) {
                             // TODO
                             if (accProvider.blitzGame.party.isEmpty) {  // Party is empty; first catch guaranteed success

@@ -59,6 +59,14 @@ class BlitzGame {
     }
   }
 
+  void setHeldItem(Pokemon mon, Items? item) {
+    for (Pokemon member in party) {
+      if (member == mon) {
+        member.heldItem = item;
+      }
+    }
+  }
+
   void incrementBalance(int amount) {
     balance += amount;
     if (balance > 9999999) {
@@ -87,6 +95,20 @@ class BlitzGame {
     // TODO: Implement
   }
 
+  void incrementFriendship(Pokemon? mon) {
+    if (mon == null) {
+      for (Pokemon member in party) {
+        if (member.friendship < 5) member.friendship++;
+      }
+    } else {
+      for (Pokemon member in party) {
+        if (member == mon && member.friendship < 5) {
+          member.friendship++;
+        }
+      }
+    }
+  }
+
   void addExp(int amount) {
     data.totalExpEarned += amount;
     if (party.isNotEmpty) {
@@ -104,7 +126,7 @@ class BlitzGame {
       ..sort((e1, e2) => e1.key.key.compareTo(e2.key.key)));
   }
 
-  void useItem(Items item) {
+  void removeItem(Items item) {
     if (items[item] != null) {
       if (items[item]! <= 1) {
         items.remove(item);

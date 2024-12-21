@@ -27,7 +27,7 @@ class MainAppState extends State<MainApp> {
 
   @override
   void initState() {
-    super.initState(); 
+    super.initState();
     _loadDexDB();
   }
 
