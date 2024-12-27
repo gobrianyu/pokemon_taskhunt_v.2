@@ -21,8 +21,8 @@ class AccountProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void incrementBalance(int amount) {
-    _blitzGame.incrementBalance(amount);
+  void incrementBalance(int amount, sourceKey) {
+    _blitzGame.incrementBalance(amount, sourceKey);
     notifyListeners();
   }
 
@@ -38,6 +38,15 @@ class AccountProvider extends ChangeNotifier {
 
   void setHeldItem(Pokemon mon, Items? item) {
     _blitzGame.setHeldItem(mon, item);
+    notifyListeners();
+  }
+
+  void addItemThroughPurchase(Items? item, int amount, int sourceKey) {
+    if (item == null) {
+      return;
+    }
+    _blitzGame.addItemThroughPurchase(item, amount, sourceKey);
+    _blitzGame.sortItems();
     notifyListeners();
   }
 

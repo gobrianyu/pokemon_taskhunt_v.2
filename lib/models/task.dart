@@ -15,7 +15,7 @@ abstract class Task {
   void updateProgress(int amount) {
     if (!isComplete && progress < total) {
       progress = amount;
-      if (progress > total) {
+      if (progress >= total) {
         progress = total;
         updateCompleted();
       }

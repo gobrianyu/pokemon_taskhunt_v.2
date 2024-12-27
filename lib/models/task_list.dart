@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:pokemon_taskhunt_2/models/blitz_game.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/models/tasks/primary_task.dart';
 
@@ -52,6 +53,12 @@ class TaskList {
     if (tasks.contains(task)) {
       tasks.remove(task);
     } 
+  }
+
+  void updateTasks(BlitzGameData data) {
+    for (Task task in tasks) {
+      task.checkTask(data);
+    }
   }
 
   List clone() {

@@ -76,7 +76,7 @@ PrimaryTask _weight1() {
       return _genGenTask('Use $rng items', rng, 1, 'item', 'totalItemsUsed');
     case >= 735 && < 790: 
       final int rng = random.nextInt(11) + 15;
-      return _genGenTask('Buy $rng items in the shop', rng, 1, 'shop', 'totalItemsBought');
+      return _genGenTask('Buy $rng items in the shop', rng, 1, 'shop', 'shopItemsBought');
     case >= 790 && < 835: 
       final int rng = random.nextInt(11) + 5;
       return _genGenTask('Sell $rng items in the shop', rng, 1, 'shop', 'totalItemsSold');
@@ -124,7 +124,7 @@ PrimaryTask _weight2() {
       return _genGenTask('Use $rng items', rng, 2, 'item', 'totalItemsUsed');
     case >= 751 && < 806: 
       final int rng = (random.nextInt(8) + 8) * 5;
-      return _genGenTask('Buy $rng items in the shop', rng, 2, 'shop', 'totalItemsBought');
+      return _genGenTask('Buy $rng items in the shop', rng, 2, 'shop', 'shopItemsBought');
     case >= 806 && < 851: 
       final int rng = (random.nextInt(5) + 6) * 5;
       return _genGenTask('Sell $rng items in the shop', rng, 2, 'shop', 'totalItemsSold');
@@ -182,7 +182,7 @@ PrimaryTask _weight3() {
       return _genGenTask('Use $rng items', rng, 3, 'item', 'totalItemsUsed');
     case >= 751 && < 806: 
       final int rng = (random.nextInt(4) + 4) * 25;
-      return _genGenTask('Buy $rng items in the shop', rng, 3, 'shop', 'totalItemsBought');
+      return _genGenTask('Buy $rng items in the shop', rng, 3, 'shop', 'shopItemsBought');
     case >= 806 && < 851: 
       final int rng = (random.nextInt(10) + 15) * 5;
       return _genGenTask('Sell $rng items in the shop', rng, 3, 'shop', 'totalItemsSold');
@@ -251,7 +251,7 @@ PrimaryTask _weight4() {
       return _genGenTask('Use $rng items', rng, 4, 'item', 'totalItemsUsed');
     case >= 751 && < 806: 
       final int rng = (random.nextInt(7) + 9) * 25;
-      return _genGenTask('Buy $rng items in the shop', rng, 4, 'shop', 'totalItemsBought');
+      return _genGenTask('Buy $rng items in the shop', rng, 4, 'shop', 'shopItemsBought');
     case >= 806 && < 851: 
       final int rng = (random.nextInt(6) + 10) * 15;
       return _genGenTask('Sell $rng items in the shop', rng, 4, 'shop', 'totalItemsSold');
@@ -322,7 +322,7 @@ PrimaryTask _weight5() {
       return _genGenTask('Use $rng items', rng, 5, 'item', 'totalItemsUsed');
     case >= 751 && < 806: 
       final int rng = (random.nextInt(5) + 26) * 20;
-      return _genGenTask('Buy $rng items in the shop', rng, 5, 'shop', 'totalItemsBought');
+      return _genGenTask('Buy $rng items in the shop', rng, 5, 'shop', 'shopItemsBought');
     case >= 806 && < 851: 
       final int rng = (random.nextInt(11) + 25) * 10;
       return _genGenTask('Sell $rng items in the shop', rng, 5, 'shop', 'totalItemsSold');
@@ -371,7 +371,7 @@ PrimaryTask _weight6() {
     case >= 626 && < 676: return _genGenTask('Win 230 battles', 230, 6, 'battle', 'battleWins');
     case >= 676 && < 701: return _genGenTask('Lose 75 battles', 75, 6, 'battle', 'battleLosses');
     case >= 701 && < 751: return _genGenTask('Use 1000 items', 1000, 6, 'item', 'totalItemsUsed');
-    case >= 751 && < 806: return _genGenTask('Buy 1200 items in the shop', 1200, 6, 'shop', 'totalItemsBought');
+    case >= 751 && < 806: return _genGenTask('Buy 1200 items in the shop', 1200, 6, 'shop', 'shopItemsBought');
     case >= 806 && < 851: return _genGenTask('Sell 700 items in the shop', 700, 6, 'shop', 'totalItemsSold');
     case >= 851 && < 881: return _genGenTask('Earn 100000 Coins selling items in the shop', 100000, 6, 'shop', 'sellCoinsEarned');
     case >= 881 && < 921: return _genGenTask('Evolve 50 Pokémon', 50, 6, 'team', 'totalEvolved');

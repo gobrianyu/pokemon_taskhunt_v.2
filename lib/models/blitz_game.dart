@@ -8,43 +8,95 @@ import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/models/task_list.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 
+// TODO list:
+// - stamina
+// - update egg logic
+// - implement buffs + slates
+// -
+
+
+// Represents a blitz-mode game session;
+// randomly generates 16 tasks with summed difficulty of 50.
+
 class BlitzGame {
-  List<Pokemon?> spawns;
+  List<Pokemon?> spawns;  // List of current spawns on the board; resets every round
   int balance;
   int round;
-  Map<Items, int> items;
-  Map<Items, int> buffs;
+  Map<Items, int> items;  // Player's bag
+  Map<Items, int> buffs;  // TODO: create buffs class?
+
+  TaskList taskList;  // List of tasks for this game session
   int tasksCompleted;
   int starsCompleted;
-  TaskList taskList;
-  List<Pokemon> party;
-  List<Egg> eggs;
+
+  List<Pokemon> party;  // Player's current party (team)
+  List<Egg> eggs;  // See `incubator.dart`
   int unlockedEggSlots;
-  Regions? slate;
 
-  BlitzGameData data;
+  Regions? slate;  // TODO: add to buffs?
 
+  BlitzGameData data;  // Player stats data
+
+
+  // Factory constructor; inits a game session at round 1 with:
+  // - balance: 200
+  // - 6 Poké balls in bag
+  // - 2 unlocked egg slots in incubator
+  // - everything else empty
   factory BlitzGame() {
-    return BlitzGame.withFields(spawns: [], balance: 200, round: 1, items: initItems(), buffs: {}, party: [], eggs: [Egg(imageAsset: "Mystery Egg", eggType: "", rarity: 4, shinyRate: 0, hatchCount: 10)], taskList: TaskList(16, 50), starsCompleted: 0, tasksCompleted: 0, data: BlitzGameData(), unlockedEggSlots: 2);
+    return BlitzGame.withFields(
+      spawns: [],
+      balance: 200,
+      round: 1,
+      items: initItems(),  // Returns bag with 6 Poké balls
+      buffs: {},
+      party: [],
+      eggs: [Egg(imageAsset: "Mystery Egg", eggType: "", rarity: 4, shinyRate: 0, hatchCount: 10)],  // TODO: remove temporary egg from init
+      taskList: TaskList(16, 50),  // 16 tasks with summed difficulty 50
+      starsCompleted: 0,
+      tasksCompleted: 0,
+      data: BlitzGameData(),
+      unlockedEggSlots: 2
+    );
   }
 
-  BlitzGame.withFields({required this.spawns, required this.balance, required this.round, required this.items, required this.buffs, required this.party, required this.eggs, required this.taskList, required this.starsCompleted, required this.tasksCompleted, required this.data, this.slate, required this.unlockedEggSlots});
+  BlitzGame.withFields({
+    required this.spawns,
+    required this.balance,
+    required this.round,
+    required this.items,
+    required this.buffs,
+    required this.party,
+    required this.eggs,
+    required this.taskList,
+    required this.starsCompleted,
+    required this.tasksCompleted,
+    required this.data,
+    this.slate,  // TODO: implement
+    required this.unlockedEggSlots
+  });
   
+  // Initializes an item bag with 6 Poké balls.
   static Map<Items, int> initItems() {
-    Map<Items, int> map = {};
-    map[Items.pokeBall] = 6;
-    return map;
+    Map<Items, int> bag = {};
+    bag[Items.pokeBall] = 6;
+    return bag;
   }
 
+  // Updates spawn list with provided new spawn list.
   void setSpawns(List<Pokemon?> newSpawns) {
     spawns = newSpawns;
   }
 
+  // Increments round; should only be called after successful catch,
+  // forced skip, or when stamina is 0.
   void incrementRound() {
     round++;
     incrementEggCounter();
   }
 
+  // Increments egg hatch progress; should only be called after
+  // incrementing game round.
   void incrementEggCounter() {
     for (Egg egg in eggs) {
       egg.incrementCounter();
@@ -59,6 +111,8 @@ class BlitzGame {
     }
   }
 
+  // Gives provided held item to specified party member;
+  // does nothing if member not found.
   void setHeldItem(Pokemon mon, Items? item) {
     for (Pokemon member in party) {
       if (member == mon) {
@@ -67,23 +121,76 @@ class BlitzGame {
     }
   }
 
-  void incrementBalance(int amount) {
+  // Increments player balance by specified amount;
+  // balance unable to exceed 9,999,999 coins.
+  // Updates relevant tasks.
+  //
+  // Params:
+  // - amount: integer amount to increment balance by.
+  // - sourceKey: integer key representing source of coins;
+  //   used solely for purpose of updating player data.
+  //     (0) no source
+  //     (1) catching
+  //     (2) battling
+  //     (3) selling
+  void incrementBalance(int amount, int sourceKey) {
     balance += amount;
     if (balance > 9999999) {
+      amount -= (balance - 9999999);
       balance = 9999999;
     }
+    data.totalCoinsEarned += amount;  // TODO: flush out data updating logic
+    switch (sourceKey) {
+      case 1: data.catchCoinsEarned += amount;
+      case 2: data.battleCoinsEarned += amount;
+      case 3: data.sellCoinsEarned += amount; 
+    }
+    taskList.updateTasks(data);
   }
 
+  // Decrements player balance by specified amount. Typically called
+  // when user spends coins. Caller should first check that balance
+  // cannot be decremented past 0.
   void decrementBalance(int amount) {
     balance -= amount;
   }
 
+  // Adds specified amount of an item to the player's item bag.
+  // Called only for shop-related purchases (i.e. Shop, Black Market, Egg Market). // TODO: update once shop names decided
+  // This method does not take care of balance transactions.
+  // 
+  // Params:
+  // - item: item that was purchased.
+  // - amount: integer amount to increment balance by.
+  // - sourceKey: integer key representing source of purchase;
+  //   used solely for purpose of updating player data.
+  //     (0) no source [unlikely/impossible]
+  //     (1) [regular] shop
+  //     (2) black market
+  //     (3) egg market
+  void addItemThroughPurchase(Items item, int amount, int sourceKey) {
+    switch (sourceKey) {
+      case 1:
+        data.shopItemsBought += amount;
+        data.itemsBought.update(item, (existing) => existing + amount, ifAbsent: () => amount);
+    }
+    addItem(item, amount);
+  }
+
+  // Adds specified amount of an item to the player's item bag.
   void addItem(Items item, int amount) {
+    data.totalItemsBought += amount;
     items.update(item, (existing) => existing + amount, ifAbsent: () => amount);
+    taskList.updateTasks(data);
   }
 
   void addCatchExp(int amount) {
     data.catchExpEarned += amount;
+    addExp(amount);
+  }
+
+  void addBattleExp(int amount) {
+    data.battleExpEarned += amount;
     addExp(amount);
   }
 
@@ -110,7 +217,6 @@ class BlitzGame {
   }
 
   void addExp(int amount) {
-    data.totalExpEarned += amount;
     if (party.isNotEmpty) {
       for (Pokemon mon in party) {
         double expEarned = amount / party.length * (1 + mon.friendship / 10);
@@ -118,6 +224,8 @@ class BlitzGame {
         mon.incrementExp(expEarned.round());
       }
     }
+    data.totalExpEarned += amount;
+    taskList.updateTasks(data);
   }
 
   void sortItems() {
@@ -364,6 +472,9 @@ class BlitzGameData {
   int totalItemsUsed;
   Map<Items, int> itemsUsed;
   int totalItemsBought;
+  int shopItemsBought;
+  int blackItemsBought;
+  int eggsBought;
   Map<Items, int> itemsBought;
   int totalItemsSold;
   Map<Items, int> itemsSold;
@@ -405,7 +516,10 @@ class BlitzGameData {
       battleLossesAd: 0,
       totalItemsUsed: 0,
       itemsUsed: {},
-      totalItemsBought: 0, 
+      totalItemsBought: 0,
+      shopItemsBought: 0,
+      blackItemsBought: 0,
+      eggsBought: 0,
       itemsBought: {}, 
       totalItemsSold: 0,
       itemsSold: {},
@@ -449,6 +563,9 @@ class BlitzGameData {
     required this.totalItemsUsed,
     required this.itemsUsed,
     required this.totalItemsBought,
+    required this.shopItemsBought,
+    required this.blackItemsBought,
+    required this.eggsBought,
     required this.itemsBought,
     required this.totalItemsSold,
     required this.itemsSold,

@@ -32,6 +32,7 @@ class _BoardState extends State<Board> {
   bool showShop = false;
   bool showBag = false;
   bool showTasks = false;
+  bool showCompletedTasks = true;
   bool showShopSell = false;
   int buyAmount = 0;
   int sellAmount = 0;
@@ -43,6 +44,7 @@ class _BoardState extends State<Board> {
   late AccountProvider accProvider;
   List<Pokemon?> spawns = [];
   bool isSpawnsInitialized = false;
+  List<Task> completedTasks = [];
 
   ScrollController scrollController = ScrollController(
     initialScrollOffset: 0, // or whatever offset you wish
@@ -263,6 +265,39 @@ class _BoardState extends State<Board> {
         }
       }
     }
+    if (completedTasks.isNotEmpty) {
+      tiles.add(
+        GestureDetector(
+          onTap: () {
+            setState(() => showCompletedTasks = !showCompletedTasks);
+          },
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(showCompletedTasks ? Icons.arrow_drop_up : Icons.arrow_drop_down, color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.only(left: 5, right: 5),
+                  child: Text(
+                    'Completed',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+                Icon(showCompletedTasks ? Icons.arrow_drop_up : Icons.arrow_drop_down, color: Colors.white),
+              ],
+            ),
+          ),
+        )
+      );
+      if (showCompletedTasks) {
+        for (Task task in completedTasks) {
+          tiles.add(_completedTaskTile(task));
+        }
+      }
+    }
     return tiles;
   }
 
@@ -282,6 +317,57 @@ class _BoardState extends State<Board> {
     );
   }
 
+  Widget _completedTaskTile(Task task) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white54),
+        borderRadius: BorderRadius.circular(4),
+        color: Colors.white10
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(
+                task.difficulty,
+                (index) => Icon(
+                  Icons.stars,
+                  color: task.difficulty == 6 ? const Color.fromARGB(255, 81, 78, 63) : const Color.fromARGB(255, 48, 48, 48),
+                  size: 50
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                task.text,
+                style: const TextStyle(
+                  color: Colors.white54,
+                  fontSize: 11.5
+                ),
+              ),
+              const Spacer(),
+              Container(
+                width: 70,
+                padding: const EdgeInsets.only(left: 5, right: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(30)
+                ),
+                child: const Text('Completed', style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.bold), textAlign: TextAlign.center,)
+              )
+            ],
+          ),
+        ],
+      )
+    );
+  }
+
   Widget _claimTaskTile(Task task) {
     return GestureDetector(
       onTap: () {
@@ -291,7 +377,10 @@ class _BoardState extends State<Board> {
             pageBuilder: (context, animation1, animation2) => Encounter(
               mon: accProvider.blitzGame.generateEncounter(widget.fullDex),
               onReturn: (bool claimed) {
-                accProvider.claimTask(task);
+                if (claimed) {
+                  accProvider.claimTask(task);
+                  completedTasks.add(task);
+                }
               }
             ),
             transitionDuration: Duration.zero,
@@ -771,7 +860,7 @@ class _BoardState extends State<Board> {
                     onTap: () => setState(() {
                       if (sellAmount > 0) {
                         int totalCost = (sellAmount / 2 * _bagSelectedItem!.cost).toInt();                            
-                        accProvider.incrementBalance(totalCost);
+                        accProvider.incrementBalance(totalCost, 3);
                         for (int i = 0; i < sellAmount; i++) {
                           accProvider.removeItem(_bagSelectedItem!);
                         }
@@ -1030,7 +1119,7 @@ class _BoardState extends State<Board> {
                       if (buyAmount > 0) {
                         final totalCost = buyAmount * _shopSelectedItem!.cost;                            
                         accProvider.decrementBalance(totalCost);
-                        accProvider.addItem(_shopSelectedItem!, buyAmount);
+                        accProvider.addItemThroughPurchase(_shopSelectedItem!, buyAmount, 1);
                         items = accProvider.blitzGame.items;
                         balance -= totalCost;
                         buyAmount = 0;
@@ -1556,7 +1645,7 @@ class _BoardState extends State<Board> {
           GestureDetector(
             onTap: () {
               setState(() {balance += 100;});
-              accProvider.incrementBalance(100);
+              accProvider.incrementBalance(100, 0);  // TODO: remove
               Navigator.push(
                 context,
                 PageRouteBuilder(

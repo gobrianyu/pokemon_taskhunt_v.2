@@ -132,7 +132,7 @@ class _EncounterState extends State<Encounter> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        accProvider.incrementBalance(10);
+                        accProvider.incrementBalance(10, 0);
                         accProvider.addExp(expGain);
                         Navigator.pop(context);
                       },
@@ -422,7 +422,7 @@ class _EncounterState extends State<Encounter> {
     return GestureDetector(
       onTap: () {
         accProvider.addCatchExp(exp);
-        accProvider.incrementBalance(coins);
+        accProvider.incrementBalance(coins, 1);
         accProvider.partyAdd(widget.mon, null);
         widget.onReturn(true);
         Navigator.pop(context);
@@ -471,7 +471,7 @@ class _EncounterState extends State<Encounter> {
               GestureDetector(
                 onTap: () {
                   accProvider.addCatchExp(exp);
-                  accProvider.incrementBalance(coins);
+                  accProvider.incrementBalance(coins, 1);
                   // accProvider.partyAdd(widget.mon, null);
                   widget.onReturn(true);
                   Navigator.pushReplacement(
@@ -504,7 +504,7 @@ class _EncounterState extends State<Encounter> {
               GestureDetector(
                 onTap: () {
                   accProvider.addCatchExp(exp);
-                  accProvider.incrementBalance(coins);
+                  accProvider.incrementBalance(coins, 1);
                   widget.onReturn(true);
                   Navigator.pop(context);
                 },

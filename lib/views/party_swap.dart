@@ -44,11 +44,11 @@ class _PartySwapState extends State<PartySwap> {
                         flex: 5,
                         child: _partyTiles(),
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Icon(Icons.keyboard_arrow_up),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.all(10),
                             child: Text(
                               'Select a Pokémon to swap out',
@@ -90,20 +90,20 @@ class _PartySwapState extends State<PartySwap> {
             ),
             child: Column(
               children: [
-                Icon(Icons.info_rounded, size: 30),
-                SizedBox(height: 15),
+                const Icon(Icons.info_rounded, size: 30),
+                const SizedBox(height: 15),
                 Text(
                   'Do you want to swap ${selectedForTransfer?.nickname} out of the party?',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15)
+                  style: const TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'This action cannot be undone.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,8 +115,8 @@ class _PartySwapState extends State<PartySwap> {
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -129,7 +129,7 @@ class _PartySwapState extends State<PartySwap> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Cancel',
                               style: TextStyle(
                                 color: Colors.white
@@ -147,8 +147,8 @@ class _PartySwapState extends State<PartySwap> {
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -161,7 +161,7 @@ class _PartySwapState extends State<PartySwap> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Swap',
                               style: TextStyle(
                                 color: Colors.white
@@ -197,20 +197,20 @@ class _PartySwapState extends State<PartySwap> {
             ),
             child: Column(
               children: [
-                Icon(Icons.info_rounded, size: 30),
-                SizedBox(height: 15),
+                const Icon(Icons.info_rounded, size: 30),
+                const SizedBox(height: 15),
                 Text(
                   'Do you want to release ${widget.swapMon.nickname}?',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15)
+                  style: const TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'This action cannot be undone.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -222,8 +222,8 @@ class _PartySwapState extends State<PartySwap> {
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -236,7 +236,7 @@ class _PartySwapState extends State<PartySwap> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Cancel',
                               style: TextStyle(
                                 color: Colors.white
@@ -253,8 +253,8 @@ class _PartySwapState extends State<PartySwap> {
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -267,7 +267,7 @@ class _PartySwapState extends State<PartySwap> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Release',
                               style: TextStyle(
                                 color: Colors.white
@@ -299,7 +299,7 @@ class _PartySwapState extends State<PartySwap> {
       decoration: BoxDecoration(
         border: Border.all(),
         borderRadius: BorderRadius.circular(10),
-        // color: const Color.fromARGB(20, 0, 0, 0)
+        color: const Color.fromARGB(20, 0, 0, 0)
       ),
       child: Row(
         children: [
@@ -333,7 +333,7 @@ class _PartySwapState extends State<PartySwap> {
       alignment: Alignment.topRight,
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: BorderRadius.circular(10),
@@ -349,22 +349,22 @@ class _PartySwapState extends State<PartySwap> {
                 children: [
                   Row(
                     children: [
-                      Text(widget.swapMon.nickname, style: TextStyle(fontSize: 16)),
-                      SizedBox(width: 2),
+                      Text(widget.swapMon.nickname, style: const TextStyle(fontSize: 16)),
+                      const SizedBox(width: 2),
                       widget.swapMon.gender == -1 ? const SizedBox() : Icon(widget.swapMon.gender == 0 ? Icons.male : Icons.female, size: 16, color: Colors.black),
-                      SizedBox(width: 2),
-                      widget.swapMon.isShiny? Icon(Icons.auto_awesome, size: 16, color: Colors.black) : const SizedBox(),
+                      const SizedBox(width: 2),
+                      widget.swapMon.isShiny? const Icon(Icons.auto_awesome, size: 16, color: Colors.black) : const SizedBox(),
                     ],
                   ),
                   Row(
                     children: [
-                      Text('Lv.${widget.swapMon.level}', style: TextStyle(fontSize: 12),),
-                      SizedBox(width: 20),
-                      Text(widget.swapMon.heldItem == null ? 'No Held Items' : 'Held Item: ${widget.swapMon.heldItem?.name}', style: TextStyle(fontSize: 12),),
+                      Text('Lv.${widget.swapMon.level}', style: const TextStyle(fontSize: 12),),
+                      const SizedBox(width: 20),
+                      Text(widget.swapMon.heldItem == null ? 'No Held Items' : 'Held Item: ${widget.swapMon.heldItem?.name}', style: const TextStyle(fontSize: 12),),
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 5),
                     height: 10,
                     width: MediaQuery.of(context).size.width / 2,
                     decoration: BoxDecoration(
@@ -380,13 +380,13 @@ class _PartySwapState extends State<PartySwap> {
         Transform.rotate(
           angle: 1/3,
           child: Container(
-            padding: EdgeInsets.all(8),
-            margin: EdgeInsets.only(top: 5),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.only(top: 5),
+            decoration: const BoxDecoration(
               color: Colors.black,
               shape: BoxShape.circle
             ),
-            child: Text(
+            child: const Text(
               'NEW', 
               style: TextStyle(
                 color: Colors.white,
@@ -415,7 +415,7 @@ class _PartySwapState extends State<PartySwap> {
       },
       child: Container(
         padding: const EdgeInsets.all(5),
-        margin: EdgeInsets.all(4),
+        margin: const EdgeInsets.all(4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           border: Border.all(width: selectedForTransfer == mon ? 2.5 : 1),
@@ -429,7 +429,7 @@ class _PartySwapState extends State<PartySwap> {
               children: [
                 Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle
                     ),
@@ -442,7 +442,7 @@ class _PartySwapState extends State<PartySwap> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(mon.nickname, style: TextStyle(color: Colors.black)),
+                      Text(mon.nickname, style: const TextStyle(color: Colors.black)),
                       mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, size: 15, color: Colors.black),
                     ],
                   ),
@@ -451,7 +451,7 @@ class _PartySwapState extends State<PartySwap> {
                   padding: const EdgeInsets.only(left: 5, right: 5),
                   child: Row(
                     children: [
-                      Text('Lv.${mon.level}', style: TextStyle(color: Colors.black)),
+                      Text('Lv.${mon.level}', style: const TextStyle(color: Colors.black)),
                       const SizedBox(width: 5),
                       Expanded(
                         child: ClipRRect(
@@ -467,7 +467,7 @@ class _PartySwapState extends State<PartySwap> {
                                 Expanded(
                                   flex: mon.level == 100 ? 1 : lvlProgress,
                                   child: Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.black,
                                       border: Border(bottom: BorderSide(color: Colors.black,), top: BorderSide(color: Colors.black,))
                                     ),
@@ -499,7 +499,7 @@ class _PartySwapState extends State<PartySwap> {
                     children: [
                       Icon(selectedForTransfer == mon ? Icons.check_circle_rounded : Icons.catching_pokemon, size: 30, color: Colors.black), // TODO: change to poke ball asset image
                       const Spacer(),
-                      mon.isShiny? Icon(Icons.auto_awesome, size: 20, color: Colors.black) : const SizedBox(),
+                      mon.isShiny? const Icon(Icons.auto_awesome, size: 20, color: Colors.black) : const SizedBox(),
                     ],
                   ),
                 ),
@@ -536,7 +536,7 @@ class _PartySwapState extends State<PartySwap> {
 
   Widget _emptyTile() {
     return Container(
-      margin: EdgeInsets.all(4),
+      margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black38),
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(5), bottomLeft: Radius.circular(5), topRight: Radius.circular(5))
@@ -558,8 +558,8 @@ class _PartySwapState extends State<PartySwap> {
               },
               child: Container(
                 height: 40,
-                padding: EdgeInsets.all(2.5),
-                margin: EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.all(2.5),
+                margin: const EdgeInsets.only(left: 10, right: 10),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.black,
@@ -572,7 +572,7 @@ class _PartySwapState extends State<PartySwap> {
                     border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(20)
                   ),
-                  child: Text(
+                  child: const Text(
                     'Cancel',
                     style: TextStyle(
                       color: Colors.white
@@ -591,8 +591,8 @@ class _PartySwapState extends State<PartySwap> {
               },
               child: Container(
                 height: 40,
-                padding: EdgeInsets.all(2.5),
-                margin: EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.all(2.5),
+                margin: const EdgeInsets.only(left: 10, right: 10),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: selectedForTransfer != null ? Colors.black : Colors.transparent,
