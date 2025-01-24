@@ -6,6 +6,7 @@ import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/collection.dart';
 import 'package:pokemon_taskhunt_2/views/encounter.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
 import 'package:provider/provider.dart';
@@ -1593,6 +1594,40 @@ class _BoardState extends State<Board> {
                 child: Row(
                   children: [
                     const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) => Collection(widget.fullDex),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.only(right: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: showShop ? Colors.white : null
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              border: Border.all(),
+                            ),
+                            child: Icon(
+                              Icons.book,
+                              size: 20
+                            )
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(right: 11),

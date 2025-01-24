@@ -2384,10 +2384,10 @@
                 "height": 80,
                 "weight": 8.6,
                 "entry": "Smells incredibly foul! However, around one out of a thousand people enjoy sniffing its nose-bending stink.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/gloom_m.png",
+                "image asset f": "assets/gloom_f.png",
+                "image asset m shiny": "assets/gloom_m_shiny.png",
+                "image asset f shiny": "assets/gloom_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -2672,10 +2672,10 @@
                 "height": 20,
                 "weight": 0.8,
                 "entry": "Its head pokes up approximately eight inches out of the ground. However, its real size remains a mystery to this day.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/diglett.png",
+                "image asset f": "assets/diglett.png",
+                "image asset m shiny": "assets/diglett_shiny.png",
+                "image asset f shiny": "assets/diglett_shiny.png"
             },
             {
                 "key": 50.01,
@@ -5427,10 +5427,10 @@
                 "height": 150,
                 "weight": 40.5,
                 "entry": "It can pass through other dimensions and can appear anywhere. It caused a stir one time when it stuck just one leg out of a wall.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/gengar.png",
+                "image asset f": "assets/gengar.png",
+                "image asset m shiny": "assets/gengar_shiny.png",
+                "image asset f shiny": "assets/gengar_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -7849,10 +7849,10 @@
                 "height": 80,
                 "weight": 36.5,
                 "entry": "The world's first artificially created Pokémon. It can travel through electronic space.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/porygon.png",
+                "image asset f": "assets/porygon.png",
+                "image asset m shiny": "assets/porygon_shiny.png",
+                "image asset f shiny": "assets/porygon_shiny.png"
             }
         ],
         "gimmick forms": [],

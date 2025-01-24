@@ -356,15 +356,39 @@ class _CollectionEntryState extends State<CollectionEntry> {
         border: Border.all(color: Colors.black, width: 2),
         borderRadius: const BorderRadius.all(Radius.circular(15))
       ),
-      child: PageView.builder( // TODO: ensure only unlocked forms show
-        controller: _pageController,
-        itemCount: forms.length,
-        itemBuilder: (context, index) {
-          return _getImage(forms[index]);
-        },
-        onPageChanged: (index) => {setState(() {
-          currPageIndex = index;
-        })},
+      child: Stack(
+        children: [
+          Row(
+            children: [
+              if (forms.length > 1) GestureDetector(
+                onTap: () {
+                  _pageController.previousPage(curve: Curves.linear, duration: Duration(milliseconds: 1));
+                },
+                child: Icon(Icons.chevron_left_rounded)
+              ),
+              Expanded(
+                child: PageView.builder( // TODO: ensure only unlocked forms show
+                  controller: _pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: forms.length,
+                  itemBuilder: (context, index) {
+                    return _getImage(forms[index]);
+                  },
+                  onPageChanged: (index) => {setState(() {
+                    currPageIndex = index;
+                  })},
+                ),
+              ),
+              if (forms.length > 1) GestureDetector(
+                onTap: () {
+                  _pageController.nextPage(curve: Curves.decelerate, duration: Duration(milliseconds: 1));
+                },
+                child: Icon(Icons.chevron_right_rounded)
+              ),
+            ],
+          ),
+          Container(), //TODO
+        ],
       ),
     );
   }
