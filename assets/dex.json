@@ -3462,10 +3462,10 @@
                 "height": 100,
                 "weight": 20,
                 "entry": "Under attack, it uses its belly spiral to put the foe to sleep. It then makes its escape.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/poliwhirl.png",
+                "image asset f": "assets/poliwhirl.png",
+                "image asset m shiny": "assets/poliwhirl_shiny.png",
+                "image asset f shiny": "assets/poliwhirl_shiny.png"
             }
         ],
         "gimmick forms": [],

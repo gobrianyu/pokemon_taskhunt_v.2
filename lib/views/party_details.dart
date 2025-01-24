@@ -222,8 +222,8 @@ class _PartyDetailsState extends State<PartyDetails> {
                         onTap: () {
                           if (_bagSelectedItem != null) {
                             _updateHeldItem();
+                            Navigator.pop(context);
                           }
-                          Navigator.pop(context);
                         },
                         child: Container(
                           height: 40,
@@ -308,36 +308,36 @@ class _PartyDetailsState extends State<PartyDetails> {
   }
 
   Widget _bagTile(Items item, int amount, StateSetter setter) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          if (_bagSelectedItem != item) {
-            _bagSelectedItem = item;
-          } else {
-            _bagSelectedItem = null;
-          }
-        });
-        setter(() {});
-      },
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          if (_bagSelectedItem == item) Container(
-            margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.only(left: 5, right: 5, top: 45, bottom: 3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(width: 0.5)
-            ),
-            child: Text(
-              item.description,
-              style: TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.w300
-              )
-            )
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        if (_bagSelectedItem == item) Container(
+          margin: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(left: 5, right: 5, top: 45, bottom: 3),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 0.5)
           ),
-          Container(
+          child: Text(
+            item.description,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w300
+            )
+          )
+        ),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              if (_bagSelectedItem != item) {
+                _bagSelectedItem = item;
+              } else {
+                _bagSelectedItem = null;
+              }
+            });
+            setter(() {});
+          },
+          child: Container(
             height: 50,
             margin: const EdgeInsets.only(top: 3),
             padding: const EdgeInsets.only(right: 15),
@@ -382,8 +382,8 @@ class _PartyDetailsState extends State<PartyDetails> {
               ]
             )
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -1061,19 +1061,20 @@ class StatSpreadHexagon extends StatelessWidget {
 
   List<double> getMultipliers() {
     List<double> multipliers = [];
-    multipliers.add(min(stats.def / maxStats.def, 1));
-    multipliers.add(min(stats.speed / maxStats.speed, 1));
-    multipliers.add(min(stats.spDef / maxStats.spDef, 1));
-    multipliers.add(min(stats.spAtk / maxStats.spAtk, 1));
-    multipliers.add(min(stats.hp / maxStats.hp, 1));
-    multipliers.add(min(stats.atk / maxStats.atk, 1));
+    int k = 10;  // expansion constant
+    multipliers.add(min((stats.def + k) / (maxStats.def + k), 1));
+    multipliers.add(min((stats.speed + k) / (maxStats.speed + k), 1));
+    multipliers.add(min((stats.spDef + k) / (maxStats.spDef + k), 1));
+    multipliers.add(min((stats.spAtk + k) / (maxStats.spAtk + k), 1));
+    multipliers.add(min((stats.hp + k) / (maxStats.hp + k), 1));
+    multipliers.add(min((stats.atk + k) / (maxStats.atk + k), 1));
     return multipliers;
   } 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Stack(
         alignment: Alignment.center,
         children: [

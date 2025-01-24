@@ -593,6 +593,7 @@ class BlitzGameData {
       case 'paradoxCaught': return paradoxCaught;
       case 'shinyCaught': return shinyCaught;
       case 'failCaught': return failCaught;
+      case 'uniqueCaught': return uniqueCaught.length;
       case 'totalHatched': return totalHatched;
       case 'typeHatched': return typeHatched;
       case 'regionHatched': return regionHatched;
@@ -607,14 +608,17 @@ class BlitzGameData {
       case 'battleLossesAd': return battleLossesAd;
       case 'totalItemsUsed': return totalItemsUsed;
       case 'itemsUsed': return itemsUsed;
-      case 'totalItemsBought': return totalItemsBought; 
+      case 'totalItemsBought': return totalItemsBought;
+      case 'shopItemsBought': return shopItemsBought;
+      case 'blackItemsBought': return blackItemsBought;
+      case 'eggsBought': return eggsBought; 
       case 'itemsBought': return itemsBought;
       case 'totalItemsSold': return totalItemsSold;
       case 'itemsSold': return itemsSold;
       case 'lastEvolved': return lastEvolved;
       case 'totalEvolved': return totalEvolved;
       default:
-        throw ArgumentError('Field not found');
+        throw ArgumentError('Field not found: $key');
     }
   }
 }
