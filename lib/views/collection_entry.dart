@@ -127,62 +127,78 @@ class _CollectionEntryState extends State<CollectionEntry> {
     Map<dex.DexEntry, int> filteredDex = widget.newFilteredDex;
     if (columns.length < head.evoStage) {
       columns.add(Column(children: [
-        GestureDetector(
-          onTap: () {
-            if (initialPageIndex == -1) {
-              int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
-              if (newIndex == -1) {
-                filteredEntries.add(widget.entries[head.key.toInt() - 1]);
-                filteredIndexes.add(head.key.getDecimals());
-              } else {
-                filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
-                filteredIndexes.insert(newIndex, head.key.getDecimals());
-              }
-              initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
-              filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
-            } else {
-              filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
-            }
-            Navigator.pushReplacement(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => CollectionPageView(
-                  entries: widget.entries,
-                  filteredDex: filteredDex,
-                  initialPageIndex: initialPageIndex,
-                ),
-              ),
-            );
-          },
-          child: Image(image: AssetImage(head.image), width: 100),
+        Row(
+          children: [
+            if (columns.isNotEmpty) const Padding(
+              padding: const EdgeInsets.all(5),
+              child: Icon(Icons.arrow_right_alt_rounded),
+            ),
+            GestureDetector(
+              onTap: () {
+                if (initialPageIndex == -1) {
+                  int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
+                  if (newIndex == -1) {
+                    filteredEntries.add(widget.entries[head.key.toInt() - 1]);
+                    filteredIndexes.add(head.key.getDecimals());
+                  } else {
+                    filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+                    filteredIndexes.insert(newIndex, head.key.getDecimals());
+                  }
+                  initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
+                  filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+                } else {
+                  filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
+                }
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => CollectionPageView(
+                      entries: widget.entries,
+                      filteredDex: filteredDex,
+                      initialPageIndex: initialPageIndex,
+                    ),
+                  ),
+                );
+              },
+              child: Image(image: AssetImage(head.image), width: MediaQuery.of(context).size.width / 3 - 40),
+            ),
+          ],
         )
       ]));
     } else {
       columns[head.evoStage - 1].children.add(
-        GestureDetector(
-          onTap: () {
-            if (initialPageIndex == -1) {
-              int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
-              if (newIndex == -1) {
-                filteredEntries.add(widget.entries[head.key.toInt() - 1]);
-                filteredIndexes.add(head.key.getDecimals());
-              } else {
-                filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
-                filteredIndexes.insert(newIndex, head.key.getDecimals());
-              }
-              initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
-              filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
-            } else {
-              filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
-            }
-            Navigator.pushReplacement(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
-              ),
-            );
-          },
-          child: Image(image: AssetImage(head.image), width: 100)
+        Row(
+          children: [
+            if (columns.isNotEmpty) const Padding(
+              padding: EdgeInsets.all(5),
+              child: Icon(Icons.arrow_right_alt_rounded),
+            ),
+            GestureDetector(
+              onTap: () {
+                if (initialPageIndex == -1) {
+                  int newIndex = filteredEntries.indexWhere((e) => e.dexNum > head.key.toInt());
+                  if (newIndex == -1) {
+                    filteredEntries.add(widget.entries[head.key.toInt() - 1]);
+                    filteredIndexes.add(head.key.getDecimals());
+                  } else {
+                    filteredEntries.insert(newIndex, widget.entries[head.key.toInt() - 1]);
+                    filteredIndexes.insert(newIndex, head.key.getDecimals());
+                  }
+                  initialPageIndex = filteredEntries.indexWhere((e) => e.dexNum == head.key.toInt());
+                  filteredDex = Map.fromIterables(filteredEntries, filteredIndexes);
+                } else {
+                  filteredDex[filteredDex.entries.firstWhere((e) => e.key.dexNum == head.key.toInt()).key] = head.key.getDecimals();
+                }
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => CollectionPageView(entries: widget.entries, filteredDex: filteredDex, initialPageIndex: initialPageIndex),
+                  ),
+                );
+              },
+              child: Image(image: AssetImage(head.image), width: MediaQuery.of(context).size.width / 3 - 40)
+            ),
+          ],
         )
       );
     }
@@ -197,7 +213,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   Widget _buildTypes(List<Types> types) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, top: 5),
+      padding: const EdgeInsets.only(left: 10, top: 5),
       child: Row(
         children: types.map((type) => _typeContainer(type)).toList()
       ),
@@ -238,7 +254,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
           width: 30,
           child: Text(
             '$amount',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w700
             ),
           )
@@ -320,10 +336,10 @@ class _CollectionEntryState extends State<CollectionEntry> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 4, top: 15),
+            padding: const EdgeInsets.only(left: 4, top: 15),
             child: Text(
               '$category Pokémon',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)
             ),
           ),
           const SizedBox(height: 10,),
@@ -331,8 +347,8 @@ class _CollectionEntryState extends State<CollectionEntry> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(child: Icon(Icons.search)),
-              SizedBox(width: 5),
+              Container(child: const Icon(Icons.search)),
+              const SizedBox(width: 5),
               Flexible(
                 child: Text(
                   entryText,
@@ -357,14 +373,19 @@ class _CollectionEntryState extends State<CollectionEntry> {
         borderRadius: const BorderRadius.all(Radius.circular(15))
       ),
       child: Stack(
+        alignment: Alignment.bottomRight,
         children: [
           Row(
             children: [
               if (forms.length > 1) GestureDetector(
                 onTap: () {
-                  _pageController.previousPage(curve: Curves.linear, duration: Duration(milliseconds: 1));
+                  _pageController.previousPage(curve: Curves.linear, duration: const Duration(milliseconds: 1));
                 },
-                child: Icon(Icons.chevron_left_rounded)
+                child: Icon(
+                  Icons.chevron_left_rounded,
+                  size: 30,
+                  color: currPageIndex <= 0 ? Colors.black26 : Colors.black
+                )
               ),
               Expanded(
                 child: PageView.builder( // TODO: ensure only unlocked forms show
@@ -381,13 +402,29 @@ class _CollectionEntryState extends State<CollectionEntry> {
               ),
               if (forms.length > 1) GestureDetector(
                 onTap: () {
-                  _pageController.nextPage(curve: Curves.decelerate, duration: Duration(milliseconds: 1));
+                  _pageController.nextPage(curve: Curves.decelerate, duration: const Duration(milliseconds: 1));
                 },
-                child: Icon(Icons.chevron_right_rounded)
+                child: Icon(
+                  Icons.chevron_right_rounded,
+                  size: 30,
+                  color: currPageIndex < forms.length - 1 ? Colors.black : Colors.black26
+                )
               ),
             ],
           ),
-          Container(), //TODO
+          if (forms.length > 1) Container(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 2, bottom: 2),
+            decoration: const BoxDecoration(
+              color: Colors.black54
+            ),
+            child: Text(
+              '${currPageIndex + 1}/${forms.length}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12
+              )
+            )
+          ), //TODO
         ],
       ),
     );
