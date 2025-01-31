@@ -1492,6 +1492,15 @@ class _BoardState extends State<Board> {
               shape: BoxShape.circle,
               color: Colors.black
             ),
+            alignment: Alignment.center,
+            child: Text(
+              'EMPTY',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 50, 50, 50),
+                fontSize: 12
+              )
+            )
           ),
         )
       );
@@ -1610,7 +1619,7 @@ class _BoardState extends State<Board> {
                         margin: const EdgeInsets.only(right: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
-                          color: showShop ? Colors.white : null
+                          color: showShop || showBag ? Colors.white : null
                         ),
                         child: AspectRatio(
                           aspectRatio: 1,
@@ -1633,7 +1642,7 @@ class _BoardState extends State<Board> {
                       margin: const EdgeInsets.only(right: 11),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        color: showShop ? Colors.white : null
+                        color: showShop || showBag ? Colors.white : null
                       ),
                       child: Container(
                         width: 77,

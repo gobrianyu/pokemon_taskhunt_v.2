@@ -289,7 +289,7 @@ class _IncubatorState extends State<Incubator> {
   Widget _eggTile(Egg egg) {
     List<Widget> stars = [];
     for (int i = 0; i < min(egg.rarity, 6); i++) {
-      stars.add(Icon(Icons.star, color: Color.fromARGB(220, 0, 0, 0), size: MediaQuery.of(context).size.width / 25));
+      stars.add(Icon(Icons.star_rounded, color: Color.fromARGB(220, 0, 0, 0), size: MediaQuery.of(context).size.width / 25));
     }
     return GestureDetector(
       onTap: () {

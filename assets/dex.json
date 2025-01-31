@@ -2175,10 +2175,10 @@
                 "height": 120,
                 "weight": 12,
                 "entry": "Its body is very elastic. By inhaling deeply, it can continue to inflate itself without limit.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/wigglytuff.png",
+                "image asset f": "assets/wigglytuff.png",
+                "image asset m shiny": "assets/wigglytuff_shiny.png",
+                "image asset f shiny": "assets/wigglytuff_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -3042,10 +3042,10 @@
                 "height": 80,
                 "weight": 19.6,
                 "entry": "Appears unaware and totally vacant. However, if its chronic headache worsens, it starts exhibiting peculiar powers.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/psyduck.png",
+                "image asset f": "assets/psyduck.png",
+                "image asset m shiny": "assets/psyduck_shiny.png",
+                "image asset f shiny": "assets/psyduck_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -5235,10 +5235,10 @@
                 "height": 30,
                 "weight": 4,
                 "entry": "Even when its shell is closed, its tongue still hangs out. If you give its tongue a good yank, the shock will cause Shellder to open its shell.",
-                "image asset m": "assets/ivysaur.png",
-                "image asset f": "assets/ivysaur.png",
-                "image asset m shiny": "assets/ivysaur.png",
-                "image asset f shiny": "assets/ivysaur.png"
+                "image asset m": "assets/shellder.png",
+                "image asset f": "assets/shellder.png",
+                "image asset m shiny": "assets/shellder_shiny.png",
+                "image asset f shiny": "assets/shellder_shiny.png"
             }
         ],
         "gimmick forms": [],

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/battle_screen.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
 import 'package:pokemon_taskhunt_2/views/party_swap.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class Encounter extends StatefulWidget {
   State<Encounter> createState() => _EncounterState();
 }
 
-class _EncounterState extends State<Encounter> {
+class  _EncounterState extends State<Encounter> {
   Random random = Random();
   late AccountProvider accProvider;
   bool showBag = false;
@@ -671,7 +672,7 @@ class _EncounterState extends State<Encounter> {
         children: [
           const Spacer(),
           Container(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 20),
+            padding: const EdgeInsets.only(left: 18, right: 18, top: 15, bottom: 15),
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -679,15 +680,26 @@ class _EncounterState extends State<Encounter> {
             ),
             child: Column(
               children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(top: 10),
-                  child: const Text('Opponent')
-                ),
                 _opponentTile(),
-                const Text('vs.'),
-                Column(
-                  children: _fightSelectorTiles()
+                const Padding(
+                  padding: EdgeInsets.all(3),
+                  child: Text(
+                    'vs.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 5, bottom: 8, left: 8, right: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    border: Border.all(color: Colors.black26),
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Column(
+                    children: _fightSelectorTiles()
+                  ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 10),
@@ -699,7 +711,14 @@ class _EncounterState extends State<Encounter> {
                   child: GestureDetector(
                     onTap: () {
                       if (_fightSelectedMon != null) {
-                        // TODO
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) => BattleScreen(mon: _fightSelectedMon!, opponent: widget.mon),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       }
                     },
                     child: Container(
@@ -771,13 +790,12 @@ class _EncounterState extends State<Encounter> {
 
   Widget _opponentTile() {
     return Container(
-      height: 50,
+      // height: 50,
       margin: const EdgeInsets.only(top: 3),
-      padding: const EdgeInsets.only(right: 5),
+      padding: const EdgeInsets.only(right: 5, top: 10, bottom: 10),
       decoration: BoxDecoration(
         border: Border.all(),
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.black
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(12), bottomRight: Radius.circular(12), topRight: Radius.circular(3), bottomLeft: Radius.circular(3)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -785,11 +803,10 @@ class _EncounterState extends State<Encounter> {
           Container(
             margin: const EdgeInsets.only(left: 10, right: 10),
             padding: const EdgeInsets.all(2),
-            height: 40,
-            width: 40,
+            height: 45,
+            width: 45,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white
             ),
             child: Image(image: AssetImage(widget.mon.imageAsset))
           ),
@@ -800,9 +817,9 @@ class _EncounterState extends State<Encounter> {
               Row(
                 children: [
                   const SizedBox(width: 0),
-                  Text(widget.mon.species, style: const TextStyle(color: Colors.white)),
+                  Text(widget.mon.species),
                   const SizedBox(width: 1),
-                  widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 14, color: Colors.white),
+                  widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 14),
                   const SizedBox(width: 1),
                   if (widget.mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 14),
                 ],
@@ -810,13 +827,14 @@ class _EncounterState extends State<Encounter> {
               Text(
                 'Lv.${widget.mon.level}',
                 style: const TextStyle(
-                  color: Colors.white,
                   fontSize: 10
                 )
               )
             ],
           ),
           const Spacer(),
+          Icon(Icons.brightness_7_rounded),
+          SizedBox(width: 10)
         ]
       )
     );
@@ -827,13 +845,37 @@ class _EncounterState extends State<Encounter> {
     for (Pokemon mon in accProvider.blitzGame.party) {
       tiles.add(_fightSelectorTile(mon));
     }
+    for (int i = accProvider.blitzGame.party.length; i < 6; i++) {
+      tiles.add(_emptyFightSelectorTile());
+    }
     return tiles;
+  }
+  
+  Widget _emptyFightSelectorTile() {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.only(top: 3),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black26),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'EMPTY',
+        style: TextStyle(
+          color: Colors.black26,
+          fontWeight: FontWeight.bold,
+          fontSize: 12
+        )
+      )
+    );
   }
 
   Widget _fightSelectorTile(Pokemon mon) {
+    bool isSelected = _fightSelectedMon == mon;
     return GestureDetector(
       onTap: () => setState(() {
-        if (_fightSelectedMon != mon) {
+        if (!isSelected) {
           _fightSelectedMon = mon;
         } else {
           _fightSelectedMon = null;
@@ -846,7 +888,7 @@ class _EncounterState extends State<Encounter> {
         decoration: BoxDecoration(
           border: Border.all(),
           borderRadius: BorderRadius.circular(5),
-          color: _fightSelectedMon == mon ? Colors.black : Colors.white
+          color: isSelected ? Colors.black : Colors.white
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -869,9 +911,9 @@ class _EncounterState extends State<Encounter> {
                 Row(
                   children: [
                     const SizedBox(width: 0),
-                    Text(mon.nickname, style: TextStyle(color: _fightSelectedMon == mon ? Colors.white : Colors.black)),
+                    Text(mon.nickname, style: TextStyle(color: isSelected ? Colors.white : Colors.black)),
                     const SizedBox(width: 1),
-                    mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, size: 14, color: _fightSelectedMon == mon ? Colors.white : Colors.black),
+                    mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, size: 14, color: isSelected ? Colors.white : Colors.black),
                     const SizedBox(width: 1),
                     if (widget.mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 14),
                   ],
@@ -879,23 +921,31 @@ class _EncounterState extends State<Encounter> {
                 Text(
                   'Lv.${mon.level}',
                   style: TextStyle(
-                    color: _fightSelectedMon == mon ? Colors.white : Colors.black,
+                    color: isSelected ? Colors.white : Colors.black,
                     fontSize: 10
                   )
                 )
               ],
             ),
             const Spacer(),
-            mon.heldItem != null ? Container(
-              height: 30,
-              width: 40,
+            mon.heldItem == null ? Container(
+              padding: const EdgeInsets.all(1),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(),
-                color: Colors.white
+                border: Border.all(color: isSelected ? Colors.white : Colors.black),
+                color: isSelected ? Colors.black : Colors.white
               ),
-              child: const Icon(Icons.question_mark)
-            ) : Container()
+              child: isSelected ? const Icon(
+                Icons.check,
+                size: 18,
+                color: Colors.white,
+              ) : const Icon(
+                Icons.question_mark,
+                size: 18,
+                color: Colors.black
+              )
+            ) : Container(),
+            const SizedBox(width: 10)
           ]
         )
       ),
@@ -1197,38 +1247,7 @@ class _EncounterState extends State<Encounter> {
       children: [
         Row(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 2 / 3,
-              alignment: Alignment.centerLeft,
-              margin: const EdgeInsets.only(top: 50),
-              padding: const EdgeInsets.only(left: 15, right: 25, bottom: 15, top: 15),
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(150), topRight: Radius.circular(30))
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    mon.species.toUpperCase(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500
-                    )
-                  ),
-                  const SizedBox(width: 3),
-                  mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, color: Colors.white, size: 15),
-                  const SizedBox(width: 3),
-                  if (mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 15),
-                  const Spacer(),
-                  Text(
-                    'Lv.${mon.level}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                    )
-                  ),
-                ],
-              )
-            ),
+            _nameBar(mon),
             const Spacer()
           ],
         ),
@@ -1237,6 +1256,41 @@ class _EncounterState extends State<Encounter> {
         const Spacer(),
         _bottomUI(mon, context)
       ],
+    );
+  }
+
+  Widget _nameBar(Pokemon mon) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 2 / 3,
+      alignment: Alignment.centerLeft,
+      margin: const EdgeInsets.only(top: 50),
+      padding: const EdgeInsets.only(left: 15, right: 25, bottom: 15, top: 15),
+      decoration: const BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.only(bottomRight: Radius.circular(150), topRight: Radius.circular(30))
+      ),
+      child: Row(
+        children: [
+          Text(
+            mon.species.toUpperCase(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500
+            )
+          ),
+          const SizedBox(width: 3),
+          mon.gender == -1 ? const SizedBox() : Icon(mon.gender == 0 ? Icons.male : Icons.female, color: Colors.white, size: 15),
+          const SizedBox(width: 3),
+          if (mon.isShiny) const Icon(Icons.auto_awesome, color: Colors.yellow, size: 15),
+          const Spacer(),
+          Text(
+            'Lv.${mon.level}',
+            style: const TextStyle(
+              color: Colors.white,
+            )
+          ),
+        ],
+      )
     );
   }
 
@@ -1282,7 +1336,7 @@ class _EncounterState extends State<Encounter> {
                         border: Border.all(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black),
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Text('FIGHT', style: TextStyle(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black))
+                      child: Text('BATTLE', style: TextStyle(color: accProvider.blitzGame.party.isEmpty || uiLock ? Colors.grey : Colors.black))
                     ),
                   ),
                 ),

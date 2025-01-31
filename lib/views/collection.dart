@@ -219,6 +219,7 @@ class _CollectionState extends State<Collection> {
                               ),
                               child: TextField(
                                 onTap: () => setState(() => inSearch = true),
+                                onSubmitted: (String _) => setState(() => inSearch = false),
                                 controller: searchController,
                                 cursorColor: Colors.white,
                                 showCursor: false,
@@ -559,7 +560,10 @@ class _CollectionState extends State<Collection> {
                 child: Container(
                   height: 450,
                   width: MediaQuery.of(context).size.width - 22,
-                  color: Colors.black,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
+                  ),
                   child: Column(
                     children: [
                       const SizedBox(height: 50),
@@ -577,7 +581,7 @@ class _CollectionState extends State<Collection> {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.black,
-                    shape: BoxShape.circle
+                    shape: BoxShape.circle,
                   ),
                   child: Stack(
                     alignment: AlignmentDirectional.center,

@@ -227,6 +227,15 @@ class _PartyState extends State<Party> {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black38),
         borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), bottomRight: Radius.circular(20), bottomLeft: Radius.circular(5), topRight: Radius.circular(5))
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'EMPTY',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black38,
+          fontSize: 16
+        ),
       )
     );
   }
