@@ -78,6 +78,8 @@ class _CollectionState extends State<Collection> {
                     const SizedBox(height: 5),
                     _regionGrid(Regions.kanto), // TODO: fill out dex
                     _regionGrid(Regions.johto),
+                    _regionGrid(Regions.hoenn),
+                    _regionGrid(Regions.sinnoh),
                   ]
                 ),
               ),
