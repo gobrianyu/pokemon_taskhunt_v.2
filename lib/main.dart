@@ -72,9 +72,9 @@ class MainAppState extends State<MainApp> {
         builder: (context, accountProvider, _) {
           return MaterialApp(
             theme: ThemeData(
-              textSelectionTheme: TextSelectionThemeData(
+              textSelectionTheme: const TextSelectionThemeData(
                 cursorColor: Colors.black, // Customize the cursor color globally
-                selectionColor: const Color.fromARGB(255, 218, 218, 218), // Background color of selected text
+                selectionColor: Color.fromARGB(255, 218, 218, 218), // Background color of selected text
                 selectionHandleColor: Colors.transparent, // Color of the selection handles (teardrop)
               ),
             ),
