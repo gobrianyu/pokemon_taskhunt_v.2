@@ -1280,10 +1280,10 @@
                 "height": 40,
                 "weight": 6,
                 "entry": "Whenever Pikachu comes across something new, it blasts it with a jolt of electricity. If you come across a blackened berry, it's evidence that this Pokémon mistook the intensity of its charge.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/pikachu_m.png",
+                "image asset f": "assets/pikachu_f.png",
+                "image asset m shiny": "assets/pikachu_m_shiny.png",
+                "image asset f shiny": "assets/pikachu_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -2838,10 +2838,10 @@
                 "height": 40,
                 "weight": 4.2,
                 "entry": "Appears to be more active at night. It loves round and shiny things. It can't stop itself from picking them up.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/meowth.png",
+                "image asset f": "assets/meowth.png",
+                "image asset m shiny": "assets/meowth_shiny.png",
+                "image asset f shiny": "assets/meowth_shiny.png"
             },
             {
                 "key": 52.01,
@@ -7250,10 +7250,10 @@
                 "height": 150,
                 "weight": 55,
                 "entry": "Grips its prey in its pincers and squeezes hard! It can't move if it's cold, so it lives in warm places.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/pinsir.png",
+                "image asset f": "assets/pinsir.png",
+                "image asset m shiny": "assets/pinsir_shiny.png",
+                "image asset f shiny": "assets/pinsir_shiny.png"
             }
         ],
         "gimmick forms": [],
