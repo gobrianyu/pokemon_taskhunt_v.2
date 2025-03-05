@@ -3189,10 +3189,10 @@
                 "height": 100,
                 "weight": 32,
                 "entry": "It stops being angry only when nobody else is around. To view this moment is very difficult.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/primeape.png",
+                "image asset f": "assets/primeape.png",
+                "image asset m shiny": "assets/primeape_shiny.png",
+                "image asset f shiny": "assets/primeape_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -23723,7 +23723,7 @@
         "gimmick forms": [],
         "experience group": "Fast",
         "base experience yield": 158,
-        "minimum spawn level": 1,
+        "minimum spawn level": 38,
         "gendered": true,
         "male:female ratio": 1,
         "catch rate": 75,
