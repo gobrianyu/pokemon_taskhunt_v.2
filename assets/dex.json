@@ -37,8 +37,8 @@
                 "entry": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
                 "image asset m": "assets/bulbasaur.png",
                 "image asset f": "assets/bulbasaur.png",
-                "image asset m shiny": "assets/bulbasaur.png",
-                "image asset f shiny": "assets/bulbasaur.png"
+                "image asset m shiny": "assets/bulbasaur_shiny.png",
+                "image asset f shiny": "assets/bulbasaur_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -331,8 +331,8 @@
                 "entry": "Shoots water at prey while in the water. Withdraws into its shell when in danger.",
                 "image asset m": "assets/squirtle.png",
                 "image asset f": "assets/squirtle.png",
-                "image asset m shiny": "assets/squirtle.png",
-                "image asset f shiny": "assets/squirtle.png"
+                "image asset m shiny": "assets/squirtle_shiny.png",
+                "image asset f shiny": "assets/squirtle_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -3406,10 +3406,10 @@
                 "height": 60,
                 "weight": 12.4,
                 "entry": "The direction of the spiral on the belly differs by area. It is more adept at swimming than walking.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/poliwag.png",
+                "image asset f": "assets/poliwag.png",
+                "image asset m shiny": "assets/poliwag_shiny.png",
+                "image asset f shiny": "assets/poliwag_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -3507,10 +3507,10 @@
                 "height": 130,
                 "weight": 54,
                 "entry": "Swims powerfully using all the muscles in its body. It can even overtake world-class swimmers.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/poliwrath.png",
+                "image asset f": "assets/poliwrath.png",
+                "image asset m shiny": "assets/poliwrath_shiny.png",
+                "image asset f shiny": "assets/poliwrath_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -4973,10 +4973,10 @@
                 "height": 110,
                 "weight": 90,
                 "entry": "The protruding horn on its head is very hard. It is used for bashing through thick ice.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/seel.png",
+                "image asset f": "assets/seel.png",
+                "image asset m shiny": "assets/seel_shiny.png",
+                "image asset f shiny": "assets/seel_shiny.png"
             }
         ],
         "gimmick forms": [],
