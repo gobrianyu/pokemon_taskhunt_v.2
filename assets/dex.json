@@ -133,8 +133,8 @@
                 "entry": "The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
                 "image asset m": "assets/venusaur_m.png",
                 "image asset f": "assets/venusaur_f.png",
-                "image asset m shiny": "assets/venusaur_m.png",
-                "image asset f shiny": "assets/venusaur_f.png"
+                "image asset m shiny": "assets/venusaur_m_shiny.png",
+                "image asset f shiny": "assets/venusaur_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -5018,10 +5018,10 @@
                 "height": 170,
                 "weight": 120,
                 "entry": "Its entire body is a snowy white. Unharmed by even intense cold, it swims powerfully in icy waters.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/dewgong.png",
+                "image asset f": "assets/dewgong.png",
+                "image asset m shiny": "assets/dewgong_shiny.png",
+                "image asset f shiny": "assets/dewgong_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -5804,10 +5804,10 @@
                 "height": 120,
                 "weight": 66.6,
                 "entry": "Stores electrical energy inside its body. Even the slightest shock could trigger a huge explosion.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/electrode.png",
+                "image asset f": "assets/electrode.png",
+                "image asset m shiny": "assets/electrode_shiny.png",
+                "image asset f shiny": "assets/electrode_shiny.png"
             },
             {
                 "key": 101.01,
