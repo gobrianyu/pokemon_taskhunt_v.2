@@ -235,8 +235,8 @@
                 "entry": "Tough fights could excite this Pokémon. When excited, it may blow out bluish-white flames.",
                 "image asset m": "assets/charmeleon.png",
                 "image asset f": "assets/charmeleon.png",
-                "image asset m shiny": "assets/charmeleon.png",
-                "image asset f shiny": "assets/charmeleon.png"
+                "image asset m shiny": "assets/charmeleon_shiny.png",
+                "image asset f shiny": "assets/charmeleon_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -280,8 +280,8 @@
                 "entry": "When this Pokémon expels a blast of superhot fire, the red flame at the tip of its tails burns more intensely.",
                 "image asset m": "assets/charizard.png",
                 "image asset f": "assets/charizard.png",
-                "image asset m shiny": "assets/charizard.png",
-                "image asset f shiny": "assets/charizard.png"
+                "image asset m shiny": "assets/charizard_shiny.png",
+                "image asset f shiny": "assets/charizard_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -382,8 +382,8 @@
                 "entry": "When tapped on its head, this Pokémon will pull it in, but its tail will stick out a little bit.",
                 "image asset m": "assets/wartortle.png",
                 "image asset f": "assets/wartortle.png",
-                "image asset m shiny": "assets/wartortle.png",
-                "image asset f shiny": "assets/wartortle.png"
+                "image asset m shiny": "assets/wartortle_shiny.png",
+                "image asset f shiny": "assets/wartortle_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -427,8 +427,8 @@
                 "entry": "Once it takes aim at its enemy, it blasts out water with even more force than a fire hose.",
                 "image asset m": "assets/blastoise.png",
                 "image asset f": "assets/blastoise.png",
-                "image asset m shiny": "assets/blastoise.png",
-                "image asset f shiny": "assets/blastoise.png"
+                "image asset m shiny": "assets/blastoise_shiny.png",
+                "image asset f shiny": "assets/blastoise_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -574,8 +574,8 @@
                 "entry": "Its wings, covered with poisonous powder, repel water. This allows it to fly in the rain.",
                 "image asset m": "assets/butterfree_m.png",
                 "image asset f": "assets/butterfree_f.png",
-                "image asset m shiny": "assets/butterfree_m.png",
-                "image asset f shiny": "assets/butterfree_f.png"
+                "image asset m shiny": "assets/butterfree_m_shiny.png",
+                "image asset f shiny": "assets/butterfree_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -721,8 +721,8 @@
                 "entry": "It has three poisonous stingers on its forelegs and its tail. They are used to jab its enemy repeatedly.",
                 "image asset m": "assets/beedrill.png",
                 "image asset f": "assets/beedrill.png",
-                "image asset m shiny": "assets/beedrill.png",
-                "image asset f shiny": "assets/beedrill.png"
+                "image asset m shiny": "assets/beedrill_shiny.png",
+                "image asset f shiny": "assets/beedrill_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -823,8 +823,8 @@
                 "entry": "This Pokémon is full of vitality. It constantly flies around its large territory in search of prey.",
                 "image asset m": "assets/pidgeotto.png",
                 "image asset f": "assets/pidgeotto.png",
-                "image asset m shiny": "assets/pidgeotto.png",
-                "image asset f shiny": "assets/pidgeotto.png"
+                "image asset m shiny": "assets/pidgeotto_shiny.png",
+                "image asset f shiny": "assets/pidgeotto_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -917,10 +917,10 @@
                 "height": 30,
                 "weight": 3.5,
                 "entry": "Will chew on anything with its fangs. If you see one, you can be certain that 40 more live in the area.",
-                "image asset m": "assets/rattata.png",
-                "image asset f": "assets/rattata.png",
-                "image asset m shiny": "assets/rattata.png",
-                "image asset f shiny": "assets/rattata.png"
+                "image asset m": "assets/rattata_m.png",
+                "image asset f": "assets/rattata_f.png",
+                "image asset m shiny": "assets/rattata_m_shiny.png",
+                "image asset f shiny": "assets/rattata_f_shiny.png"
             },
             {
                 "key": 19.01,
@@ -1000,10 +1000,10 @@
                 "height": 70,
                 "weight": 18.5,
                 "entry": "Its whiskers are essential for maintaining its balance. No matter how friendly you are, it will get angry and bite you if you touch its whiskers.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/raticate_m.png",
+                "image asset f": "assets/raticate_f.png",
+                "image asset m shiny": "assets/raticate_m_shiny.png",
+                "image asset f shiny": "assets/raticate_f_shiny.png"
             },
             {
                 "key": 20.01,
@@ -1083,10 +1083,10 @@
                 "height": 30,
                 "weight": 2,
                 "entry": "Inept at flying high. However, it can fly around very fast to protect its territory.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/spearow.png",
+                "image asset f": "assets/spearow.png",
+                "image asset m shiny": "assets/spearow_shiny.png",
+                "image asset f shiny": "assets/spearow_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -1128,10 +1128,10 @@
                 "height": 120,
                 "weight": 38,
                 "entry": "A Pokémon that dates back many years. If it senses danger, it flies high and away, instantly.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/fearow.png",
+                "image asset f": "assets/fearow.png",
+                "image asset m shiny": "assets/fearow_shiny.png",
+                "image asset f shiny": "assets/fearow_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -1179,10 +1179,10 @@
                 "height": 200,
                 "weight": 6.9,
                 "entry": "The eggs of bird Pokémon are its favorite food. It swallows eggs whole, so sometimes an egg gets stuck, and Ekans faints.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/ekans.png",
+                "image asset f": "assets/ekans.png",
+                "image asset m shiny": "assets/ekans_shiny.png",
+                "image asset f shiny": "assets/ekans_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -1224,10 +1224,10 @@
                 "height": 350,
                 "weight": 65,
                 "entry": "The frightening patterns on its belly have been studied. Six variations have been confirmed.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/arbok.png",
+                "image asset f": "assets/arbok.png",
+                "image asset m shiny": "assets/arbok_shiny.png",
+                "image asset f shiny": "assets/arbok_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -1325,10 +1325,10 @@
                 "height": 80,
                 "weight": 30,
                 "entry": "When electricity builds up inside its body, it becomes feisty. It also glows in the dark.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/raichu_m.png",
+                "image asset f": "assets/raichu_f.png",
+                "image asset m shiny": "assets/raichu_m_shiny.png",
+                "image asset f shiny": "assets/raichu_f_shiny.png"
             },
             {
                 "key": 26.01,
@@ -1574,10 +1574,10 @@
                 "height": 40,
                 "weight": 7,
                 "entry": "A mild-mannered Pokémon that does not like to fight. Beware-its small horn secretes venom.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/nidoran_f.png",
+                "image asset f": "assets/nidoran_f.png",
+                "image asset m shiny": "assets/nidoran_f_shiny.png",
+                "image asset f shiny": "assets/nidoran_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -4352,8 +4352,8 @@
                 "entry": "Its hooves are 10 times harder than diamonds. It can trample anything completely flat in little time.",
                 "image asset m": "assets/ponyta.png",
                 "image asset f": "assets/ponyta.png",
-                "image asset m shiny": "assets/ponyta.png",
-                "image asset f shiny": "assets/ponyta.png"
+                "image asset m shiny": "assets/ponyta_shiny.png",
+                "image asset f shiny": "assets/ponyta_shiny.png"
             },
             {
                 "key": 77.01,
@@ -6243,10 +6243,10 @@
                 "height": 120,
                 "weight": 65.5,
                 "entry": "Its tongue, twice its body's length, moves around freely to catch prey. Its licks cause a tingling sensation.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/lickitung.png",
+                "image asset f": "assets/lickitung.png",
+                "image asset m shiny": "assets/lickitung_shiny.png",
+                "image asset f shiny": "assets/lickitung_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -6823,10 +6823,10 @@
                 "height": 130,
                 "weight": 39,
                 "entry": "Trainers who are crazy for Seaking are divided into horn enthusiasts and fin enthusiasts. The two groups do not get along well.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/seaking_m.png",
+                "image asset f": "assets/seaking_f.png",
+                "image asset m shiny": "assets/seaking_m_shiny.png",
+                "image asset f shiny": "assets/seaking_f_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -7103,10 +7103,10 @@
                 "height": 140,
                 "weight": 40.6,
                 "entry": "Appears to move to a rhythm of its own, as if it were dancing. It wiggles its hips as it walks.",
-                "image asset m": "assets/unknown.png",
-                "image asset f": "assets/unknown.png",
-                "image asset m shiny": "assets/unknown.png",
-                "image asset f shiny": "assets/unknown.png"
+                "image asset m": "assets/jynx.png",
+                "image asset f": "assets/jynx.png",
+                "image asset m shiny": "assets/jynx_shiny.png",
+                "image asset f shiny": "assets/jynx_shiny.png"
             }
         ],
         "gimmick forms": [],
