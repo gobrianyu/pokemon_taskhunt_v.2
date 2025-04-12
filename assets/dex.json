@@ -33334,8 +33334,8 @@
         "experience group": "Medium Fast",
         "base experience yield": 180,
         "minimum spawn level": 18,
-        "gendered": true,
-        "male:female ratio": 1,
+        "gendered": false,
+        "male:female ratio": null,
         "catch rate": 25,
         "flee rate": 7
     },
@@ -33741,8 +33741,8 @@
             }
         ],
         "gimmick forms": [],
-        "experience group": 280,
-        "base experience yield": 330,
+        "experience group": "Medium Fast",
+        "base experience yield": 169,
         "minimum spawn level": 43,
         "gendered": false,
         "male:female ratio": null,
