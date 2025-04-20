@@ -79,7 +79,9 @@ class _CollectionState extends State<Collection> {
                     _regionGrid(Regions.johto),
                     _regionGrid(Regions.hoenn),
                     _regionGrid(Regions.sinnoh),
-                    _regionGrid(Regions.unova)
+                    _regionGrid(Regions.unova),
+                    _regionGrid(Regions.alola),
+                    _regionGrid(Regions.unknown)
                   ]
                 ),
               ),
