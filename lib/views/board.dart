@@ -6,6 +6,7 @@ import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
 import 'package:pokemon_taskhunt_2/views/collection.dart';
 import 'package:pokemon_taskhunt_2/views/encounter.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
@@ -13,16 +14,15 @@ import 'package:provider/provider.dart';
 
 // TODO: add dispose() method to all files
 
-class Board extends StatefulWidget {
-  final List<DexEntry> fullDex;
-  
-  const Board({required this.fullDex, super.key});
+class Board extends StatefulWidget {  
+  const Board({super.key});
 
   @override
   State<Board> createState() => _BoardState();
 }
 
 class _BoardState extends State<Board> {
+  late final List<DexEntry> fullDex;
   Random random = Random();
 
   final List<Items> itemsMasterList = [
@@ -58,6 +58,7 @@ class _BoardState extends State<Board> {
 
     // Read the AccountProvider instance from the context
     accProvider = context.read<AccountProvider>();
+    fullDex = context.read<DexDBProvider>().dexDB!.all;
 
     // Using addPostFrameCallback to avoid triggering state changes during the build phase
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -239,11 +240,11 @@ class _BoardState extends State<Board> {
     int key = random.nextInt(49);
     for (int i = 0; i < 49; i++) {
       if (i == key) {
-        ret.add(blitz.generateEncounter(widget.fullDex));
+        ret.add(blitz.generateEncounter(fullDex));
       } else {
         int n = 5 * blitz.averageLevel() + blitz.round - 2 * blitz.party.length + 12;
         if (random.nextInt(1000) < n) {
-          ret.add(blitz.generateEncounter(widget.fullDex));
+          ret.add(blitz.generateEncounter(fullDex));
         } else {
           ret.add(null);
         }
@@ -376,7 +377,7 @@ class _BoardState extends State<Board> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Encounter(
-              mon: accProvider.blitzGame.generateEncounter(widget.fullDex),
+              mon: accProvider.blitzGame.generateEncounter(fullDex),
               onReturn: (bool claimed) {
                 if (claimed) {
                   accProvider.claimTask(task);
@@ -1608,7 +1609,7 @@ class _BoardState extends State<Board> {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) => Collection(widget.fullDex),
+                            pageBuilder: (context, animation1, animation2) => const Collection(),
                             transitionDuration: Duration.zero,
                             reverseTransitionDuration: Duration.zero,
                           ),

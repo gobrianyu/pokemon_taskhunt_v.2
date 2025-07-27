@@ -788,6 +788,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                           accProvider.addItem(_held, 1);
                           accProvider.setHeldItem(widget.mon, null);
                           setState(() {
+                            items = accProvider.blitzGame.items;
                             _held = widget.mon.heldItem;
                             _removeAlert = false;
                           });

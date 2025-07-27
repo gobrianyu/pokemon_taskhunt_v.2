@@ -5,11 +5,11 @@ import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 class DexDB{
   final List<DexEntry> _entries;
   
-  List<DexEntry> get all{
+  List<DexEntry> get all {
     return List<DexEntry>.from(_entries, growable: false);
   }
 
-  DexDB.initializeFromJson(String jsonString) : _entries = _decodeDexListJson(jsonString);
+  DexDB.initFromJson(String jsonString) : _entries = _decodeDexListJson(jsonString);
 
   static List<DexEntry> _decodeDexListJson(String jsonString){
     final list = (jsonDecode(jsonString) as List).map((entry) {

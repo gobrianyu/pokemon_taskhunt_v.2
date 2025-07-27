@@ -4,10 +4,9 @@ import 'package:pokemon_taskhunt_2/views/board.dart';
 import 'package:pokemon_taskhunt_2/views/collection.dart';
 
 class Landing extends StatelessWidget {
-  final DexDB dex;
   final double containerWidth = 150;
 
-  const Landing(this.dex, {super.key});
+  const Landing({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class Landing extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) => Board(fullDex: dex.all),
+                      pageBuilder: (context, animation1, animation2) => const Board(),
                       transitionDuration: Duration.zero,
                       reverseTransitionDuration: Duration.zero,
                     ),
@@ -46,7 +45,7 @@ class Landing extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) => Collection(dex.all),
+                      pageBuilder: (context, animation1, animation2) => const Collection(),
                       transitionDuration: Duration.zero,
                       reverseTransitionDuration: Duration.zero,
                     ),

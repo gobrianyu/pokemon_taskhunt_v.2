@@ -1,0 +1,903 @@
+sep=|
+id|name|type|category|pp|power|accuracy|effect|probability|flavourText
+1|Pound|Normal|Physical|35|40|100|||
+2|Karate Chop|Fighting|Physical|25|50|100|highCrit||High critical hit ratio.
+3|Double Slap|Normal|Physical|10|15|85|multiHit||Hits 2-5 times in one turn.
+4|Comet Punch|Normal|Physical|15|18|85|multiHit||Hits 2-5 times in one turn.
+5|Mega Punch|Normal|Physical|20|80|85|||
+6|Pay Day|Normal|Physical|20|40|100|coinBoost||Doubles coins earned after battle.
+7|Fire Punch|Fire|Physical|15|75|100|oppBurn|10|May burn opponent (10%).
+8|Ice Punch|Ice|Physical|15|75|100|oppFreeze|10|May freeze opponent (10%).
+9|Thunder Punch|Electric|Physical|15|75|100|oppParalyse|10|May paralyse opponent (10%).
+10|Scratch|Normal|Physical|35|40|100|||
+11|Vise Grip|Normal|Physical|30|55|100|||
+12|Guillotine|Normal|Physical|5|65535|30|||One-Hit-KO.
+13|Razor Wind|Normal|Special|10|80|100|staticCharge highCrit||Charges on first turn, attacks on second. High critical hit ratio.
+14|Swords Dance|Normal|Status|20|||incSelfAtk2||Sharply raises user's Attack.
+15|Cut|Normal|Physical|30|50|95|||
+16|Gust|Flying|Special|35|40|100|||
+17|Wing Attack|Flying|Physical|35|60|100|||
+18|Whirlwind|Normal|Status|20||65536|invalid||
+19|Fly|Flying|Physical|15|90|95|invalid||
+20|Bind|Normal|Physical|20|15|85|damageOverTime||Damages opponent for 4-5 turns.
+21|Slam|Normal|Physical|20|80|75|||
+22|Vine Whip|Grass|Physical|25|45|100|||
+23|Stomp|Normal|Physical|20|65|100|oppFlinch|30|May cause opponent to flinch (30%).
+24|Double Kick|Fighting|Physical|30|30|100|doubleHit||Hits twice in one turn.
+25|Mega Kick|Normal|Physical|5|120|75|||
+26|Jump Kick|Fighting|Physical|10|100|95|missPenalty||On miss, the user takes damage instead.
+27|Rolling Kick|Fighting|Physical|15|60|85|oppFlinch|30|May cause opponent to flinch (30%).
+28|Sand Attack|Ground|Status|15||100|decOppAccuracy|100|Lowers opponent's Accuracy.
+29|Headbutt|Normal|Physical|15|70|100|oppFlinch|30|May cause opponent to flinch (30%).
+30|Horn Attack|Normal|Physical|25|65|100|||
+31|Fury Attack|Normal|Physical|20|15|85|multiHit||Hits 2-5 times in one turn.
+32|Horn Drill|Normal|Physical|5|65535|30|||One-Hit-KO.
+33|Tackle|Normal|Physical|35|40|100|||
+34|Body Slam|Normal|Physical|15|85|100|oppParalyse|30|May paralyse opponent (30%).
+35|Wrap|Normal|Physical|20|15|90|damageOverTime||Damages opponent for 4-5 turns.
+36|Take Down|Normal|Physical|20|90|85|recoil||User receives recoil damage.
+37|Thrash|Normal|Physical|10|120|100|lateSelfConfuse||User attacks for 2-3 turns but then becomes confused.
+38|Double-Edge|Normal|Physical|15|120|100|recoil||User receives recoil damage.
+39|Tail Whip|Normal|Status|30||100|decOppDef||Lowers opponent's Defense.
+40|Poison Sting|Poison|Physical|35|15|100|oppPoison|30|May poison opponent (30%).
+41|Twineedle|Bug|Physical|20|25|100|doubleHit oppPoison|20|Hits twice in one turn. May poison opponent.
+42|Pin Missile|Bug|Physical|20|25|95|multiHit||Hits 2-5 times in one turn.
+43|Leer|Normal|Status|30||100|decOppDef|100|Lowers opponent's Defense.
+44|Bite|Dark|Physical|25|60|100|oppFlinch|30|May cause opponent to flinch (30%).
+45|Growl|Normal|Status|40||100|decOppAtk|100|Lowers opponent's Attack.
+46|Roar|Normal|Status|20||65536|invalid||
+47|Sing|Normal|Status|15||55|oppSleep|100|Puts opponent to sleep.
+48|Supersonic|Normal|Status|20||55|oppConfuse|100|Confuses opponent.
+49|Sonic Boom|Normal|Special|20||90|invalid||
+50|Disable|Normal|Status|20||100|invalid||
+51|Acid|Poison|Special|30|40|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+52|Ember|Fire|Special|25|40|100|oppBurn|10|May burn opponent (10%).
+53|Flamethrower|Fire|Special|15|90|100|oppBurn|10|May burn opponent (10%).
+54|Mist|Ice|Status|30|||invalid||
+55|Water Gun|Water|Special|25|40|100|||
+56|Hydro Pump|Water|Special|5|110|80|||
+57|Surf|Water|Special|15|90|100|||
+58|Ice Beam|Ice|Special|10|90|100|oppFreeze|10|May freeze opponent (10%).
+59|Blizzard|Ice|Special|5|110|70|||
+60|Psybeam|Psychic|Special|20|65|100|oppConfuse|10|May confuse opponent (10%).
+61|Bubble Beam|Water|Special|20|65|100|decOppSpeed|10|May lower opponent's speed (10%).
+62|Aurora Beam|Ice|Special|20|65|100|decOppAtk|10|May lower opponent's Attack (10%).
+63|Hyper Beam|Normal|Special|5|150|90|recharge||User must recharge next turn.
+64|Peck|Flying|Physical|35|35|100|||
+65|Drill Peck|Flying|Physical|20|80|100|||
+66|Submission|Fighting|Physical|20|80|80|recoil||User receives recoil damage.
+67|Low Kick|Fighting|Physical|20||100|baseOppWeight||Stronger against heavier opponents.
+68|Counter|Fighting|Physical|20||100|physCounter||Power doubles if user is hit by a Physical Attack.
+69|Seismic Toss|Fighting|Physical|20||100|baseSelfLvl||Inflicts damage equal to user's level.
+70|Strength|Normal|Physical|15|80|100|||
+71|Absorb|Grass|Special|25|20|100|heal||User recovers half the HP inflicted on opponent.
+72|Mega Drain|Grass|Special|15|40|100|heal||User recovers half the HP inflicted on opponent.
+73|Leech Seed|Grass|Status|10||90|invalid||
+74|Growth|Normal|Status|20|||incSelfAtk incSelfSpAtk|100|Raises user's Attack and Special Attack.
+75|Razor Leaf|Grass|Physical|25|55|95|highCrit||High critical hit ratio.
+76|Solar Beam|Grass|Special|10|120|100|staticCharge||Charges on first turn, attacks on second.
+77|Poison Powder|Poison|Status|35||75|oppPoison|100|Poisons opponent.
+78|Stun Spore|Grass|Status|30||75|oppParalyse|100|Paralyses opponent.
+79|Sleep Powder|Grass|Status|15||75|oppSleep|100|Puts opponent to sleep.
+80|Petal Dance|Grass|Special|10|120|100|lateSelfConfuse||User attacks for 2-3 turns but then becomes confused.
+81|String Shot|Bug|Status|40||95|decOppSpeed2||Harshly lowers opponent's speed.
+82|Dragon Rage|Dragon|Special|10||100|invalid||
+83|Fire Spin|Fire|Special|15|35|85|damageOverTime||Damages opponent for 4-5 turns.
+84|Thunder Shock|Electric|Special|30|40|100|oppParalyse|10|May paralyse opponent (10%).
+85|Thunderbolt|Electric|Special|15|90|100|oppParalyse|10|May paralyse opponent (10%).
+86|Thunder Wave|Electric|Status|20||90|oppParalyse|100|Paralyses opponent.
+87|Thunder|Electric|Special|10|110|70|oppParalyse|30|May paralyse opponent (30%).
+88|Rock Throw|Rock|Physical|15|50|90|||
+89|Earthquake|Ground|Physical|10|100|100|||
+90|Fissure|Ground|Physical|5|65535|30|||One-Hit-KO.
+91|Dig|Ground|Physical|10|80|100|invalid||
+92|Toxic|Poison|Status|10||90|oppPoison2|100|Badly poisons opponent.
+93|Confusion|Psychic|Special|25|50|100|oppConfuse|10|May confuse opponent (10%).
+94|Psychic|Psychic|Special|10|90|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+95|Hypnosis|Psychic|Status|20||60|oppSleep|100|Puts opponent to sleep.
+96|Meditate|Psychic|Status|40|||incSelfAtk|100|Raises user's Attack.
+97|Agility|Psychic|Status|30|||incSelfSpeed2|100|Sharply raises user's Speed.
+98|Quick Attack|Normal|Physical|30|40|100|||User attacks first.
+99|Rage|Normal|Physical|20|20|100|incSelfAtk|100|Raises user's Attack.
+100|Teleport|Psychic|Status|20|||invalid||
+101|Night Shade|Ghost|Special|15||100|baseSelfLvl||Inflicts damage equal to user's level.
+102|Mimic|Normal|Status|10||65536|invalid||
+103|Screech|Normal|Status|40||85|decOppDef2|100|Harshly lowers opponent's Defense.
+104|Double Team|Normal|Status|15|||invalid||
+105|Recover|Normal|Status|5|||heal||User recovers half of its HP.
+106|Harden|Normal|Status|30|||incSelfDef|100|Raise user's Defense.
+107|Minimize|Normal|Status|10|||invalid||
+108|Smokescreen|Normal|Status|20||100|decOppAccuracy|100|Lowers opponent's Accuracy.
+109|Confuse Ray|Ghost|Status|10||100|oppConfuse|100|Confuses opponent.
+110|Withdraw|Water|Status|40|||incSelfDef|100|Raises user's Defense.
+111|Defense Curl|Normal|Status|40|||incSelfDef|100|Raises user's Defense.
+112|Barrier|Psychic|Status|20|||incSelfDef2|100|Sharply raises user's Defense.
+113|Light Screen|Psychic|Status|30|||invalid||
+114|Haze|Ice|Status|30|||invalid||
+115|Reflect|Psychic|Status|20|||invalid||
+116|Focus Energy|Normal|Status|30|||invalid||
+117|Bide|Normal|Physical|10||65536|invalid||
+118|Metronome|Normal|Status|10|||invalid||
+119|Mirror Move|Flying|Status|20|||invalid||
+120|Self-Destruct|Normal|Physical|5|200|100|invalid||
+121|Egg Bomb|Normal|Physical|10|100|75|||
+122|Lick|Ghost|Physical|30|30|100|oppParalyse|30|May paralyse opponent (30%).
+123|Smog|Poison|Special|20|30|70|oppPoison|40|May poison opponent (40%).
+124|Sludge|Poison|Special|20|65|100|oppPoison|30|May poison opponent (30%).
+125|Bone Club|Ground|Physical|20|65|85|oppFlinch|10|May cause opponent to flinch (10%).
+126|Fire Blast|Fire|Special|5|110|85|oppBurn|10|May burn opponent (10%).
+127|Waterfall|Water|Physical|15|80|100|oppFlinch|20|May cause opponent to flinch (20%).
+128|Clamp|Water|Physical|15|35|85|damageOverTime||Damages opponent for 4-5 turns.
+129|Swift|Normal|Special|20|60|65536|||Ignores Accuracy.
+130|Skull Bash|Normal|Physical|10|130|100|staticCharge||Raises user's Defense on first turn, attacks on second.
+131|Spike Cannon|Normal|Physical|15|20|100|multiHit||Hits 2-5 times in one turn.
+132|Constrict|Normal|Physical|35|10|100|decOppSpeed|10|May lower opponent's Speed (10%).
+133|Amnesia|Psychic|Status|20|||incSelfSpDef|100|Raises user's Special Defense.
+134|Kinesis|Psychic|Status|15||80|decOppAccuracy|100|Lowers opponent's Accuracy.
+135|Soft-Boiled|Normal|Status|5|||heal||User recovers half of its HP.
+136|High Jump Kick|Fighting|Physical|10|130|90|missPenalty||On miss, the user takes damage instead.
+137|Glare|Normal|Status|30||100|oppParalyse|100|Paralyses opponent.
+138|Dream Eater|Psychic|Special|15|100|100|invalid||
+139|Poison Gas|Poison|Status|40||90|oppPoison|100|Poisons opponent.
+140|Barrage|Normal|Physical|20|15|85|multiHit||Hits 2-5 times in one turn.
+141|Leech Life|Bug|Physical|10|80|100|heal||User recovers half the HP inflicted on opponent.
+142|Lovely Kiss|Normal|Status|10||75|oppSleep|100|Puts opponent to sleep.
+143|Sky Attack|Flying|Physical|5|140|90|staticCharge oppFlinch highCrit|30|Charges on first turn, attacks on second. May cause flinching (30%). High critical hit ratio.
+144|Transform|Normal|Status|10||65536|transform||User takes on the form and attacks of the opponent.
+145|Bubble|Water|Special|30|40|100|decOppSpeed|10|May lower opponent's speed (10%).
+146|Dizzy Punch|Normal|Physical|10|70|100|oppConfuse|20|May confuse opponent (20%).
+147|Spore|Grass|Status|15||100|oppSleep|100|Puts opponent to sleep.
+148|Flash|Normal|Status|20||100|decOppAccuracy|100|Lowers opponent's Accuracy.
+149|Psywave|Psychic|Special|15||100|invalid||
+150|Splash|Normal|Status|40|0||||Has no effect whatsoever.
+151|Acid Armor|Poison|Status|20|||incSelfDef2|100|Sharply raises user's Defense.
+152|Crabhammer|Water|Physical|10|100|90|highCrit||High critical hit ratio.
+153|Explosion|Normal|Physical|5|250|100|invalid||
+154|Fury Swipes|Normal|Physical|15|18|80|multiHit||Hits 2-5 times in one turn.
+155|Bonemerang|Ground|Physical|10|50|90|doubleHit||Hits twice in one turn.
+156|Rest|Psychic|Status|5|||heal selfSleep||Puts user to sleep. User recovers all HP.
+157|Rock Slide|Rock|Physical|10|75|90|oppFlinch|30|May cause opponent to flinch (30%).
+158|Hyper Fang|Normal|Physical|15|80|90|oppFlinch|10|May cause opponent to flinch (10%).
+159|Sharpen|Normal|Status|30|||incSelfAtk|100|Raises user's Attack.
+160|Conversion|Normal|Status|30|||invalid||
+161|Tri Attack|Normal|Special|10|80|100|oppParalyse oppBurn oppFreeze|6.67|May paralyse, burn, or freeze opponent (20%).
+162|Super Fang|Normal|Physical|10||90|invalid||
+163|Slash|Normal|Physical|20|70|100|highCrit||High critical hit ratio.
+164|Substitute|Normal|Status|10|||invalid||
+165|Struggle|Normal|Physical|1|50|65536|invalid||
+166|Sketch|Normal|Status|1||65536|sketch||Permanently copies the opponent's moves.
+167|Triple Kick|Fighting|Physical|10|10|90|tripleHit||Hits thrice in one turn.
+168|Thief|Dark|Physical|25|60|100|itemSteal||Steals opponent's held item.
+169|Spider Web|Bug|Status|10||65536|invalid||
+170|Mind Reader|Normal|Status|5||65536|infiniteAccuracy||User's next attack is guaranteed to hit.
+171|Nightmare|Ghost|Status|15||100|invalid||
+172|Flame Wheel|Fire|Physical|25|60|100|oppBurn|10|May burn opponent (10%).
+173|Snore|Normal|Special|15|50|100|oppFlinch selfSleepBonus|30|Power doubles if user is asleep. May cause opponent to flinch (30%).
+174|Curse|Ghost|Status|10|||invalid||
+175|Flail|Normal|Physical|15||100|baseSelfHP||Stronger when the user's HP is lower.
+176|Conversion 2|Normal|Status|30||65536|invalid||
+177|Aeroblast|Flying|Special|5|100|95|highCrit||High critical hit ratio.
+178|Cotton Spore|Grass|Status|40||100|decOppSpeed2||Harshly lowers opponent's Speed.
+179|Reversal|Fighting|Physical|15||100|baseSelfHP||Stronger when the user's HP is lower.
+180|Spite|Ghost|Status|10||100|invalid||
+181|Powder Snow|Ice|Special|25|40|100|oppFreeze|10|May freeze opponent (10%).
+182|Protect|Normal|Status|10|||protect||Protects the user. May fail if used consecutively.
+183|Mach Punch|Fighting|Physical|30|40|100|||User attacks first.
+184|Scary Face|Normal|Status|10||100|decOppSpeed2|100|Harshly lowers opponent's Speed.
+185|Feint Attack|Dark|Physical|20|60|65536|||Ignores Accuracy.
+186|Sweet Kiss|Fairy|Status|10||75|oppConfuse|100|Confuses opponent.
+187|Belly Drum|Normal|Status|10|||invalid||
+188|Sludge Bomb|Poison|Special|10|90|100|oppPoison|30|May poison opponent (30%).
+189|Mud-Slap|Ground|Special|10|20|100|decOppAccuracy|100|Lowers opponent's Accuracy.
+190|Octazooka|Water|Special|10|65|85|decOppAccuracy|50|May lower opponent's Accuracy (50%).
+191|Spikes|Ground|Status|20|||invalid||
+192|Zap Cannon|Electric|Special|5|120|50|oppParalyse|100|Paralyses opponent.
+193|Foresight|Normal|Status|40||65536|invalid||
+194|Destiny Bond|Ghost|Status|5|||invalid||
+195|Perish Song|Normal|Status|5|||invalid||
+196|Icy Wind|Ice|Special|15|55|95|decOppSpeed|100|Lowers opponent's Speed.
+197|Detect|Fighting|Status|5|||protect||Protects the user. May fail if used consecutively.
+198|Bone Rush|Ground|Physical|10|25|90|multiHit||Hits 2-5 times in one turn.
+199|Lock-On|Normal|Status|5||65536|infiniteAccuracy||User's next attack is guaranteed to hit.
+200|Outrage|Dragon|Physical|10|120|100|lateSelfConfuse||User attacks for 2-3 turns but then becomes confused.
+201|Sandstorm|Rock|Status|10|||invalid||
+202|Giga Drain|Grass|Special|10|75|100|heal||User recovers half the HP inflicted on opponent.
+203|Endure|Normal|Status|10|||invalid||
+204|Charm|Fairy|Status|20||100|decOppAtk2|100|Harshly lowers opponent's Attack.
+205|Rollout|Rock|Physical|20|30|90|accumulate||Power increases each turn.
+206|False Swipe|Normal|Physical|40|40|100|invalid||
+207|Swagger|Normal|Status|15||85|oppConfuse incOppAtk2|100|Confuses opponent and sharply raises their Attack.
+208|Milk Drink|Normal|Status|5|||heal||User recovers half of its HP.
+209|Spark|Electric|Physical|20|65|100|oppParalyse|30|May paralyse opponent (30%).
+210|Fury Cutter|Bug|Physical|20|40|95|accumulate||Power increases each turn.
+211|Steel Wing|Steel|Physical|25|70|90|incSelfDef|10|May raise user's Defense (10%).
+212|Mean Look|Normal|Status|5||65536|invalid||
+213|Attract|Normal|Status|15||100|invalid||
+214|Sleep Talk|Normal|Status|10|||invalid||
+215|Heal Bell|Normal|Status|5|||invalid||
+216|Return|Normal|Physical|20||100|baseSelfFriendship||Power increases with higher Friendship.
+217|Present|Normal|Physical|15||90|invalid||
+218|Frustration|Normal|Physical|20||100|baseSelfFriendship||Power decreases with higher Friendship.
+219|Safeguard|Normal|Status|25|||invalid||
+220|Pain Split|Normal|Status|20||65536|invalid||
+221|Sacred Fire|Fire|Physical|5|100|95|oppBurn|50|May burn opponent (50%).
+222|Magnitude|Ground|Physical|30||100|randomPower||Hits with random power.
+223|Dynamic Punch|Fighting|Physical|5|100|50|oppConfuse|100|Confuses opponent.
+224|Megahorn|Bug|Physical|10|120|85|||
+225|Dragon Breath|Dragon|Special|20|60|100|oppParalyse|30|May paralyse opponent (30%).
+226|Baton Pass|Normal|Status|40|||invalid||
+227|Encore|Normal|Status|5||100|invalid||
+228|Pursuit|Dark|Physical|20|40|100|invalid||
+229|Rapid Spin|Normal|Physical|40|50|100|incSelfSpeed|100|Raises user's Speed.
+230|Sweet Scent|Normal|Status|20||100|invalid||
+231|Iron Tail|Steel|Physical|15|100|75|decOppDef|30|May lower opponent's Defense (30%).
+232|Metal Claw|Steel|Physical|35|50|95|incSelfAtk|10|May raise user's Attack (10%).
+233|Vital Throw|Fighting|Physical|10|70|65536|||Ignores Accuracy.
+234|Morning Sun|Normal|Status|5|||invalid||
+235|Synthesis|Grass|Status|5|||invalid||
+236|Moonlight|Fairy|Status|5|||invalid||
+237|Hidden Power|Normal|Special|15|60|100|invalid||
+238|Cross Chop|Fighting|Physical|5|100|80|highCrit||High critical hit ratio.
+239|Twister|Dragon|Special|20|40|100|oppFlinch|20|May cause opponent to flinch (20%).
+240|Rain Dance|Water|Status|5|||invalid||
+241|Sunny Day|Fire|Status|5|||invalid||
+242|Crunch|Dark|Physical|15|80|100|decOppDef|20|May lower opponent's Defense (20%).
+243|Mirror Coat|Psychic|Special|20||100|spCounter||Power doubles if user is hit by a Special Attack.
+244|Psych Up|Normal|Status|10||65536|invalid||
+245|Extreme Speed|Normal|Physical|5|80|100|||User attacks first.
+246|Ancient Power|Rock|Special|5|60|100|incSelfAllStats|10|May raise all user's stats at once (10%).
+247|Shadow Ball|Ghost|Special|15|80|100|decOppSpDef|20|May lower opponent's Special Defense (20%).
+248|Future Sight|Psychic|Special|10|120|100|lateDmg||Damage occurs 2 turns later.
+249|Rock Smash|Fighting|Physical|15|40|100|decOppDef|50|May lower opponent's Defense (50%).
+250|Whirlpool|Water|Special|15|35|85|damageOverTime||Damages opponent for 4-5 turns.
+251|Beat Up|Dark|Physical|10||100|invalid||
+252|Fake Out|Normal|Physical|10|40|100|invalid||
+253|Uproar|Normal|Special|10|90|100|invalid||
+254|Stockpile|Normal|Status|20|||invalid||
+255|Spit Up|Normal|Special|10||100|invalid||
+256|Swallow|Normal|Status|10|||invalid||
+257|Heat Wave|Fire|Special|10|95|90|oppBurn|10|May burn opponent (10%).
+258|Hail|Ice|Status|10|||invalid||
+259|Torment|Dark|Status|15||100|invalid||
+260|Flatter|Dark|Status|15||100|oppConfuse incOppSpAtk|100|Confuses opponent and raises their Special Attack. 
+261|Will-O-Wisp|Fire|Status|15||85|oppBurn|100|Burns opponent.
+262|Memento|Dark|Status|10||100|invalid||
+263|Facade|Normal|Physical|20|70|100|selfStatusBonus||Power doubles if user is burned, poisoned, or paralysed.
+264|Focus Punch|Fighting|Physical|20|150|100|invalid||
+265|Smelling Salts|Normal|Physical|10|70|100|invalid||
+266|Follow Me|Normal|Status|20|||invalid||
+267|Nature Power|Normal|Status|20|||invalid||
+268|Charge|Electric|Status|20|||invalid||
+269|Taunt|Dark|Status|20||100|invalid||
+270|Helping Hand|Normal|Status|20|||invalid||
+271|Trick|Psychic|Status|10||100|invalid||
+272|Role Play|Psychic|Status|10||65536|invalid||
+273|Wish|Normal|Status|10|||lateHeal||The user recovers half its max HP in the next turn.
+274|Assist|Normal|Status|20|||invalid||
+275|Ingrain|Grass|Status|20|||invalid||
+276|Superpower|Fighting|Physical|5|120|100|decSelfAtk decSelfDef|100|Lowers user's Attack and Defense.
+277|Magic Coat|Psychic|Status|15|||invalid||
+278|Recycle|Normal|Status|10|||invalid||
+279|Revenge|Fighting|Physical|10|60|100|secondBonus||Power doubles if user was hit first.
+280|Brick Break|Fighting|Physical|15|75|100|||
+281|Yawn|Normal|Status|10||65536|oppDrowsy||Puts opponent to sleep in the next turn.
+282|Knock Off|Dark|Physical|20|65|10|itemRemove||Removes opponent's held item.
+283|Endeavor|Normal|Physical|5||100|invalid||
+284|Eruption|Fire|Special|5|150|100|baseSelfHP||Stronger when the user's HP is higher.
+285|Skill Swap|Psychic|Status|10||65536|invalid||
+286|Imprison|Psychic|Status|10|||invalid||
+287|Refresh|Normal|Status|20|||invalid||
+288|Grudge|Ghost|Status|5|||invalid||
+289|Snatch|Dark|Status|10|||invalid||
+290|Secret Power|Normal|Physical|20|70|100|||
+291|Dive|Water|Physical|10|80|100|invalid||
+292|Arm Thrust|Fighting|Physical|20|15|100|multiHit||Hits 2-5 times in one turn.
+293|Camouflage|Normal|Status|20|||invalid||
+294|Tail Glow|Bug|Status|20|||incSelfSpAtk3||Drastically raises user's Special Attack.
+295|Luster Purge|Psychic|Special|5|95|100|decOppSpDef|50|May lower opponent's Special Defense (50%).
+296|Mist Ball|Psychic|Special|5|95|100|decOppSpAtk|50|May lower opponent's Special Attack (50%).
+297|Feather Dance|Flying|Status|15||100|decOppAtk2|100|Harshly lowers opponent's Attack.
+298|Teeter Dance|Normal|Status|20||100|selfConfuse oppConfuse|100|Confuses all Pokémon.
+299|Blaze Kick|Fire|Physical|10|85|90|highCrit oppBurn|10|High critical hit ratio. May burn opponent (10%).
+300|Mud Sport|Ground|Status|15|||invalid||
+301|Ice Ball|Ice|Physical|20|30|90|accumulate||Power increases each turn.
+302|Needle Arm|Grass|Physical|15|60|100|oppFlinch|30|May cause opponent to flinch (30%).
+303|Slack Off|Normal|Status|5|||heal||User recovers half of its HP.
+304|Hyper Voice|Normal|Special|10|90|100|||
+305|Poison Fang|Poison|Physical|15|50|100|oppPoison2|50|May badly poison opponent (50%).
+306|Crush Claw|Normal|Physical|10|75|95|decOppDef|50|May decrease opponent's Defense (50%).
+307|Blast Burn|Fire|Special|5|150|90|recharge||User must recharge next turn.
+308|Hydro Cannon|Water|Special|5|150|90|recharge||User must recharge next turn.
+309|Meteor Mash|Steel|Physical|10|90|90|incSelfAtk|20|May raise user's Attack (20%).
+310|Astonish|Ghost|Physical|15|30|100|oppFlinch|30|May cause opponent to flinch (30%).
+311|Weather Ball|Normal|Special|10|50|100|invalid||
+312|Aromatherapy|Grass|Status|5|||invalid||
+313|Fake Tears|Dark|Status|20||100|decOppDef2|100|Harshly lowers opponent's Special Defense.
+314|Air Cutter|Flying|Special|25|60|95|highCrit||High critical hit ratio.
+315|Overheat|Fire|Special|5|130|90|decSelfSpAtk2|100|Harshly lowers user's Special Attack.
+316|Odor Sleuth|Normal|Status|40||65536|invalid||
+317|Rock Tomb|Rock|Physical|15|60|95|decOppSpeed|100|Lowers opponent's Speed.
+318|Silver Wind|Bug|Special|5|60|100|incSelfAllStats|10|May raise all user's stats at once (10%).
+319|Metal Sound|Steel|Status|40||85|decOppSpDef2|100|Harshly lowers opponent's Special Defense.
+320|Grass Whistle|Grass|Status|15||55|oppSleep|100|Puts opponent to sleep.
+321|Tickle|Normal|Status|20||100|decOppAtk decOppDef|100|Lowers opponent's Attack and Defense.
+322|Cosmic Power|Psychic|Status|20|||incSelfDef incSelfSpDef|100|Raises user's Defense and Special Defense.
+323|Water Spout|Water|Special|5|150|100|baseSelfHP||Stronger when the user's HP is higher.
+324|Signal Beam|Bug|Special|15|75|100|oppConfuse|10|May confuse opponent (10%).
+325|Shadow Punch|Ghost|Physical|20|60|65536|||Ignores Accuracy.
+326|Extrasensory|Psychic|Special|20|80|100|oppFlinch|10|May cause opponent to flinch (10%).
+327|Sky Uppercut|Fighting|Physical|15|85|90|||
+328|Sand Tomb|Ground|Physical|15|35|85|damageOverTime||Damages opponent for 4-5 turns.
+329|Sheer Cold|Ice|Special|5|65535|30|||One-Hit-KO.
+330|Muddy Water|Water|Special|10|90|85|decOppAccuracy|30|May lower opponent's Accuracy (30%).
+331|Bullet Seed|Grass|Physical|30|25|100|multiHit||Hits 2-5 times in one turn.
+332|Aerial Ace|Flying|Physical|20|60|65536|||Ignores Accuracy.
+333|Icicle Spear|Ice|Physical|30|25|100|multiHit||Hits 2-5 times in one turn.
+334|Iron Defense|Steel|Status|15|||incSelfDef2|100|Sharply raises user's Defense.
+335|Block|Normal|Status|5||65536|invalid||
+336|Howl|Normal|Status|40|||incSelfAtk|100|Raises user's Attack.
+337|Dragon Claw|Dragon|Physical|15|80|100|||
+338|Frenzy Plant|Grass|Special|5|150|90|recharge||User must recharge next turn.
+339|Bulk Up|Fighting|Status|20|||incSelfAtk incSelfDef|100|Raises user's Attack and Defense.
+340|Bounce|Flying|Physical|5|85|85|invalid||
+341|Mud Shot|Ground|Special|15|55|95|decOppSpeed|100|Lowers opponent's Speed.
+342|Poison Tail|Poison|Physical|25|50|100|highCrit oppPoison|10|High critical hit ratio. May poison opponent (10%).
+343|Covet|Normal|Physical|25|60|100|itemSteal||Steals opponent's held item.
+344|Volt Tackle|Electric|Physical|15|120|100|recoil oppParalyse|10|	User receives recoil damage. May paralyze opponent (10%).
+345|Magical Leaf|Grass|Special|20|60|65536|||Ignores Accuracy.
+346|Water Sport|Water|Status|15|||invalid||
+347|Calm Mind|Psychic|Status|20|||incSelfSpAtk incSelfSpDef|100|Raises user's Special Attack and Special Defense.
+348|Leaf Blade|Grass|Physical|15|90|100|highCrit||High critical hit ratio.
+349|Dragon Dance|Dragon|Status|20|||incSelfAtk incSelfSpeed|100|Raises user's Attack and Speed.
+350|Rock Blast|Rock|Physical|10|25|90|multiHit||Hits 2-5 times in one turn.
+351|Shock Wave|Electric|Special|20|60|65536|||Ignores Accuracy.
+352|Water Pulse|Water|Special|20|60|100|oppConfuse|20|May confuse opponent (20%).
+353|Doom Desire|Steel|Special|5|140|100|lateDmg||Damage occurs 2 turns later.
+354|Psycho Boost|Psychic|Special|5|140|90|decSelfSpAtk2|100|Harshly lowers user's Special Attack.
+355|Roost|Flying|Status|5|||invalid||
+356|Gravity|Psychic|Status|5|||invalid||
+357|Miracle Eye|Psychic|Status|40||65536|invalid||
+358|Wake-Up Slap|Fighting|Physical|10|70|100|oppStatusPenalty oppWake||Power doubles if opponent is asleep and wakes it up.
+359|Hammer Arm|Fighting|Physical|10|100|90|decSelfSpeed|100|Lowers user's Speed.
+360|Gyro Ball|Steel|Physical|5||100|baseSelfSpeed||Stronger when the user is slower.
+361|Healing Wish|Psychic|Status|10|||invalid||
+362|Brine|Water|Special|10|65|100|baseOppHP||Power doubles if opponent's HP is less than 50%.
+363|Natural Gift|Normal|Physical|15||100|invalid||
+364|Feint|Normal|Physical|10|30|100|invalid||
+365|Pluck|Flying|Physical|20|60|100|invalid||
+366|Tailwind|Flying|Status|15|||invalid||
+367|Acupressure|Normal|Status|30|||invalid||
+368|Metal Burst|Steel|Physical|10||100|invalid||
+369|U-turn|Bug|Physical|20|70|100|||
+370|Close Combat|Fighting|Physical|5|120|100|decSelfDef decSelfSpDef|100|Lowers user's Defense and Special Defense.
+371|Payback|Dark|Physical|10|50|100|secondBonus||Power doubles if the user was hit first.
+372|Assurance|Dark|Physical|10|60|100|||
+373|Embargo|Dark|Status|15||100|invalid||
+374|Fling|Dark|Physical|10||100|invalid||
+375|Psycho Shift|Psychic|Status|10||100|invalid||
+376|Trump Card|Normal|Special|5||65536|invalid||
+377|Heal Block|Psychic|Status|15||100|invalid||
+378|Wring Out|Normal|Special|5||100|baseOppHP||Stronger when the opponent's HP is higher.
+379|Power Trick|Psychic|Status|10|||invalid||
+380|Gastro Acid|Poison|Status|10||100|invalid||
+381|Lucky Chant|Normal|Status|30|||invalid||
+382|Me First|Normal|Status|20||65536|invalid||
+383|Copycat|Normal|Status|20|||invalid||
+384|Power Swap|Psychic|Status|10||65536|invalid||
+385|Guard Swap|Psychic|Status|10||65536|invalid||
+386|Punishment|Dark|Physical|5||100|invalid||
+387|Last Resort|Normal|Physical|5|140|100|invalid||
+388|Worry Seed|Grass|Status|10||100|invalid||
+389|Sucker Punch|Dark|Physical|5|70|100|||User attacks first.
+390|Toxic Spikes|Poison|Status|20|||invalid||
+391|Heart Swap|Psychic|Status|10||65536|invalid||
+392|Aqua Ring|Water|Status|20|||invalid||
+393|Magnet Rise|Electric|Status|10|||invalid||
+394|Flare Blitz|Fire|Physical|15|120|100|recoil oppBurn|10|User receives recoil damage. May burn opponent (10%).
+395|Force Palm|Fighting|Physical|10|60|100|oppParalyse|30|May paralyse opponent (30%).
+396|Aura Sphere|Fighting|Special|20|80|65536|||Ignores Accuracy.
+397|Rock Polish|Rock|Status|20|||incSelfSpeed2|100|Sharply raises user's Speed.
+398|Poison Jab|Poison|Physical|20|80|100|oppPoison|30|May poison opponent (30%).
+399|Dark Pulse|Dark|Special|15|80|100|oppFlinch|20|May cause opponent to flinch (20%).
+400|Night Slash|Dark|Physical|15|70|100|highCrit||High critical hit ratio.
+401|Aqua Tail|Water|Physical|10|90|90|||
+402|Seed Bomb|Grass|Physical|15|80|100|||
+403|Air Slash|Flying|Special|15|75|95|oppFlinch|30|May cause opponent to flinch (30%).
+404|X-Scissor|Bug|Physical|15|80|100|||
+405|Bug Buzz|Bug|Special|10|90|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+406|Dragon Pulse|Dragon|Special|10|85|100|||
+407|Dragon Rush|Dragon|Physical|10|100|75|oppFlinch|20|May cause opponent to flinch (20%).
+408|Power Gem|Rock|Special|20|80|100|||
+409|Drain Punch|Fighting|Physical|10|75|100|heal||User recovers half the HP inflicted on opponent.
+410|Vacuum Wave|Fighting|Special|30|40|100|||User attacks first.
+411|Focus Blast|Fighting|Special|5|120|70|decOppSpDef|10|May lower opponent's Special Defense (10%).
+412|Energy Ball|Grass|Special|10|90|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+413|Brave Bird|Flying|Physical|15|120|100|recoil||User receives recoil damage.
+414|Earth Power|Ground|Special|10|90|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+415|Switcheroo|Dark|Status|10||100|invalid||
+416|Giga Impact|Normal|Physical|5|150|90|recharge||User must recharge next turn.
+417|Nasty Plot|Dark|Status|20|||incSelfSpAtk2||Sharply raises user's Special Attack.
+418|Bullet Punch|Steel|Physical|30|40|100|||User attacks first.
+419|Avalanche|Ice|Physical|10|60|100|secondBonus||Power doubles if the user was hit first.
+420|Ice Shard|Ice|Physical|30|40|100|||User attacks first.
+421|Shadow Claw|Ghost|Physical|15|70|100|highCrit||High critical hit ratio.
+422|Thunder Fang|Electric|Physical|15|65|95|oppFlinch oppParalyse|10|May cause flinching and/or paralyze opponent (10%).
+423|Ice Fang|Ice|Physical|15|65|95|oppFlinch oppFreeze|10|May cause flinching and/or freeze opponent (10%).
+424|Fire Fang|Fire|Physical|15|65|95|oppFlinch oppBurn|10|May cause flinching and/or burn opponent (10%).
+425|Shadow Sneak|Ghost|Physical|30|40|100|||User attacks first.
+426|Mud Bomb|Ground|Special|10|65|85|decOppAccuracy|30|May lower opponent's Accuracy (30%).
+427|Psycho Cut|Psychic|Physical|20|70|100|highCrit||High critical hit ratio.
+428|Zen Headbutt|Psychic|Physical|15|80|90|oppFlinch|20|May cause opponent to flinch (20%).
+429|Mirror Shot|Steel|Special|10|65|85|decOppAccuracy|30|May lower opponent's Accuracy (30%).
+430|Flash Cannon|Steel|Special|10|80|100|decOppSpDef|10|May lower opponent's Special Defense (10%).
+431|Rock Climb|Normal|Physical|20|90|85|oppConfuse|20|May confuse opponent (20%).
+432|Defog|Flying|Status|15||65536|invalid||
+433|Trick Room|Psychic|Status|5|||invalid||
+434|Draco Meteor|Dragon|Special|5|130|90|decSelfSpAtk2|100|Harshly lowers user's Special Attack.
+435|Discharge|Electric|Special|15|80|100|oppParalyse|30|May paralyse opponent (30%).
+436|Lava Plume|Fire|Special|15|80|100|oppBurn|30|May burn opponent (30%).
+437|Leaf Storm|Grass|Special|5|130|90|decOppAccuracy|50|May lower opponent's Accuracy (50%).
+438|Power Whip|Grass|Physical|10|120|85|||
+439|Rock Wrecker|Rock|Physical|5|150|90|recharge||User must recharge next turn.
+440|Cross Poison|Poison|Physical|20|70|100|highCrit oppPoison|10|High critical hit ratio. May poison opponent (10%).
+441|Gunk Shot|Poison|Physical|5|120|80|oppPoison|30|May poison opponent (30%).
+442|Iron Head|Steel|Physical|15|80|100|oppFlinch|30|May cause opponent to flinch (30%).
+443|Magnet Bomb|Steel|Physical|20|60|65536|||Ignores Accuracy.
+444|Stone Edge|Rock|Physical|5|100|80|highCrit||High critical hit ratio.
+445|Captivate|Normal|Status|20||100|invalid||
+446|Stealth Rock|Rock|Status|20|||invalid||
+447|Grass Knot|Grass|Special|20||100|baseOppWeight||Stronger against heavier opponents.
+448|Chatter|Flying|Special|20|65|100|oppConfuse|100|Confuses opponent.
+449|Judgment|Normal|Special|10|100|100|||Type depends on the Plate being held.
+450|Bug Bite|Bug|Physical|20|60|100|||
+451|Charge Beam|Electric|Special|10|50|90|incSelfSpAtk|70|May raise user's Special Attack (70%).
+452|Wood Hammer|Grass|Physical|15|120|100|recoil||User receives recoil damage.
+453|Aqua Jet|Water|Physical|20|40|100|||User attacks first.
+454|Attack Order|Bug|Physical|15|90|100|highCrit||High critical hit ratio.
+455|Defend Order|Bug|Status|10|||incSelfDef incSelfSpDef|100|Raises user's Defense and Special Defense.
+456|Heal Order|Bug|Status|10|||heal||User recovers half of its HP.
+457|Head Smash|Rock|Physical|5|150|80|recoil||User receives recoil damage.
+458|Double Hit|Normal|Physical|10|35|90|doubleHit||Hits twice in one turn.
+459|Roar of Time|Dragon|Special|5|150|90|recharge||User must recharge next turn.
+460|Spacial Rend|Dragon|Special|5|100|95|highCrit||High critical hit ratio.
+461|Lunar Dance|Psychic|Status|10|||invalid||
+462|Crush Grip|Normal|Physical|5||100|baseOppHP||Stronger when opponent's HP is higher.
+463|Magma Storm|Fire|Special|5|100|75|damageOverTime||Damages opponent for 4-5 turns.
+464|Dark Void|Dark|Status|10||50|oppSleep|100|Puts opponent to sleep.
+465|Seed Flare|Grass|Special|5|120|85|decOppSpDef|40|May lower opponent's Special Defense (40%).
+466|Ominous Wind|Ghost|Special|5|60|100|incSelfAllStats|10|May raise all user's stats at once (10%).
+467|Shadow Force|Ghost|Physical|5|120|100|ignoreProtect dodgeCharge||Disappears on first turn, attacks on second. Can strike through Protect.
+468|Hone Claws|Dark|Status|15|||incSelfAtk incSelfAccuracy|100|	Raises user's Attack and Accuracy.
+469|Wide Guard|Rock|Status|10|||invalid||
+470|Guard Split|Psychic|Status|10||65536|invalid||
+471|Power Split|Psychic|Status|10||65536|invalid||
+472|Wonder Room|Psychic|Status|10|||invalid||
+473|Psyshock|Psychic|Special|10|80|100|baseOppDef||Inflicts damage based on opponent's Defense, not Special Defense.
+474|Venoshock|Poison|Special|10|65|100|oppStatusPenalty||Power doubles if opponent is poisoned.
+475|Autotomize|Steel|Status|15|||invalid||
+476|Rage Powder|Bug|Status|20|||invalid||
+477|Telekinesis|Psychic|Status|15||65536|invalid||
+478|Magic Room|Psychic|Status|10|||invalid||
+479|Smack Down|Rock|Physical|15|50|100|||
+480|Storm Throw|Fighting|Physical|10|60|100|highCrit|100|Always results in a critical hit.
+481|Flame Burst|Fire|Special|15|70|100|||
+482|Sludge Wave|Poison|Special|10|95|100|oppPoison|10|May poison opponent (10%).
+483|Quiver Dance|Bug|Status|20|||incSelfSpAtk incSelfSpDef incSelfSpeed|100|Raises user's Special Attack, Special Defense, and Speed.
+484|Heavy Slam|Steel|Physical|10||100|baseSelfWeight||Stronger when the user is heavier.
+485|Synchronoise|Psychic|Special|10|120|100|invalid||
+486|Electro Ball|Electric|Special|10||100|baseSelfSpeed||Stronger when the user is faster.
+487|Soak|Water|Status|20||100|invalid||
+488|Flame Charge|Fire|Physical|20|50|100|incSelfSpeed|100|Raises user's Speed.
+489|Coil|Poison|Status|20|||incSelfAtk incSelfDef incSelfAccuracy|100|Raises user's Attack, Defense, and Accuracy.
+490|Low Sweep|Fighting|Physical|20|65|100|decOppSpeed|100|Lowers opponent's Speed.
+491|Acid Spray|Poison|Special|20|40|100|decOppSpDef2|100|Harshly lowers opponent's Special Defense.
+492|Foul Play|Dark|Physical|15|95|100|baseOppAtk||Uses opponent's Attack stat.
+493|Simple Beam|Normal|Status|15||100|invalid||
+494|Entrainment|Normal|Status|15||100|invalid||
+495|After You|Normal|Status|15||65536|invalid||
+496|Round|Normal|Special|15|60|100|||
+497|Echoed Voice|Normal|Special|15|40|100|accumulate||Power increases each turn.
+498|Chip Away|Normal|Physical|20|70|100|ignoreStats||Ignores opponent's stat changes.
+499|Clear Smog|Poison|Special|15|50|65536|invalid||
+500|Stored Power|Psychic|Special|10|20|100|invalid||
+501|Quick Guard|Fighting|Status|15|||invalid||
+502|Ally Switch|Psychic|Status|15|||invalid||
+503|Scald|Water|Special|15|80|100|oppBurn|30|May burn opponent (30%).
+504|Shell Smash|Normal|Status|15|||incSelfAtk2 incSelfSpAtk2 incSelfSpeed decSelfDef decSelfSpDef|100|Sharply raises user's Attack, Special Attack, and Speed. Lowers user's Defense and Special Defense.
+505|Heal Pulse|Psychic|Status|10||65536|heal||User recovers half of its HP.
+506|Hex|Ghost|Special|10|65|100|oppStatusPenalty||Power doubles if opponent has a status condition.
+507|Sky Drop|Flying|Physical|10|60|100|invalid||
+508|Shift Gear|Steel|Status|10|||incSelfAtk incSelfSpeed2|100|Raises user's Attack and sharply raises its Speed.
+509|Circle Throw|Fighting|Physical|10|60|90|invalid||
+510|Incinerate|Fire|Special|15|60|100|||
+511|Quash|Dark|Status|15||100|invalid||
+512|Acrobatics|Flying|Physical|15|55|100|baseSelfItem||Stronger when the user is not holding an item.
+513|Reflect Type|Normal|Status|15||65536|invalid||
+514|Retaliate|Normal|Physical|5|70|100|invalid||
+515|Final Gambit|Fighting|Special|5||100|invalid||
+516|Bestow|Normal|Status|15||65536|invalid||
+517|Inferno|Fire|Special|5|100|50|oppBurn|100|Burns opponent.
+518|Water Pledge|Water|Special|10|80|100|||
+519|Fire Pledge|Fire|Special|10|80|100|||
+520|Grass Pledge|Grass|Special|10|80|100|||
+521|Volt Switch|Electric|Special|20|70|100|||
+522|Struggle Bug|Bug|Special|20|50|100|decOppSpAtk|100|Lowers opponent's Special Attack.
+523|Bulldoze|Ground|Physical|20|60|100|decOppSpeed|100|Lowers opponent's Speed.
+524|Frost Breath|Ice|Special|10|60|90|highCrit|100|Always results in a critical hit.
+525|Dragon Tail|Dragon|Physical|10|60|90|invalid||
+526|Work Up|Normal|Status|30|||incSelfAtk incSelfSpAtk|100|Raises user's Attack and Special Attack.
+527|Electroweb|Electric|Special|15|55|95|decOppSpeed|100|Lowers opponent's Speed.
+528|Wild Charge|Electric|Physical|15|90|100|recoil||User receives recoil damage.
+529|Drill Run|Ground|Physical|10|80|95|highCrit||High critical hit ratio.
+530|Dual Chop|Dragon|Physical|15|40|90|doubleHit||Hits twice in one turn.
+531|Heart Stamp|Psychic|Physical|25|60|100|oppFlinch|30|May cause opponent to flinch (30%).
+532|Horn Leech|Grass|Physical|10|75|100|heal||User recovers half the HP inflicted on opponent.
+533|Sacred Sword|Fighting|Physical|15|90|100|ignoreStats||Ignores opponent's stat changes.
+534|Razor Shell|Water|Physical|10|75|95|decOppDef|50|May lower opponent's Defense (50%).
+535|Heat Crash|Fire|Physical|10||100|baseSelfWeight||Stronger when the user is heavier.
+536|Leaf Tornado|Grass|Special|10|65|90|decOppAccuracy|50|May lower opponent's Accuracy (50%).
+537|Steamroller|Bug|Physical|20|65|100|oppFlinch|30|May cause opponent to flinch (30%).
+538|Cotton Guard|Grass|Status|10|||incSelfDef3|100|Drastically raises user's Defense.
+539|Night Daze|Dark|Special|10|85|95|decOppAccuracy|40|May lower opponent's Accuracy (40%).
+540|Psystrike|Psychic|Special|10|100|100|baseOppDef||Inflicts damage based on opponent's Defense, not Special Defense.
+541|Tail Slap|Normal|Physical|10|25|85|multiHit||Hits 2-5 times in one turn.
+542|Hurricane|Flying|Special|10|110|70|oppConfuse|30|May confuse opponent (30%).
+543|Head Charge|Normal|Physical|15|120|100|recoil||User receives recoil damage.
+544|Gear Grind|Steel|Physical|15|50|85|doubleHit||Hits twice in one turn.
+545|Searing Shot|Fire|Special|5|100|100|oppBurn|30|May burn opponent (30%).
+546|Techno Blast|Normal|Special|5|120|100|||Type depends on the Drive being held.
+547|Relic Song|Normal|Special|10|75|100|oppSleep|10|May put opponent to sleep (10%).
+548|Secret Sword|Fighting|Special|10|85|100|baseOppDef||Inflicts damage based on opponent's Defense, not Special Defense.
+549|Glaciate|Ice|Special|10|65|95|decOppSpeed|100|Lowers opponent's Speed.
+550|Bolt Strike|Electric|Physical|5|130|85|oppParalyse|20|May paralyse opponent (20%).
+551|Blue Flare|Fire|Special|5|130|85|oppBurn|20|May burn opponent (20%).
+552|Fiery Dance|Fire|Special|10|80|100|incSelfSpAtk|50|May raise user's Special Attack (50%).
+553|Freeze Shock|Ice|Physical|5|140|90|staticCharge oppParalyse|30|Charges on first turn, attacks on second. May paralyze opponent (30%).
+554|Ice Burn|Ice|Special|5|140|90|staticCharge oppBurn|30|Charges on first turn, attacks on second. May paralyze opponent.
+555|Snarl|Dark|Special|15|55|95|decOppSpAtk|100|Lowers opponent's Special Attack.
+556|Icicle Crash|Ice|Physical|10|85|90|oppFlinch|30|May cause opponent to flinch (30%).
+557|V-create|Fire|Physical|5|180|95|decSelfDef decSelfSpDef decSelfSpeed|100|Lowers user's Defense, Special Defense, and Speed.
+558|Fusion Flare|Fire|Special|5|100|100|||
+559|Fusion Bolt|Electric|Physical|5|100|100|||
+560|Flying Press|Fighting|Physical|10|100|95|||Deals Fighting and Flying type damage.
+561|Mat Block|Fighting|Status|10|||invalid||
+562|Belch|Poison|Special|10|120|90|invalid||
+563|Rototiller|Ground|Status|10|||invalid||
+564|Sticky Web|Bug|Status|20|||invalid||
+565|Fell Stinger|Bug|Physical|25|50|100|||
+566|Phantom Force|Ghost|Physical|10|90|100|dodgeCharge ignoreProtect||Disappears on first turn, attacks on second. Can strike through Protect.
+567|Trick-or-Treat|Ghost|Status|20||100|invalid||
+568|Noble Roar|Normal|Status|30||100|decOppAtk decOppSpAtk|100|Lowers opponent's Attack and Special Attack.
+569|Ion Deluge|Electric|Status|25|||invalid||
+570|Parabolic Charge|Electric|Special|20|65|100|heal||User recovers half the HP inflicted on opponent.
+571|Forest's Curse|Grass|Status|20||100|invalid||
+572|Petal Blizzard|Grass|Physical|15|90|100|||
+573|Freeze-Dry|Ice|Special|20|70|100|oppFreeze|10|May freeze opponent (10%).
+574|Disarming Voice|Fairy|Special|15|40|65536|||Ignores Accuracy.
+575|Parting Shot|Dark|Status|20||100|invalid||
+576|Topsy-Turvy|Dark|Status|20||65536|invalid||
+577|Draining Kiss|Fairy|Special|10|50|100|heal||User recovers most of the HP inflicted on opponent.
+578|Crafty Shield|Fairy|Status|10|||invalid||
+579|Flower Shield|Fairy|Status|10|||invalid||
+580|Grassy Terrain|Grass|Status|10|||invalid||
+581|Misty Terrain|Fairy|Status|10|||invalid||
+582|Electrify|Electric|Status|20||65536|invalid||
+583|Play Rough|Fairy|Physical|10|90|90|decOppAtk|10|May lower opponent's Attack (10%).
+584|Fairy Wind|Fairy|Special|30|40|100|||
+585|Moonblast|Fairy|Special|15|95|100|decOppSpAtk|30|May lower opponent's Special Attack (30%).
+586|Boomburst|Normal|Special|10|140|100|||
+587|Fairy Lock|Fairy|Status|10|||invalid||
+588|King's Shield|Steel|Status|10|||protect||Protects the user. Lowers opponent's Attack on contact.
+589|Play Nice|Normal|Status|20||65536|decOppAtk|100|Lowers opponent's Attack.
+590|Confide|Normal|Status|20||65536|decOppSpAtk|100|Lowers opponent's Special Attack.
+591|Diamond Storm|Rock|Physical|5|100|95|incSelfDef2|50|May sharply raise user's Defense (50%).
+592|Steam Eruption|Water|Special|5|110|95|oppBurn|30|May burn opponent (30%).
+593|Hyperspace Hole|Psychic|Special|5|80|65536|ignoreProtect||Can strike through Protect. Ignores Accuracy.
+594|Water Shuriken|Water|Special|20|15|100|multiHit||Hits 2-5 times in one turn. User attacks first.
+595|Mystical Fire|Fire|Special|10|75|100|decOppSpAtk|100|Lowers opponent's Special Attack.
+596|Spiky Shield|Grass|Status|10|||protect||Protects the user. Inflicts damage on contact.
+597|Aromatic Mist|Fairy|Status|20|||invalid||
+598|Eerie Impulse|Electric|Status|15||100|decOppSpAtk2|100|Harshly lowers opponent's Special Attack.
+599|Venom Drench|Poison|Status|20||100|invalid||
+600|Powder|Bug|Status|20||100|invalid||
+601|Geomancy|Fairy|Status|10|||staticCharge||Charges on first turn, sharply raises user's Special Attack, Special Defense, and Speed on the second.
+602|Magnetic Flux|Electric|Status|20|||invalid||
+603|Happy Hour|Normal|Status|30|||coinBoost||Doubles coins earned after battle.
+604|Electric Terrain|Electric|Status|10|||invalid||
+605|Dazzling Gleam|Fairy|Special|10|80|100|||
+606|Celebrate|Normal|Status|40|||invalid||
+607|Hold Hands|Normal|Status|40|||invalid||
+608|Baby-Doll Eyes|Fairy|Status|30||100|decOppAtk|100|Lowers opponent's Attack. 
+609|Nuzzle|Electric|Physical|20|20|100|oppParalyse|100|Paralyses opponent.
+610|Hold Back|Normal|Physical|40|40|100|invalid||
+611|Infestation|Bug|Special|20|20|100|damageOverTime||Damages opponent for 4-5 turns.
+612|Power-Up Punch|Fighting|Physical|20|40|100|incSelfAtk|100|Raises user's Attack.
+613|Oblivion Wing|Flying|Special|10|80|100|heal||User recovers most of the HP inflicted on opponent.
+614|Thousand Arrows|Ground|Physical|10|90|100|||Can hit Flying-type Pokémon.
+615|Thousand Waves|Ground|Physical|10|90|100|||
+616|Land's Wrath|Ground|Physical|10|90|100|||
+617|Light of Ruin|Fairy|Special|5|140|90|invalid||
+618|Origin Pulse|Water|Special|10|110|85|||
+619|Precipice Blades|Ground|Physical|10|120|85|||
+620|Dragon Ascent|Flying|Physical|5|120|100|decSelfDef decSelfSpDef|100|Lowers user's Defense and Special Defense.
+621|Hyperspace Fury|Dark|Physical|5|100||ignoreProtect decSelfDef|100|Lowers user's Defense. Can strike through Protect.
+622|Breakneck Blitz|Normal|Status|1||65536|invalid||
+623|All-Out Pummeling|Fighting|Status|1||65536|invalid||
+624|Supersonic Skystrike|Flying|Status|1||65536|invalid||
+625|Acid Downpour|Poison|Status|1||65536|invalid||
+626|Tectonic Rage|Ground|Status|1||65536|invalid||
+627|Continental Crush|Rock|Status|1||65536|invalid||
+628|Savage Spin-Out|Bug|Status|1||65536|invalid||
+629|Never-Ending Nightmare|Ghost|Status|1||65536|invalid||
+630|Corkscrew Crash|Steel|Status|1||65536|invalid||
+631|Inferno Overdrive|Fire|Status|1||65536|invalid||
+632|Hydro Vortex|Water|Status|1||65536|invalid||
+633|Bloom Doom|Grass|Status|1||65536|invalid||
+634|Gigavolt Havoc|Electric|Status|1||65536|invalid||
+635|Shattered Psyche|Psychic|Status|1||65536|invalid||
+636|Subzero Slammer|Ice|Status|1||65536|invalid||
+637|Devastating Drake|Dragon|Status|1||65536|invalid||
+638|Black Hole Eclipse|Dark|Status|1||65536|invalid||
+639|Twinkle Tackle|Fairy|Status|1||65536|invalid||
+640|Catastropika|Electric|Physical|1|210|65536|invalid||
+641|Shore Up|Ground|Status|5|||heal||User recovers half of its HP.
+642|First Impression|Bug|Physical|10|90|100|invalid||
+643|Baneful Bunker|Poison|Status|10|||protect||Protects the user. Poisons opponent on contact.
+644|Spirit Shackle|Ghost|Physical|10|80|100|||
+645|Darkest Lariat|Dark|Physical|10|85|100|ignoreStats||Ignores opponent's stat changes.
+646|Sparkling Aria|Water|Special|10|90|100|||
+647|Ice Hammer|Ice|Physical|10|100|90|decSelfSpeed|100|Lowers user's Speed.
+648|Floral Healing|Fairy|Status|10||65536|invalid||
+649|High Horsepower|Ground|Physical|10|95|95|||
+650|Strength Sap|Grass|Status|10||100|invalid||
+651|Solar Blade|Grass|Physical|10|125|100|staticCharge||Charges on first turn, attacks on second.
+652|Leafage|Grass|Physical|40|40|100|||
+653|Spotlight|Normal|Status|15|||invalid||
+654|Toxic Thread|Poison|Status|20||100|oppPoison decOppSpeed|100|Poisons opponent and lowers its Speed.
+655|Laser Focus|Normal|Status|30|||invalid||
+656|Gear Up|Steel|Status|20|||invalid||
+657|Throat Chop|Dark|Physical|15|80|100|invalid||
+658|Pollen Puff|Bug|Special|15|90|100|||
+659|Anchor Shot|Steel|Physical|20|80|100|||
+660|Psychic Terrain|Psychic|Status|10|||invalid||
+661|Lunge|Bug|Physical|15|80|100|decOppAtk|100|Lowers opponent's Attack.
+662|Fire Lash|Fire|Physical|15|80|100|decOppDef|100|Lowers opponent's Defense.
+663|Power Trip|Dark|Physical|10|20|100|invalid||
+664|Burn Up|Fire|Special|5|130|100|invalid||
+665|Speed Swap|Psychic|Status|10||65536|invalid||
+666|Smart Strike|Steel|Physical|10|70|65536|||Ignores Accuracy.
+667|Purify|Poison|Status|20|||invalid||
+668|Revelation Dance|Normal|Special|15|90|100|||Type depends on Oricorio's form.
+669|Core Enforcer|Dragon|Special|10|100|100|||
+670|Trop Kick|Grass|Physical|15|70|100|decOppAtk|100|Lowers opponent's Attack.
+671|Instruct|Psychic|Status|15|||invalid||
+672|Beak Blast|Flying|Physical|15|100|100|staticCharge||Charges on first turn, attacks on second. Burns opponent on contact.
+673|Clanging Scales|Dragon|Special|5|110|100|decOppDef|100|Lowers opponent's Defense.
+674|Dragon Hammer|Dragon|Physical|15|90|100|||
+675|Brutal Swing|Dark|Physical|20|60|100|||
+676|Aurora Veil|Ice|Status|20|||invalid||
+677|Sinister Arrow Raid|Ghost|Physical|1|180|65536|invalid||
+678|Malicious Moonsault|Dark|Physical|1|180|65536|invalid||
+679|Oceanic Operetta|Water|Special|1|195|65536|invalid||
+680|Guardian of Alola|Fairy|Special|1||65536|invalid||
+681|Soul-Stealing 7-Star Strike|Ghost|Physical|1|195|65536|invalid||
+682|Stoked Sparksurfer|Electric|Special|1|175|65536|invalid||
+683|Pulverizing Pancake|Normal|Physical|1|210|65536|invalid||
+684|Extreme Evoboost|Normal|Status|1|||invalid||
+685|Genesis Supernova|Psychic|Special|1|185|65536|invalid||
+686|Shell Trap|Fire|Special|5|150|100|invalid||
+687|Fleur Cannon|Fairy|Special|5|130|90|decSelfSpAtk2|100|Harshly lowers user's Special Attack.
+688|Psychic Fangs|Psychic|Physical|10|85|100|||
+689|Stomping Tantrum|Ground|Physical|10|75|100|failBonus||Power doubles if user's previous move failed.
+690|Shadow Bone|Ghost|Physical|10|85|100|decOppDef|20|May lower opponent's Defense (20%).
+691|Accelerock|Rock|Physical|20|40|100|||User attacks first.
+692|Liquidation|Water|Physical|10|85|100|decOppDef|20|May lower opponent's Defense (20%).
+693|Prismatic Laser|Psychic|Special|10|160|100|recharge||User must recharge next turn.
+694|Spectral Thief|Ghost|Physical|10|90|100|||User steals opponent's stat boosts.
+695|Sunsteel Strike|Steel|Physical|5|100|100|||
+696|Moongeist Beam|Ghost|Special|5|100|100|||
+697|Tearful Look|Normal|Status|20|||decOppAtk depOppSpAtk|100|Lowers opponent's Attack and Special Attack.
+698|Zing Zap|Electric|Physical|10|80|100|oppFlinch|30|May cause opponent to flinch (30%).
+699|Nature's Madness|Fairy|Special|10||90|||Halves the opponent's HP.
+700|Multi-Attack|Normal|Physical|10|120|100|||Type depends on the Memory being held.
+701|10,000,000 Volt Thunderbolt|Electric|Special|1|195|65536|invalid||
+702|Mind Blown|Fire|Special|5|150|100|recoil||User receives recoil damage.
+703|Plasma Fists|Electric|Physical|15|100|100|||
+704|Photon Geyser|Psychic|Special|5|100|100|||Uses Attack or Special Attack stat, whichever is higher.
+705|Light That Burns the Sky|Psychic|Special|1|200|65536|invalid||
+706|Searing Sunraze Smash|Steel|Physical|1|200|65536|invalid||
+707|Menacing Moonraze Maelstrom|Ghost|Special|1|200|65536|invalid||
+708|Let's Snuggle Forever|Fairy|Physical|1|190|65536|invalid||
+709|Splintered Stormshards|Rock|Physical|1|190|65536|invalid||
+710|Clangorous Soulblaze|Dragon|Special|1|185|65536|invalid||
+711|Zippy Zap|Electric|Physical|10|80|100|invalid||
+712|Splishy Splash|Water|Special|15|90|100|invalid||
+713|Floaty Fall|Flying|Physical|15|90|95|invalid||
+714|Pika Papow|Electric|Special|20||65536|invalid||
+715|Bouncy Bubble|Water|Special|20|60|100|invalid||
+716|Buzzy Buzz|Electric|Special|20|60|100|invalid||
+717|Sizzly Slide|Fire|Physical|20|60|100|invalid||
+718|Glitzy Glow|Psychic|Special|15|80|95|invalid||
+719|Baddy Bad|Dark|Special|15|80|95|invalid||
+720|Sappy Seed|Grass|Physical|10|100|90|invalid||
+721|Freezy Frost|Ice|Special|10|100|90|invalid||
+722|Sparkly Swirl|Fairy|Special|5|120|85|invalid||
+723|Veevee Volley|Normal|Physical|20||65536|invalid||
+724|Double Iron Bash|Steel|Physical|5|60|100|doubleHit oppFlinch|30|May cause opponent to flinch (30%).
+725|Max Guard|Normal|Status|10|||invalid||
+726|Dynamax Cannon|Dragon|Special|5|100|100|||
+727|Snipe Shot|Water|Special|15|80|100|highCrit||High critical hit ratio.
+728|Jaw Lock|Dark|Physical|10|80|100|||
+729|Stuff Cheeks|Normal|Status|10|||invalid||
+730|No Retreat|Fighting|Status|5|||invalid||
+731|Tar Shot|Rock|Status|15||100|invalid||
+732|Magic Powder|Psychic|Status|20||100|invalid||
+733|Dragon Darts|Dragon|Physical|10|50|100|doubleHit||Hits twice in one turn.
+734|Teatime|Normal|Status|10|||invalid||
+735|Octolock|Fighting|Status|15||100|invalid||
+736|Bolt Beak|Electric|Physical|10|85|100|firstBonus||Doubles power if user attacks first.
+737|Fishious Rend|Water|Physical|10|85|100|firstBonus||Doubles power if user attacks first.
+738|Court Change|Normal|Status|10||100|invalid||
+739|Max Flare|Fire|Status|10||65536|invalid||
+740|Max Flutterby|Bug|Status|10||65536|invalid||
+741|Max Lightning|Electric|Status|10||65536|invalid||
+742|Max Strike|Normal|Status|10||65536|invalid||
+743|Max Knuckle|Fighting|Status|10||65536|invalid||
+744|Max Phantasm|Ghost|Status|10||65536|invalid||
+745|Max Hailstorm|Ice|Status|10||65536|invalid||
+746|Max Ooze|Poison|Status|10||65536|invalid||
+747|Max Geyser|Water|Status|10||65536|invalid||
+748|Max Airstream|Flying|Status|10||65536|invalid||
+749|Max Starfall|Fairy|Status|10||65536|invalid||
+750|Max Wyrmwind|Dragon|Status|10||65536|invalid||
+751|Max Mindstorm|Psychic|Status|10||65536|invalid||
+752|Max Rockfall|Rock|Status|10||65536|invalid||
+753|Max Quake|Ground|Status|10||65536|invalid||
+754|Max Darkness|Dark|Status|10||65536|invalid||
+755|Max Overgrowth|Grass|Status|10||65536|invalid||
+756|Max Steelspike|Steel|Status|10||65536|invalid||
+757|Clangorous Soul|Dragon|Status|5|||invalid||
+758|Body Press|Fighting|Physical|10|80|100|baseSelfDef||Stronger when the user's Defense is higher. 
+759|Decorate|Fairy|Status|15|||incSelfAtk2 incSelfSpAtk2|100|Sharply raises user's Attack and Special Attack. 
+760|Drum Beating|Grass|Physical|10|80|100|decOppSpeed|100|Lowers opponent's Speed.
+761|Snap Trap|Grass|Physical|15|35|100|damageOverTime||Damages opponent for 4-5 turns.
+762|Pyro Ball|Fire|Physical|5|120|90|oppBurn|10|May burn opponent (10%).
+763|Behemoth Blade|Steel|Physical|5|100|100|||
+764|Behemoth Bash|Steel|Physical|5|100|100|||
+765|Aura Wheel|Electric|Physical|10|110|100|||
+766|Breaking Swipe|Dragon|Physical|15|60|100|decOppAtk|100|Lowers opponent's Attack.
+767|Branch Poke|Grass|Physical|40|40|100|||
+768|Overdrive|Electric|Special|10|80|100|||
+769|Apple Acid|Grass|Special|10|80|100|decOppSpDef|100|Lowers opponent's Special Defense.
+770|Grav Apple|Grass|Physical|10|80|100|decOppDef|100|Lowers opponent's Defense.
+771|Spirit Break|Fairy|Physical|15|75|100|decOppSpAtk|100|Lowers opponent's Special Attack.
+772|Strange Steam|Fairy|Special|10|90|95|oppConfuse|20|May confuse opponent (20%).
+773|Life Dew|Water|Status|10||65536|heal||User recovers some of its HP.
+774|Obstruct|Dark|Status|10||100|protect||Protects the user. Harshly lowers opponent's Defense on contact.
+775|False Surrender|Dark|Physical|10|80|65536|||Ignores Accuracy.
+776|Meteor Assault|Fighting|Physical|5|150|100|recharge||User must recharge next turn.
+777|Eternabeam|Dragon|Special|5|160|90|recharge||User must recharge next turn.
+778|Steel Beam|Steel|Special|5|140|95|recoil||User receives recoil damage.
+779|Expanding Force|Psychic|Special|10|80|100|||
+780|Steel Roller|Steel|Physical|5|130|100|invalid||
+781|Scale Shot|Dragon|Physical|20|25|90|multiHit incSelfSpeed decSelfDef|100|Hits 2-5 times in one turn. Raises user's Speed and lowers its Defense.
+782|Meteor Beam|Rock|Special|10|120|90|staticCharge||Charges on first turn, attacks on second.
+783|Shell Side Arm|Poison|Special|10|90|100|oppPoison|20|May poison opponent (20%).
+784|Misty Explosion|Fairy|Special|5|100|100|invalid||
+785|Grassy Glide|Grass|Physical|20|55|100|invalid||
+786|Rising Voltage|Electric|Special|20|70|100|invalid||
+787|Terrain Pulse|Normal|Special|10|50|100|invalid||
+788|Skitter Smack|Bug|Physical|10|70|90|decOppSpAtk|100|Lowers opponent's Special Attack.
+789|Burning Jealousy|Fire|Special|5|70|100|||Burns opponent if it has boosted stats.
+790|Lash Out|Dark|Physical|5|75|100|invalid||
+791|Poltergeist|Ghost|Physical|5|110|90|baseOppItem||Double power if opponent is holding an item.
+792|Corrosive Gas|Poison|Status|40||100|itemRemove||Removes opponent's held item.
+793|Coaching|Fighting|Status|10|||invalid||
+794|Flip Turn|Water|Physical|20|60|100|||
+795|Triple Axel|Ice|Physical|10|20|90|tripleHit||Hits thrice in one turn.
+796|Dual Wingbeat|Flying|Physical|10|40|90|doubleHit||Hits twice in one turn.
+797|Scorching Sands|Ground|Special|10|70|100|oppBurn|30|May burn opponent (30%).
+798|Jungle Healing|Grass|Status|10|||heal cure||User recovers all HP and cures any status conditions.
+799|Wicked Blow|Dark|Physical|5|75|100|ignoreStats highCrit|100|Ignores opponent's stat changes. Always results in a critical hit.
+800|Surging Strikes|Water|Physical|5|25|100|ignoreProtect highCrit|100|Ignores opponent's stat changes. Always results in a critical hit.
+801|Thunder Cage|Electric|Special|15|80|90|damageOverTime||Damages opponent for 4-5 turns.
+802|Dragon Energy|Dragon|Special|5|150|100|baseSelfHP||Stronger when the user's HP is higher.
+803|Freezing Glare|Psychic|Special|10|90|100|oppFreeze|10|May freeze opponent (10%).
+804|Fiery Wrath|Dark|Special|10|90|100|oppFlinch|20|May cause opponent to flinch (20%).
+805|Thunderous Kick|Fighting|Physical|10|90|100|decOppDef|100|Lowers opponent's Defense.
+806|Glacial Lance|Ice|Physical|5|120|100|||
+807|Astral Barrage|Ghost|Special|5|120|100|||
+808|Eerie Spell|Psychic|Special|5|80|100|||
+809|Dire Claw|Poison|Physical|15|80|100|oppPoison oppParalyse oppSleep|16.67|May poison, paralyse, or put the opponent to sleep (50%).
+810|Psyshield Bash|Psychic|Physical|10|70|90|incSelfDef incSelfSpDef|100|Raises user's Defense and Special Defense.
+811|Power Shift|Normal|Status|10|||invalid||
+812|Stone Axe|Rock|Physical|15|65|90|||
+813|Springtide Storm|Fairy|Special|5|100|80|||Raises user's Attack and Defense in Incarnate Forme, or lowers opponent's Attack and Defense in Therian Forme.
+814|Mystical Power|Psychic|Special|10|70|90|incSelfSpAtk|100|Raises user's Special Attack.
+815|Raging Fury|Fire|Physical|10|120|100|lateSelfConfuse||User attacks for 2-3 turns but then becomes confused.
+816|Wave Crash|Water|Physical|10|120|100|recoil||User receives recoil damage.
+817|Chloroblast|Grass|Special|5|150|95|recoil||User receives recoil damage.
+818|Mountain Gale|Ice|Physical|10|100|85|decSelfSpeed|100|Lowers user's Speed.
+819|Victory Dance|Fighting|Status|10|||incSelfAtk incSelfDef|100|Raises user's Attack and Defense.
+820|Headlong Rush|Ground|Physical|5|120|100|decSelfDef|100|Lowers user's Defense.
+821|Barb Barrage|Poison|Physical|10|60|100|oppPoison oppStatusPenalty|30|May poison opponent (30%). Power doubles if opponent is already poisoned.
+822|Esper Wing|Psychic|Special|10|80|100|highCrit incSelfSpeed||High critical hit ratio. Raises user's Speed.
+823|Bitter Malice|Ghost|Special|10|75|100|decOppAtk|100|Lowers opponent's Attack.
+824|Shelter|Steel|Status|10|||incSelfDef|100|Raises user's Defense.
+825|Triple Arrows|Fighting|Physical|10|90|100|highCrit decOppDef oppFlinch|40|High critical hit ratio. May lower opponent's Defense or cause them to flinch (40%).
+826|Infernal Parade|Ghost|Special|15|60|100|oppStatusPenalty||Power doubles if opponent has a status condition.
+827|Ceaseless Edge|Dark|Physical|15|65|90|||
+828|Bleakwind Storm|Flying|Special|10|100|80|decOppSpeed|30|May lower opponent's Speed (30%).
+829|Wildbolt Storm|Electric|Special|10|100|80|oppParalyse|30|May paralyse opponent (30%).
+830|Sandsear Storm|Ground|Special|10|100|80|oppBurn|30|May burn opponent (30%).
+831|Lunar Blessing|Psychic|Status|5|||heal cure||User recovers all HP and cures any status conditions.
+832|Take Heart|Psychic|Status|15|||heal cure||User recovers all HP and cures any status conditions.
+833|Tera Blast|Normal|Special|10|80|100|invalid||
+834|Silk Trap|Bug|Status|10|||protect||Protects the user. Lowers opponent's Speed on contact.
+835|Axe Kick|Fighting|Physical|10|120|90|missPenalty oppConfuse|30|May confuse opponent (30%). On miss, the user takes damage instead.
+836|Last Respects|Ghost|Physical|10|50|100|||
+837|Lumina Crash|Psychic|Special|10|80|100|decOppSpDef2|100|Harshly lowers opponent's Special Defense.
+838|Order Up|Dragon|Physical|10|80|100|||
+839|Jet Punch|Water|Physical|15|60|100|||User attacks first.
+840|Spicy Extract|Grass|Status|15||65536|decOppDef2 incOppAtk2||Harshly lowers opponent's Defense and sharply raises their Attack.
+841|Spin Out|Steel|Physical|5|100|100|decSelfSpeed2|100|Harshly lowers user's Speed.
+842|Population Bomb|Normal|Physical|10|20|90|multiHit||Hits 1-10 times in one turn.
+843|Ice Spinner|Ice|Physical|15|80|100|||
+844|Glaive Rush|Dragon|Physical|5|120|100|||
+845|Revival Blessing|Normal|Status|1|||invalid||
+846|Salt Cure|Rock|Physical|15|40|100|damageOverTime||Damages opponent for 4-5 turns. Steel and Water types are more affected.
+847|Triple Dive|Water|Physical|10|30|95|tripleHit||Hits thrice in one turn.
+848|Mortal Spin|Poison|Physical|15|30|100|oppPoison|100|Poisons opponent.
+849|Doodle|Normal|Status|10||100|invalid||
+850|Fillet Away|Normal|Status|10|||invalid||
+851|Kowtow Cleave|Dark|Physical|10|85|65536|||Ignores Accuracy.
+852|Flower Trick|Grass|Physical|10|70|65536|highCrit|100|Always results in a critical hit. Ignores Accuracy.
+853|Torch Song|Fire|Special|10|80|100|incSelfSpAtk|100|Raises user's Special Attack.
+854|Aqua Step|Water|Physical|10|80|100|incSelfSpeed|100|Raises user's Speed.
+855|Raging Bull|Normal|Physical|10|90|100|||Type depends on Tauros's form.
+856|Make It Rain|Steel|Special|5|120|100|decSelfSpAtk coinBoost|100|Lowers user's Special Attack. Doubles coins earned after battle.
+857|Psyblade|Psychic|Physical|15|80|100|||
+858|Hydro Steam|Water|Special|15|80|100|||
+859|Ruination|Dark|Special|10||90|||Halves the opponent's HP.
+860|Collision Course|Fighting|Physical|5|100|100|sEffBonus||Power increases if it's super-effective.
+861|Electro Drift|Electric|Special|5|100|100|sEffBonus||Power increases if it's super-effective.
+862|Shed Tail|Normal|Status|10|||invalid||
+863|Chilly Reception|Ice|Status|10|||invalid||
+864|Tidy Up|Normal|Status|10|||invalid||
+865|Snowscape|Ice|Status|10|||invalid||
+866|Pounce|Bug|Physical|20|50|100|decOppSpeed|100|Lowers opponent's Speed.
+867|Trailblaze|Grass|Physical|20|50|100|incSelfSpeed|100|Raises user's Speed.
+868|Chilling Water|Water|Special|20|50|100|decOppAtk|100|Lowers opponent's Attack.
+869|Hyper Drill|Normal|Physical|5|100|100|ignoreProtect||Can strike through Protect.
+870|Twin Beam|Psychic|Special|10|40|100|doubleHit||Hits twice in one turn.
+871|Rage Fist|Ghost|Physical|10|50|100|||Power increases with each hit the user takes.
+872|Armor Cannon|Fire|Special|5|120|100|decSelfDef decSelfSpDef|100|Lowers user's Defense and Special Defense.
+873|Bitter Blade|Fire|Physical|10|90|100|heal||User recovers half the HP inflicted on opponent.
+874|Double Shock|Electric|Physical|5|120|100|invalid||
+875|Gigaton Hammer|Steel|Physical|5|160|100|recharge||User must recharge next turn.
+876|Comeuppance|Dark|Physical|10||100|invalid||
+877|Aqua Cutter|Water|Physical|20|70|100|highCrit||High critical hit ratio.
+878|Blazing Torque|Fire|Physical|10|80|100|invalid||
+879|Wicked Torque|Dark|Physical|10|80|100|invalid||
+880|Noxious Torque|Poison|Physical|10|100|100|invalid||
+881|Combat Torque|Fighting|Physical|10|100|100|invalid||
+882|Magical Torque|Fairy|Physical|10|100|100|invalid||
+883|Blood Moon|Normal|Special|5|140|100|recharge||User must recharge next turn.
+884|Matcha Gotcha|Grass|Special|15|80|90|heal oppBurn|20|User recovers half the HP inflicted on opponent. May burn opponent (20%).
+885|Syrup Bomb|Grass|Special|10|60|85|decOppSpeed|100|Lowers opponent's Speed.
+886|Ivy Cudgel|Grass|Physical|10|100|100|highCrit||High critical hit ratio.
+887|Electro Shot|Electric|Special|10|130|100|staticCharge||Charges on first turn, attacks on second.
+888|Tera Starstorm|Normal|Special|5|120|100|||
+889|Fickle Beam|Dragon|Special|5|80|100|||May deal double damage (30%).
+890|Burning Bulwark|Fire|Status|10|||protect||Protects the user. Burns opponent on contact.
+891|Thunderclap|Electric|Special|5|70|100|||User attacks first.
+892|Mighty Cleave|Rock|Physical|5|95|100|ignoreProtect||Can strike through Protect.
+893|Tachyon Cutter|Steel|Special|10|50|65536|doubleHit||Hits twice in one turn. Ignores Accuracy.
+894|Hard Press|Steel|Physical|10||100|baseOppHP||Stronger when opponent's HP is higher.
+895|Dragon Cheer|Dragon|Status|15|||invalid||
+896|Alluring Voice|Fairy|Special|10|80|100|oppStatusPenalty||Confuses opponent if it has boosted stats.
+897|Temper Flare|Fire|Physical|10|75|100|failBonus||Power doubles if user's previous move failed.
+898|Supercell Slam|Electric|Physical|15|100|95|missPenalty||On miss, the user takes damage instead.
+899|Psychic Noise|Psychic|Special|10|75|100|||
+900|Upper Hand|Fighting|Physical|15|65|100|||
+901|Malignant Chain|Poison|Special|5|100|100|oppPoison2|50|May badly poison opponent (50%).

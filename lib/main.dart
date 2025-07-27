@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/dex_db.dart';
+import 'package:pokemon_taskhunt_2/models/move.dart';
+import 'package:pokemon_taskhunt_2/models/moves_db.dart';
+import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/moves_db_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/moves_map_db_provider.dart';
 import 'package:pokemon_taskhunt_2/views/landing.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +15,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]) // locks screen in portrait orientation
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])  // locks screen in portrait orientation
     .then((_) => runApp(const MainApp())
   );
 }
@@ -22,27 +28,10 @@ class MainApp extends StatefulWidget {
 }
 
 class MainAppState extends State<MainApp> {
-  late final DexDB _dexDB;
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadDexDB();
-  }
-
-  Future<void> _loadDexDB() async {
-    const dataPath = 'assets/dex.json';
-    final loadedDB = DexDB.initializeFromJson(await rootBundle.loadString(dataPath));
-    setState(() {
-      _dexDB = loadedDB;
-      isLoading = false;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
@@ -51,40 +40,42 @@ class MainAppState extends State<MainApp> {
         systemNavigationBarIconBrightness: Brightness.light
       )
     );
-    if (isLoading) {
-      return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: SafeArea(
-            top: false,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AccountProvider()),
+        ChangeNotifierProvider(create: (_) => DexDBProvider()),
+        ChangeNotifierProvider(create: (_) => MovesDBProvider()),
+        ChangeNotifierProvider(create: (_) => MovesMapDBProvider()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Colors.black,  // Customize the cursor color globally
+            selectionColor: Color.fromARGB(255, 218, 218, 218),  // Background color of selected text
+            selectionHandleColor: Colors.transparent,  // Color of the selection handles (teardrop)
           ),
         ),
-      );
-    }
-
-    return ChangeNotifierProvider(
-      create: (_) => AccountProvider(),
-      child: Consumer<AccountProvider>(
-        builder: (context, accountProvider, _) {
-          return MaterialApp(
-            theme: ThemeData(
-              textSelectionTheme: const TextSelectionThemeData(
-                cursorColor: Colors.black, // Customize the cursor color globally
-                selectionColor: Color.fromARGB(255, 218, 218, 218), // Background color of selected text
-                selectionHandleColor: Colors.transparent, // Color of the selection handles (teardrop)
-              ),
-            ),
-            debugShowCheckedModeBanner: false,
-            home: Scaffold(
-              body: SafeArea(top: false, child: Landing(_dexDB)),
-            ),
-          );
-        },
-      )
+        debugShowCheckedModeBanner: false,
+        home: Consumer4<DexDBProvider, MovesDBProvider, MovesMapDBProvider, AccountProvider>(
+          builder: (context, dexProvider, movesProvider, movesMapProvider, accProvider, _) {
+            if (dexProvider.isLoading || movesProvider.isLoading || movesMapProvider.isLoading) {
+              return const Scaffold(
+                resizeToAvoidBottomInset: false,
+                body: SafeArea(
+                  top: false,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              );
+            }
+            return Scaffold(
+              body: SafeArea(top: false, child: Landing()),
+            );
+          }
+        ),
+      ),
     );
   }
 }

@@ -107,4 +107,10 @@ enum Types {
     }
     throw Exception('Invalid type');
   }
+
+  static Types tryFromString(String value) {
+    return Types.values.firstWhere(
+      (e) => e.type.toLowerCase() == value.toLowerCase()
+    );
+  }
 }

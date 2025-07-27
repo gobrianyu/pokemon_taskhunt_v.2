@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
 import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
 import 'package:pokemon_taskhunt_2/views/collection_page_view.dart';
+import 'package:provider/provider.dart';
 
 // TODO: unlock count
 
 class Collection extends StatefulWidget{
-  final List<dex.DexEntry> fullDex;
 
-  const Collection(this.fullDex, {super.key});
+  const Collection({super.key});
 
   @override
   State<Collection> createState() => _CollectionState();
 }
 
 class _CollectionState extends State<Collection> {
+  late final List<dex.DexEntry> fullDex;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<Types> typeFilters = [];
   List<Regions> regionFilters = [];
@@ -27,6 +29,7 @@ class _CollectionState extends State<Collection> {
   @override
   void initState() {
     super.initState();
+    fullDex = context.read<DexDBProvider>().dexDB!.all;
     searchController.addListener(_onSearchUpdate);
   }
 
@@ -293,7 +296,7 @@ class _CollectionState extends State<Collection> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => CollectionPageView(
-                    entries: widget.fullDex, 
+                    entries: fullDex, 
                     filteredDex: filteredDex,
                     initialPageIndex: filteredList.indexOf(entry), 
                   )
@@ -629,19 +632,19 @@ class _CollectionState extends State<Collection> {
     bool entryFilled = false;
     Map<dex.DexEntry, int> filteredDex = {};
     if (typeFilters.isEmpty && regionFilters.isEmpty) {
-      for (dex.DexEntry entry in widget.fullDex) {
+      for (dex.DexEntry entry in fullDex) {
         filteredDex[entry] = 0;
       }
       return filteredDex;
     } else if (typeFilters.isEmpty) {
-      for (dex.DexEntry entry in widget.fullDex) {
+      for (dex.DexEntry entry in fullDex) {
         if (regionFilters.contains(entry.forms[0].region)) {
           filteredDex[entry] = 0;
         }
       }
       return filteredDex;
     } else if (regionFilters.isEmpty) {
-      for (dex.DexEntry entry in widget.fullDex) {
+      for (dex.DexEntry entry in fullDex) {
         for (dex.Form form in entry.forms) {
           for (Types type in form.type) {
             if (typeFilters.contains(type)) {
@@ -658,7 +661,7 @@ class _CollectionState extends State<Collection> {
       }
       return filteredDex;
     }
-    for (dex.DexEntry entry in widget.fullDex) {
+    for (dex.DexEntry entry in fullDex) {
       if (regionFilters.contains(entry.forms[0].region)) {
         for (Types type in entry.forms[0].type) {
           if (typeFilters.contains(type)) {

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/move.dart';
 import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
@@ -13,6 +14,10 @@ class Pokemon {
   final String speciesExtended;
   int level;
   int exp;
+  Move move1;
+  Move? move2;
+  final double height;
+  final double weight;
   final String expGroup;
   final int baseExpYield;
   final int gender; // -1 - none/unknown, 0 - male, 1 - female
@@ -67,7 +72,11 @@ class Pokemon {
       level: level,
       nickname: species,
       expGroup: entry.expGroup, 
-      baseExpYield: entry.expYield, 
+      baseExpYield: entry.expYield,
+      height: entry.forms[form].height,
+      weight: entry.forms[form].weight,
+      move1: Move.placeholder(),
+      move2: Move.placeholder(),
       gender: gender,
       catchRate: entry.catchRate,
       fleeRate: entry.fleeRate, 
@@ -91,7 +100,11 @@ class Pokemon {
     required this.nickname,
     required this.exp, 
     required this.level, 
-    required this.expGroup, 
+    required this.expGroup,
+    required this.height,
+    required this.weight,
+    required this.move1,
+    this.move2,
     required this.baseExpYield, 
     required this.gender, 
     required this.catchRate, 
@@ -205,6 +218,10 @@ class Pokemon {
       level: level,
       expGroup: entry.expGroup,
       baseExpYield: entry.expYield,
+      height: entry.forms[form].height,
+      weight: entry.forms[form].weight,
+      move1: move1,
+      move2: move2,
       gender: gender,
       catchRate: entry.catchRate,
       fleeRate: entry.fleeRate,
@@ -222,15 +239,79 @@ class Pokemon {
     );
   }
 
+  int calcHP([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.hp + ivs.hp) * 2 + trueBaseCalc) * level / 100).floor() + level + 10;
+  }
+
+  int calcAtk([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.atk + ivs.atk) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+  }
+  
+  int calcDef([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.def + ivs.def) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+  }
+
+  int calcSpAtk([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.spAtk + ivs.spAtk) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+  }
+
+  int calcSpDef([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.spDef + ivs.spDef) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+  }
+
+  int calcSpeed([int? baseCalc]) {
+    int trueBaseCalc;
+    if (baseCalc != null) {
+      trueBaseCalc = baseCalc;
+    } else {
+      trueBaseCalc = _calcBaseCalc();
+    }
+    return (((baseStats.speed + ivs.speed) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+  }
+
+  int _calcBaseCalc() {
+    int statExp = min(_getNextExpCap(level - 1, expGroup) + exp, 65535);
+    return (sqrt(statExp).ceil() / 4).floor();
+  }
+
   Stats getStats() {
-    final num statExp = min(_getNextExpCap(level - 1, expGroup) + exp, 65535);
-    final int baseCalc = (sqrt(statExp).ceil() / 4).floor();
-    final int hp = (((baseStats.hp + ivs.hp) * 2 + baseCalc) * level / 100).floor() + level + 10;
-    final int atk = (((baseStats.atk + ivs.atk) * 2 + baseCalc) * level / 100).floor() + 5;
-    final int def = (((baseStats.def + ivs.def) * 2 + baseCalc) * level / 100).floor() + 5;
-    final int spAtk = (((baseStats.spAtk + ivs.spAtk) * 2 + baseCalc) * level / 100).floor() + 5;
-    final int spDef = (((baseStats.spDef + ivs.spDef) * 2 + baseCalc) * level / 100).floor() + 5;
-    final int speed = (((baseStats.speed + ivs.speed) * 2 + baseCalc) * level / 100).floor() + 5;
+    final int baseCalc = _calcBaseCalc();
+    final int hp = calcHP(baseCalc);
+    final int atk = calcAtk(baseCalc);
+    final int def = calcDef(baseCalc);
+    final int spAtk = calcSpAtk(baseCalc);
+    final int spDef = calcSpDef(baseCalc);
+    final int speed = calcSpeed(baseCalc);
     return Stats(hp: hp, atk: atk, def: def, spAtk: spAtk, spDef: spDef, speed: speed);
   }
 
@@ -273,6 +354,10 @@ Stats _generateIVs(int floor, Random random) {
     spDef: random.nextInt(16 - floor) + floor,
     speed: random.nextInt(16 - floor) + floor
   );
+}
+
+Move _generateMove() {
+  return Move.placeholder();
 }
 
 int _getNextExpCap(int level, String cat) {
