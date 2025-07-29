@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/move.dart';
+import 'package:pokemon_taskhunt_2/models/moves_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
@@ -18,10 +20,12 @@ class PartyDetails extends StatefulWidget {
 
 class _PartyDetailsState extends State<PartyDetails> {
   late final AccountProvider accProvider;
+  final MovesDB movesDB = MovesDB();
   Items? _bagSelectedItem;
   late Map<Items, int> items;
   Items? _held;
-  bool _removeAlert = false;
+  bool _showRemoveAlert = false;
+  bool _showAddMoveAlert = false;
 
   @override
   void initState() {
@@ -41,7 +45,8 @@ class _PartyDetailsState extends State<PartyDetails> {
           body: Stack(
             children: [
               _fullScaffold(),
-              if (_removeAlert) _removeItemAlert()
+              if (_showRemoveAlert) _removeItemAlert(),
+              if (_showAddMoveAlert) _addMoveAlert(),
             ],
           ),
           bottomNavigationBar: _backButton()
@@ -59,16 +64,16 @@ class _PartyDetailsState extends State<PartyDetails> {
             padding: const EdgeInsets.only(left: 8, right: 10),
             child: Row(
               children: [
-                Icon(Icons.catching_pokemon, size: 20),
-                SizedBox(width: 5),
-                Text(widget.mon.nickname, style: TextStyle(fontSize: 16)),
+                const Icon(Icons.catching_pokemon, size: 20),
+                const SizedBox(width: 5),
+                Text(widget.mon.nickname, style: const TextStyle(fontSize: 16)),
                 widget.mon.gender == -1 ? const SizedBox() : Icon(widget.mon.gender == 0 ? Icons.male : Icons.female, size: 17),
-                Spacer(),
-                Text('Lv.${widget.mon.level}', style: TextStyle(fontSize: 16))
+                const Spacer(),
+                Text('Lv.${widget.mon.level}', style: const TextStyle(fontSize: 16))
               ]
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             flex: 3,
             child: Stack(
@@ -80,7 +85,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     _friendshipBar(),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
@@ -93,12 +98,12 @@ class _PartyDetailsState extends State<PartyDetails> {
                         ).whenComplete(() => setState(() => _bagSelectedItem = null));
                       },
                       child: Container(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           border: Border.all(width: 1.3),
                           borderRadius: BorderRadius.circular(6)
                         ),
-                        child: Icon(Icons.backpack_outlined, size: 25)
+                        child: const Icon(Icons.backpack_outlined, size: 25)
                       ),
                     ),
                   ],
@@ -120,24 +125,24 @@ class _PartyDetailsState extends State<PartyDetails> {
     for (int i = 0; i < widget.mon.friendship; i++) {
       hearts.add(
         Container(
-          padding: EdgeInsets.only(bottom: 2, top: 4, left: 5, right: 5),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.only(bottom: 2, top: 4, left: 5, right: 5),
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.black
           ),
-          child: Icon(Icons.favorite, size: 15, color: Colors.white)
+          child: const Icon(Icons.favorite, size: 15, color: Colors.white)
         ),
       );
     }
     for (int i = 0; i < 5 - widget.mon.friendship; i++) {
       hearts.add(
         Container(
-          padding: EdgeInsets.only(bottom: 2, top: 4, left: 5, right: 5),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.only(bottom: 2, top: 4, left: 5, right: 5),
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Color.fromARGB(100, 0, 0, 0)
           ),
-          child: Icon(Icons.favorite, size: 15, color: Colors.white)
+          child: const Icon(Icons.favorite, size: 15, color: Colors.white)
         ),
       );
     }
@@ -171,12 +176,12 @@ class _PartyDetailsState extends State<PartyDetails> {
               Padding(
                 padding: const EdgeInsets.only(top: 18),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))
                   ),
-                  margin: EdgeInsets.only(left: 20, right: 20),
-                  padding: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 15),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
+                  padding: const EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 15),
                   child: Column(
                     children: [
                       const Padding(
@@ -190,7 +195,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                             return true;
                           },
                           child: ListView(
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             primary: true,
                             children: _bagTiles(setState)
                           ),
@@ -228,11 +233,11 @@ class _PartyDetailsState extends State<PartyDetails> {
                         child: Container(
                           height: 40,
                           width: MediaQuery.of(context).size.width / 3,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: _bagSelectedItem != null ? Colors.black : Color.fromARGB(100, 0, 0, 0),
+                            color: _bagSelectedItem != null ? Colors.black : const Color.fromARGB(100, 0, 0, 0),
                             borderRadius: BorderRadius.circular(20)
                           ),
                           child: Container(
@@ -242,7 +247,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Give',
                               style: TextStyle(
                                 color: Colors.white
@@ -260,8 +265,8 @@ class _PartyDetailsState extends State<PartyDetails> {
                   Navigator.pop(context);
                 }),
                 child: Container(
-                  padding: EdgeInsets.all(2.5),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(2.5),
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle
                   ),
@@ -270,7 +275,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                   child: Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.black,
                       shape: BoxShape.circle
                     ),
@@ -312,15 +317,15 @@ class _PartyDetailsState extends State<PartyDetails> {
       alignment: Alignment.topCenter,
       children: [
         if (_bagSelectedItem == item) Container(
-          margin: EdgeInsets.only(top: 10),
-          padding: EdgeInsets.only(left: 5, right: 5, top: 45, bottom: 3),
+          margin: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(left: 5, right: 5, top: 45, bottom: 3),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(width: 0.5)
           ),
           child: Text(
             item.description,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.w300
             )
@@ -389,9 +394,9 @@ class _PartyDetailsState extends State<PartyDetails> {
 
   Widget _infoPanel() {
     return Container(
-      margin: EdgeInsets.only(top: 7),
-      padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 90),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 7),
+      padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 90),
+      decoration: const BoxDecoration(
         border: Border(top: BorderSide(), left: BorderSide(), right: BorderSide()),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15),
@@ -402,7 +407,7 @@ class _PartyDetailsState extends State<PartyDetails> {
         children: [
           _tags(),
           _expInfo(),
-          SizedBox(height: 20),
+          _movesPanel(),
           _heldItem(),
           Expanded(
             child: Row(
@@ -411,12 +416,11 @@ class _PartyDetailsState extends State<PartyDetails> {
                   flex: 5,
                   child: _ivStatsColumn()
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   flex: 8,
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
-                    // padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(10)
@@ -424,8 +428,8 @@ class _PartyDetailsState extends State<PartyDetails> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8, left: 6, right: 6),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8, left: 6, right: 6),
                           child: Text(
                             'Stat Values',
                             textAlign: TextAlign.start,
@@ -441,7 +445,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                             maxStats: widget.mon.maxStats(),
                           ),
                         ),
-                        SizedBox(height: 0)
+                        const SizedBox(height: 0)
                       ],
                     )
                   )
@@ -454,13 +458,63 @@ class _PartyDetailsState extends State<PartyDetails> {
     );
   }
 
+  
+
+  Widget _movesPanel() {
+    int move1Id = widget.mon.move1Id;
+    int? move2Id = widget.mon.move2Id; 
+    return Padding(
+      padding: const EdgeInsets.only(top: 13, bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(child: _moveBox(movesDB.all[move1Id])),
+          SizedBox(width: 7),
+          Expanded(child: widget.mon.move2Id == null ? _emptyMoveBox() : _moveBox(movesDB.all[move2Id!])) 
+        ],
+      ),
+    );
+  }
+
+  Widget _emptyMoveBox() {
+    return GestureDetector(
+      onTap: () {
+        setState(() => _showAddMoveAlert = true);
+      },
+      child: Container(
+        height: 25,
+        decoration: BoxDecoration(
+          border: Border.all(),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Icon(Icons.add, size: 18)
+      ),
+    );
+  }
+
+  Widget _moveBox(Move move) {
+    return Container(
+      padding: EdgeInsets.only(left: 5, right: 5),
+      height: 25,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Row(
+        children: [
+          Text(move.name)
+        ],
+      )
+    );
+  }
+
   Widget _ivStatsColumn() {
     Pokemon mon = widget.mon;
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.all(6),
+      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
             Color.fromARGB(255, 230, 230, 230),
             Colors.white
@@ -474,7 +528,7 @@ class _PartyDetailsState extends State<PartyDetails> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 2),
-          Text(
+          const Text(
             'IV Quality',
             textAlign: TextAlign.start,
             style: TextStyle(
@@ -488,7 +542,7 @@ class _PartyDetailsState extends State<PartyDetails> {
           _ivStat('Sp. Atk', mon.ivs.spAtk),
           _ivStat('Sp. Def', mon.ivs.spDef),
           _ivStat('Speed', mon.ivs.speed),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Flexible(child: _ivRating())
         ]
       ),
@@ -500,25 +554,25 @@ class _PartyDetailsState extends State<PartyDetails> {
     int numStars = widget.mon.getNumStars();
     for (int i = 0; i < min(numStars, 3); i++) {
       stars.add(
-        Icon(Icons.star_rounded, color: Colors.white)
+        const Icon(Icons.star_rounded, color: Colors.white)
       );
     }
     for (int i = 0; i < (3 - numStars); i++) {
-      stars.add(Icon(Icons.star_outline_rounded, color: Colors.white));
+      stars.add(const Icon(Icons.star_outline_rounded, color: Colors.white));
     }
     return Container(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxHeight: 50
       ),
       height: double.infinity,
-      margin: EdgeInsets.only(top: 5),
+      margin: const EdgeInsets.only(top: 5),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            numStars == 4 ? Color.fromARGB(255, 241, 207, 35) : Colors.black,
-            numStars == 4 ? Color.fromARGB(255, 233, 234, 166) : Colors.black,
+            numStars == 4 ? const Color.fromARGB(255, 241, 207, 35) : Colors.black,
+            numStars == 4 ? const Color.fromARGB(255, 233, 234, 166) : Colors.black,
           ],
         ),
         borderRadius: BorderRadius.circular(7)
@@ -535,8 +589,8 @@ class _PartyDetailsState extends State<PartyDetails> {
       padding: const EdgeInsets.only(top: 1.5),
       child: Row(
         children: [
-          Expanded(flex: 1, child: Text(name, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold))),
-          SizedBox(width: 3),
+          Expanded(flex: 1, child: Text(name, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold))),
+          const SizedBox(width: 3),
           Expanded(
             flex: 2,
             child: ClipRRect(
@@ -554,7 +608,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                       flex: value,
                       child: Container(
                         height: 8,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.black,
                           border: Border(bottom: BorderSide(), top: BorderSide())
                         ),
@@ -562,7 +616,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                     ),
                     Expanded(
                       flex: 15 - value,
-                      child: SizedBox()
+                      child: const SizedBox()
                     )
                   ],
                 )
@@ -578,17 +632,17 @@ class _PartyDetailsState extends State<PartyDetails> {
   Widget _expInfo() {
     int lvlProgress = (widget.mon.exp / widget.mon.nextExpCap() * 1024).round();
     return Padding(
-      padding: const EdgeInsets.only(top: 25),
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           Row(
             children: [
-              Text('Exp. Points: ${widget.mon.totalExp()}', style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis),
-              Spacer(),
-              widget.mon.level >= 100 ? SizedBox() : Text('${widget.mon.nextExpCap() - widget.mon.exp} Exp. Points until next level', style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w300), overflow: TextOverflow.ellipsis,)
+              Text('Exp. Points: ${widget.mon.totalExp()}', style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis),
+              const Spacer(),
+              widget.mon.level >= 100 ? const SizedBox() : Text('${widget.mon.nextExpCap() - widget.mon.exp} Exp. Points until next level', style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w300), overflow: TextOverflow.ellipsis,)
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
             child: Container(
@@ -603,7 +657,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                     flex: widget.mon.level == 100 ? 1 : lvlProgress,
                     child: Container(
                       height: 12,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.black,
                         border: Border(bottom: BorderSide(), top: BorderSide())
                       ),
@@ -611,7 +665,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                   ),
                   Expanded(
                     flex: widget.mon.level == 100 ? 0 : 1024 - lvlProgress,
-                    child: SizedBox()
+                    child: const SizedBox()
                   )
                 ],
               )
@@ -626,7 +680,7 @@ class _PartyDetailsState extends State<PartyDetails> {
     return Row(
       children: [
         Container(
-          padding: EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
+          padding: const EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
           decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: BorderRadius.circular(4)
@@ -639,15 +693,15 @@ class _PartyDetailsState extends State<PartyDetails> {
           )
         ),
         Container(
-          margin: EdgeInsets.only(left: 5),
-          padding: EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
+          margin: const EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(left: 5, right: 5, top: 2, bottom: 2),
           decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: BorderRadius.circular(4)
           ),
-          child: Text(widget.mon.speciesExtended)
+          child: Text(widget.mon.species)
         ),
-        Spacer(),
+        const Spacer(),
         ..._typeTags()
       ]
     );
@@ -667,54 +721,160 @@ class _PartyDetailsState extends State<PartyDetails> {
         ).whenComplete(() => setState(() => _bagSelectedItem = null));
       },
       child: Container(
-        padding: EdgeInsets.only(top: 5, bottom: 5),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(top: 5, bottom: 5),
+        decoration: const BoxDecoration(
           border: Border(top: BorderSide(), bottom: BorderSide())
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 3, bottom: 3),
+              margin: const EdgeInsets.only(top: 3, bottom: 3),
               height: 60,
               width: 60,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all()
               ),
-              child: _held == null ? Icon(Icons.add) : Icon(Icons.question_mark) // TODO: variable held items
+              child: _held == null ? const Icon(Icons.add) : const Icon(Icons.question_mark) // TODO: variable held items
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text(_held == null ? 'No Held Item' : 'Held Item: ${_held!.name}', style: TextStyle(fontSize: 13)),
-                      Spacer(),
+                      Text(_held == null ? 'No Held Item' : 'Held Item: ${_held!.name}', style: const TextStyle(fontSize: 13)),
+                      const Spacer(),
                       if (_held != null) GestureDetector(
                         behavior: HitTestBehavior.opaque,
                         onTap: () {
-                          setState(() => _removeAlert = true);
+                          setState(() => _showRemoveAlert = true);
                         },
                         child: Container(
-                          padding: EdgeInsets.all(1),
+                          padding: const EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all()
                           ),
-                          child: Icon(Icons.delete_rounded, size: 13)),
+                          child: const Icon(Icons.delete_rounded, size: 13)),
                       )
                     ],
                   ),
-                  if (_held != null) Text(_held!.description, softWrap: true, style: TextStyle(fontSize: 10))
+                  if (_held != null) Text(_held!.description, softWrap: true, style: const TextStyle(fontSize: 10))
                 ],
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget _addMoveAlert() {
+    return Container(
+      padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
+      color: Colors.black38,
+      child: Column(
+        children: [
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white
+            ),
+            child: Column(
+              children: [
+                const Icon(Icons.info_rounded, size: 30),
+                const SizedBox(height: 15),
+                Text(
+                  'Unlock a new move? (\$100)\nYour balance: \$${accProvider.blitzGame.balance}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 15)
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          if (accProvider.blitzGame.balance >= 100) {
+                            widget.mon.unlockSecondMove();
+                            accProvider.decrementBalance(100);
+                            setState(() => _showAddMoveAlert = false);
+                          }
+                        },
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: const Text(
+                              'Unlock',
+                              style: TextStyle(
+                                color: Colors.white
+                              )
+                            ),
+                          )
+                        )
+                      ),
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _showAddMoveAlert = false;
+                          });
+                        },
+                        child: Container(
+                          height: 40,
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                color: Colors.white
+                              )
+                            ),
+                          )
+                        )
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ),
+          const Spacer()
+        ],
+      )
     );
   }
 
@@ -733,20 +893,20 @@ class _PartyDetailsState extends State<PartyDetails> {
             ),
             child: Column(
               children: [
-                Icon(Icons.info_rounded, size: 30),
-                SizedBox(height: 15),
+                const Icon(Icons.info_rounded, size: 30),
+                const SizedBox(height: 15),
                 Text(
                   'Remove ${_held?.name} from ${widget.mon.nickname}?',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15)
+                  style: const TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 15),
+                const Text(
                   'The item will be returned to your bag.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15)
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -754,12 +914,12 @@ class _PartyDetailsState extends State<PartyDetails> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          setState(() => _removeAlert = false);
+                          setState(() => _showRemoveAlert = false);
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -772,7 +932,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Cancel',
                               style: TextStyle(
                                 color: Colors.white
@@ -790,13 +950,13 @@ class _PartyDetailsState extends State<PartyDetails> {
                           setState(() {
                             items = accProvider.blitzGame.items;
                             _held = widget.mon.heldItem;
-                            _removeAlert = false;
+                            _showRemoveAlert = false;
                           });
                         },
                         child: Container(
                           height: 40,
-                          padding: EdgeInsets.all(2.5),
-                          margin: EdgeInsets.only(left: 10, right: 10),
+                          padding: const EdgeInsets.all(2.5),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -809,7 +969,7 @@ class _PartyDetailsState extends State<PartyDetails> {
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(20)
                             ),
-                            child: Text(
+                            child: const Text(
                               'Remove',
                               style: TextStyle(
                                 color: Colors.white
@@ -835,14 +995,14 @@ class _PartyDetailsState extends State<PartyDetails> {
     for (Types type in widget.mon.types) {
       tags.add(
         Container(
-          margin: EdgeInsets.only(left: 5),
-          padding: EdgeInsets.only(left: 7, right: 7, top: 3, bottom: 3),
+          margin: const EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(left: 7, right: 7, top: 3, bottom: 3),
           decoration: BoxDecoration(
             // border: Border.all(),
             borderRadius: BorderRadius.circular(4),
             color: type.colour
           ),
-          child: Text(type.type, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          child: Text(type.type, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         ),
       );
     }
@@ -861,7 +1021,7 @@ class _PartyDetailsState extends State<PartyDetails> {
             width: 40,
             height: 40,
             margin: const EdgeInsets.only(bottom: 40),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.black,
               shape: BoxShape.circle
             ),

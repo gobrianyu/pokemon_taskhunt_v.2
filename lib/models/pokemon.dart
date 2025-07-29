@@ -3,19 +3,23 @@ import 'dart:math';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
 import 'package:pokemon_taskhunt_2/models/move.dart';
+import 'package:pokemon_taskhunt_2/models/moves_db.dart';
+import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 
 class Pokemon {
+  final Random random = Random();
   final num key;
   String nickname;
   final String species;
   final String speciesExtended;
   int level;
   int exp;
-  Move move1;
-  Move? move2;
+  int move1Id;
+  int? move2Id;
+  final MonMovesLib movePool;
   final double height;
   final double weight;
   final String expGroup;
@@ -38,7 +42,14 @@ class Pokemon {
     nickname = name;
   }
 
-  factory Pokemon.fromDexEntry(DexEntry entry, int form, int level, bool isShiny, int ivFloor) {
+  factory Pokemon.fromDexEntry({
+    required DexEntry entry,
+    required int form,
+    required int level,
+    required bool isShiny,
+    required int ivFloor,
+    required MonMovesLib movePool
+  }) {
     final String species = entry.forms[form].name;
     final String speciesExtended = entry.forms[form].specialForm ?? species;
     final Random random = Random(); 
@@ -66,6 +77,12 @@ class Pokemon {
       }
     }
 
+    int move1Id = _generateMove1(movePool, random);
+    int? move2Id;
+    if (random.nextInt(256) <= level && movePool.basePool.length > 1) {
+      move2Id = _generateMove2(movePool, random, move1Id);
+    }
+
     return Pokemon.withFields(
       speciesExtended: speciesExtended,
       exp: 0,
@@ -75,8 +92,9 @@ class Pokemon {
       baseExpYield: entry.expYield,
       height: entry.forms[form].height,
       weight: entry.forms[form].weight,
-      move1: Move.placeholder(),
-      move2: Move.placeholder(),
+      move1Id: move1Id,
+      move2Id: move2Id,
+      movePool: movePool,
       gender: gender,
       catchRate: entry.catchRate,
       fleeRate: entry.fleeRate, 
@@ -103,8 +121,9 @@ class Pokemon {
     required this.expGroup,
     required this.height,
     required this.weight,
-    required this.move1,
-    this.move2,
+    required this.move1Id,
+    this.move2Id,
+    required this.movePool,
     required this.baseExpYield, 
     required this.gender, 
     required this.catchRate, 
@@ -147,6 +166,14 @@ class Pokemon {
       exp -= cap;
       _updateLevel();
     }
+  }
+
+  List<Move> getMoves(MovesDB movesDB) {
+    List<Move> moves = [movesDB.getById(move1Id)];
+    if (move2Id != null) {
+      moves.add(movesDB.getById(move2Id!));
+    }
+    return moves;
   }
 
   int nextExpCap() {
@@ -192,7 +219,7 @@ class Pokemon {
     return eligibleEvos;
   }
 
-  Pokemon evolve(DexEntry entry, int form) {
+  Pokemon evolve(DexEntry entry, int form, MonMovesLib movePool) {
     final String speciesEvo = entry.forms[form].name;
     final String speciesExtendedEvo = entry.forms[form].specialForm ?? species;
 
@@ -220,8 +247,9 @@ class Pokemon {
       baseExpYield: entry.expYield,
       height: entry.forms[form].height,
       weight: entry.forms[form].weight,
-      move1: move1,
-      move2: move2,
+      move1Id: move1Id,
+      move2Id: move2Id,
+      movePool: movePool,
       gender: gender,
       catchRate: entry.catchRate,
       fleeRate: entry.fleeRate,
@@ -237,6 +265,23 @@ class Pokemon {
       friendship: friendship,
       battles: battles
     );
+  }
+
+  void unlockSecondMove() {
+    if (move2Id == null) {
+      MovesDB movesDB = MovesDB();
+      int moveId;
+      if (movesDB.getById(move1Id).category.toLowerCase() == 'status') {
+        moveId = _generateMove1(movePool, random);
+      } else {
+        moveId = _generateMove2(movePool, random, move1Id);
+      }
+      setMove2Id(moveId);
+    }
+  }
+
+  void setMove2Id(int moveId) {
+    move2Id = moveId;
   }
 
   int calcHP([int? baseCalc]) {
@@ -356,8 +401,24 @@ Stats _generateIVs(int floor, Random random) {
   );
 }
 
-Move _generateMove() {
-  return Move.placeholder();
+int _generateMove1(MonMovesLib moveLib, Random rand) {
+  List<int> pool = moveLib.nonStatusBasePool;
+  if (pool.isEmpty) {
+    pool = moveLib.basePool; 
+  }
+  int index = rand.nextInt(pool.length);
+  return pool[index];
+}
+
+int _generateMove2(MonMovesLib moveLib, Random rand, int move1Id) {
+  int index = rand.nextInt(moveLib.basePool.length);
+  int move2Id = moveLib.basePool[index];
+  if (move2Id == move1Id) {
+    index++;
+    index = index % moveLib.basePool.length;
+    move2Id = moveLib.basePool[index];
+  }
+  return move2Id;
 }
 
 int _getNextExpCap(int level, String cat) {

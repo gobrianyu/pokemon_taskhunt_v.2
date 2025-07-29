@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 
 class MovesMapDBProvider extends ChangeNotifier {
-  MovesMapDB? _movesMap;
+  MovesMapDB _movesMap = MovesMapDB();
   bool _isLoading = true;
 
-  MovesMapDB? get movesMap => _movesMap;
+  MovesMapDB get movesMap => _movesMap;
   bool get isLoading => _isLoading;
 
   MovesMapDBProvider() {

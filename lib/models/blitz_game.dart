@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/regions.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
@@ -375,7 +376,7 @@ class BlitzGame {
     }
   }
 
-  Pokemon generateEncounter(List<DexEntry> dex) {
+  Pokemon generateEncounter(List<DexEntry> dex, MovesMapDB movesMap) {
     Random random = Random();
     int levelCeiling = 1;
     for (Pokemon mon in party) {
@@ -426,6 +427,10 @@ class BlitzGame {
     }
     DexEntry targetSpawn = dex[key];
 
+    final double fullId = key + 1 + form * 0.01;
+    MonMovesLib? movePool = movesMap.all[fullId];
+    movePool ??= MonMovesLib(basePool: [], extendedPool: []);
+
     // calculating shiny rate
     int shinyTarget = 1;
     if (items.containsKey(Items.shinyCharm)) {
@@ -433,7 +438,7 @@ class BlitzGame {
     }
     bool isShiny = random.nextInt(4096) < shinyTarget;
     
-    return Pokemon.fromDexEntry(targetSpawn, form, genLvl, isShiny, 0);
+    return Pokemon.fromDexEntry(entry: targetSpawn, form: form, level: genLvl, isShiny: isShiny, ivFloor: 0, movePool: movePool);
   }
 }
 

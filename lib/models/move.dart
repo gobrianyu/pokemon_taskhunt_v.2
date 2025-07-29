@@ -43,6 +43,7 @@ class Move {
   factory Move.fromCsv(List<dynamic> row) {
     int id = int.parse(row[0]);
     int priority = priorityMoves[id] ?? 0;
+    
     return Move(
       id: id,
       name: row[1],

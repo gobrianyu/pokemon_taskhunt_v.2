@@ -3240,10 +3240,10 @@
                 "height": 70,
                 "weight": 19,
                 "entry": "A Pokémon with a friendly nature. However, it will bark fiercely at anything invading its territory.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/growlithe.png",
+                "image asset f": "assets/images/growlithe.png",
+                "image asset m shiny": "assets/images/growlithe_shiny.png",
+                "image asset f shiny": "assets/images/growlithe_shiny.png"
             },
             {
                 "key": 58.01,
@@ -3323,10 +3323,10 @@
                 "height": 190,
                 "weight": 155,
                 "entry": "A legendary Pokémon in the East. Many people are charmed by the grace and beauty of its running.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/arcanine.png",
+                "image asset f": "assets/images/arcanine.png",
+                "image asset m shiny": "assets/images/arcanine_shiny.png",
+                "image asset f shiny": "assets/images/arcanine_shiny.png"
             },
             {
                 "key": 59.01,
@@ -3558,10 +3558,10 @@
                 "height": 90,
                 "weight": 19.5,
                 "entry": "Sleeps 18 hours a day. If it senses danger, it will teleport itself to safety even as it sleeps.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/abra.png",
+                "image asset f": "assets/images/abra.png",
+                "image asset m shiny": "assets/images/abra_shiny.png",
+                "image asset f shiny": "assets/images/abra_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -23957,10 +23957,10 @@
                 "height": 130,
                 "weight": 187,
                 "entry": "It brought rains by opening portals to another world. It was revered as a bringer of plentiful harvests.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/bronzong.png",
+                "image asset f": "assets/images/bronzong.png",
+                "image asset m shiny": "assets/images/bronzong_shiny.png",
+                "image asset f shiny": "assets/images/bronzong_shiny.png"
             }
         ],
         "gimmick forms": [],

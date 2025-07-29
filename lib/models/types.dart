@@ -86,24 +86,48 @@ enum Types {
 
   Color get colour {
     switch(type.toLowerCase()) {
-      case 'water': return const Color.fromARGB(255, 95, 145, 232);
-      case 'grass': return const Color.fromARGB(255, 127, 205, 103);
-      case 'fire': return const Color.fromARGB(255, 243, 89, 62);
-      case 'normal': return const Color.fromARGB(255, 168, 168, 168);
-      case 'ground': return const Color.fromARGB(255, 148, 120, 59);
-      case 'rock': return const Color.fromARGB(255, 193, 169, 97);
-      case 'flying': return const Color.fromARGB(255, 193, 205, 210);
-      case 'psychic': return const Color.fromARGB(255, 231, 101, 161);
-      case 'poison': return const Color.fromARGB(255, 157, 115, 223);
-      case 'fairy': return const Color.fromARGB(255, 230, 154, 179);
-      case 'steel': return const Color.fromARGB(255, 150, 190, 192);
-      case 'bug': return const Color.fromARGB(255, 172, 202, 73);
-      case 'dragon': return const Color.fromARGB(255, 57, 85, 176);
-      case 'dark': return const Color.fromARGB(255, 59, 59, 59);
-      case 'fighting': return const Color.fromARGB(255, 158, 66, 66);
-      case 'electric': return const Color.fromARGB(255, 223, 203, 24);
-      case 'ice': return const Color.fromARGB(255, 142, 211, 230);
-      case 'ghost': return const Color.fromARGB(255, 101, 87, 177);
+      case 'water': return const Color(0xFF437EE7);
+      case 'grass': return const Color(0xFF5B9F3D);
+      case 'fire': return const Color(0xFFD33D34);
+      case 'normal': return const Color(0xFF9FA19F);
+      case 'ground': return const Color(0xFF88542B);
+      case 'rock': return const Color(0xFFAEA985);
+      case 'flying': return const Color(0xFF8DB8EA);
+      case 'psychic': return const Color(0xFFDC5079);
+      case 'poison': return const Color(0xFF8746C4);
+      case 'fairy': return const Color(0xFFDF77E9);
+      case 'steel': return const Color(0xFF6F9FB5);
+      case 'bug': return const Color(0xFF94A138);
+      case 'dragon': return const Color(0xFF5360D9);
+      case 'dark': return const Color(0xFF4E423F);
+      case 'fighting': return const Color(0xFFEF8732);
+      case 'electric': return const Color(0xFFF1C241);
+      case 'ice': return const Color(0xFF70D5FB);
+      case 'ghost': return const Color(0xFF69436D);
+    }
+    throw Exception('Invalid type');
+  }
+
+  String get iconAsset {
+    switch(type.toLowerCase()) {
+      case 'water': return 'assets/type-icons/water_icon.png';
+      case 'grass': return 'assets/type-icons/grass_icon.png';
+      case 'fire': return 'assets/type-icons/fire_icon.png';
+      case 'normal': return 'assets/type-icons/normal_icon.png';
+      case 'ground': return 'assets/type-icons/ground_icon.png';
+      case 'rock': return 'assets/type-icons/rock_icon.png';
+      case 'flying': return 'assets/type-icons/flying_icon.png';
+      case 'psychic': return 'assets/type-icons/psychic_icon.png';
+      case 'poison': return 'assets/type-icons/poison_icon.png';
+      case 'fairy': return 'assets/type-icons/fairy_icon.png';
+      case 'steel': return 'assets/type-icons/steel_icon.png';
+      case 'bug': return 'assets/type-icons/bug_icon.png';
+      case 'dragon': return 'assets/type-icons/dragon_icon.png';
+      case 'dark': return 'assets/type-icons/dark_icon.png';
+      case 'fighting': return 'assets/type-icons/fighting_icon.png';
+      case 'electric': return 'assets/type-icons/electric_icon.png';
+      case 'ice': return 'assets/type-icons/ice_icon.png';
+      case 'ghost': return 'assets/type-icons/ghost_icon.png';
     }
     throw Exception('Invalid type');
   }

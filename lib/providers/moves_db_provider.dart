@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:pokemon_taskhunt_2/models/moves_db.dart';
 
 class MovesDBProvider extends ChangeNotifier {
-  MovesDB? _movesDB;
+  final MovesDB _movesDB = MovesDB();
   bool _isLoading = true;
 
-  MovesDB? get movesDB => _movesDB;
+  MovesDB get movesDB => _movesDB;
   bool get isLoading => _isLoading;
 
   MovesDBProvider() {
@@ -16,7 +16,7 @@ class MovesDBProvider extends ChangeNotifier {
   Future<void> _loadMovesDB() async {
     const dataPath = 'assets/moves.csv';
     final data = await rootBundle.loadString(dataPath);
-    _movesDB = MovesDB.initFromCsv(data);
+    _movesDB.initFromCsv(data);
     _isLoading = false;
     notifyListeners();
   }

@@ -236,7 +236,7 @@ id|name|type|category|pp|power|accuracy|effect|probability|flavourText
 234|Morning Sun|Normal|Status|5|||invalid||
 235|Synthesis|Grass|Status|5|||invalid||
 236|Moonlight|Fairy|Status|5|||invalid||
-237|Hidden Power|Normal|Special|15|60|100|invalid||
+237|Hidden Power|Normal|Special|15|60|100|||Type depends on user's IVs.
 238|Cross Chop|Fighting|Physical|5|100|80|highCrit||High critical hit ratio.
 239|Twister|Dragon|Special|20|40|100|oppFlinch|20|May cause opponent to flinch (20%).
 240|Rain Dance|Water|Status|5|||invalid||

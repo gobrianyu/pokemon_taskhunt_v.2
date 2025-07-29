@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
+import 'package:pokemon_taskhunt_2/models/move.dart';
+import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/providers/moves_db_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/moves_map_db_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'collection_page_view.dart';
 
@@ -11,7 +16,7 @@ class CollectionEntry extends StatefulWidget {
   final int currPageIndex;
   final bool displayShiny;
   final bool displayMale;
-  
+
   const CollectionEntry({required this.entries, required this.entry, required this.filteredDex, this.currPageIndex = 0, required this.displayShiny, required this.displayMale, super.key});
 
   List<dex.DexEntry> get filteredEntries {
@@ -41,6 +46,7 @@ class CollectionEntry extends StatefulWidget {
 }
 
 class _CollectionEntryState extends State<CollectionEntry> {
+  double moveDetailsHeight = 0.0;
   int currPageIndex = 0;
   List<dex.DexEntry> filteredEntries = [];
   List<int> filteredIndexes = [];
@@ -64,7 +70,6 @@ class _CollectionEntryState extends State<CollectionEntry> {
 
   @override
   Widget build(BuildContext context) {
-    
     dex.DexEntry entry = widget.entry;
     dex.Form currForm = entry.forms[currPageIndex];
 
@@ -88,10 +93,75 @@ class _CollectionEntryState extends State<CollectionEntry> {
               _measurements(currForm.height, currForm.weight),
               _stats(currForm.stats[0]),
               _evoChart(currForm),
+              _movePool(currForm.key),
               const SizedBox(height: 100)
             ]
           )
         ),
+      ),
+    );
+  }
+
+  Widget _movePool(double dexId) {
+    MovesMapDBProvider mapProvider = context.read<MovesMapDBProvider>();
+    MovesDBProvider movesProvider = context.read<MovesDBProvider>();
+
+    final MonMovesLib? movePool = mapProvider.movesMap.all[dexId];
+    if (movePool == null) {
+      return const Center(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'This Pokémon cannot learn any moves.\nThis is likely an error.',
+            textAlign: TextAlign.center,
+          ),
+        )
+      );
+    }
+
+    final List<int> fullPool = movePool.basePool;
+    return Container(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Learnable Moves', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          const SizedBox(height: 10),
+          ...fullPool.map((moveId) => _moveWidget(movesProvider.movesDB.all[moveId]))
+        ]
+      )
+    );
+  }
+
+  Widget _moveWidget(Move move) {
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          backgroundColor: Colors.transparent,
+          context: context,
+          builder: (context) {
+            return MoveDetails(move: move);
+          },
+        );
+      },
+      child: Container(
+        height: 35,
+        margin: const EdgeInsets.only(bottom: 4),
+        padding: const EdgeInsets.only(bottom: 2, top: 2, left: 2, right: 8),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 0.7),
+          borderRadius: BorderRadius.circular(100),
+          color: const Color.fromARGB(255, 240, 240, 240)
+        ),
+        child: Row(
+          children: [
+            Image(image: AssetImage(move.type.iconAsset), width: 30, height: 30),
+            const SizedBox(width: 10),
+            Text(move.name, style: const TextStyle(fontWeight: FontWeight.w500)),
+            const Spacer(),
+            catContainer(move.category)
+          ],
+        )
       ),
     );
   }
@@ -215,7 +285,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
     return Padding(
       padding: const EdgeInsets.only(left: 10, top: 5),
       child: Row(
-        children: types.map((type) => _typeContainer(type)).toList()
+        children: types.map((type) => typeContainer(type)).toList()
       ),
     );
   }
@@ -246,9 +316,7 @@ class _CollectionEntryState extends State<CollectionEntry> {
       children: [
         SizedBox(
           width: 70,
-          child: Text(
-            statName
-          )
+          child: Text(statName)
         ),
         SizedBox(
           width: 30,
@@ -276,24 +344,6 @@ class _CollectionEntryState extends State<CollectionEntry> {
           ],
         )
       ]
-    );
-  }
-
-
-  Widget _typeContainer(Types type) {
-    return Container(
-      width: 100,
-      height: 30,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 8),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
-        color: type.colour
-      ),
-      child: Text(
-        type.type,
-        style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-      )
     );
   }
 
@@ -470,4 +520,270 @@ extension DoubleExtensions on double {
   int getDecimals() {
     return ((this * 100 - toInt() * 100).abs()).toInt();
   }
+}
+
+class MoveDetails extends StatefulWidget {
+  final Move move;
+
+  const MoveDetails({super.key, required this.move});
+
+  @override
+  _MoveDetailsState createState() => _MoveDetailsState();
+}
+
+class _MoveDetailsState extends State<MoveDetails> {
+  GlobalKey _moveDetailsHeightKey = GlobalKey();
+  double moveDetailsHeight = 0.0;
+
+  @override
+  Widget build(BuildContext context) {
+    Move move = widget.move;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_moveDetailsHeightKey.currentContext != null) {
+        final RenderBox renderBox = _moveDetailsHeightKey.currentContext!.findRenderObject() as RenderBox;
+        setState(() {
+          moveDetailsHeight = renderBox.size.height;
+        });
+      }
+    });
+    return SizedBox(
+      height: moveDetailsHeight * 3,
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 18),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))
+              ),
+              margin: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 15),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(13),
+                    child: Text(
+                      move.name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _moveDetailBox(title: 'TYPE', child: typeContainer(move.type))
+                      ),
+                      const SizedBox(width: 7),
+                      Expanded(
+                        child: _moveDetailBox(
+                          title: 'CATEGORY',
+                          child: Container(
+                            padding: const EdgeInsets.only(right: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: const Color.fromARGB(255, 63, 63, 63)
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(height: 30, child: catContainer(move.category)),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 4, right: 4),
+                                  child: Text(
+                                    move.category,
+                                    style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          key: _moveDetailsHeightKey,
+                          children: [
+                            _moveDetailBox(
+                              title: 'BASE POWER',
+                              child: Text(
+                                '${move.power == 65536 ? '∞' : move.power ?? '-'}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500
+                                )
+                              )
+                            ),
+                            const SizedBox(height: 10),
+                            _moveDetailBox(
+                              title: 'ACCURACY',
+                              child: Text(
+                                '${move.accuracy == 65536 ? '∞' : move.accuracy ?? '-'}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500
+                                )
+                              )
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 7),
+                      if (moveDetailsHeight > 0) Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: EdgeInsets.all(8.0),
+                          height: moveDetailsHeight,
+                          color: Color.fromARGB(255, 235, 235, 235),
+                          child: Text(
+                            move.flavourText?.trim().isNotEmpty ?? false ? move.flavourText! : 'This move has no additional effects.',
+                            style: TextStyle(
+                              color: move.flavourText?.trim().isNotEmpty ?? false ? Colors.black : Colors.grey,
+                              fontSize: 13
+                            )
+                          )
+                        ),
+                      )
+                    ],
+                  )
+                ]
+              ),
+            ),
+          ),
+          GestureDetector( // close drawer button
+            onTap: (() {
+              Navigator.pop(context);
+            }),
+            child: Container(
+              padding: const EdgeInsets.all(2.5),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle
+              ),
+              height: 45,
+              width: 45,
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  shape: BoxShape.circle
+                ),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    const Icon(Icons.expand_more, size: 25, color: Colors.white),
+                    Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 1.3), 
+                        shape: BoxShape.circle
+                      )
+                    )
+                  ]
+                )
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _moveDetailBox({required String title, required Widget child}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(bottom: 5),
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 63, 63, 63)
+          ),
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 9,
+              fontWeight: FontWeight.w900,
+              color: Colors.white
+            ),
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.only(top: 5, bottom: 5),
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 235, 235, 235)
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              child
+            ],
+          )
+        ),
+      ],
+    );
+  }
+}
+
+Widget catContainer(String cat) {
+  String moveCat = '';
+  Color catColor = Colors.transparent;
+  switch (cat.toLowerCase()) {
+    case 'special':
+      moveCat = 'assets/icons/special_icon.png';
+      catColor = const Color(0xFF5067CC);
+    case 'physical':
+      moveCat = 'assets/icons/physical_icon.png';
+      catColor = const Color(0xFFDA6038);
+    case 'status':
+      moveCat = 'assets/icons/status_icon.png';
+      catColor = const Color(0xFF828282);
+  }
+  return Container(
+    padding: const EdgeInsets.only(left: 5, right: 5, top: 2.5, bottom: 2.5),
+    margin: const EdgeInsets.all(3),
+    decoration: BoxDecoration(
+      color: catColor,
+      borderRadius: BorderRadius.circular(3)
+    ),
+    child: Image(image: AssetImage(moveCat))
+  );
+}
+
+Widget typeContainer(Types type) {
+  return Container(
+    width: 100,
+    height: 30,
+    alignment: Alignment.center,
+    margin: const EdgeInsets.only(left: 4, right: 4),
+    decoration: const BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      color: Color.fromARGB(255, 63, 63, 63)
+    ),
+    child: Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(2.5),
+          child: Image(image: AssetImage(type.iconAsset)),
+        ),
+        const Spacer(),
+        Text(
+          type.type,
+          style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
+        ),
+        const Spacer(),
+        const Spacer(),
+      ],
+    )
+  );
 }

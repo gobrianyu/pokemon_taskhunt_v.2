@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pokemon_taskhunt_2/models/dex_db.dart';
-import 'package:pokemon_taskhunt_2/models/move.dart';
-import 'package:pokemon_taskhunt_2/models/moves_db.dart';
-import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
 import 'package:pokemon_taskhunt_2/providers/moves_db_provider.dart';

@@ -9,6 +9,8 @@ class DexDB{
     return List<DexEntry>.from(_entries, growable: false);
   }
 
+  DexDB() : _entries = [];
+
   DexDB.initFromJson(String jsonString) : _entries = _decodeDexListJson(jsonString);
 
   static List<DexEntry> _decodeDexListJson(String jsonString){

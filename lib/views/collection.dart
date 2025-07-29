@@ -29,7 +29,7 @@ class _CollectionState extends State<Collection> {
   @override
   void initState() {
     super.initState();
-    fullDex = context.read<DexDBProvider>().dexDB!.all;
+    fullDex = context.read<DexDBProvider>().dexDB.all;
     searchController.addListener(_onSearchUpdate);
   }
 

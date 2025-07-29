@@ -3,10 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
 import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
+import 'package:pokemon_taskhunt_2/providers/moves_map_db_provider.dart';
 import 'package:pokemon_taskhunt_2/views/collection.dart';
 import 'package:pokemon_taskhunt_2/views/encounter.dart';
 import 'package:pokemon_taskhunt_2/views/party.dart';
@@ -23,6 +25,7 @@ class Board extends StatefulWidget {
 
 class _BoardState extends State<Board> {
   late final List<DexEntry> fullDex;
+  late final MovesMapDB movesMapDB;
   Random random = Random();
 
   final List<Items> itemsMasterList = [
@@ -58,7 +61,8 @@ class _BoardState extends State<Board> {
 
     // Read the AccountProvider instance from the context
     accProvider = context.read<AccountProvider>();
-    fullDex = context.read<DexDBProvider>().dexDB!.all;
+    fullDex = context.read<DexDBProvider>().dexDB.all;
+    movesMapDB = context.read<MovesMapDBProvider>().movesMap;
 
     // Using addPostFrameCallback to avoid triggering state changes during the build phase
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -240,11 +244,11 @@ class _BoardState extends State<Board> {
     int key = random.nextInt(49);
     for (int i = 0; i < 49; i++) {
       if (i == key) {
-        ret.add(blitz.generateEncounter(fullDex));
+        ret.add(blitz.generateEncounter(fullDex, movesMapDB));
       } else {
         int n = 5 * blitz.averageLevel() + blitz.round - 2 * blitz.party.length + 12;
         if (random.nextInt(1000) < n) {
-          ret.add(blitz.generateEncounter(fullDex));
+          ret.add(blitz.generateEncounter(fullDex, movesMapDB));
         } else {
           ret.add(null);
         }
@@ -377,7 +381,7 @@ class _BoardState extends State<Board> {
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => Encounter(
-              mon: accProvider.blitzGame.generateEncounter(fullDex),
+              mon: accProvider.blitzGame.generateEncounter(fullDex, movesMapDB),
               onReturn: (bool claimed) {
                 if (claimed) {
                   accProvider.claimTask(task);

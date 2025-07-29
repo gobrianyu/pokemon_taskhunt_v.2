@@ -1,11 +1,15 @@
 import 'dart:convert';
 
+import 'package:pokemon_taskhunt_2/models/moves_db.dart';
+
 class MovesMapDB {
   final Map<double, MonMovesLib> _moveMap;
 
   Map<double, MonMovesLib> get all {
     return Map<double, MonMovesLib>.from(_moveMap);
   }
+
+  MovesMapDB() : _moveMap = {};
 
   MovesMapDB.initFromJson(String jsonString) : _moveMap = _decodeMoveMapJson(jsonString);
 
@@ -50,6 +54,11 @@ class MonMovesLib {
 
   void addToExtended(int id) {
     _extendedPool.add(id);
+  }
+
+  List<int> get nonStatusBasePool {
+    MovesDB movesDB = MovesDB();
+    return List<int>.from(_basePool.where((move) => (movesDB.getById(move).category.toLowerCase() != 'status')));
   }
 
   List<int> get basePool {
