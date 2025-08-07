@@ -3609,10 +3609,10 @@
                 "height": 130,
                 "weight": 56.5,
                 "entry": "Many odd things happen if this Pokémon is close by. For example, it makes clocks run backward.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/kadabra.png",
+                "image asset f": "assets/images/kadabra.png",
+                "image asset m shiny": "assets/images/kadabra_shiny.png",
+                "image asset f shiny": "assets/images/kadabra_shiny.png"
             }
         ],
         "gimmick forms": [],
@@ -23048,10 +23048,10 @@
                 "height": 40,
                 "weight": 3.3,
                 "entry": "The small ball holds the nutrients needed for evolution. Apparently, it is very sweet and tasty.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/cherubi.png",
+                "image asset f": "assets/images/cherubi.png",
+                "image asset m shiny": "assets/images/cherubi_shiny.png",
+                "image asset f shiny": "assets/images/cherubi_shiny.png"
             }
         ],
         "gimmick forms": [],

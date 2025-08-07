@@ -272,7 +272,7 @@ class Pokemon {
       MovesDB movesDB = MovesDB();
       int moveId;
       if (movesDB.getById(move1Id).category.toLowerCase() == 'status') {
-        moveId = _generateMove1(movePool, random);
+        moveId = _generateNonStatusMove2(movePool, random, move1Id);
       } else {
         moveId = _generateMove2(movePool, random, move1Id);
       }
@@ -411,14 +411,23 @@ int _generateMove1(MonMovesLib moveLib, Random rand) {
 }
 
 int _generateMove2(MonMovesLib moveLib, Random rand, int move1Id) {
-  int index = rand.nextInt(moveLib.basePool.length);
-  int move2Id = moveLib.basePool[index];
-  if (move2Id == move1Id) {
-    index++;
-    index = index % moveLib.basePool.length;
-    move2Id = moveLib.basePool[index];
+  List<int> pool = moveLib.basePool;
+  pool.remove(move1Id);
+  if (pool.isEmpty) {
+    pool = moveLib.all;
+    pool.remove(move1Id);
   }
-  return move2Id;
+  int index = rand.nextInt(pool.length);
+  return pool[index];
+}
+
+int _generateNonStatusMove2(MonMovesLib moveLib, Random rand, int move1Id) {
+  List<int> pool = moveLib.nonStatusBasePool;
+  if (pool.isEmpty) {
+    pool = moveLib.nonStatusPool;
+  }
+  int index = rand.nextInt(moveLib.basePool.length);
+  return pool[index];
 }
 
 int _getNextExpCap(int level, String cat) {

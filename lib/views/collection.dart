@@ -559,7 +559,7 @@ class _CollectionState extends State<Collection> {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         return SizedBox(
-          height: 477,
+          height: 450,
           child: Stack(
             alignment: Alignment.topCenter,
             children: [

@@ -61,12 +61,17 @@ class MonMovesLib {
     return List<int>.from(_basePool.where((move) => (movesDB.getById(move).category.toLowerCase() != 'status')));
   }
 
+  List<int> get nonStatusPool {
+    MovesDB movesDB = MovesDB();
+    return List<int>.from(all.where((move) => (movesDB.getById(move).category.toLowerCase() != 'status')));
+  }
+
   List<int> get basePool {
-    return List<int>.from(_basePool, growable: false);
+    return List<int>.from(_basePool);
   }
 
   List<int> get extendedPool {
-    return List<int>.from(_extendedPool, growable: false);
+    return List<int>.from(_extendedPool);
   }
 
   List<int> get all {

@@ -8,6 +8,8 @@ import 'package:pokemon_taskhunt_2/models/moves_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
+import 'package:pokemon_taskhunt_2/views/collection_entry.dart';
+import 'package:pokemon_taskhunt_2/widgets/alert_tab.dart';
 import 'package:provider/provider.dart';
 
 class PartyDetails extends StatefulWidget {
@@ -26,6 +28,7 @@ class _PartyDetailsState extends State<PartyDetails> {
   Items? _held;
   bool _showRemoveAlert = false;
   bool _showAddMoveAlert = false;
+  bool _showCannotAddMoveAlert = false;
 
   @override
   void initState() {
@@ -43,13 +46,16 @@ class _PartyDetailsState extends State<PartyDetails> {
           extendBody: true,
           backgroundColor: Colors.white,
           body: Stack(
+            alignment: Alignment.bottomCenter,
             children: [
               _fullScaffold(),
+              _backButton(),
               if (_showRemoveAlert) _removeItemAlert(),
               if (_showAddMoveAlert) _addMoveAlert(),
+              if (_showCannotAddMoveAlert) _cannotAddMoveAlert(),
             ],
           ),
-          bottomNavigationBar: _backButton()
+          
         );
       }
     );
@@ -462,16 +468,34 @@ class _PartyDetailsState extends State<PartyDetails> {
 
   Widget _movesPanel() {
     int move1Id = widget.mon.move1Id;
-    int? move2Id = widget.mon.move2Id; 
+    int? move2Id = widget.mon.move2Id;
+    Widget move2Widget = const SizedBox.shrink();
+    if (move2Id == null) move2Widget = _emptyMoveBox();
+    if (widget.mon.movePool.all.length <= 1) move2Widget = _nullMoveBox();  // case of mons who don't learn a second move (i.e. Ditto, Smeargle)
+
     return Padding(
       padding: const EdgeInsets.only(top: 13, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(child: _moveBox(movesDB.all[move1Id])),
-          SizedBox(width: 7),
-          Expanded(child: widget.mon.move2Id == null ? _emptyMoveBox() : _moveBox(movesDB.all[move2Id!])) 
+          const SizedBox(width: 7),
+          Expanded(child: move2Id == null ? move2Widget : _moveBox(movesDB.all[move2Id])) 
         ],
+      ),
+    );
+  }
+
+  Widget _nullMoveBox() {
+    return GestureDetector(
+      onTap: () {},  // TODO: open alert with msg: 'This Pokémon cannot learn a second move.'
+      child: Container(
+        height: 25,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(100)
+        ),
+        child: const Icon(Icons.clear, size: 18)
       ),
     );
   }
@@ -487,24 +511,41 @@ class _PartyDetailsState extends State<PartyDetails> {
           border: Border.all(),
           borderRadius: BorderRadius.circular(100),
         ),
-        child: Icon(Icons.add, size: 18)
+        child: const Icon(Icons.add, size: 18)
       ),
     );
   }
 
   Widget _moveBox(Move move) {
-    return Container(
-      padding: EdgeInsets.only(left: 5, right: 5),
-      height: 25,
-      decoration: BoxDecoration(
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(100),
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          backgroundColor: Colors.transparent,
+          context: context,
+          builder: (context) {
+            return MoveDetails(move: move);
+          },
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.only(left: 1, top: 1, bottom: 1, right: 5),
+        height: 25,
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color.fromARGB(255, 100, 100, 100)),
+          borderRadius: BorderRadius.circular(100),
+          color: const Color.fromARGB(255, 240, 240, 240)
+        ),
+        child: Row(
+          children: [
+            Image(image: AssetImage(move.type.iconAsset)),
+            const SizedBox(width: 7),
+            Text(
+              move.name,
+              style: const TextStyle(fontSize: 12)
+            )
+          ],
+        )
       ),
-      child: Row(
-        children: [
-          Text(move.name)
-        ],
-      )
     );
   }
 
@@ -702,7 +743,7 @@ class _PartyDetailsState extends State<PartyDetails> {
           child: Text(widget.mon.species)
         ),
         const Spacer(),
-        ..._typeTags()
+        _typeTagsContainer()
       ]
     );
   }
@@ -772,109 +813,305 @@ class _PartyDetailsState extends State<PartyDetails> {
     );
   }
 
+  Widget _cannotAddMoveAlert() {
+    Size alertSize = MediaQuery.of(context).size;
+    double alertWidth = alertSize.width;
+    double alertTabHeight = 50;
+    return Container(
+      padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45, top: 50),
+      color: Colors.black38,
+      child: Column(
+        children: [
+          const Spacer(),
+          Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              AlertTab(
+                height: 100,
+                width: alertWidth,
+                tabHeight: alertTabHeight,
+                tabWidth: (alertWidth - 100) * 2 / 3 - 7,
+                colour: Colors.black,
+                radius: 15,
+                innerRadius: 10
+              )
+            ]
+          ),
+          const Spacer(),
+        ]
+      )
+    );
+  }
+
   Widget _addMoveAlert() {
+    int balance = accProvider.blitzGame.balance;
+    Size alertSize = MediaQuery.of(context).size;
+    double alertWidth = alertSize.width;
+    double alertTabHeight = 50;
     return Container(
       padding: const EdgeInsets.only(left: 50, right: 50, bottom: 45),
       color: Colors.black38,
       child: Column(
         children: [
           const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.white
-            ),
-            child: Column(
-              children: [
-                const Icon(Icons.info_rounded, size: 30),
-                const SizedBox(height: 15),
-                Text(
-                  'Unlock a new move? (\$100)\nYour balance: \$${accProvider.blitzGame.balance}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 15)
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          if (accProvider.blitzGame.balance >= 100) {
-                            widget.mon.unlockSecondMove();
-                            accProvider.decrementBalance(100);
-                            setState(() => _showAddMoveAlert = false);
-                          }
-                        },
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.all(2.5),
-                          margin: const EdgeInsets.only(left: 10, right: 10),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(20)
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              AlertTab(
+                height: 100,
+                width: alertWidth - 100,
+                tabWidth: (alertWidth - 100) * 2 / 3 - 7,
+                tabHeight: alertTabHeight,
+                colour: Colors.black,
+                radius: 15,
+                innerRadius: 10
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: alertTabHeight,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 7),
+                            child: Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.only(left: 7, right: 10),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(8)
+                              ),
+                              child: const Text(
+                                'MOVE TUTOR',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
+                        ),
+                        const SizedBox(width: 7),
+                        Expanded(
                           child: Container(
-                            alignment: Alignment.center,
-                            height: 35,
+                            height: 100,
+                            margin: const EdgeInsets.only(bottom: 7, top: 7, right: 5),
+                            padding: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20)
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(8)
                             ),
-                            child: const Text(
-                              'Unlock',
-                              style: TextStyle(
-                                color: Colors.white
+                            child: Container(
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.only(right: 3, left: 3),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: Text(
+                                '\$${accProvider.blitzGame.balance}',
+                                style: const TextStyle(
+                                  color: Colors.white
+                                ),
                               )
-                            ),
-                          )
-                        )
-                      ),
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _showAddMoveAlert = false;
-                          });
-                        },
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.all(2.5),
-                          margin: const EdgeInsets.only(left: 10, right: 10),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(20),
+                            )
                           ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                            child: const Text(
-                              'Cancel',
-                              style: TextStyle(
-                                color: Colors.white
-                              )
-                            ),
-                          )
                         )
-                      ),
+                      ],
+                    )
+                  ),
+                  const SizedBox(height: 7),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white
                     ),
-                  ],
-                ),
-              ],
-            )
+                    child: Column(
+                      children: [
+                        Text(
+                          '${widget.mon.nickname} can learn a new move!',
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                        ),
+                        const Text(
+                          'Select Move Tutor Method',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey,
+                          )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 13, top: 13),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 240, 240, 240),
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                flex: 3,
+                                child: Text(
+                                  'Spend 100 Coins'
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      if (balance >= 100) {
+                                        widget.mon.unlockSecondMove();
+                                        accProvider.decrementBalance(100);
+                                        setState(() => _showAddMoveAlert = false);
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 35,
+                                    padding: const EdgeInsets.all(2.5),
+                                    margin: const EdgeInsets.only(left: 10),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: balance >= 100 ? Colors.black : Colors.grey,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(20)
+                                      ),
+                                      child: const Text(
+                                        'Unlock',
+                                        style: TextStyle(
+                                          color: Colors.white
+                                        )
+                                      ),
+                                    )
+                                  )
+                                ),
+                              ),
+                            ],
+                          )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 10, bottom: 10),
+                          padding: const EdgeInsets.only(left: 10, right: 10, top: 13),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 240, 240, 240),
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                flex: 3,
+                                child: Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: Text(
+                                    'Use 1 TM'
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        // TODO: add functionality after implementing TM items
+                                      },
+                                      child: Container(
+                                        height: 35,
+                                        padding: const EdgeInsets.all(2.5),
+                                        margin: const EdgeInsets.only(left: 10, bottom: 13),
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey,  // TODO: set colour based on items available
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.white),
+                                            borderRadius: BorderRadius.circular(20)
+                                          ),
+                                          child: const Text(
+                                            'Unlock',
+                                            style: TextStyle(
+                                              color: Colors.white
+                                            )
+                                          ),
+                                        )
+                                      )
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        '0/1',  // TODO: change to dynamic text
+                                        style: TextStyle(
+                                          fontSize: 10.5,
+                                          fontWeight: FontWeight.w700,
+                                        )
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        ),
+                        const SizedBox(height: 15),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _showAddMoveAlert = false;
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            padding: const EdgeInsets.all(2.5),
+                            margin: const EdgeInsets.only(left: 10, right: 10),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(20)
+                              ),
+                              child: const Text(
+                                'Cancel',
+                                style: TextStyle(
+                                  color: Colors.white
+                                )
+                              ),
+                            )
+                          )
+                        ),
+                      ],
+                    )
+                  ),
+                ],
+              )
+            ],
           ),
-          const Spacer()
+          const Spacer(),
         ],
-      )
+      ),
     );
   }
 
@@ -990,20 +1227,36 @@ class _PartyDetailsState extends State<PartyDetails> {
     );
   }
 
+  Widget _typeTagsContainer() {
+    return Container(
+      padding: const EdgeInsets.all(1.5),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 61, 60, 60),
+        borderRadius: BorderRadius.circular(40)
+      ),
+      child: Row(
+        children: _typeTags(),
+      )
+    );
+  }
+
   List<Widget> _typeTags() {
     List<Widget> tags = [];
     for (Types type in widget.mon.types) {
       tags.add(
-        Container(
-          margin: const EdgeInsets.only(left: 5),
-          padding: const EdgeInsets.only(left: 7, right: 7, top: 3, bottom: 3),
-          decoration: BoxDecoration(
-            // border: Border.all(),
-            borderRadius: BorderRadius.circular(4),
-            color: type.colour
-          ),
-          child: Text(type.type, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        ),
+        Padding(
+          padding: const EdgeInsets.all(1.5),
+          child: Image(image: AssetImage(type.iconAsset), height: 21)
+        )
+        // Container(
+        //   margin: const EdgeInsets.only(left: 5),
+        //   padding: const EdgeInsets.only(left: 7, right: 7, top: 3, bottom: 3),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(4),
+        //     color: type.colour
+        //   ),
+        //   child: Text(type.type, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        // ),
       );
     }
     return tags;
