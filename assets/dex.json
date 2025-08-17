@@ -8650,10 +8650,10 @@
                 "height": 90,
                 "weight": 6.4,
                 "entry": "A sweet aroma gently wafts from the leaf on its head. It is docile and loves to soak up the sun's rays.",
-                "image asset m": "assets/images/unknown.png",
-                "image asset f": "assets/images/unknown.png",
-                "image asset m shiny": "assets/images/unknown.png",
-                "image asset f shiny": "assets/images/unknown.png"
+                "image asset m": "assets/images/chikorita.png",
+                "image asset f": "assets/images/chikorita.png",
+                "image asset m shiny": "assets/images/chikorita_shiny.png",
+                "image asset f shiny": "assets/images/chikorita_shiny.png"
             }
         ],
         "gimmick forms": [],
