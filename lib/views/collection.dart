@@ -17,6 +17,41 @@ class Collection extends StatefulWidget{
 }
 
 class _CollectionState extends State<Collection> {
+  final List<Regions> regionList = [
+    Regions.kanto,
+    Regions.johto,
+    Regions.hoenn,
+    Regions.sinnoh,
+    Regions.unova,
+    Regions.kalos,
+    Regions.alola,
+    Regions.unknown,
+    Regions.galar,
+    Regions.hisui,
+    Regions.paldea
+  ];
+
+  final List<Types> typeList = [
+    Types.normal,
+    Types.fighting,
+    Types.flying,
+    Types.poison,
+    Types.ground,
+    Types.rock,
+    Types.bug,
+    Types.ghost,
+    Types.steel,
+    Types.fire,
+    Types.water,
+    Types.grass,
+    Types.electric,
+    Types.psychic,
+    Types.ice,
+    Types.dragon,
+    Types.dark,
+    Types.fairy
+  ];
+
   late final List<dex.DexEntry> fullDex;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<Types> typeFilters = [];
@@ -78,14 +113,7 @@ class _CollectionState extends State<Collection> {
                   primary: true,
                   children: <Widget>[
                     const SizedBox(height: 5),
-                    _regionGrid(Regions.kanto), // TODO: fill out dex
-                    _regionGrid(Regions.johto),
-                    _regionGrid(Regions.hoenn),
-                    _regionGrid(Regions.sinnoh),
-                    _regionGrid(Regions.unova),
-                    _regionGrid(Regions.kalos),
-                    _regionGrid(Regions.alola),
-                    _regionGrid(Regions.unknown)
+                    ...regionList.map((region) => _regionGrid(region))
                   ]
                 ),
               ),
@@ -351,25 +379,7 @@ class _CollectionState extends State<Collection> {
   }
 
   Widget _filterType(StateSetter setter) {
-    List<Widget> types = [];
-    types.add(_filterTypeButton(Types.normal, setter));
-    types.add(_filterTypeButton(Types.fire, setter));
-    types.add(_filterTypeButton(Types.water, setter));
-    types.add(_filterTypeButton(Types.electric, setter));
-    types.add(_filterTypeButton(Types.grass, setter));
-    types.add(_filterTypeButton(Types.ice, setter));
-    types.add(_filterTypeButton(Types.fighting, setter));
-    types.add(_filterTypeButton(Types.poison, setter));
-    types.add(_filterTypeButton(Types.ground, setter));
-    types.add(_filterTypeButton(Types.flying, setter));
-    types.add(_filterTypeButton(Types.psychic, setter));
-    types.add(_filterTypeButton(Types.bug, setter));
-    types.add(_filterTypeButton(Types.rock, setter));
-    types.add(_filterTypeButton(Types.ghost, setter));
-    types.add(_filterTypeButton(Types.dragon, setter));
-    types.add(_filterTypeButton(Types.dark, setter));
-    types.add(_filterTypeButton(Types.steel, setter));
-    types.add(_filterTypeButton(Types.fairy, setter));
+    List<Widget> types = typeList.map((type) => _filterTypeButton(type, setter)).toList();
     types.add(_placeholderButton());
     types.add(_placeholderButton());
     return Column(
@@ -421,17 +431,9 @@ class _CollectionState extends State<Collection> {
   }
 
   Widget _filterRegion(StateSetter setter) {
-    List<Widget> regions = [];
-    regions.add(_filterRegionButton(Regions.kanto, setter));
-    regions.add(_filterRegionButton(Regions.johto, setter));
-    regions.add(_filterRegionButton(Regions.hoenn, setter));
-    regions.add(_filterRegionButton(Regions.sinnoh, setter));
-    regions.add(_filterRegionButton(Regions.unova, setter));
-    regions.add(_filterRegionButton(Regions.kalos, setter));
-    regions.add(_filterRegionButton(Regions.alola, setter));
-    regions.add(_filterRegionButton(Regions.galar, setter));
-    regions.add(_filterRegionButton(Regions.hisui, setter));
-    regions.add(_filterRegionButton(Regions.paldea, setter));
+    List<Regions> regionListFrom = List.from(regionList);
+    regionListFrom.remove(Regions.unknown);
+    List<Widget> regions = regionListFrom.map((region) => _filterRegionButton(region, setter)).toList();
     return Column(
       children: [
         Container(
