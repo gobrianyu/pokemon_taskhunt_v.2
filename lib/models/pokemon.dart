@@ -1,12 +1,13 @@
 import 'dart:math';
 
+import 'package:pokemon_taskhunt_2/enums/stats.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/enums/items.dart';
 import 'package:pokemon_taskhunt_2/models/move.dart';
 import 'package:pokemon_taskhunt_2/models/moves_db.dart';
 import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
-import 'package:pokemon_taskhunt_2/models/regions.dart';
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/regions.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 
 class Pokemon {
@@ -284,64 +285,16 @@ class Pokemon {
     move2Id = moveId;
   }
 
-  int calcHP([int? baseCalc]) {
+  int calcStat(Stat stat, [int? baseCalc]) {
     int trueBaseCalc;
     if (baseCalc != null) {
       trueBaseCalc = baseCalc;
     } else {
       trueBaseCalc = _calcBaseCalc();
     }
-    return (((baseStats.hp + ivs.hp) * 2 + trueBaseCalc) * level / 100).floor() + level + 10;
-  }
-
-  int calcAtk([int? baseCalc]) {
-    int trueBaseCalc;
-    if (baseCalc != null) {
-      trueBaseCalc = baseCalc;
-    } else {
-      trueBaseCalc = _calcBaseCalc();
-    }
-    return (((baseStats.atk + ivs.atk) * 2 + trueBaseCalc) * level / 100).floor() + 5;
-  }
-  
-  int calcDef([int? baseCalc]) {
-    int trueBaseCalc;
-    if (baseCalc != null) {
-      trueBaseCalc = baseCalc;
-    } else {
-      trueBaseCalc = _calcBaseCalc();
-    }
-    return (((baseStats.def + ivs.def) * 2 + trueBaseCalc) * level / 100).floor() + 5;
-  }
-
-  int calcSpAtk([int? baseCalc]) {
-    int trueBaseCalc;
-    if (baseCalc != null) {
-      trueBaseCalc = baseCalc;
-    } else {
-      trueBaseCalc = _calcBaseCalc();
-    }
-    return (((baseStats.spAtk + ivs.spAtk) * 2 + trueBaseCalc) * level / 100).floor() + 5;
-  }
-
-  int calcSpDef([int? baseCalc]) {
-    int trueBaseCalc;
-    if (baseCalc != null) {
-      trueBaseCalc = baseCalc;
-    } else {
-      trueBaseCalc = _calcBaseCalc();
-    }
-    return (((baseStats.spDef + ivs.spDef) * 2 + trueBaseCalc) * level / 100).floor() + 5;
-  }
-
-  int calcSpeed([int? baseCalc]) {
-    int trueBaseCalc;
-    if (baseCalc != null) {
-      trueBaseCalc = baseCalc;
-    } else {
-      trueBaseCalc = _calcBaseCalc();
-    }
-    return (((baseStats.speed + ivs.speed) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+    int statVal = (((baseStats.getStat(stat) + ivs.getStat(stat)) * 2 + trueBaseCalc) * level / 100).floor() + 5;
+    if (stat == Stat.hp) statVal += level + 5;
+    return statVal;
   }
 
   int _calcBaseCalc() {
@@ -351,12 +304,12 @@ class Pokemon {
 
   Stats getStats() {
     final int baseCalc = _calcBaseCalc();
-    final int hp = calcHP(baseCalc);
-    final int atk = calcAtk(baseCalc);
-    final int def = calcDef(baseCalc);
-    final int spAtk = calcSpAtk(baseCalc);
-    final int spDef = calcSpDef(baseCalc);
-    final int speed = calcSpeed(baseCalc);
+    final int hp = calcStat(Stat.hp, baseCalc);
+    final int atk = calcStat(Stat.atk, baseCalc);
+    final int def = calcStat(Stat.def, baseCalc);
+    final int spAtk = calcStat(Stat.spAtk, baseCalc);
+    final int spDef = calcStat(Stat.spDef, baseCalc);
+    final int speed = calcStat(Stat.speed, baseCalc);
     return Stats(hp: hp, atk: atk, def: def, spAtk: spAtk, spDef: spDef, speed: speed);
   }
 

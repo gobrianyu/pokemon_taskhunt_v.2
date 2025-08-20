@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'types.dart';
-import 'regions.dart';
+import 'package:pokemon_taskhunt_2/enums/regions.dart';
+import 'package:pokemon_taskhunt_2/enums/stats.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 
 part 'dex_entry.g.dart';
 
@@ -145,6 +146,27 @@ class Stats {
     required this.spDef,
     required this.speed,
   });
+
+  int getStat(Stat stat) {
+    switch (stat) {
+      case Stat.hp: return hp;
+      case Stat.atk: return atk;
+      case Stat.def: return def;
+      case Stat.spAtk: return spAtk;
+      case Stat.spDef: return spDef;
+      case Stat.speed: return speed;
+      default: throw Exception('''
+Invalid argument for `getStat()`. Please provide one of the following:
+  - Stat.hp
+  - Stat.atk
+  - Stat.def
+  - Stat.spAtk
+  - Stat.spDef
+  - Stat.speed
+'''
+      );
+    }
+  }
 
   factory Stats.fromJson(Map<String, dynamic> json) => _$StatsFromJson(json);
   Map<String, dynamic> toJson() => _$StatsToJson(this);
