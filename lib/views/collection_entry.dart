@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
 import 'package:pokemon_taskhunt_2/models/move.dart';
 import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 import 'package:pokemon_taskhunt_2/providers/moves_db_provider.dart';
 import 'package:pokemon_taskhunt_2/providers/moves_map_db_provider.dart';
 import 'package:provider/provider.dart';

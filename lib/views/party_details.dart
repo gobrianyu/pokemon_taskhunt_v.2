@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/enums/items.dart';
 import 'package:pokemon_taskhunt_2/models/move.dart';
 import 'package:pokemon_taskhunt_2/models/moves_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/views/collection_entry.dart';
 import 'package:pokemon_taskhunt_2/widgets/alert_tab.dart';

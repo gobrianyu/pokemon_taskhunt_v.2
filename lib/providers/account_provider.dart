@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/blitz_game.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/enums/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 

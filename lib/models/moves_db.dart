@@ -5,13 +5,14 @@ class MovesDB{
   final List<Move> _moves;
   
   List<Move> get all {
-    return List<Move>.from(_moves, growable: false);
+    // deep copy: new list + cloned elements
+    return _moves.map((move) => move.clone()).toList(growable: false);
   }
 
   Move getById(int moveId) {
-    Move toReturn = _moves[moveId];
+    Move toReturn = all[moveId];
     if (toReturn.id != moveId) {
-      return _moves.firstWhere((move) => move.id == moveId);
+      return all.firstWhere((move) => move.id == moveId);
     }
     return toReturn;
   }

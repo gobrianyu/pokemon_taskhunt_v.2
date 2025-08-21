@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/enums/items.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
 import 'package:pokemon_taskhunt_2/providers/account_provider.dart';
 import 'package:pokemon_taskhunt_2/views/battle_screen.dart';

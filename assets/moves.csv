@@ -799,7 +799,7 @@ id|name|type|category|pp|power|accuracy|effect|probability|flavourText
 797|Scorching Sands|Ground|Special|10|70|100|selfThaw oppBurn|30|May burn opponent (30%).
 798|Jungle Healing|Grass|Status|10|||heal cure||User recovers all HP and cures any status conditions.
 799|Wicked Blow|Dark|Physical|5|75|100|ignoreStats highCrit|100|Ignores opponent's stat changes. Always results in a critical hit.
-800|Surging Strikes|Water|Physical|5|25|100|ignoreProtect highCrit|100|Ignores opponent's stat changes. Always results in a critical hit.
+800|Surging Strikes|Water|Physical|5|25|100|tripleHit ignoreProtect highCrit|100|Hits thrice in one turn. Ignores opponent's stat changes. Always results in a critical hit.
 801|Thunder Cage|Electric|Special|15|80|90|damageOverTime||Damages opponent for 4-5 turns.
 802|Dragon Energy|Dragon|Special|5|150|100|baseSelfHP||Stronger when the user's HP is higher.
 803|Freezing Glare|Psychic|Special|10|90|100|oppFreeze|10|May freeze opponent (10%).

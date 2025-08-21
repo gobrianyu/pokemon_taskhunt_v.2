@@ -1,4 +1,5 @@
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/move_effects.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 
 const Map<int, int> priorityMoves = {
   270:5,
@@ -21,7 +22,7 @@ class Move {
   final int pp;
   final int? power;
   final int? accuracy;
-  final String? effect;
+  final List<MoveEffect> effect;
   final double? probability;
   final String? flavourText;
   final int priority;
@@ -34,11 +35,25 @@ class Move {
     required this.pp,
     this.power,
     this.accuracy,
-    this.effect,
+    required this.effect,
     this.probability,
     this.flavourText,
     required this.priority,
   });
+
+  Move clone() => Move(
+    id: id,
+    name: name,
+    type: type,
+    category: category,
+    pp: pp,
+    power: power,
+    accuracy: accuracy,
+    effect: effect,
+    probability: probability,
+    flavourText: flavourText,
+    priority: priority,
+  );
 
   factory Move.fromCsv(List<dynamic> row) {
     int id = int.parse(row[0]);
@@ -52,7 +67,7 @@ class Move {
       pp: int.parse(row[4]),
       power: row[5].toString().isEmpty ? null : int.parse(row[5]),
       accuracy: row[6].toString().isEmpty ? null : int.parse(row[6]),
-      effect: row[7].toString().isEmpty ? '' : row[7],
+      effect: (row[7].toString().isEmpty ? '' : row[7]).toString().split(' ').map((effect) => MoveEffect.lookup(effect)).toList(),
       probability: row[8].toString().isEmpty ? null : double.parse(row[8]),
       flavourText: row[9].toString().isEmpty ? '' : row[9],
       priority: priority,
@@ -68,6 +83,7 @@ class Move {
       pp: 100,
       power: 50,
       accuracy: 100,
+      effect: [],
       flavourText: 'This is a placeholder move.',
       priority: 0,
     );

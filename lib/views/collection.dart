@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart' as dex;
-import 'package:pokemon_taskhunt_2/models/regions.dart';
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/regions.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 import 'package:pokemon_taskhunt_2/providers/dex_db_provider.dart';
 import 'package:pokemon_taskhunt_2/views/collection_page_view.dart';
 import 'package:provider/provider.dart';

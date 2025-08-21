@@ -5,7 +5,8 @@ enum Stat {
   spAtk(),
   spDef(),
   speed(),
-  accuracy();
+  accuracy(),
+  critRate();
 
   const Stat();
 
@@ -18,6 +19,7 @@ enum Stat {
       Stat.spDef,
       Stat.speed,
       Stat.accuracy,
+      Stat.critRate,
     ];
   }
 }

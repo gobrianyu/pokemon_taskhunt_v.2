@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:pokemon_taskhunt_2/models/dex_entry.dart';
-import 'package:pokemon_taskhunt_2/models/items.dart';
+import 'package:pokemon_taskhunt_2/enums/items.dart';
 import 'package:pokemon_taskhunt_2/models/moves_map_db.dart';
 import 'package:pokemon_taskhunt_2/models/pokemon.dart';
-import 'package:pokemon_taskhunt_2/models/regions.dart';
+import 'package:pokemon_taskhunt_2/enums/regions.dart';
 import 'package:pokemon_taskhunt_2/models/task.dart';
 import 'package:pokemon_taskhunt_2/models/task_list.dart';
-import 'package:pokemon_taskhunt_2/models/types.dart';
+import 'package:pokemon_taskhunt_2/enums/types.dart';
 
 // TODO list:
 // - stamina
