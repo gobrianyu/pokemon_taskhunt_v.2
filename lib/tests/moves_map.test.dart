@@ -50,6 +50,7 @@ void main() async {
         print('Extended ID$extendedID format incorrect: Move ID${move.moveId}');
         errorCount++;
       }
+      storage = extendedID;
     }
   }
 
